@@ -14,16 +14,297 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      congregacoes: {
+        Row: {
+          cidade: string
+          created_at: string | null
+          id: string
+          nome: string
+        }
+        Insert: {
+          cidade: string
+          created_at?: string | null
+          id?: string
+          nome: string
+        }
+        Update: {
+          cidade?: string
+          created_at?: string | null
+          id?: string
+          nome?: string
+        }
+        Relationships: []
+      }
+      designacoes: {
+        Row: {
+          ajudante_id: string | null
+          created_at: string | null
+          estudante_id: string
+          id: string
+          observacoes: string | null
+          parte_id: string
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          ajudante_id?: string | null
+          created_at?: string | null
+          estudante_id: string
+          id?: string
+          observacoes?: string | null
+          parte_id: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          ajudante_id?: string | null
+          created_at?: string | null
+          estudante_id?: string
+          id?: string
+          observacoes?: string | null
+          parte_id?: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "designacoes_ajudante_id_fkey"
+            columns: ["ajudante_id"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "designacoes_estudante_id_fkey"
+            columns: ["estudante_id"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "designacoes_parte_id_fkey"
+            columns: ["parte_id"]
+            isOneToOne: false
+            referencedRelation: "partes_programa"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      estudantes: {
+        Row: {
+          ativo: boolean | null
+          created_at: string | null
+          disponibilidade: Json | null
+          genero: string
+          id: string
+          profile_id: string
+          qualificacoes: string[] | null
+        }
+        Insert: {
+          ativo?: boolean | null
+          created_at?: string | null
+          disponibilidade?: Json | null
+          genero: string
+          id?: string
+          profile_id: string
+          qualificacoes?: string[] | null
+        }
+        Update: {
+          ativo?: boolean | null
+          created_at?: string | null
+          disponibilidade?: Json | null
+          genero?: string
+          id?: string
+          profile_id?: string
+          qualificacoes?: string[] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "estudantes_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      partes_programa: {
+        Row: {
+          created_at: string | null
+          duracao_minutos: number
+          genero_requerido:
+            | Database["public"]["Enums"]["genero_requerido"]
+            | null
+          id: string
+          instrucoes: string | null
+          ordem: number
+          semana_id: string
+          tipo_designacao: Database["public"]["Enums"]["tipo_designacao"]
+          titulo: string
+        }
+        Insert: {
+          created_at?: string | null
+          duracao_minutos: number
+          genero_requerido?:
+            | Database["public"]["Enums"]["genero_requerido"]
+            | null
+          id?: string
+          instrucoes?: string | null
+          ordem: number
+          semana_id: string
+          tipo_designacao: Database["public"]["Enums"]["tipo_designacao"]
+          titulo: string
+        }
+        Update: {
+          created_at?: string | null
+          duracao_minutos?: number
+          genero_requerido?:
+            | Database["public"]["Enums"]["genero_requerido"]
+            | null
+          id?: string
+          instrucoes?: string | null
+          ordem?: number
+          semana_id?: string
+          tipo_designacao?: Database["public"]["Enums"]["tipo_designacao"]
+          titulo?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "partes_programa_semana_id_fkey"
+            columns: ["semana_id"]
+            isOneToOne: false
+            referencedRelation: "semanas_programa"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          congregacao_id: string | null
+          created_at: string | null
+          email: string
+          id: string
+          nome: string
+          role: Database["public"]["Enums"]["app_role"]
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          congregacao_id?: string | null
+          created_at?: string | null
+          email: string
+          id?: string
+          nome: string
+          role?: Database["public"]["Enums"]["app_role"]
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          congregacao_id?: string | null
+          created_at?: string | null
+          email?: string
+          id?: string
+          nome?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      programas_ministeriais: {
+        Row: {
+          arquivo_nome: string
+          arquivo_url: string
+          conteudo: Json | null
+          created_at: string | null
+          id: string
+          mes_ano: string
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          arquivo_nome: string
+          arquivo_url: string
+          conteudo?: Json | null
+          created_at?: string | null
+          id?: string
+          mes_ano: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          arquivo_nome?: string
+          arquivo_url?: string
+          conteudo?: Json | null
+          created_at?: string | null
+          id?: string
+          mes_ano?: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      semanas_programa: {
+        Row: {
+          created_at: string | null
+          data_inicio: string
+          id: string
+          leitura_biblica: string | null
+          programa_id: string
+          semana_numero: number
+          tema_semana: string
+        }
+        Insert: {
+          created_at?: string | null
+          data_inicio: string
+          id?: string
+          leitura_biblica?: string | null
+          programa_id: string
+          semana_numero: number
+          tema_semana: string
+        }
+        Update: {
+          created_at?: string | null
+          data_inicio?: string
+          id?: string
+          leitura_biblica?: string | null
+          programa_id?: string
+          semana_numero?: number
+          tema_semana?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "semanas_programa_programa_id_fkey"
+            columns: ["programa_id"]
+            isOneToOne: false
+            referencedRelation: "programas_ministeriais"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_user_role: {
+        Args: { user_uuid: string }
+        Returns: Database["public"]["Enums"]["app_role"]
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "instrutor" | "estudante"
+      genero_requerido: "masculino" | "feminino" | "ambos"
+      tipo_designacao:
+        | "discurso_tesouros"
+        | "joias_espirituais"
+        | "leitura_biblica"
+        | "iniciando_conversas"
+        | "cultivando_interesse"
+        | "fazendo_discipulos"
+        | "explicando_crencas"
+        | "discurso_ministerio"
+        | "estudo_biblico_congregacao"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +431,20 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "instrutor", "estudante"],
+      genero_requerido: ["masculino", "feminino", "ambos"],
+      tipo_designacao: [
+        "discurso_tesouros",
+        "joias_espirituais",
+        "leitura_biblica",
+        "iniciando_conversas",
+        "cultivando_interesse",
+        "fazendo_discipulos",
+        "explicando_crencas",
+        "discurso_ministerio",
+        "estudo_biblico_congregacao",
+      ],
+    },
   },
 } as const
