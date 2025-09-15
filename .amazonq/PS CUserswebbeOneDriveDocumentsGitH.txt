@@ -1,0 +1,218 @@
+PS C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync> cd c:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync && npm run dev:all
+npm warn config optional Use `--omit=optional` to exclude optional dependencies, or
+npm warn config `--include=optional` to include them.
+npm warn config
+npm warn config       Default value does install optional deps unless otherwise omitted.
+
+> vite_react_shadcn_ts@0.0.0 dev:all
+> npm run kill-ports && concurrently "npm run dev:backend" "npm run dev:frontend"
+
+npm warn config optional Use `--omit=optional` to exclude optional dependencies, or
+npm warn config `--include=optional` to include them.
+npm warn config
+npm warn config       Default value does install optional deps unless otherwise omitted.
+
+> vite_react_shadcn_ts@0.0.0 kill-ports
+> scripts\kill-ports.bat
+
+­ƒöº Limpando portas em uso...
+Verificando porta 3000...
+Matando processo 10540 na porta 3000...
+ÊXITO: o processo com PID 10540 foi finalizado.
+Processo 10540 finalizado com sucesso
+Matando processo 10540 na porta 3000...
+Falha ao matar processo 10540 - pode ser necessario permissao de administrador
+Verificando porta 5173...
+Matando processo 13680 na porta 5173...
+ÊXITO: o processo com PID 13680 foi finalizado.
+Processo 13680 finalizado com sucesso
+Matando processo 13680 na porta 5173...
+Falha ao matar processo 13680 - pode ser necessario permissao de administrador
+Matando processo 13680 na porta 5173...
+Falha ao matar processo 13680 - pode ser necessario permissao de administrador
+Matando processo 8324 na porta 5173...
+ÊXITO: o processo com PID 8324 foi finalizado.
+Processo 8324 finalizado com sucesso
+Verificando porta 8080...
+Matando processo 5220 na porta 8080...
+Falha ao matar processo 5220 - pode ser necessario permissao de administrador
+Verificando porta 8787...
+Ô£à Verificacao de portas concluida!
+
+Aguardando 0 segundos, pressione uma tecla para continuar ...
+[0] npm warn config optional Use `--omit=optional` to exclude optional dependencies, or
+[0] npm warn config `--include=optional` to include them.
+[0] npm warn config
+[0] npm warn config       Default value does install optional deps unless otherwise omitted.
+[1] npm warn config optional Use `--omit=optional` to exclude optional dependencies, or 
+[1] npm warn config `--include=optional` to include them.
+[1] npm warn config
+[1] npm warn config       Default value does install optional deps unless otherwise omitted.
+[0] 
+[0] > vite_react_shadcn_ts@0.0.0 dev:backend
+[0] > cd backend && npm run dev
+[0]
+[1] 
+[1] > vite_react_shadcn_ts@0.0.0 dev:frontend
+[1] > vite --port 5173 --strictPort
+[1]
+[0]
+[0] > sistema-ministerial-backend@2.0.0-simplified dev
+[0] > nodemon server.js
+[0]
+[1]
+[1]   VITE v5.4.19  ready in 256 ms
+[1]
+[1]   ➜  Local:   http://localhost:5173/
+[1]   ➜  Network: http://192.168.1.188:5173/
+[1]   ➜  Network: http://172.30.80.1:5173/
+[0] [nodemon] 3.1.10
+[0] [nodemon] to restart at any time, enter `rs`
+[0] [nodemon] watching path(s): *.*
+[0] [nodemon] watching extensions: js,mjs,cjs,json
+[0] [nodemon] starting `node server.js`
+[0] 🚀 Inicializando Sistema Ministerial Backend Simplificado...
+[0] ✅ Pasta docs/Oficial verificada
+[0] ✅ Sistema simplificado inicializado
+[0] 🎯 Sistema Ministerial Backend Simplificado rodando na porta 3000
+[0] 📁 PDFs mockados disponíveis em: C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial      
+[0] 🌐 API disponível em: http://localhost:3000/api
+[0] 🧪 Para testar: curl http://localhost:3000/api/status
+[0] 📋 Modo: Programação Mockada (sem scraping JW.org)
+[1] Error processing file src\components\EstudanteForm.tsx: SyntaxError: Expected corresponding JSX closing tag for <form>. (285:10)
+[1]     at constructor (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:367:19)
+[1]     at TypeScriptParserMixin.raise (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:6627:19)
+[1]     at TypeScriptParserMixin.jsxParseElementAt (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:4757:16)
+[1]     at TypeScriptParserMixin.jsxParseElementAt (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:4728:32)
+[1]     at TypeScriptParserMixin.jsxParseElementAt (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:4728:32)
+[1]     at TypeScriptParserMixin.jsxParseElement (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:4779:17)
+[1]     at TypeScriptParserMixin.parseExprAtom (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:4789:19)
+[1]     at TypeScriptParserMixin.parseExprSubscripts (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:11076:23)
+[1]     at TypeScriptParserMixin.parseUpdate (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:11061:21)
+[1]     at TypeScriptParserMixin.parseMaybeUnary (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:11041:23) {
+[1]   code: 'BABEL_PARSER_SYNTAX_ERROR',
+[1]   reasonCode: 'MissingClosingTagElement',
+[1]   loc: Position { line: 285, column: 10, index: 10448 },
+[1]   pos: 10448,
+[1]   syntaxPlugin: 'jsx'
+[1] }
+[1] 19:26:41 [vite] Pre-transform error: Transform failed with 4 errors:
+[1] C:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/src/components/EstudanteForm.tsx:285:12: ERROR: Unexpected closing "div" tag does not match opening "form" tag
+[1] C:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/src/components/EstudanteForm.tsx:323:12: ERROR: Unexpected closing "div" tag does not match opening "CardContent" tag
+[1] C:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/src/components/EstudanteForm.tsx:683:10: ERROR: Unexpected closing "form" tag does not match opening "Card" tag
+[1] C:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/src/components/EstudanteForm.tsx:684:20: ERROR: Unterminated regular expression
+[1] Error processing file src\components\EstudanteForm.tsx: SyntaxError: Expected corresponding JSX closing tag for <form>. (285:10)
+[1]     at constructor (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:367:19)
+[1]     at TypeScriptParserMixin.raise (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:6627:19)
+[1]     at TypeScriptParserMixin.jsxParseElementAt (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:4757:16)
+[1]     at TypeScriptParserMixin.jsxParseElementAt (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:4728:32)
+[1]     at TypeScriptParserMixin.jsxParseElementAt (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:4728:32)
+[1]     at TypeScriptParserMixin.jsxParseElement (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:4779:17)
+[1]     at TypeScriptParserMixin.parseExprAtom (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:4789:19)
+[1]     at TypeScriptParserMixin.parseExprSubscripts (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:11076:23)
+[1]     at TypeScriptParserMixin.parseUpdate (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:11061:21)
+[1]     at TypeScriptParserMixin.parseMaybeUnary (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\@babel\parser\lib\index.js:11041:23) {
+[1]   code: 'BABEL_PARSER_SYNTAX_ERROR',
+[1]   reasonCode: 'MissingClosingTagElement',
+[1]   loc: Position { line: 285, column: 10, index: 10448 },
+[1]   pos: 10448,
+[1]   syntaxPlugin: 'jsx'
+[1] }
+[1] 19:26:42 [vite] Internal server error: Transform failed with 4 errors:
+[1] C:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/src/components/EstudanteForm.tsx:285:12: ERROR: Unexpected closing "div" tag does not match opening "form" tag
+[1] C:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/src/components/EstudanteForm.tsx:323:12: ERROR: Unexpected closing "div" tag does not match opening "CardContent" tag
+[1] C:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/src/components/EstudanteForm.tsx:683:10: ERROR: Unexpected closing "form" tag does not match opening "Card" tag
+[1] C:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/src/components/EstudanteForm.tsx:684:20: ERROR: Unterminated regular expression
+[1]   Plugin: vite:esbuild
+[1]   File: C:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/src/components/EstudanteForm.tsx:285:12    
+[1]
+[1]   Unexpected closing "div" tag does not match opening "form" tag
+[1]   283|
+[1]   284|              </div>
+[1]   285|            </div>
+[1]      |              ^
+[1]   286|
+[1]   287|            {/* Contact Information Section */}
+[1]
+[1]   Unexpected closing "div" tag does not match opening "CardContent" tag
+[1]   321|
+[1]   322|              </div>
+[1]   323|            </div>
+[1]      |              ^
+[1]   324|
+[1]   325|            {/* Dates and Status Section */}
+[1]
+[1]   Unexpected closing "form" tag does not match opening "Card" tag
+[1]   681|              </Button>
+[1]   682|            </div>
+[1]   683|          </form>
+[1]      |            ^
+[1]   684|        </CardContent>
+[1]   685|      </Card>
+[1]
+[1]   Unterminated regular expression
+[1]   682|            </div>
+[1]   683|          </form>
+[1]   684|        </CardContent>
+[1]      |                      ^
+[1]   685|      </Card>
+[1]   686|    );
+[1]
+[1]       at failureErrorWithLog (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\vite\node_modules\esbuild\lib\main.js:1472:15)
+[1]       at C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\vite\node_modules\esbuild\lib\main.js:755:50
+[1]       at responseCallbacks.<computed> (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\vite\node_modules\esbuild\lib\main.js:622:9)
+[1]       at handleIncomingPacket (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\vite\node_modules\esbuild\lib\main.js:677:12)
+[1]       at Socket.readFromStdout (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\vite\node_modules\esbuild\lib\main.js:600:7)
+[1]       at Socket.emit (node:events:518:28)
+[1]       at addChunk (node:internal/streams/readable:561:12)
+[1]       at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+[1]       at Readable.push (node:internal/streams/readable:392:5)
+[1]       at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)  [plugin:vite:esbuild] Transform failed with 4 errors:
+C:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/src/components/EstudanteForm.tsx:285:12: ERROR: Unexpected closing "div" tag does not match opening "form" tag
+C:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/src/components/EstudanteForm.tsx:323:12: ERROR: Unexpected closing "div" tag does not match opening "CardContent" tag
+C:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/src/components/EstudanteForm.tsx:683:10: ERROR: Unexpected closing "form" tag does not match opening "Card" tag
+C:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/src/components/EstudanteForm.tsx:684:20: ERROR: Unterminated regular expression
+C:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/src/components/EstudanteForm.tsx:285:12
+Unexpected closing "div" tag does not match opening "form" tag
+283|  
+284|              </div>
+285|            </div>
+   |              ^
+286|  
+287|            {/* Contact Information Section */}
+
+Unexpected closing "div" tag does not match opening "CardContent" tag
+321|  
+322|              </div>
+323|            </div>
+   |              ^
+324|  
+325|            {/* Dates and Status Section */}
+
+Unexpected closing "form" tag does not match opening "Card" tag
+681|              </Button>
+682|            </div>
+683|          </form>
+   |            ^
+684|        </CardContent>
+685|      </Card>
+
+Unterminated regular expression
+682|            </div>
+683|          </form>
+684|        </CardContent>
+   |                      ^
+685|      </Card>
+686|    );
+    at failureErrorWithLog (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\vite\node_modules\esbuild\lib\main.js:1472:15)
+    at C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\vite\node_modules\esbuild\lib\main.js:755:50
+    at responseCallbacks.<computed> (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\vite\node_modules\esbuild\lib\main.js:622:9)
+    at handleIncomingPacket (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\vite\node_modules\esbuild\lib\main.js:677:12)
+    at Socket.readFromStdout (C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\node_modules\vite\node_modules\esbuild\lib\main.js:600:7)
+    at Socket.emit (node:events:518:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23
+Click outside, press Esc key, or fix the code to dismiss.
+You can also disable this overlay by setting server.hmr.overlay to false in vite.config.ts.  EstudantesPage.tsx:11  GET http://localhost:5173/src/components/EstudanteForm.tsx net::ERR_ABORTED 500 (Internal Server Error)

@@ -5,13 +5,13 @@ import { checkAndClearInvalidTokens, recoverFromAuthError, clearAuthStorage } fr
 
 interface Profile {
   id: string;
+  user_id: string;
+  nome: string;
   email: string;
   role: string;
-  nome_completo?: string;
-  congregacao?: string;
-  cargo?: string;
-  created_at: string;
-  updated_at: string;
+  congregacao_id?: string | null;
+  created_at: string | null;
+  updated_at: string | null;
 }
 
 interface AuthContextType {
@@ -135,7 +135,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const { data: profileData, error: profileError } = await supabase
         .from('profiles')
         .select('*')
-        .eq('id', userId)
+        .eq('user_id', userId)
         .maybeSingle();
         
       // Verificar se houve erro na requisição
@@ -156,12 +156,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           
           // Criar perfil a partir dos metadados
           const profileFromMetadata = {
-            id: userId,
-            nome_completo: metadata.nome_completo || userData.user.email?.split('@')[0] || 'Usuário',
-            congregacao: metadata.congregacao || 'Não informado',
-            cargo: metadata.cargo || 'instrutor',
+            id: 'temp-' + userId,
+            user_id: userId,
+            nome: metadata.nome_completo || userData.user.email?.split('@')[0] || 'Usuário',
             role: metadata.role || 'instrutor',
             email: userData.user.email || '',
+            congregacao_id: null,
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString()
           };
@@ -172,56 +172,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
         
         setAuthError('Perfil não encontrado. Entre em contato com o administrador.');
-        return;
-      }
-        
-      // Verificar se houve erro de API key
-      if (profileError && profileError.message?.includes('No API key found')) {
-        console.error('❌ Erro de API key no Supabase:', profileError);
-        setAuthError('Erro de configuração do Supabase: API key não encontrada');
-        return;
-      }
-
-      // Verificar erro 406 Not Acceptable
-      if (profileError && (profileError as any).code === 'PGRST116') {
-        console.log('ℹ️ Erro PGRST116 (0 rows): Perfil não encontrado, criando a partir dos metadados');
-        console.log('ℹ️ Detalhes do erro:', profileError);
-        
-        // Criar perfil a partir dos metadados do usuário
-        const { data: userData } = await supabase.auth.getUser();
-        if (userData.user) {
-          const metadata = userData.user.user_metadata;
-          
-          const profileFromMetadata = {
-            id: userId,
-            nome_completo: metadata.nome_completo || userData.user.email?.split('@')[0] || 'Usuário',
-            congregacao: metadata.congregacao || 'Não informado',
-            cargo: metadata.cargo || 'instrutor',
-            role: metadata.role || 'instrutor',
-            email: userData.user.email || '',
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
-          };
-          
-          console.log('✅ Profile created from metadata (PGRST116):', profileFromMetadata);
-          setProfile(profileFromMetadata);
-          setAuthError(null);
-          return;
-        }
-        
-        setProfile(null);
-        return;
-      }
-
-      if (profileError) {
-        console.error('❌ Error loading profile:', profileError);
-        // Tratar outros erros relacionados a 0 rows
-        if (profileError.message?.includes('0 rows')) {
-          console.log('ℹ️ Nenhum perfil encontrado; continuando sem erro');
-          setProfile(null);
-          return;
-        }
-        setAuthError(`Erro ao carregar perfil: ${profileError.message}`);
         return;
       }
 
@@ -306,22 +256,56 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (!user) {
         return { data: null, error: { message: 'No user logged in' } };
       }
-      const { data, error } = await supabase
+      
+      // First, try to update the existing profile
+      let { data, error } = await supabase
         .from('profiles')
         .update({
           ...updates,
           updated_at: new Date().toISOString(),
         } as any)
-        .eq('id', user.id)
+        .eq('user_id', user.id)
         .select('*')
         .single();
+
+      // If update failed because profile doesn't exist, create it
+      if (error && (error as any).code === 'PGRST116') {
+        console.log('ℹ️ Profile not found, creating new profile');
+        
+        const { data: userData } = await supabase.auth.getUser();
+        const metadata = userData.user?.user_metadata || {};
+        
+        // Create new profile
+        const { data: newProfile, error: insertError } = await supabase
+          .from('profiles')
+          .insert({
+            user_id: user.id,
+            email: user.email,
+            nome: updates.nome_completo || metadata.nome_completo || user.email?.split('@')[0] || 'Usuário',
+            role: metadata.role || 'instrutor',
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          })
+          .select('*')
+          .single();
+
+        if (insertError) {
+          console.error('❌ Error creating profile:', insertError);
+          return { data: null, error: insertError };
+        }
+        
+        data = newProfile;
+        error = null;
+      }
 
       if (!error && data) {
         // Refresh local state with latest profile
         setProfile((prev) => ({ ...(prev || {} as Profile), ...data }));
       }
+      
       return { data, error };
     } catch (error) {
+      console.error('❌ Error in updateProfile:', error);
       return { data: null, error };
     }
   }, [user]);

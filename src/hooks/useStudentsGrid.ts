@@ -154,7 +154,7 @@ export function useStudentsGrid(): UseStudentsGridReturn {
 
       // Build query
       let query = (supabase as any)
-        .from('vw_estudantes_grid')
+        .from('estudantes_legacy')
         .select('*', { count: 'exact' })
         .eq('user_id', user.id);
 

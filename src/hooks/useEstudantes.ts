@@ -1,23 +1,16 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 
 export interface EstudanteWithParent {
   id: string;
   nome: string;
-  idade?: number;
-  genero: 'masculino' | 'feminino';
-  email?: string;
-  telefone?: string;
-  data_batismo?: string;
-  cargo: 'anciao' | 'servo_ministerial' | 'pioneiro_regular' | 'publicador_batizado' | 'publicador_nao_batizado' | 'estudante_novo';
-  pai_id?: string;
-  mae_id?: string;
-  ativo: boolean;
-  user_id: string;
-  congregacao?: string;
-  created_at: string;
-  updated_at: string;
+  genero: string;
+  qualificacoes: string[] | null;
+  disponibilidade: any | null;
+  ativo: boolean | null;
+  profile_id: string;
+  created_at: string | null;
 }
 
 export interface EstudanteFilters {
@@ -31,10 +24,7 @@ export interface EstudanteStatistics {
   total: number;
   ativos: number;
   inativos: number;
-  menores: number;
-  homens: number;
-  mulheres: number;
-  qualificados: number;
+  // Remove other statistics fields that don't exist in the current schema
 }
 
 export function useEstudantes(activeTab?: string) {
@@ -50,30 +40,53 @@ export function useEstudantes(activeTab?: string) {
     setError(null);
 
     try {
+      // First get the profile to get the correct profile.id
+      const { data: profileData } = await supabase
+        .from('profiles')
+        .select('id')
+        .eq('user_id', user.id)
+        .single();
+
+      if (!profileData) {
+        setError('Perfil não encontrado');
+        setIsLoading(false);
+        return;
+      }
+
+      // Updated query to match the current database schema
       const { data, error: fetchError } = await supabase
         .from('estudantes')
         .select(`
           id,
-          nome,
-          idade,
+          profile_id,
           genero,
-          email,
-          telefone,
-          data_batismo,
-          cargo,
+          qualificacoes,
+          disponibilidade,
           ativo,
-          user_id,
           created_at,
-          updated_at
+          profiles!inner(nome)
         `)
-        .eq('user_id', user.id)
-        .order('nome');
+        .eq('profile_id', profileData.id)
+        // Fixed the order syntax for joined tables
+        .order('nome', { foreignTable: 'profiles' });
 
       if (fetchError) {
         throw new Error(`Erro ao buscar estudantes: ${fetchError.message}`);
       }
 
-      setEstudantes(data || []);
+      // Transform the data to match the expected interface
+      const transformedData = data?.map(estudante => ({
+        id: estudante.id,
+        nome: estudante.profiles?.nome || 'Sem nome',
+        genero: estudante.genero,
+        qualificacoes: estudante.qualificacoes,
+        disponibilidade: estudante.disponibilidade,
+        ativo: estudante.ativo,
+        profile_id: estudante.profile_id,
+        created_at: estudante.created_at
+      })) || [];
+
+      setEstudantes(transformedData);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Erro desconhecido';
       setError(errorMessage);
@@ -87,19 +100,28 @@ export function useEstudantes(activeTab?: string) {
     if (!user?.id) throw new Error('Usuário não autenticado');
 
     try {
-      // Garantir que campos obrigatórios estejam presentes
+      // First get the profile to get the correct profile.id
+      const { data: profileData } = await supabase
+        .from('profiles')
+        .select('id')
+        .eq('user_id', user.id)
+        .single();
+
+      if (!profileData) {
+        throw new Error('Perfil não encontrado');
+      }
+
+      // Updated to match the current schema
       const dataToInsert = {
-        nome: estudanteData.nome || '',
         genero: estudanteData.genero || 'masculino',
-        cargo: estudanteData.cargo || 'estudante_novo',
-        ...estudanteData,
-        user_id: user.id,
-        ativo: true
+        profile_id: profileData.id,
+        ativo: true,
+        ...estudanteData
       };
 
       const { data, error } = await supabase
         .from('estudantes')
-        .insert(dataToInsert)
+        .insert([dataToInsert])
         .select()
         .single();
 
@@ -153,15 +175,12 @@ export function useEstudantes(activeTab?: string) {
       const matchesSearch = !filters.searchTerm || 
         estudante.nome.toLowerCase().includes(filters.searchTerm.toLowerCase());
       
-      const matchesCargo = filters.cargo === 'todos' || estudante.cargo === filters.cargo;
-      
-      const matchesGenero = filters.genero === 'todos' || estudante.genero === filters.genero;
-      
+      // Remove filters for fields that don't exist in the current schema
       const matchesAtivo = filters.ativo === 'todos' || 
         (filters.ativo === 'ativo' && estudante.ativo) ||
         (filters.ativo === 'inativo' && !estudante.ativo);
 
-      return matchesSearch && matchesCargo && matchesGenero && matchesAtivo;
+      return matchesSearch && matchesAtivo;
     });
   }, [estudantes]);
 
@@ -169,21 +188,11 @@ export function useEstudantes(activeTab?: string) {
     const total = estudantes.length;
     const ativos = estudantes.filter(e => e.ativo).length;
     const inativos = total - ativos;
-    const menores = estudantes.filter(e => e.idade && e.idade < 18).length;
-    const homens = estudantes.filter(e => e.genero === 'masculino').length;
-    const mulheres = estudantes.filter(e => e.genero === 'feminino').length;
-    const qualificados = estudantes.filter(e => 
-      ['anciao', 'servo_ministerial', 'publicador_batizado'].includes(e.cargo)
-    ).length;
 
     return {
       total,
       ativos,
-      inativos,
-      menores,
-      homens,
-      mulheres,
-      qualificados
+      inativos
     };
   }, [estudantes]);
 
@@ -210,17 +219,4 @@ export function useEstudantes(activeTab?: string) {
   };
 }
 
-// Constantes para labels
-export const CARGO_LABELS = {
-  anciao: 'Ancião',
-  servo_ministerial: 'Servo Ministerial',
-  pioneiro_regular: 'Pioneiro Regular',
-  publicador_batizado: 'Publicador Batizado',
-  publicador_nao_batizado: 'Publicador Não Batizado',
-  estudante_novo: 'Estudante Novo'
-};
-
-export const GENERO_LABELS = {
-  masculino: 'Masculino',
-  feminino: 'Feminino'
-};
+// Remove constant definitions that don't match the current schema

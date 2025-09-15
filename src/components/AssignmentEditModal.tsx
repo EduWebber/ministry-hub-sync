@@ -13,7 +13,7 @@ import { toast } from "@/hooks/use-toast";
 
 interface Student {
   id: string;
-  nome: string;
+  nome_completo: string;
   cargo: string;
   genero: string;
 }
@@ -63,9 +63,9 @@ export const AssignmentEditModal: React.FC<AssignmentEditModalProps> = ({
       
       const { data, error } = await supabase
         .from('estudantes')
-        .select('id, nome, cargo, genero')
+        .select('id, nome_completo, cargo, genero')
         .eq('ativo', true)
-        .order('nome');
+        .order('nome_completo');
 
       if (error) throw error;
       setAvailableStudents(data || []);
@@ -268,7 +268,7 @@ export const AssignmentEditModal: React.FC<AssignmentEditModalProps> = ({
                   {getFilteredStudents(false).map((student) => (
                     <SelectItem key={student.id} value={student.id}>
                       <div className="flex items-center gap-2">
-                        <span className="truncate">{student.nome}</span>
+                        <span className="truncate">{student.nome_completo}</span>
                         <Badge variant="outline" className="text-xs flex-shrink-0">
                           {student.cargo}
                         </Badge>
@@ -310,7 +310,7 @@ export const AssignmentEditModal: React.FC<AssignmentEditModalProps> = ({
                     {getFilteredStudents(true).map((student) => (
                       <SelectItem key={student.id} value={student.id}>
                         <div className="flex items-center gap-2">
-                          <span className="truncate">{student.nome}</span>
+                          <span className="truncate">{student.nome_completo}</span>
                           <Badge variant="outline" className="text-xs flex-shrink-0">
                             {student.cargo}
                           </Badge>

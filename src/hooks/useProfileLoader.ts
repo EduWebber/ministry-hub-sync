@@ -9,7 +9,7 @@ type UserRole = Database['public']['Enums']['user_role'];
 
 interface UserProfile {
   id: string;
-  nome_completo: string | null;
+  nome: string | null;
   congregacao: string | null;
   cargo: string | null;
   role: UserRole;
@@ -44,7 +44,7 @@ export const useProfileLoader = () => {
         .from('profiles')
         .insert({
           id: user.id,
-          nome_completo: metadata.nome_completo || '',
+          nome: metadata.nome_completo || '',
           congregacao: metadata.congregacao || '',
           cargo: metadata.cargo || '',
           role: (metadata.role as UserRole) || 'instrutor'
@@ -57,7 +57,7 @@ export const useProfileLoader = () => {
         // Return profile from metadata even if DB insert fails
         return {
           id: user.id,
-          nome_completo: metadata.nome_completo || '',
+          nome: metadata.nome_completo || '',
           congregacao: metadata.congregacao || '',
           cargo: metadata.cargo || '',
           role: (metadata.role as UserRole) || 'instrutor',
@@ -68,7 +68,11 @@ export const useProfileLoader = () => {
         };
       }
 
-      const profileWithEmail = { ...data, email };
+      const profileWithEmail = { 
+        ...data, 
+        nome: data.nome_completo || data.nome, // Map nome_completo to nome if needed
+        email 
+      };
       authLogger.success('Profile created from metadata', profileWithEmail);
       return profileWithEmail as UserProfile;
     } catch (error) {
@@ -134,7 +138,11 @@ export const useProfileLoader = () => {
 
       if (profileData) {
         const email = session.user.email || '';
-        const profileWithEmail = { ...profileData, email } as UserProfile;
+        const profileWithEmail = { 
+          ...profileData, 
+          nome: profileData.nome_completo || profileData.nome, // Map nome_completo to nome if needed
+          email 
+        } as UserProfile;
         
         // Cache the profile
         cacheRef.current.set(userId, profileWithEmail);

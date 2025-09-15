@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear Auth Cache</title>
+</head>
+<body>
+    <h1>Clear Authentication Cache</h1>
+    <button onclick="clearCache()">Clear All Cache</button>
+    <div id="result"></div>
+
+    <script>
+        function clearCache() {
+            // Clear localStorage
+            localStorage.clear();
+            
+            // Clear sessionStorage
+            sessionStorage.clear();
+            
+            // Clear IndexedDB (Supabase uses this)
+            if ('indexedDB' in window) {
+                indexedDB.databases().then(databases => {
+                    databases.forEach(db => {
+                        indexedDB.deleteDatabase(db.name);
+                    });
+                });
+            }
+            
+            document.getElementById('result').innerHTML = 'Cache cleared! Please restart your browser and try again.';
+        }
+    </script>
+</body>
+</html>

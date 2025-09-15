@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Supabase Config</title>
+</head>
+<body>
+    <h1>Debug Supabase Configuration</h1>
+    <div id="config"></div>
+    <button onclick="clearAndReload()">Clear Cache & Reload</button>
+
+    <script type="module">
+        // Simular as variáveis de ambiente do Vite
+        const config = {
+            VITE_SUPABASE_URL: 'https://nwpuurgwnnuejqinkvrh.supabase.co',
+            VITE_SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53cHV1cmd3bm51ZWpxaW5rdnJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0NjIwNjUsImV4cCI6MjA3MDAzODA2NX0.UHjSvXYY_c-_ydAIfELRUs4CMEBLKiztpBGQBNPHfak'
+        };
+
+        // Test with actual environment values
+        const testConfig = {
+            VITE_SUPABASE_URL: 'https://nwpuurgwnnuejqinkvrh.supabase.co',
+            VITE_SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53cHV1cmd3bm51ZWpxaW5rdnJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0NjIwNjUsImV4cCI6MjA3MDAzODA2NX0.UHjSvXYY_c-_ydAIfELRUs4CMEBLKiztpBGQBNPHfak'
+        };
+
+        document.getElementById('config').innerHTML = `
+            <h3>Current Configuration:</h3>
+            <p><strong>URL:</strong> ${config.VITE_SUPABASE_URL}</p>
+            <p><strong>Key:</strong> ${config.VITE_SUPABASE_ANON_KEY.substring(0, 50)}...</p>
+            
+            <h3>Expected Project ID:</h3>
+            <p>nwpuurgwnnuejqinkvrh</p>
+            
+            <h3>LocalStorage:</h3>
+            <pre>${JSON.stringify(localStorage, null, 2)}</pre>
+        `;
+
+        window.clearAndReload = function() {
+            localStorage.clear();
+            sessionStorage.clear();
+            location.reload();
+        };
+    </script>
+</body>
+</html>

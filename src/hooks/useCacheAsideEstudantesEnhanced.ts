@@ -20,9 +20,11 @@ import { supabase } from '@/lib/supabase';
 interface Estudante {
   id: string;
   nome: string;
-  sobrenome: string;
-  congregacao_id?: string;
+  genero: string;
+  qualificacoes: string[] | null;
+  disponibilidade: any | null;
   ativo: boolean;
+  profile_id: string;
   created_at: string;
 }
 
@@ -48,16 +50,22 @@ interface UseEstudantesEnhancedReturn {
 const fallbackEstudantes: Estudante[] = [
   {
     id: 'fallback-1',
-    nome: 'João',
-    sobrenome: 'Silva',
+    nome: 'João Silva',
+    genero: 'masculino',
+    qualificacoes: null,
+    disponibilidade: null,
     ativo: true,
+    profile_id: 'fallback-profile-1',
     created_at: new Date().toISOString()
   },
   {
     id: 'fallback-2', 
-    nome: 'Maria',
-    sobrenome: 'Santos',
+    nome: 'Maria Santos',
+    genero: 'feminino',
+    qualificacoes: null,
+    disponibilidade: null,
     ativo: true,
+    profile_id: 'fallback-profile-2',
     created_at: new Date().toISOString()
   }
 ];
@@ -86,9 +94,18 @@ export function useCacheAsideEstudantesEnhanced(): UseEstudantesEnhancedReturn {
           
           const { data, error } = await supabase
             .from('estudantes')
-            .select('*')
+            .select(`
+              id,
+              genero,
+              qualificacoes,
+              disponibilidade,
+              ativo,
+              profile_id,
+              created_at,
+              profiles!inner(nome)
+            `)
             .eq('ativo', true)
-            .order('nome', { ascending: true });
+            .order('nome', { foreignTable: 'profiles', ascending: true });
 
           if (error) {
             console.error('Database error:', error);

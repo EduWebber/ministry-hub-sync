@@ -135,6 +135,35 @@ export interface EstudanteFormData {
   id_pai_mae?: string;
   ativo: boolean;
   observacoes?: string;
+  familia: string;
+  data_nascimento: string;
+  estado_civil: string;
+  papel_familiar: string;
+  id_pai?: string;
+  id_mae?: string;
+  id_conjuge?: string;
+  coabitacao: boolean;
+  menor: boolean;
+  responsavel_primario?: string;
+  responsavel_secundario?: string;
+  chairman: boolean;
+  pray: boolean;
+  tresures: boolean;
+  gems: boolean;
+  reading: boolean;
+  starting: boolean;
+  following: boolean;
+  making: boolean;
+  explaining: boolean;
+  talk: boolean;
+  tresures?: boolean;
+  gems?: boolean;
+  reading?: boolean;
+  starting?: boolean;
+  following?: boolean;
+  making?: boolean;
+  explaining?: boolean;
+  talk?: boolean;
 }
 
 // Filter and search types

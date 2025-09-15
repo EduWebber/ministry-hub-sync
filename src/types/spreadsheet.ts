@@ -2,25 +2,49 @@ import { Cargo, Genero } from "./estudantes";
 
 // Raw data from Excel spreadsheet
 export interface SpreadsheetRow {
-  "ID Estudante"?: string | number;
-  "Nome Completo": string;
-  "Idade": number;
-  "Gênero (M/F)": string;
-  "Data de Nascimento"?: string;
-  "Parente Responsável"?: string;
-  "Parentesco"?: string;
-  "Família / Agrupamento": string;
-  "Data de Batismo"?: string;
-  "Cargo Congregacional": string;
-  "Telefone"?: string;
-  "E-mail"?: string;
-  "Observações"?: string;
-  "Status (Ativo/Inativo)": string;
+  "id"?: string;
+  "user_id"?: string;
+  "nome": string;
+  "familia": string;
+  "idade": number;
+  "genero": string;
+  "email"?: string;
+  "telefone"?: string;
+  "data_batismo"?: string;
+  "cargo": string;
+  "id_pai_mae"?: string;
+  "ativo": string;
+  "observacoes"?: string;
+  "created_at"?: string;
+  "updated_at"?: string;
+  "estado_civil"?: string;
+  "papel_familiar"?: string;
+  "id_pai"?: string;
+  "id_mae"?: string;
+  "id_conjuge"?: string;
+  "coabitacao"?: string;
+  "menor"?: string;
+  "responsavel_primario"?: string;
+  "responsavel_secundario"?: string;
+  "chairman"?: string;
+  "pray"?: string;
+  "tresures"?: string;
+  "gems"?: string;
+  "reading"?: string;
+  "starting"?: string;
+  "following"?: string;
+  "making"?: string;
+  "explaining"?: string;
+  "talk"?: string;
+  "data_nascimento"?: string;
 }
 
 // Processed data ready for database insertion
 export interface ProcessedStudentData {
+  id?: string;
+  user_id?: string;
   nome: string;
+  familia: string;
   idade: number;
   genero: Genero;
   email?: string;
@@ -30,9 +54,26 @@ export interface ProcessedStudentData {
   id_pai_mae?: string;
   ativo: boolean;
   observacoes?: string;
-  familia?: string;
-  parentesco?: string;
-  parente_responsavel?: string;
+  estado_civil?: string;
+  papel_familiar?: string;
+  id_pai?: string;
+  id_mae?: string;
+  id_conjuge?: string;
+  coabitacao?: boolean;
+  menor?: boolean;
+  responsavel_primario?: string;
+  responsavel_secundario?: string;
+  chairman?: boolean;
+  pray?: boolean;
+  tresures?: boolean;
+  gems?: boolean;
+  reading?: boolean;
+  starting?: boolean;
+  following?: boolean;
+  making?: boolean;
+  explaining?: boolean;
+  talk?: boolean;
+  data_nascimento?: string;
 }
 
 // Validation result for each row
@@ -87,57 +128,96 @@ export const STATUS_MAPPING: Record<string, boolean> = {
   'inativo': false,
   'true': true,
   'false': false,
+  'VERDADEIRO': true,
+  'FALSO': false,
   '1': true,
   '0': false
 };
 
+export const BOOLEAN_MAPPING: Record<string, boolean> = {
+  'VERDADEIRO': true,
+  'FALSO': false,
+  'true': true,
+  'false': false,
+  '1': true,
+  '0': false,
+  'sim': true,
+  'não': false,
+  'yes': true,
+  'no': false
+};
+
 // Template column definitions
 export const TEMPLATE_COLUMNS = [
-  'Nome Completo',
-  'Idade',
-  'Gênero (M/F)',
-  'Data de Nascimento',
-  'Parente Responsável',
-  'Parentesco',
-  'Família / Agrupamento',
-  'Data de Batismo',
-  'Cargo Congregacional',
-  'Telefone',
-  'E-mail',
-  'Observações',
-  'Status (Ativo/Inativo)'
+  'nome',
+  'familia',
+  'idade',
+  'genero',
+  'email',
+  'telefone',
+  'data_batismo',
+  'cargo',
+  'ativo',
+  'observacoes',
+  'data_nascimento',
+  'chairman',
+  'pray',
+  'tresures',
+  'gems',
+  'reading',
+  'starting',
+  'following',
+  'making',
+  'explaining',
+  'talk'
 ] as const;
 
 // Sample data for template
 export const TEMPLATE_SAMPLE_DATA: Partial<SpreadsheetRow>[] = [
   {
-    "Nome Completo": "João Silva",
-    "Idade": 25,
-    "Gênero (M/F)": "M",
-    "Data de Nascimento": "15/03/1999",
-    "Parente Responsável": "",
-    "Parentesco": "",
-    "Família / Agrupamento": "Família Silva",
-    "Data de Batismo": "20/06/2020",
-    "Cargo Congregacional": "Publicador Batizado",
-    "Telefone": "(11) 99999-9999",
-    "E-mail": "joao.silva@email.com",
-    "Observações": "Disponível para designações",
-    "Status (Ativo/Inativo)": "Ativo"
+    "nome": "João Silva",
+    "familia": "Silva",
+    "idade": 25,
+    "genero": "masculino",
+    "email": "joao.silva@email.com",
+    "telefone": "(11) 99999-9999",
+    "data_batismo": "2020-06-20",
+    "cargo": "publicador_batizado",
+    "ativo": "VERDADEIRO",
+    "observacoes": "Disponível para designações",
+    "data_nascimento": "1999-03-15",
+    "chairman": "FALSO",
+    "pray": "VERDADEIRO",
+    "tresures": "FALSO",
+    "gems": "VERDADEIRO",
+    "reading": "VERDADEIRO",
+    "starting": "VERDADEIRO",
+    "following": "VERDADEIRO",
+    "making": "VERDADEIRO",
+    "explaining": "VERDADEIRO",
+    "talk": "VERDADEIRO"
   },
   {
-    "Nome Completo": "Maria Santos",
-    "Idade": 16,
-    "Gênero (M/F)": "F",
-    "Data de Nascimento": "10/08/2008",
-    "Parente Responsável": "João Silva",
-    "Parentesco": "Pai",
-    "Família / Agrupamento": "Família Silva",
-    "Data de Batismo": "",
-    "Cargo Congregacional": "Estudante Novo",
-    "Telefone": "",
-    "E-mail": "",
-    "Observações": "Menor de idade",
-    "Status (Ativo/Inativo)": "Ativo"
+    "nome": "Maria Santos",
+    "familia": "Santos",
+    "idade": 16,
+    "genero": "feminino",
+    "email": "maria.santos@email.com",
+    "telefone": "(11) 88888-8888",
+    "data_batismo": "",
+    "cargo": "estudante_novo",
+    "ativo": "VERDADEIRO",
+    "observacoes": "Menor de idade",
+    "data_nascimento": "2008-08-10",
+    "chairman": "FALSO",
+    "pray": "FALSO",
+    "tresures": "FALSO",
+    "gems": "FALSO",
+    "reading": "VERDADEIRO",
+    "starting": "VERDADEIRO",
+    "following": "VERDADEIRO",
+    "making": "VERDADEIRO",
+    "explaining": "VERDADEIRO",
+    "talk": "FALSO"
   }
 ];

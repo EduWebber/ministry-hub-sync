@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { supabase } = require('../config/supabase');
 const JWDownloader = require('../services/jwDownloader');
 const ProgramGenerator = require('../services/programGenerator');
 const MaterialManager = require('../services/materialManager');
@@ -480,4 +481,319 @@ router.get('/programmings', requireAuth, async (req, res) => {
   }
 });
 
+<<<<<<< Current (Your changes)
+=======
+// =====================================================
+// ROTAS PARA BUCKET PORTUGUESMEET - SISTEMA MINISTERIAL
+// =====================================================
+
+// Listar PDFs disponíveis no bucket portuguesmeet
+router.get('/pdfs/list', requireAuth, async (req, res) => {
+  try {
+    console.log('📋 Listando PDFs do bucket portuguesmeet...');
+    
+    const { data: files, error } = await supabase.storage
+      .from('portuguesmeet')
+      .list('', {
+        limit: 100,
+        offset: 0,
+        sortBy: { column: 'created_at', order: 'desc' }
+      });
+
+    if (error) {
+      throw new Error(`Erro ao listar arquivos: ${error.message}`);
+    }
+
+    // Filtrar apenas PDFs
+    const pdfFiles = files
+      .filter(file => file.name.toLowerCase().endsWith('.pdf'))
+      .map(file => ({
+        name: file.name,
+        size: file.metadata?.size || 0,
+        created_at: file.created_at,
+        updated_at: file.updated_at,
+        download_url: `${process.env.SUPABASE_URL}/storage/v1/object/public/portuguesmeet/${file.name}`
+      }));
+
+    res.json({
+      success: true,
+      message: `${pdfFiles.length} PDFs encontrados`,
+      pdfs: pdfFiles,
+      total: pdfFiles.length
+    });
+
+  } catch (error) {
+    console.error('❌ Erro ao listar PDFs:', error);
+    res.status(500).json({ 
+      error: 'Erro ao listar PDFs do bucket',
+      details: error.message 
+    });
+  }
+});
+
+// Processar PDF específico e salvar no banco
+router.post('/pdfs/process', requireAuth, async (req, res) => {
+  try {
+    const { filename, congregacao_id } = req.body;
+    
+    if (!filename) {
+      return res.status(400).json({ error: 'Nome do arquivo é obrigatório' });
+    }
+
+    console.log(`📖 Processando PDF: ${filename}`);
+    
+    // 1. Fazer download do PDF do bucket
+    const { data: pdfData, error: downloadError } = await supabase.storage
+      .from('portuguesmeet')
+      .download(filename);
+
+    if (downloadError) {
+      throw new Error(`Erro ao baixar PDF: ${downloadError.message}`);
+    }
+
+    // 2. Converter para buffer e parsear conteúdo
+    const pdfBuffer = Buffer.from(await pdfData.arrayBuffer());
+    const programming = await pdfParser.parsePDFBuffer(pdfBuffer);
+    
+    if (!programming || !programming.weeks || programming.weeks.length === 0) {
+      throw new Error('Não foi possível extrair programação do PDF');
+    }
+
+    console.log(`📊 Extraídas ${programming.weeks.length} semanas do PDF`);
+
+    // 3. Salvar cada semana no banco de dados
+    const savedPrograms = [];
+    
+    for (const week of programming.weeks) {
+      // 3a. Criar programa ministerial
+      const { data: programa, error: programError } = await supabase
+        .from('programas_ministeriais')
+        .insert({
+          periodo: programming.period || 'Período não identificado',
+          semana: week.week,
+          tema: week.theme,
+          pdf_url: `${process.env.SUPABASE_URL}/storage/v1/object/public/portuguesmeet/${filename}`,
+          pdf_filename: filename,
+          publicado: false,
+          congregacao_id: congregacao_id || null
+        })
+        .select()
+        .single();
+
+      if (programError) {
+        console.error('❌ Erro ao salvar programa:', programError);
+        continue;
+      }
+
+      console.log(`✅ Programa salvo: ${programa.semana}`);
+
+      // 3b. Salvar partes da semana
+      if (week.parts && week.parts.length > 0) {
+        const partsToInsert = week.parts.map((part, index) => ({
+          programa_id: programa.id,
+          secao: mapSecao(part.section),
+          titulo: part.title,
+          tipo: mapTipoParte(part.type),
+          duracao: part.duration || 0,
+          referencias: part.references || {},
+          genero_requerido: mapGenero(part.gender),
+          ordem: index + 1,
+          observacoes: part.notes
+        }));
+
+        const { data: partes, error: partesError } = await supabase
+          .from('partes')
+          .insert(partsToInsert)
+          .select();
+
+        if (partesError) {
+          console.error('❌ Erro ao salvar partes:', partesError);
+        } else {
+          console.log(`✅ ${partes.length} partes salvas para ${programa.semana}`);
+        }
+      }
+
+      savedPrograms.push({
+        ...programa,
+        parts_count: week.parts?.length || 0
+      });
+    }
+
+    res.json({
+      success: true,
+      message: `PDF processado com sucesso! ${savedPrograms.length} programas salvos.`,
+      processed_file: filename,
+      programs: savedPrograms,
+      total_programs: savedPrograms.length
+    });
+
+  } catch (error) {
+    console.error('❌ Erro ao processar PDF:', error);
+    res.status(500).json({ 
+      error: 'Erro ao processar PDF',
+      details: error.message 
+    });
+  }
+});
+
+// Publicar programa para congregações
+router.post('/programs/:id/publish', requireAuth, async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    console.log(`📢 Publicando programa: ${id}`);
+    
+    const { data: programa, error } = await supabase
+      .from('programas_ministeriais')
+      .update({ publicado: true })
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      throw new Error(`Erro ao publicar programa: ${error.message}`);
+    }
+
+    res.json({
+      success: true,
+      message: 'Programa publicado com sucesso',
+      program: programa
+    });
+
+  } catch (error) {
+    console.error('❌ Erro ao publicar programa:', error);
+    res.status(500).json({ 
+      error: 'Erro ao publicar programa',
+      details: error.message 
+    });
+  }
+});
+
+// Listar programas salvos (com filtros)
+router.get('/programs', requireAuth, async (req, res) => {
+  try {
+    const { status, congregacao_id, periodo } = req.query;
+    
+    let query = supabase
+      .from('programas_ministeriais')
+      .select(`
+        *,
+        partes:partes(
+          id, secao, titulo, tipo, duracao, genero_requerido, ordem
+        )
+      `)
+      .order('created_at', { ascending: false });
+
+    // Aplicar filtros
+    if (status === 'published') {
+      query = query.eq('publicado', true);
+    } else if (status === 'draft') {
+      query = query.eq('publicado', false);
+    }
+
+    if (congregacao_id) {
+      query = query.or(`congregacao_id.eq.${congregacao_id},congregacao_id.is.null`);
+    }
+
+    if (periodo) {
+      query = query.ilike('periodo', `%${periodo}%`);
+    }
+
+    const { data: programs, error } = await query;
+
+    if (error) {
+      throw new Error(`Erro ao listar programas: ${error.message}`);
+    }
+
+    res.json({
+      success: true,
+      programs,
+      total: programs.length,
+      message: `${programs.length} programas encontrados`
+    });
+
+  } catch (error) {
+    console.error('❌ Erro ao listar programas:', error);
+    res.status(500).json({ 
+      error: 'Erro ao listar programas',
+      details: error.message 
+    });
+  }
+});
+
+// Listar congregações
+router.get('/congregations', requireAuth, async (req, res) => {
+  try {
+    const { data: congregacoes, error } = await supabase
+      .from('congregacoes')
+      .select('*')
+      .order('nome');
+
+    if (error) {
+      throw new Error(`Erro ao listar congregações: ${error.message}`);
+    }
+
+    res.json({
+      success: true,
+      congregations: congregacoes,
+      total: congregacoes.length
+    });
+
+  } catch (error) {
+    console.error('❌ Erro ao listar congregações:', error);
+    res.status(500).json({ 
+      error: 'Erro ao listar congregações',
+      details: error.message 
+    });
+  }
+});
+
+// =====================================================
+// FUNÇÕES HELPER PARA MAPEAMENTO
+// =====================================================
+
+function mapSecao(section) {
+  const sectionMap = {
+    'treasures': 'Tesouros da Palavra de Deus',
+    'ministry': 'Ministério',
+    'living': 'Vida Cristã',
+    'tesouros': 'Tesouros da Palavra de Deus',
+    'ministerio': 'Ministério',  
+    'vida': 'Vida Cristã'
+  };
+  
+  return sectionMap[section?.toLowerCase()] || 'Vida Cristã';
+}
+
+function mapTipoParte(type) {
+  const typeMap = {
+    'talk': 'discurso_tesouros',
+    'gems': 'joias_espirituais',
+    'reading': 'leitura_biblica',
+    'initial': 'apresentacao_inicial',
+    'return_visit': 'revisita',
+    'bible_study': 'estudo_biblico',
+    'living_talk': 'discurso_vida',
+    'congregation_study': 'estudo_congregacao',
+    'song_comments': 'comentarios_cantarel',
+    'prayer': 'oracao_final'
+  };
+  
+  return typeMap[type?.toLowerCase()] || 'discurso_vida';
+}
+
+function mapGenero(gender) {
+  const genderMap = {
+    'male': 'masculino',
+    'female': 'feminino',
+    'both': 'ambos',
+    'm': 'masculino',
+    'f': 'feminino',
+    'all': 'ambos'
+  };
+  
+  return genderMap[gender?.toLowerCase()] || 'ambos';
+}
+
+>>>>>>> Incoming (Background Agent changes)
 module.exports = router;

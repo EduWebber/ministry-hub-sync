@@ -1,0 +1,3207 @@
+http://localhost:5173/estudantes
+
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\programs"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\WhatsApp Image 2025-08-14 at 19.44.07 (1).jpeg"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\WhatsApp Image 2025-08-14 at 19.44.07.jpeg"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\README_CORRECOES.md"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\README_CORRECOES_FINAL.md"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\README_FORMATO_ATUALIZADO.md"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\estudantes_rows_corrigido.sql"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\S-38_E.rtf"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\estudantes_ficticios_corrigido_status.xlsx"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\estudantes_formato_corrigido.xlsx"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\programacoes-json"
+
+
+Sistema Ministerial
+Bem-vindo
+Dashboard
+Estudantes
+Programas
+Designações
+Relatórios
+JW-style UI • S-38-T
+v2 • Unified Shell
+Gestão de Estudantes
+🔄 Atualizar
+Importar
+Novo Estudante
+Lista
+Novo
+Importar
+Planilha
+Estatísticas
+Importar Estudantes via Planilha
+Faça upload de uma planilha Excel com os dados dos estudantes para importação em massa
+
+Primeiro, baixe o modelo
+Use nosso modelo para garantir que os dados estejam no formato correto
+
+Baixar Modelo
+Arraste o arquivo aqui ou clique para selecionar
+Formatos aceitos: .xlsx, .xls • Tamanho máximo: 10MB
+
+Selecionar Arquivo
+Como Importar Estudantes
+Guia completo para importação de estudantes via planilha Excel
+
+1
+Baixar Modelo
+2
+Preencher Dados
+3
+Fazer Upload
+4
+Confirmar Importação
+Campos Obrigatórios
+Nome Completo
+Nome completo do estudante
+Exemplo: João Silva
+Idade
+Idade em anos (número)
+Exemplo: 25
+Gênero (M/F)
+M para Masculino, F para Feminino
+Exemplo: M
+Família / Agrupamento
+Nome da família ou agrupamento
+Exemplo: Família Silva
+Cargo Congregacional
+Cargo na congregação
+Exemplo: Publicador Batizado
+Status (Ativo/Inativo)
+Status do estudante
+Exemplo: Ativo
+Campos Opcionais
+Data de Nascimento
+Formato DD/MM/AAAA
+Exemplo: 15/03/1999
+Parente Responsável
+Nome do responsável (obrigatório para menores)
+Exemplo: Maria Silva
+Parentesco
+Relação familiar
+Exemplo: Pai
+Data de Batismo
+Formato DD/MM/AAAA
+Exemplo: 20/06/2020
+Telefone
+Número de telefone
+Exemplo: (11) 99999-9999
+E-mail
+Endereço de e-mail
+Exemplo: joao@email.com
+Observações
+Observações adicionais
+Exemplo: Disponível para designações
+Opções de Cargo Congregacional
+Ancião
+Servo Ministerial
+Pioneiro Regular
+Publicador Batizado
+Publicador Não Batizado
+Estudante Novo
+Importante: Para menores de 18 anos, é obrigatório informar o "Parente Responsável" e o "Parentesco". Verifique se as datas estão no formato DD/MM/AAAA e se os e-mails são válidos.
+Continuar para Programas
+
+
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449
+@supabase_supabase-js.js?v=4c480a78:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/profiles?select=* 409 (Conflict)
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4230
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4251
+fulfilled @ @supabase_supabase-js.js?v=4c480a78:4203
+Promise.then
+step @ @supabase_supabase-js.js?v=4c480a78:4216
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4218
+__awaiter6 @ @supabase_supabase-js.js?v=4c480a78:4200
+(anonymous) @ @supabase_supabase-js.js?v=4c480a78:4241
+then @ @supabase_supabase-js.js?v=4c480a78:90
+useSpreadsheetImport.ts:129 Profile creation error: {code: '23505', details: null, hint: null, message: 'duplicate key value violates unique constraint "profiles_user_id_unique"'}
+importStudents @ useSpreadsheetImport.ts:129
+await in importStudents
+proceedWithImport @ SpreadsheetUpload.tsx:118
+handleImport @ SpreadsheetUpload.tsx:107
+await in handleImport
+callCallback2 @ chunk-NFC5BX5N.js?v=4c480a78:3674
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=4c480a78:3699
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=4c480a78:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=4c480a78:3736
+executeDispatch @ chunk-NFC5BX5N.js?v=4c480a78:7014
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=4c480a78:7034
+processDispatchQueue @ chunk-NFC5BX5N.js?v=4c480a78:7043
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=4c480a78:7051
+(anonymous) @ chunk-NFC5BX5N.js?v=4c480a78:7174
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=4c480a78:18913
+batchedUpdates @ chunk-NFC5BX5N.js?v=4c480a78:3579
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=4c480a78:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=4c480a78:5478
+dispatchEvent @ chunk-NFC5BX5N.js?v=4c480a78:5472
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=4c480a78:5449

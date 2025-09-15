@@ -110,7 +110,7 @@ export const useMeetings = () => {
       if (studentIds.length > 0) {
         const { data: students, error: studentsError } = await supabase
           .from('estudantes')
-          .select('id, nome, cargo')
+          .select('id, nome_completo, cargo')
           .in('id', studentIds);
 
         if (studentsError) throw studentsError;

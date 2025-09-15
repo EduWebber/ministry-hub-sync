@@ -16,12 +16,12 @@ import { SystemCacheFactory, CacheAsideManager } from '../utils/cacheAsidePatter
 interface Estudante {
   id: string;
   nome: string;
-  congregacao: string;
-  cargo: string;
+  genero: string;
+  qualificacoes: string[] | null;
+  disponibilidade: any | null;
   ativo: boolean;
-  user_id: string;
+  profile_id: string;
   created_at: string;
-  updated_at: string;
 }
 
 interface CacheAsideMetrics {
@@ -88,17 +88,17 @@ export function useCacheAsideEstudantes() {
           .from('estudantes')
           .select(`
             id,
-            nome,
-            congregacao,
-            cargo,
+            genero,
+            qualificacoes,
+            disponibilidade,
             ativo,
-            user_id,
+            profile_id,
             created_at,
-            updated_at
+            profiles!inner(nome)
           `)
-          .eq('user_id', user.id)
+          .eq('profile_id', user.id)
           .eq('ativo', true)
-          .order('nome');
+          .order('nome', { foreignTable: 'profiles' });
 
         const dbEndTime = Date.now();
         const dbTime = dbEndTime - dbStartTime;
@@ -172,7 +172,7 @@ export function useCacheAsideEstudantes() {
         .from('estudantes')
         .insert({
           ...estudanteData,
-          user_id: user.id,
+          profile_id: user.id,
           ativo: true
         })
         .select()
@@ -351,7 +351,7 @@ export const CacheAsideComparison = {
       await supabase
         .from('estudantes')
         .select('*')
-        .eq('user_id', userId);
+        .eq('profile_id', userId);
       
       const time = Date.now() - start;
       times.push(time);
@@ -377,7 +377,7 @@ export const CacheAsideComparison = {
       const { data } = await supabase
         .from('estudantes')
         .select('*')
-        .eq('user_id', userId);
+        .eq('profile_id', userId);
       return data;
     };
     

@@ -104,7 +104,10 @@ export default function AdminProgramacao() {
   };
 
   const getFileUrl = (fileName: string) => {
-    return `https://dlvojolvdsqrfczjjjuw.supabase.co/storage/v1/object/public/portuguesmeet/${fileName}`;
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://nwpuurgwnnuejqinkvrh.supabase.co';
+    // Extract the base URL without protocol for storage path
+    const baseUrl = supabaseUrl.replace('https://', '');
+    return `https://${baseUrl}/storage/v1/object/public/portuguesmeet/${fileName}`;
   };
 
   const extractMesAno = (fileName: string): string => {

@@ -139,7 +139,7 @@ export function StudentsGridAG({ className }: StudentsGridAGProps) {
     
     try {
       const query = (supabase as any)
-        .from("vw_estudantes_grid")
+        .from("estudantes_legacy")
         .select("*", { count: "exact" })
         .eq("user_id", user.id)
         .order("nome", { ascending: true });
