@@ -7,85 +7,139 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instantiate createClient with right options
+  // Allows to automatically instanciate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "13.0.5"
+    PostgrestVersion: "13.0.4"
   }
   public: {
     Tables: {
-      congregacoes: {
+      administrative_assignments: {
         Row: {
-          cidade: string
+          assigned_room: Database["public"]["Enums"]["room_type"] | null
+          assignment_date: string
           created_at: string | null
           id: string
-          nome: string
-        }
-        Insert: {
-          cidade: string
-          created_at?: string | null
-          id?: string
-          nome: string
-        }
-        Update: {
-          cidade?: string
-          created_at?: string | null
-          id?: string
-          nome?: string
-        }
-        Relationships: []
-      }
-      designacoes: {
-        Row: {
-          ajudante_id: string | null
-          created_at: string | null
-          estudante_id: string
-          id: string
-          observacoes: string | null
-          parte_id: string
-          status: string | null
+          id_estudante: string | null
+          is_substitute: boolean | null
+          meeting_id: string | null
+          role: Database["public"]["Enums"]["administrative_role"]
+          special_instructions: string | null
           updated_at: string | null
+          user_id: string
         }
         Insert: {
-          ajudante_id?: string | null
+          assigned_room?: Database["public"]["Enums"]["room_type"] | null
+          assignment_date: string
           created_at?: string | null
-          estudante_id: string
           id?: string
-          observacoes?: string | null
-          parte_id: string
-          status?: string | null
+          id_estudante?: string | null
+          is_substitute?: boolean | null
+          meeting_id?: string | null
+          role: Database["public"]["Enums"]["administrative_role"]
+          special_instructions?: string | null
           updated_at?: string | null
+          user_id: string
         }
         Update: {
-          ajudante_id?: string | null
+          assigned_room?: Database["public"]["Enums"]["room_type"] | null
+          assignment_date?: string
           created_at?: string | null
-          estudante_id?: string
           id?: string
-          observacoes?: string | null
-          parte_id?: string
-          status?: string | null
+          id_estudante?: string | null
+          is_substitute?: boolean | null
+          meeting_id?: string | null
+          role?: Database["public"]["Enums"]["administrative_role"]
+          special_instructions?: string | null
           updated_at?: string | null
+          user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "designacoes_ajudante_id_fkey"
-            columns: ["ajudante_id"]
+            foreignKeyName: "administrative_assignments_id_estudante_fkey"
+            columns: ["id_estudante"]
             isOneToOne: false
             referencedRelation: "estudantes"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "designacoes_estudante_id_fkey"
-            columns: ["estudante_id"]
+            foreignKeyName: "administrative_assignments_meeting_id_fkey"
+            columns: ["meeting_id"]
+            isOneToOne: false
+            referencedRelation: "meetings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      designacoes: {
+        Row: {
+          cena: string | null
+          confirmado: boolean | null
+          created_at: string | null
+          id: string
+          id_ajudante: string | null
+          id_estudante: string | null
+          id_programa: string | null
+          numero_parte: number | null
+          observacoes: string | null
+          tempo_minutos: number | null
+          tipo_parte: string
+          titulo_parte: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          cena?: string | null
+          confirmado?: boolean | null
+          created_at?: string | null
+          id?: string
+          id_ajudante?: string | null
+          id_estudante?: string | null
+          id_programa?: string | null
+          numero_parte?: number | null
+          observacoes?: string | null
+          tempo_minutos?: number | null
+          tipo_parte: string
+          titulo_parte?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          cena?: string | null
+          confirmado?: boolean | null
+          created_at?: string | null
+          id?: string
+          id_ajudante?: string | null
+          id_estudante?: string | null
+          id_programa?: string | null
+          numero_parte?: number | null
+          observacoes?: string | null
+          tempo_minutos?: number | null
+          tipo_parte?: string
+          titulo_parte?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "designacoes_id_ajudante_fkey"
+            columns: ["id_ajudante"]
             isOneToOne: false
             referencedRelation: "estudantes"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "designacoes_parte_id_fkey"
-            columns: ["parte_id"]
+            foreignKeyName: "designacoes_id_estudante_fkey"
+            columns: ["id_estudante"]
             isOneToOne: false
-            referencedRelation: "partes_programa"
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "designacoes_id_programa_fkey"
+            columns: ["id_programa"]
+            isOneToOne: false
+            referencedRelation: "programas"
             referencedColumns: ["id"]
           },
         ]
@@ -93,191 +147,593 @@ export type Database = {
       estudantes: {
         Row: {
           ativo: boolean | null
+          cargo: Database["public"]["Enums"]["app_cargo"]
           created_at: string | null
-          disponibilidade: Json | null
-          genero: string
+          data_batismo: string | null
+          email: string | null
+          genero: Database["public"]["Enums"]["app_genero"]
           id: string
-          profile_id: string
-          qualificacoes: string[] | null
+          id_pai_mae: string | null
+          idade: number | null
+          nome: string
+          observacoes: string | null
+          telefone: string | null
+          updated_at: string | null
+          user_id: string
         }
         Insert: {
           ativo?: boolean | null
+          cargo: Database["public"]["Enums"]["app_cargo"]
           created_at?: string | null
-          disponibilidade?: Json | null
-          genero: string
+          data_batismo?: string | null
+          email?: string | null
+          genero: Database["public"]["Enums"]["app_genero"]
           id?: string
-          profile_id: string
-          qualificacoes?: string[] | null
+          id_pai_mae?: string | null
+          idade?: number | null
+          nome: string
+          observacoes?: string | null
+          telefone?: string | null
+          updated_at?: string | null
+          user_id: string
         }
         Update: {
           ativo?: boolean | null
+          cargo?: Database["public"]["Enums"]["app_cargo"]
           created_at?: string | null
-          disponibilidade?: Json | null
-          genero?: string
+          data_batismo?: string | null
+          email?: string | null
+          genero?: Database["public"]["Enums"]["app_genero"]
           id?: string
-          profile_id?: string
-          qualificacoes?: string[] | null
+          id_pai_mae?: string | null
+          idade?: number | null
+          nome?: string
+          observacoes?: string | null
+          telefone?: string | null
+          updated_at?: string | null
+          user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "estudantes_profile_id_fkey"
-            columns: ["profile_id"]
+            foreignKeyName: "estudantes_id_pai_mae_fkey"
+            columns: ["id_pai_mae"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      family_members: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          gender: string
+          id: string
+          invitation_status: string | null
+          name: string
+          phone: string | null
+          relation: string
+          student_id: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email?: string | null
+          gender: string
+          id?: string
+          invitation_status?: string | null
+          name: string
+          phone?: string | null
+          relation: string
+          student_id?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string | null
+          gender?: string
+          id?: string
+          invitation_status?: string | null
+          name?: string
+          phone?: string | null
+          relation?: string
+          student_id?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "family_members_student_id_fkey"
+            columns: ["student_id"]
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
       }
-      partes_programa: {
+      invitations_log: {
         Row: {
           created_at: string | null
-          duracao_minutos: number
-          genero_requerido:
-            | Database["public"]["Enums"]["genero_requerido"]
-            | null
+          expires_at: string | null
+          family_member_id: string | null
           id: string
-          instrucoes: string | null
-          ordem: number
-          semana_id: string
-          tipo_designacao: Database["public"]["Enums"]["tipo_designacao"]
-          titulo: string
+          invitation_token: string | null
+          invite_method: string
+          invite_status: string | null
+          sent_by_student_id: string | null
         }
         Insert: {
           created_at?: string | null
-          duracao_minutos: number
-          genero_requerido?:
-            | Database["public"]["Enums"]["genero_requerido"]
-            | null
+          expires_at?: string | null
+          family_member_id?: string | null
           id?: string
-          instrucoes?: string | null
-          ordem: number
-          semana_id: string
-          tipo_designacao: Database["public"]["Enums"]["tipo_designacao"]
-          titulo: string
+          invitation_token?: string | null
+          invite_method: string
+          invite_status?: string | null
+          sent_by_student_id?: string | null
         }
         Update: {
           created_at?: string | null
-          duracao_minutos?: number
-          genero_requerido?:
-            | Database["public"]["Enums"]["genero_requerido"]
-            | null
+          expires_at?: string | null
+          family_member_id?: string | null
           id?: string
-          instrucoes?: string | null
-          ordem?: number
-          semana_id?: string
-          tipo_designacao?: Database["public"]["Enums"]["tipo_designacao"]
-          titulo?: string
+          invitation_token?: string | null
+          invite_method?: string
+          invite_status?: string | null
+          sent_by_student_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "partes_programa_semana_id_fkey"
-            columns: ["semana_id"]
+            foreignKeyName: "invitations_log_family_member_id_fkey"
+            columns: ["family_member_id"]
             isOneToOne: false
-            referencedRelation: "semanas_programa"
+            referencedRelation: "family_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "invitations_log_sent_by_student_id_fkey"
+            columns: ["sent_by_student_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      meeting_parts: {
+        Row: {
+          assigned_helper_id: string | null
+          assigned_room: Database["public"]["Enums"]["room_type"] | null
+          assigned_student_id: string | null
+          created_at: string | null
+          duration_minutes: number | null
+          id: string
+          meeting_id: string
+          part_number: number
+          part_type: string
+          scene_setting: string | null
+          source_material: string | null
+          special_instructions: string | null
+          title: string | null
+          updated_at: string | null
+          video_content_url: string | null
+          video_end_time: number | null
+          video_start_time: number | null
+        }
+        Insert: {
+          assigned_helper_id?: string | null
+          assigned_room?: Database["public"]["Enums"]["room_type"] | null
+          assigned_student_id?: string | null
+          created_at?: string | null
+          duration_minutes?: number | null
+          id?: string
+          meeting_id: string
+          part_number: number
+          part_type: string
+          scene_setting?: string | null
+          source_material?: string | null
+          special_instructions?: string | null
+          title?: string | null
+          updated_at?: string | null
+          video_content_url?: string | null
+          video_end_time?: number | null
+          video_start_time?: number | null
+        }
+        Update: {
+          assigned_helper_id?: string | null
+          assigned_room?: Database["public"]["Enums"]["room_type"] | null
+          assigned_student_id?: string | null
+          created_at?: string | null
+          duration_minutes?: number | null
+          id?: string
+          meeting_id?: string
+          part_number?: number
+          part_type?: string
+          scene_setting?: string | null
+          source_material?: string | null
+          special_instructions?: string | null
+          title?: string | null
+          updated_at?: string | null
+          video_content_url?: string | null
+          video_end_time?: number | null
+          video_start_time?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "meeting_parts_assigned_helper_id_fkey"
+            columns: ["assigned_helper_id"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "meeting_parts_assigned_student_id_fkey"
+            columns: ["assigned_student_id"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "meeting_parts_meeting_id_fkey"
+            columns: ["meeting_id"]
+            isOneToOne: false
+            referencedRelation: "meetings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      meetings: {
+        Row: {
+          circuit_overseer_name: string | null
+          closing_song_number: number | null
+          created_at: string | null
+          description: string | null
+          end_time: string | null
+          event_details: Json | null
+          id: string
+          meeting_date: string
+          meeting_flow: Json | null
+          meeting_type: Database["public"]["Enums"]["meeting_type"]
+          service_talk_title: string | null
+          start_time: string | null
+          status: Database["public"]["Enums"]["meeting_status"] | null
+          title: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          circuit_overseer_name?: string | null
+          closing_song_number?: number | null
+          created_at?: string | null
+          description?: string | null
+          end_time?: string | null
+          event_details?: Json | null
+          id?: string
+          meeting_date: string
+          meeting_flow?: Json | null
+          meeting_type: Database["public"]["Enums"]["meeting_type"]
+          service_talk_title?: string | null
+          start_time?: string | null
+          status?: Database["public"]["Enums"]["meeting_status"] | null
+          title?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          circuit_overseer_name?: string | null
+          closing_song_number?: number | null
+          created_at?: string | null
+          description?: string | null
+          end_time?: string | null
+          event_details?: Json | null
+          id?: string
+          meeting_date?: string
+          meeting_flow?: Json | null
+          meeting_type?: Database["public"]["Enums"]["meeting_type"]
+          service_talk_title?: string | null
+          start_time?: string | null
+          status?: Database["public"]["Enums"]["meeting_status"] | null
+          title?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      notificacoes: {
+        Row: {
+          created_at: string | null
+          data_envio: string | null
+          erro_detalhes: string | null
+          id: string
+          id_designacao: string | null
+          id_estudante: string | null
+          status_envio: string | null
+          tipo_envio: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          data_envio?: string | null
+          erro_detalhes?: string | null
+          id?: string
+          id_designacao?: string | null
+          id_estudante?: string | null
+          status_envio?: string | null
+          tipo_envio?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          data_envio?: string | null
+          erro_detalhes?: string | null
+          id?: string
+          id_designacao?: string | null
+          id_estudante?: string | null
+          status_envio?: string | null
+          tipo_envio?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notificacoes_id_designacao_fkey"
+            columns: ["id_designacao"]
+            isOneToOne: false
+            referencedRelation: "designacoes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notificacoes_id_estudante_fkey"
+            columns: ["id_estudante"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
             referencedColumns: ["id"]
           },
         ]
       }
       profiles: {
         Row: {
-          congregacao_id: string | null
+          cargo: string | null
+          congregacao: string | null
           created_at: string | null
-          email: string
+          date_of_birth: string | null
           id: string
-          nome: string
-          role: Database["public"]["Enums"]["app_role"]
+          nome_completo: string | null
+          role: Database["public"]["Enums"]["user_role"]
+          updated_at: string | null
+        }
+        Insert: {
+          cargo?: string | null
+          congregacao?: string | null
+          created_at?: string | null
+          date_of_birth?: string | null
+          id: string
+          nome_completo?: string | null
+          role?: Database["public"]["Enums"]["user_role"]
+          updated_at?: string | null
+        }
+        Update: {
+          cargo?: string | null
+          congregacao?: string | null
+          created_at?: string | null
+          date_of_birth?: string | null
+          id?: string
+          nome_completo?: string | null
+          role?: Database["public"]["Enums"]["user_role"]
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      programas: {
+        Row: {
+          arquivo: string
+          assignment_generation_error: string | null
+          assignment_status: string | null
+          assignments_generated_at: string | null
+          created_at: string | null
+          data_inicio_semana: string
+          developer_processed_at: string | null
+          developer_user_id: string | null
+          id: string
+          jw_org_content: string | null
+          mes_apostila: string | null
+          parsed_meeting_parts: Json | null
+          partes: Json
+          processing_notes: string | null
+          semana: string
+          status: Database["public"]["Enums"]["status_programa"] | null
+          template_download_url: string | null
+          template_metadata: Json | null
+          template_status_enum:
+            | Database["public"]["Enums"]["template_status"]
+            | null
+          total_assignments_generated: number | null
           updated_at: string | null
           user_id: string
         }
         Insert: {
-          congregacao_id?: string | null
+          arquivo: string
+          assignment_generation_error?: string | null
+          assignment_status?: string | null
+          assignments_generated_at?: string | null
           created_at?: string | null
-          email: string
+          data_inicio_semana: string
+          developer_processed_at?: string | null
+          developer_user_id?: string | null
           id?: string
-          nome: string
-          role?: Database["public"]["Enums"]["app_role"]
+          jw_org_content?: string | null
+          mes_apostila?: string | null
+          parsed_meeting_parts?: Json | null
+          partes: Json
+          processing_notes?: string | null
+          semana: string
+          status?: Database["public"]["Enums"]["status_programa"] | null
+          template_download_url?: string | null
+          template_metadata?: Json | null
+          template_status_enum?:
+            | Database["public"]["Enums"]["template_status"]
+            | null
+          total_assignments_generated?: number | null
           updated_at?: string | null
           user_id: string
         }
         Update: {
-          congregacao_id?: string | null
+          arquivo?: string
+          assignment_generation_error?: string | null
+          assignment_status?: string | null
+          assignments_generated_at?: string | null
           created_at?: string | null
-          email?: string
+          data_inicio_semana?: string
+          developer_processed_at?: string | null
+          developer_user_id?: string | null
           id?: string
-          nome?: string
-          role?: Database["public"]["Enums"]["app_role"]
+          jw_org_content?: string | null
+          mes_apostila?: string | null
+          parsed_meeting_parts?: Json | null
+          partes?: Json
+          processing_notes?: string | null
+          semana?: string
+          status?: Database["public"]["Enums"]["status_programa"] | null
+          template_download_url?: string | null
+          template_metadata?: Json | null
+          template_status_enum?:
+            | Database["public"]["Enums"]["template_status"]
+            | null
+          total_assignments_generated?: number | null
           updated_at?: string | null
           user_id?: string
         }
         Relationships: []
       }
-      programas_ministeriais: {
+      rooms: {
         Row: {
-          arquivo_nome: string
-          arquivo_url: string
-          conteudo: Json | null
+          capacity: number | null
           created_at: string | null
+          current_overseer_id: string | null
+          equipment_available: string[] | null
           id: string
-          mes_ano: string
-          status: string | null
+          is_active: boolean | null
+          room_name: string
+          room_type: Database["public"]["Enums"]["room_type"]
           updated_at: string | null
+          user_id: string
         }
         Insert: {
-          arquivo_nome: string
-          arquivo_url: string
-          conteudo?: Json | null
+          capacity?: number | null
           created_at?: string | null
+          current_overseer_id?: string | null
+          equipment_available?: string[] | null
           id?: string
-          mes_ano: string
-          status?: string | null
+          is_active?: boolean | null
+          room_name: string
+          room_type: Database["public"]["Enums"]["room_type"]
           updated_at?: string | null
+          user_id: string
         }
         Update: {
-          arquivo_nome?: string
-          arquivo_url?: string
-          conteudo?: Json | null
+          capacity?: number | null
           created_at?: string | null
+          current_overseer_id?: string | null
+          equipment_available?: string[] | null
           id?: string
-          mes_ano?: string
-          status?: string | null
+          is_active?: boolean | null
+          room_name?: string
+          room_type?: Database["public"]["Enums"]["room_type"]
           updated_at?: string | null
-        }
-        Relationships: []
-      }
-      semanas_programa: {
-        Row: {
-          created_at: string | null
-          data_inicio: string
-          id: string
-          leitura_biblica: string | null
-          programa_id: string
-          semana_numero: number
-          tema_semana: string
-        }
-        Insert: {
-          created_at?: string | null
-          data_inicio: string
-          id?: string
-          leitura_biblica?: string | null
-          programa_id: string
-          semana_numero: number
-          tema_semana: string
-        }
-        Update: {
-          created_at?: string | null
-          data_inicio?: string
-          id?: string
-          leitura_biblica?: string | null
-          programa_id?: string
-          semana_numero?: number
-          tema_semana?: string
+          user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "semanas_programa_programa_id_fkey"
+            foreignKeyName: "rooms_current_overseer_id_fkey"
+            columns: ["current_overseer_id"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      special_events: {
+        Row: {
+          cancels_midweek_meetings: boolean | null
+          cancels_weekend_meetings: boolean | null
+          created_at: string | null
+          end_date: string
+          event_name: string
+          event_type: string
+          id: string
+          location: string | null
+          special_instructions: string | null
+          start_date: string
+          study_materials: Json | null
+          theme: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          cancels_midweek_meetings?: boolean | null
+          cancels_weekend_meetings?: boolean | null
+          created_at?: string | null
+          end_date: string
+          event_name: string
+          event_type: string
+          id?: string
+          location?: string | null
+          special_instructions?: string | null
+          start_date: string
+          study_materials?: Json | null
+          theme?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          cancels_midweek_meetings?: boolean | null
+          cancels_weekend_meetings?: boolean | null
+          created_at?: string | null
+          end_date?: string
+          event_name?: string
+          event_type?: string
+          id?: string
+          location?: string | null
+          special_instructions?: string | null
+          start_date?: string
+          study_materials?: Json | null
+          theme?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      template_downloads: {
+        Row: {
+          created_at: string | null
+          download_metadata: Json | null
+          downloaded_at: string | null
+          id: string
+          instructor_user_id: string
+          programa_id: string
+          template_version: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          download_metadata?: Json | null
+          downloaded_at?: string | null
+          id?: string
+          instructor_user_id: string
+          programa_id: string
+          template_version?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          download_metadata?: Json | null
+          downloaded_at?: string | null
+          id?: string
+          instructor_user_id?: string
+          programa_id?: string
+          template_version?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "template_downloads_programa_id_fkey"
             columns: ["programa_id"]
             isOneToOne: false
-            referencedRelation: "programas_ministeriais"
+            referencedRelation: "programas"
             referencedColumns: ["id"]
           },
         ]
@@ -287,24 +743,128 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      get_user_role: {
+      check_programa_duplicate: {
+        Args: {
+          p_user_id: string
+          p_mes_apostila: string
+          p_data_inicio_semana: string
+        }
+        Returns: boolean
+      }
+      check_student_duplicate: {
+        Args: {
+          p_user_id: string
+          p_nome: string
+          p_email: string
+          p_telefone: string
+        }
+        Returns: boolean
+      }
+      debug_auth_access: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          current_user_id: string
+          auth_role: string
+          profile_exists: boolean
+          profile_data: Json
+        }[]
+      }
+      get_current_user_profile: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          id: string
+          nome_completo: string
+          congregacao: string
+          cargo: string
+          role: Database["public"]["Enums"]["user_role"]
+          email: string
+          created_at: string
+          updated_at: string
+        }[]
+      }
+      get_programs_complete: {
         Args: { user_uuid: string }
-        Returns: Database["public"]["Enums"]["app_role"]
+        Returns: {
+          id: string
+          user_id: string
+          data_inicio_semana: string
+          mes_apostila: string
+          semana: string
+          arquivo: string
+          partes: Json
+          status: Database["public"]["Enums"]["status_programa"]
+          assignment_status: string
+          assignments_generated_at: string
+          total_assignments_generated: number
+          created_at: string
+          updated_at: string
+        }[]
+      }
+      get_user_profile: {
+        Args: { user_id?: string }
+        Returns: {
+          id: string
+          nome_completo: string
+          congregacao: string
+          cargo: string
+          role: Database["public"]["Enums"]["user_role"]
+          date_of_birth: string
+          email: string
+          created_at: string
+          updated_at: string
+        }[]
       }
     }
     Enums: {
-      app_role: "admin" | "instrutor" | "estudante"
-      genero_requerido: "masculino" | "feminino" | "ambos"
-      tipo_designacao:
-        | "discurso_tesouros"
-        | "joias_espirituais"
-        | "leitura_biblica"
-        | "iniciando_conversas"
-        | "cultivando_interesse"
-        | "fazendo_discipulos"
-        | "explicando_crencas"
-        | "discurso_ministerio"
-        | "estudo_biblico_congregacao"
+      administrative_role:
+        | "meeting_overseer"
+        | "meeting_chairman"
+        | "assistant_counselor"
+        | "room_overseer"
+        | "circuit_overseer"
+      app_cargo:
+        | "anciao"
+        | "servo_ministerial"
+        | "pioneiro_regular"
+        | "publicador_batizado"
+        | "publicador_nao_batizado"
+        | "estudante_novo"
+      app_genero: "masculino" | "feminino"
+      assignment_status:
+        | "pending"
+        | "in_progress"
+        | "generating"
+        | "generated"
+        | "approved"
+        | "rejected"
+      meeting_status:
+        | "scheduled"
+        | "in_progress"
+        | "completed"
+        | "cancelled"
+        | "postponed"
+      meeting_type:
+        | "regular_midweek"
+        | "regular_weekend"
+        | "circuit_overseer_visit"
+        | "assembly_week"
+        | "convention_week"
+        | "memorial"
+        | "special_event"
+        | "cancelled"
+      room_type:
+        | "main_hall"
+        | "auxiliary_room_1"
+        | "auxiliary_room_2"
+        | "auxiliary_room_3"
+      status_programa: "ativo" | "inativo" | "arquivado" | "aprovado"
+      template_status:
+        | "pending"
+        | "processing"
+        | "template_ready"
+        | "published"
+        | "archived"
+      user_role: "instrutor" | "estudante" | "family_member" | "developer" | "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -432,19 +992,62 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "instrutor", "estudante"],
-      genero_requerido: ["masculino", "feminino", "ambos"],
-      tipo_designacao: [
-        "discurso_tesouros",
-        "joias_espirituais",
-        "leitura_biblica",
-        "iniciando_conversas",
-        "cultivando_interesse",
-        "fazendo_discipulos",
-        "explicando_crencas",
-        "discurso_ministerio",
-        "estudo_biblico_congregacao",
+      administrative_role: [
+        "meeting_overseer",
+        "meeting_chairman",
+        "assistant_counselor",
+        "room_overseer",
+        "circuit_overseer",
       ],
+      app_cargo: [
+        "anciao",
+        "servo_ministerial",
+        "pioneiro_regular",
+        "publicador_batizado",
+        "publicador_nao_batizado",
+        "estudante_novo",
+      ],
+      app_genero: ["masculino", "feminino"],
+      assignment_status: [
+        "pending",
+        "in_progress",
+        "generating",
+        "generated",
+        "approved",
+        "rejected",
+      ],
+      meeting_status: [
+        "scheduled",
+        "in_progress",
+        "completed",
+        "cancelled",
+        "postponed",
+      ],
+      meeting_type: [
+        "regular_midweek",
+        "regular_weekend",
+        "circuit_overseer_visit",
+        "assembly_week",
+        "convention_week",
+        "memorial",
+        "special_event",
+        "cancelled",
+      ],
+      room_type: [
+        "main_hall",
+        "auxiliary_room_1",
+        "auxiliary_room_2",
+        "auxiliary_room_3",
+      ],
+      status_programa: ["ativo", "inativo", "arquivado", "aprovado"],
+      template_status: [
+        "pending",
+        "processing",
+        "template_ready",
+        "published",
+        "archived",
+      ],
+      user_role: ["instrutor", "estudante", "family_member", "developer"],
     },
   },
 } as const
