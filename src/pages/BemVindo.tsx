@@ -18,8 +18,7 @@ import {
   Target
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import SidebarLayout from "@/components/layout/SidebarLayout";
 
 const BemVindo = () => {
   const { t } = useTranslation();
@@ -33,7 +32,7 @@ const BemVindo = () => {
   // Funções de navegação
   const handleNext = () => {
     // Exemplo: avançar para próxima página
-    navigate('/Dashboard');
+    navigate('/dashboard');
   };
   const handleBack = () => {
     // Exemplo: voltar para página anterior
@@ -183,10 +182,8 @@ const BemVindo = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-jw-blue/5 to-jw-gold/5">
-      <Header />
-      
-      <div className="container mx-auto px-4 py-8 pt-24">
+    <SidebarLayout title="Bem-vindo ao Sistema Ministerial">
+      <div className="max-w-6xl mx-auto">
         {/* Welcome Header */}
         <div className="text-center mb-12">
           <div className="mb-6">
@@ -370,13 +367,7 @@ const BemVindo = () => {
           </div>
         </div>
       </div>
-      
-      <Footer />
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 32 }}>
-          <Button variant="outline" onClick={handleBack}>Voltar</Button>
-          <Button variant="default" onClick={handleNext}>Prosseguir</Button>
-        </div>
-    </div>
+    </SidebarLayout>
   );
 };
 

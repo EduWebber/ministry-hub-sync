@@ -76,10 +76,29 @@ app.get('/api/status', (req, res) => {
   });
 });
 
+// Verificar se a porta está em uso
+function checkPortInUse(port) {
+  return new Promise((resolve) => {
+    const server = require('net').createServer();
+    server.listen(port, () => {
+      server.once('close', () => resolve(false));
+      server.close();
+    });
+    server.on('error', () => resolve(true));
+  });
+}
+
 // Inicializar sistema simplificado
 async function initializeSystem() {
   try {
     console.log('🚀 Inicializando Sistema Ministerial Backend Simplificado...');
+    
+    // Verificar se a porta está em uso
+    const portInUse = await checkPortInUse(PORT);
+    if (portInUse) {
+      console.log(`⚠️ Porta ${PORT} já está em uso. Servidor já rodando ou use outra porta.`);
+      return;
+    }
     
     // Verificar/criar pastas necessárias
     const docsPath = path.join(__dirname, '../docs/Oficial');
@@ -88,7 +107,7 @@ async function initializeSystem() {
     
     console.log('✅ Sistema simplificado inicializado');
     
-    // Iniciar servidor
+    // Iniciar servidor com tratamento de erro
     const server = app.listen(PORT, () => {
       const actualPort = server.address().port;
       console.log(`🎯 Sistema Ministerial Backend Simplificado rodando na porta ${actualPort}`);
@@ -96,6 +115,14 @@ async function initializeSystem() {
       console.log(`🌐 API disponível em: http://localhost:${actualPort}/api`);
       console.log(`🧪 Para testar: curl http://localhost:${actualPort}/api/status`);
       console.log(`📋 Modo: Programação Mockada (sem scraping JW.org)`);
+    });
+    
+    server.on('error', (error) => {
+      if (error.code === 'EADDRINUSE') {
+        console.log(`⚠️ Porta ${PORT} já está em uso. Servidor provavelmente já está rodando.`);
+      } else {
+        console.error('❌ Erro no servidor:', error);
+      }
     });
     
   } catch (error) {

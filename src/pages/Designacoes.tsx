@@ -340,7 +340,8 @@ const GeradorDesignacoes: React.FC<{
       items
     };
 
-    const resp = await fetch('/api/programacoes', {
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+    const resp = await fetch(`${apiBaseUrl}/api/programacoes`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -368,7 +369,8 @@ const GeradorDesignacoes: React.FC<{
       const progId = programacaoId || (await persistProgram(programa));
 
       // 2) Chamar o gerador no backend
-      const genResp = await fetch('/api/designacoes/generate', {
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      const genResp = await fetch(`${apiBaseUrl}/api/designacoes/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ programacao_id: progId, congregacao_id: congregacaoId })
@@ -380,7 +382,7 @@ const GeradorDesignacoes: React.FC<{
       const genData = await genResp.json();
 
       // 3) Buscar as designações geradas (com os itens)
-      const listResp = await fetch(`/api/designacoes?programacao_id=${encodeURIComponent(progId)}&congregacao_id=${encodeURIComponent(congregacaoId)}`);
+      const listResp = await fetch(`${apiBaseUrl}/api/designacoes?programacao_id=${encodeURIComponent(progId)}&congregacao_id=${encodeURIComponent(congregacaoId)}`);
       if (!listResp.ok) {
         const err = await listResp.json().catch(() => ({}));
         throw new Error(err.error || 'Falha ao listar designações');
@@ -765,7 +767,8 @@ export default function Designacoes() {
   async function fetchProgramaByRange(weekStartISO: string) {
     const weekEndISO = addDaysISO(weekStartISO, 6);
     try {
-      const resp = await fetch(`/api/programacoes?week_start=${encodeURIComponent(weekStartISO)}&week_end=${encodeURIComponent(weekEndISO)}`);
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      const resp = await fetch(`${apiBaseUrl}/api/programacoes?week_start=${encodeURIComponent(weekStartISO)}&week_end=${encodeURIComponent(weekEndISO)}`);
       if (!resp.ok) {
         const err = await resp.json().catch(() => ({} as any));
         throw new Error(err.error || 'Semana não encontrada');
@@ -809,7 +812,8 @@ export default function Designacoes() {
   async function loadMockCurrentWeek() {
     const weekStart = getCurrentWeekStartISO();
     try {
-      const resp = await fetch(`/api/programacoes/mock?semana=${encodeURIComponent(weekStart)}`);
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      const resp = await fetch(`${apiBaseUrl}/api/programacoes/mock?semana=${encodeURIComponent(weekStart)}`);
       if (!resp.ok) throw new Error('Mock da semana não encontrado');
       const wk = await resp.json();
       const partes = Array.isArray(wk.items) ? wk.items.map((it: any, idx: number) => ({

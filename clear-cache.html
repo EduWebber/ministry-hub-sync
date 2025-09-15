@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Limpar Cache - Sistema Ministerial</title>
+</head>
+<body>
+    <h1>🧹 Limpando Cache do Sistema</h1>
+    <p>Executando limpeza automática...</p>
+    
+    <script>
+        // Limpar todo o storage
+        localStorage.clear();
+        sessionStorage.clear();
+        
+        // Limpar cookies do domínio
+        document.cookie.split(";").forEach(function(c) { 
+            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+        });
+        
+        // Limpar cache do service worker se existir
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for(let registration of registrations) {
+                    registration.unregister();
+                }
+            });
+        }
+        
+        // Limpar cache da API
+        if ('caches' in window) {
+            caches.keys().then(function(names) {
+                for (let name of names) {
+                    caches.delete(name);
+                }
+            });
+        }
+        
+        alert('✅ Cache limpo! Redirecionando para o sistema...');
+        
+        // Redirecionar após 2 segundos
+        setTimeout(() => {
+            window.location.href = 'http://localhost:8080/auth';
+        }, 2000);
+    </script>
+</body>
+</html>

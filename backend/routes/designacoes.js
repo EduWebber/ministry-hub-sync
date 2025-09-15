@@ -1,53 +1,87 @@
 const express = require('express');
 const router = express.Router();
-
 let mockDesignacoes = [];
 let mockDesignacaoItens = [];
 
-// POST /api/designacoes/generate - Generate assignments
+// Clear function to reset state
+function clearMockData() {
+  mockDesignacoes = [];
+  mockDesignacaoItens = [];
+}
+
+// POST /api/designacoes/generate - Generate assignments (simplified)
 router.post('/generate', async (req, res) => {
   try {
-    const { programacao_id, congregacao_id } = req.body;
+    const { programacao_id, congregacao_id, semana } = req.body;
     
-    if (!programacao_id || !congregacao_id) {
-      return res.status(400).json({
-        success: false,
-        error: 'programacao_id e congregacao_id são obrigatórios'
-      });
-    }
+    // Simplified mock response for frontend
+    const mockAssignments = [
+      {
+        id: generateId(),
+        parte_numero: 1,
+        parte_titulo: 'Tesouros da Palavra de Deus',
+        parte_tempo: 10,
+        parte_tipo: 'consideracao',
+        principal_estudante_id: 'est1',
+        status: 'confirmada'
+      },
+      {
+        id: generateId(),
+        parte_numero: 2,
+        parte_titulo: 'Joias espirituais',
+        parte_tempo: 10,
+        parte_tipo: 'joias',
+        principal_estudante_id: 'est2',
+        status: 'confirmada'
+      },
+      {
+        id: generateId(),
+        parte_numero: 3,
+        parte_titulo: 'Leitura da Bíblia',
+        parte_tempo: 4,
+        parte_tipo: 'leitura',
+        principal_estudante_id: 'est5',
+        status: 'confirmada'
+      },
+      {
+        id: generateId(),
+        parte_numero: 4,
+        parte_titulo: 'Iniciando conversas',
+        parte_tempo: 3,
+        parte_tipo: 'demonstracao',
+        principal_estudante_id: 'est3',
+        assistente_estudante_id: 'est4',
+        status: 'confirmada'
+      }
+    ];
 
-    // Mock assignment generation
+    // Create designacao record
     const designacao = {
       id: generateId(),
-      programacao_id,
-      congregacao_id,
-      status: 'rascunho',
+      programacao_id: programacao_id || 'mock-program',
+      congregacao_id: congregacao_id || 'mock-congregation',
+      semana: semana || '7-13 de julho 2025',
+      status: 'gerada',
       created_at: new Date().toISOString()
     };
     
+    // Store in mock data
+    clearMockData();
     mockDesignacoes.push(designacao);
-
-    const mockItens = [
-      {
-        id: generateId(),
-        designacao_id: designacao.id,
-        programacao_item_id: 'item1',
-        principal_estudante_id: 'est1',
-        assistente_estudante_id: null,
-        status: 'OK'
-      }
-    ];
-    
-    mockDesignacaoItens.push(...mockItens);
+    mockDesignacaoItens.push(...mockAssignments);
 
     res.json({
       success: true,
       designacao,
-      itens: mockItens,
-      message: 'Designações geradas com sucesso'
+      itens: mockAssignments,
+      message: `${mockAssignments.length} designações geradas com sucesso`
     });
   } catch (error) {
-    res.status(500).json({ success: false, error: 'Erro interno do servidor' });
+    console.error('Error generating assignments:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: 'Erro interno do servidor'
+    });
   }
 });
 

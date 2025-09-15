@@ -34,7 +34,21 @@ const EstudanteCard = ({ estudante, onEdit, onDelete, loading = false }: Estudan
   const { t } = useTranslation();
   const [deleteLoading, setDeleteLoading] = useState(false);
 
-  const isMenor = estudante.idade ? isMinor(estudante.idade) : false;
+  // Calculate age from data_nascimento if available
+  const calculateAge = (birthDate: string | null): number | null => {
+    if (!birthDate) return null;
+    const today = new Date();
+    const birth = new Date(birthDate);
+    let age = today.getFullYear() - birth.getFullYear();
+    const monthDiff = today.getMonth() - birth.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+      age--;
+    }
+    return age;
+  };
+  
+  const idade = calculateAge(estudante.data_nascimento || null);
+  const isMenor = idade ? idade < 18 : false;
   
   // Translation-aware helper functions
   const getCargoLabel = (cargo: Cargo): string => {
@@ -79,7 +93,7 @@ const EstudanteCard = ({ estudante, onEdit, onDelete, loading = false }: Estudan
     return qualificacoes;
   };
   
-  const qualificacoes = getQualificacoes(estudante.cargo, estudante.genero, estudante.idade || 18);
+  const qualificacoes = getQualificacoes(estudante.cargo, estudante.genero, idade || 18);
 
   const handleDelete = async () => {
     setDeleteLoading(true);
@@ -105,10 +119,10 @@ const EstudanteCard = ({ estudante, onEdit, onDelete, loading = false }: Estudan
               <span>{getCargoLabel(estudante.cargo)}</span>
               <span>•</span>
               <span>{getGeneroLabel(estudante.genero)}</span>
-              {estudante.idade && (
+              {idade && (
                 <>
                   <span>•</span>
-                  <span>{estudante.idade} {t('common.years')}</span>
+                  <span>{idade} {t('common.years')}</span>
                 </>
               )}
             </CardDescription>
@@ -141,33 +155,15 @@ const EstudanteCard = ({ estudante, onEdit, onDelete, loading = false }: Estudan
               <span>{estudante.telefone}</span>
             </div>
           )}
-          {estudante.data_batismo && (
+          {estudante.data_nascimento && (
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <Calendar className="w-4 h-4" />
-              <span>{t('students.baptizedOn')} {formatDate(estudante.data_batismo)}</span>
+              <span>{t('students.bornOn')} {formatDate(estudante.data_nascimento)}</span>
             </div>
           )}
         </div>
 
-        {/* Parent/Children Information */}
-        {(estudante.pai_mae || (estudante.filhos && estudante.filhos.length > 0)) && (
-          <div className="space-y-2">
-            {estudante.pai_mae && (
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Users className="w-4 h-4" />
-                <span>{t('students.responsible')}: {estudante.pai_mae.nome}</span>
-              </div>
-            )}
-            {estudante.filhos && estudante.filhos.length > 0 && (
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Users className="w-4 h-4" />
-                <span>
-                  {t('students.responsibleFor')}: {estudante.filhos.map(f => f.nome).join(", ")}
-                </span>
-              </div>
-            )}
-          </div>
-        )}
+        {/* Family Information - Currently not available in this structure */}
 
         {/* Qualifications */}
         <div className="space-y-2">
@@ -181,15 +177,7 @@ const EstudanteCard = ({ estudante, onEdit, onDelete, loading = false }: Estudan
           </div>
         </div>
 
-        {/* Observations */}
-        {estudante.observacoes && (
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-gray-600">{t('students.observations')}:</Label>
-            <p className="text-sm text-gray-700 bg-gray-50 p-2 rounded">
-              {estudante.observacoes}
-            </p>
-          </div>
-        )}
+        {/* Observations - Not available in current structure */}
 
         {/* Actions */}
         <div className="flex gap-2 pt-2 border-t">
@@ -220,11 +208,7 @@ const EstudanteCard = ({ estudante, onEdit, onDelete, loading = false }: Estudan
                 <AlertDialogTitle>{t('students.confirmDelete')}</AlertDialogTitle>
                 <AlertDialogDescription>
                   {t('students.deleteConfirmation', { name: estudante.nome })}
-                  {estudante.filhos && estudante.filhos.length > 0 && (
-                    <span className="block mt-2 text-red-600">
-                      ⚠️ {t('students.cannotDeleteParent')}
-                    </span>
-                  )}
+
                   <span className="block mt-2">
                     {t('students.actionCannotBeUndone')}
                   </span>
@@ -234,7 +218,7 @@ const EstudanteCard = ({ estudante, onEdit, onDelete, loading = false }: Estudan
                 <AlertDialogCancel>{t('common.cancel')}</AlertDialogCancel>
                 <AlertDialogAction
                   onClick={handleDelete}
-                  disabled={deleteLoading || (estudante.filhos && estudante.filhos.length > 0)}
+                  disabled={deleteLoading}
                   className="bg-red-600 hover:bg-red-700"
                 >
                   {deleteLoading ? t('students.deleting') : t('common.delete')}

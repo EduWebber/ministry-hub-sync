@@ -54,7 +54,7 @@ const EstudantesPage = () => {
 
   const potentialParents = useMemo(() => {
     if (!estudantes) return [];
-    return estudantes.filter(e => e.idade && e.idade >= 18 && e.ativo);
+    return estudantes.filter(e => e.ativo);
   }, [estudantes]);
 
   const handleFilterChange = (field: keyof EstudanteFilters, value: any) => {

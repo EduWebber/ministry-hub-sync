@@ -5,17 +5,13 @@ import { supabase } from '../lib/supabase';
 export interface EstudanteWithParent {
   id: string;
   nome: string;
-  idade?: number;
   genero: 'masculino' | 'feminino';
   email?: string;
   telefone?: string;
-  data_batismo?: string;
+  data_nascimento?: string;
   cargo: 'anciao' | 'servo_ministerial' | 'pioneiro_regular' | 'publicador_batizado' | 'publicador_nao_batizado' | 'estudante_novo';
-  pai_id?: string;
-  mae_id?: string;
   ativo: boolean;
   user_id: string;
-  congregacao?: string;
   created_at: string;
   updated_at: string;
 }
@@ -54,26 +50,41 @@ export function useEstudantes(activeTab?: string) {
         .from('estudantes')
         .select(`
           id,
-          nome,
-          idade,
           genero,
-          email,
-          telefone,
-          data_batismo,
-          cargo,
           ativo,
           user_id,
           created_at,
-          updated_at
+          congregacao_id,
+          profiles!estudantes_profile_id_fkey (
+            nome,
+            email,
+            telefone,
+            data_nascimento,
+            cargo
+          )
         `)
-        .eq('user_id', user.id)
-        .order('nome');
+        .eq('ativo', true);
 
       if (fetchError) {
         throw new Error(`Erro ao buscar estudantes: ${fetchError.message}`);
       }
 
-      setEstudantes(data || []);
+      // Transform the data to match the expected interface
+      const transformedData = (data || []).map((item: any) => ({
+        id: item.id,
+        nome: item.profiles?.nome || 'Sem nome',
+        genero: item.genero,
+        email: item.profiles?.email || '',
+        telefone: item.profiles?.telefone || '',
+        data_nascimento: item.profiles?.data_nascimento || '',
+        cargo: item.profiles?.cargo || 'estudante_novo',
+        ativo: item.ativo ?? true,
+        user_id: item.user_id,
+        created_at: item.created_at,
+        updated_at: item.created_at // Using created_at as fallback
+      }));
+      
+      setEstudantes(transformedData);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Erro desconhecido';
       setError(errorMessage);
@@ -87,19 +98,35 @@ export function useEstudantes(activeTab?: string) {
     if (!user?.id) throw new Error('Usuário não autenticado');
 
     try {
-      // Garantir que campos obrigatórios estejam presentes
-      const dataToInsert = {
+      // First create or find the profile
+      const profileData = {
+        user_id: user.id,
         nome: estudanteData.nome || '',
-        genero: estudanteData.genero || 'masculino',
+        email: estudanteData.email || '',
+        telefone: estudanteData.telefone || '',
         cargo: estudanteData.cargo || 'estudante_novo',
-        ...estudanteData,
+        role: 'estudante' as const
+      };
+
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .insert(profileData)
+        .select()
+        .single();
+
+      if (profileError) throw profileError;
+
+      // Then create the estudante record
+      const estudanteRecord = {
+        profile_id: profile.id,
+        genero: estudanteData.genero || 'masculino',
         user_id: user.id,
         ativo: true
       };
 
       const { data, error } = await supabase
         .from('estudantes')
-        .insert(dataToInsert)
+        .insert(estudanteRecord)
         .select()
         .single();
 
@@ -115,17 +142,50 @@ export function useEstudantes(activeTab?: string) {
 
   const updateEstudante = useCallback(async ({ id, data }: { id: string; data: Partial<EstudanteWithParent> }) => {
     try {
-      const { data: updatedData, error } = await supabase
+      // First get the estudante to find the profile_id
+      const { data: estudante, error: fetchError } = await supabase
         .from('estudantes')
-        .update(data)
+        .select('profile_id')
         .eq('id', id)
-        .select()
         .single();
 
-      if (error) throw error;
+      if (fetchError) throw fetchError;
+
+      // Update profile data if needed
+      const profileFields = ['nome', 'email', 'telefone', 'cargo'];
+      const profileData: any = {};
+      const estudanteData: any = {};
+
+      Object.entries(data).forEach(([key, value]) => {
+        if (profileFields.includes(key)) {
+          profileData[key] = value;
+        } else {
+          estudanteData[key] = value;
+        }
+      });
+
+      // Update profile if there's profile data
+      if (Object.keys(profileData).length > 0) {
+        const { error: profileError } = await supabase
+          .from('profiles')
+          .update(profileData)
+          .eq('id', estudante.profile_id);
+
+        if (profileError) throw profileError;
+      }
+
+      // Update estudante if there's estudante data
+      if (Object.keys(estudanteData).length > 0) {
+        const { error: estudanteError } = await supabase
+          .from('estudantes')
+          .update(estudanteData)
+          .eq('id', id);
+
+        if (estudanteError) throw estudanteError;
+      }
 
       await fetchEstudantes();
-      return updatedData;
+      return { id, ...data };
     } catch (err) {
       console.error('Erro ao atualizar estudante:', err);
       throw err;
@@ -169,7 +229,6 @@ export function useEstudantes(activeTab?: string) {
     const total = estudantes.length;
     const ativos = estudantes.filter(e => e.ativo).length;
     const inativos = total - ativos;
-    const menores = estudantes.filter(e => e.idade && e.idade < 18).length;
     const homens = estudantes.filter(e => e.genero === 'masculino').length;
     const mulheres = estudantes.filter(e => e.genero === 'feminino').length;
     const qualificados = estudantes.filter(e => 
@@ -180,7 +239,7 @@ export function useEstudantes(activeTab?: string) {
       total,
       ativos,
       inativos,
-      menores,
+      menores: 0, // Not available without birth date calculation
       homens,
       mulheres,
       qualificados

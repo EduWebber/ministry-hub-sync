@@ -62,60 +62,84 @@ export const readExcelFile = (file: File): Promise<SpreadsheetRow[]> => {
 };
 
 /**
+ * Gets field value from row using multiple possible column names
+ */
+const getFieldValue = (row: any, fieldNames: string[]): any => {
+  for (const fieldName of fieldNames) {
+    if (row[fieldName] !== undefined && row[fieldName] !== null && row[fieldName] !== '') {
+      return row[fieldName];
+    }
+  }
+  return null;
+};
+
+/**
  * Validates and processes a single row
  */
 export const processRow = (row: SpreadsheetRow, index: number): ValidationResult => {
   const errors: string[] = [];
   const warnings: string[] = [];
   
+  // Get field values using flexible column mapping
+  const nome = getFieldValue(row, ['nome', 'Nome Completo', 'Nome', 'name']);
+  const idade = getFieldValue(row, ['idade', 'Idade', 'age']);
+  const genero = getFieldValue(row, ['genero', 'Gênero (M/F)', 'Gênero', 'Genero', 'gender']);
+  const familia = getFieldValue(row, ['familia', 'Família / Agrupamento', 'Família', 'Familia', 'family']);
+  const cargo = getFieldValue(row, ['cargo', 'Cargo Congregacional', 'Cargo', 'role']);
+  const ativo = getFieldValue(row, ['ativo', 'Status (Ativo/Inativo)', 'Status', 'status', 'active']);
+  const email = getFieldValue(row, ['email', 'E-mail', 'Email']);
+  const telefone = getFieldValue(row, ['telefone', 'Telefone', 'phone']);
+  const dataBatismo = getFieldValue(row, ['data_batismo', 'Data de Batismo', 'Batismo']);
+  const observacoes = getFieldValue(row, ['observacoes', 'Observações', 'Observacoes', 'notes']);
+  
   // Required fields validation
-  if (!row["Nome Completo"] || typeof row["Nome Completo"] !== 'string' || row["Nome Completo"].trim().length < 2) {
+  if (!nome || typeof nome !== 'string' || nome.trim().length < 2) {
     errors.push('Nome completo é obrigatório e deve ter pelo menos 2 caracteres');
   }
   
-  if (!row["Idade"] || typeof row["Idade"] !== 'number' || row["Idade"] < 1 || row["Idade"] > 120) {
+  if (!idade || typeof idade !== 'number' || idade < 1 || idade > 120) {
     errors.push('Idade deve ser um número entre 1 e 120');
   }
   
-  if (!row["Gênero (M/F)"] || !GENDER_MAPPING[row["Gênero (M/F)"]]) {
+  if (!genero || !GENDER_MAPPING[genero]) {
     errors.push('Gênero deve ser M ou F');
   }
   
-  if (!row["Família / Agrupamento"] || typeof row["Família / Agrupamento"] !== 'string') {
+  if (!familia || typeof familia !== 'string') {
     errors.push('Família/Agrupamento é obrigatório');
   }
   
-  if (!row["Cargo Congregacional"] || !CARGO_MAPPING[row["Cargo Congregacional"]]) {
-    errors.push(`Cargo congregacional inválido: ${row["Cargo Congregacional"]}`);
+  if (!cargo || !CARGO_MAPPING[cargo]) {
+    errors.push(`Cargo congregacional inválido: ${cargo}`);
   }
   
-  if (!row["Status (Ativo/Inativo)"] || STATUS_MAPPING[row["Status (Ativo/Inativo)"]] === undefined) {
+  if (ativo === null || STATUS_MAPPING[ativo] === undefined) {
     errors.push('Status deve ser Ativo ou Inativo');
   }
   
   // Email validation
-  if (row["E-mail"] && typeof row["E-mail"] === 'string' && row["E-mail"].trim()) {
+  if (email && typeof email === 'string' && email.trim()) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(row["E-mail"].trim())) {
+    if (!emailRegex.test(email.trim())) {
       errors.push('E-mail inválido');
     }
   }
   
   // Phone validation
-  if (row["Telefone"] && typeof row["Telefone"] === 'string' && row["Telefone"].trim()) {
+  if (telefone && typeof telefone === 'string' && telefone.trim()) {
     const phoneRegex = /^[\d\s\-()]+$/;
-    if (!phoneRegex.test(row["Telefone"].trim()) || row["Telefone"].trim().length < 8) {
+    if (!phoneRegex.test(telefone.trim()) || telefone.trim().length < 8) {
       errors.push('Telefone inválido');
     }
   }
   
   // Date validations
-  let dataBatismo: string | undefined;
-  if (row["Data de Batismo"] && typeof row["Data de Batismo"] === 'string' && row["Data de Batismo"].trim()) {
+  let processedDataBatismo: string | undefined;
+  if (dataBatismo && typeof dataBatismo === 'string' && dataBatismo.trim()) {
     try {
-      const parsedDate = parseBrazilianDate(row["Data de Batismo"]);
+      const parsedDate = parseBrazilianDate(dataBatismo);
       if (parsedDate) {
-        dataBatismo = format(parsedDate, 'yyyy-MM-dd');
+        processedDataBatismo = format(parsedDate, 'yyyy-MM-dd');
       } else {
         warnings.push('Data de batismo inválida - será ignorada');
       }
@@ -124,15 +148,16 @@ export const processRow = (row: SpreadsheetRow, index: number): ValidationResult
     }
   }
   
-  // Age vs birth date consistency
-  if (row["Data de Nascimento"] && typeof row["Data de Nascimento"] === 'string' && row["Data de Nascimento"].trim()) {
+  // Get birth date for validation
+  const dataNascimento = getFieldValue(row, ['data_nascimento', 'Data de Nascimento', 'Nascimento']);
+  if (dataNascimento && typeof dataNascimento === 'string' && dataNascimento.trim()) {
     try {
-      const birthDate = parseBrazilianDate(row["Data de Nascimento"]);
+      const birthDate = parseBrazilianDate(dataNascimento);
       if (birthDate) {
         const calculatedAge = new Date().getFullYear() - birthDate.getFullYear();
-        const ageDiff = Math.abs(calculatedAge - (row["Idade"] as number));
+        const ageDiff = Math.abs(calculatedAge - idade);
         if (ageDiff > 1) {
-          warnings.push(`Idade informada (${row["Idade"]}) não confere com data de nascimento`);
+          warnings.push(`Idade informada (${idade}) não confere com data de nascimento`);
         }
       }
     } catch {
@@ -141,8 +166,10 @@ export const processRow = (row: SpreadsheetRow, index: number): ValidationResult
   }
   
   // Minor validation
-  const isMinor = (row["Idade"] as number) < 18;
-  if (isMinor && (!row["Parente Responsável"] || !row["Parentesco"])) {
+  const parenteResponsavel = getFieldValue(row, ['parente_responsavel', 'Parente Responsável', 'Responsavel']);
+  const parentesco = getFieldValue(row, ['parentesco', 'Parentesco', 'relationship']);
+  const isMinor = idade < 18;
+  if (isMinor && (!parenteResponsavel || !parentesco)) {
     warnings.push('Menor de idade sem responsável definido');
   }
   
@@ -157,18 +184,18 @@ export const processRow = (row: SpreadsheetRow, index: number): ValidationResult
   
   // Process valid data
   const processedData: ProcessedStudentData = {
-    nome: (row["Nome Completo"] as string).trim(),
-    idade: row["Idade"] as number,
-    genero: GENDER_MAPPING[row["Gênero (M/F)"]],
-    email: row["E-mail"] && typeof row["E-mail"] === 'string' ? row["E-mail"].trim() || undefined : undefined,
-    telefone: row["Telefone"] && typeof row["Telefone"] === 'string' ? row["Telefone"].trim() || undefined : undefined,
-    data_batismo: dataBatismo,
-    cargo: CARGO_MAPPING[row["Cargo Congregacional"]],
-    ativo: STATUS_MAPPING[row["Status (Ativo/Inativo)"]],
-    observacoes: row["Observações"] && typeof row["Observações"] === 'string' ? row["Observações"].trim() || undefined : undefined,
-    familia: (row["Família / Agrupamento"] as string).trim(),
-    parentesco: row["Parentesco"] && typeof row["Parentesco"] === 'string' ? row["Parentesco"].trim() || undefined : undefined,
-    parente_responsavel: row["Parente Responsável"] && typeof row["Parente Responsável"] === 'string' ? row["Parente Responsável"].trim() || undefined : undefined
+    nome: nome.trim(),
+    idade: idade,
+    genero: GENDER_MAPPING[genero],
+    email: email && typeof email === 'string' ? email.trim() || undefined : undefined,
+    telefone: telefone && typeof telefone === 'string' ? telefone.trim() || undefined : undefined,
+    data_batismo: processedDataBatismo,
+    cargo: CARGO_MAPPING[cargo],
+    ativo: STATUS_MAPPING[ativo],
+    observacoes: observacoes && typeof observacoes === 'string' ? observacoes.trim() || undefined : undefined,
+    familia: familia.trim(),
+    parentesco: parentesco && typeof parentesco === 'string' ? parentesco.trim() || undefined : undefined,
+    parente_responsavel: parenteResponsavel && typeof parenteResponsavel === 'string' ? parenteResponsavel.trim() || undefined : undefined
   };
   
   return {

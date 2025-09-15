@@ -1,21 +1,36 @@
 import { Cargo, Genero } from "./estudantes";
 
-// Raw data from Excel spreadsheet
+// Raw data from Excel spreadsheet - flexible interface
 export interface SpreadsheetRow {
+  [key: string]: any;
+  // Common field variations
   "ID Estudante"?: string | number;
-  "Nome Completo": string;
-  "Idade": number;
-  "Gênero (M/F)": string;
+  "Nome Completo"?: string;
+  "nome"?: string;
+  "Idade"?: number;
+  "idade"?: number;
+  "Gênero (M/F)"?: string;
+  "genero"?: string;
   "Data de Nascimento"?: string;
+  "data_nascimento"?: string;
   "Parente Responsável"?: string;
+  "parente_responsavel"?: string;
   "Parentesco"?: string;
-  "Família / Agrupamento": string;
+  "parentesco"?: string;
+  "Família / Agrupamento"?: string;
+  "familia"?: string;
   "Data de Batismo"?: string;
-  "Cargo Congregacional": string;
+  "data_batismo"?: string;
+  "Cargo Congregacional"?: string;
+  "cargo"?: string;
   "Telefone"?: string;
+  "telefone"?: string;
   "E-mail"?: string;
+  "email"?: string;
   "Observações"?: string;
-  "Status (Ativo/Inativo)": string;
+  "observacoes"?: string;
+  "Status (Ativo/Inativo)"?: string;
+  "ativo"?: string | boolean;
 }
 
 // Processed data ready for database insertion
@@ -85,6 +100,8 @@ export const STATUS_MAPPING: Record<string, boolean> = {
   'Inativo': false,
   'ativo': true,
   'inativo': false,
+  'VERDADEIRO': true,
+  'FALSO': false,
   'true': true,
   'false': false,
   '1': true,

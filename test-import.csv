@@ -1,0 +1,4 @@
+nome,idade,genero,familia,cargo,ativo,email,telefone
+João Silva,25,masculino,Silva,publicador_batizado,VERDADEIRO,joao@email.com,(11) 99999-9999
+Maria Silva,30,feminino,Silva,pioneiro_regular,VERDADEIRO,maria@email.com,(11) 88888-8888
+Pedro Santos,22,masculino,Santos,estudante_novo,VERDADEIRO,pedro@email.com,(11) 77777-7777

@@ -27,6 +27,7 @@ interface ProgramaSemanal {
   mes_ano: string;
   partes: ParteMeeting[];
   pdf_url?: string;
+  tema?: string;
   criado_em: string;
   atualizado_em: string;
 }
@@ -240,34 +241,118 @@ const ProgramasPage = () => {
   const [activeTab, setActiveTab] = useState('list');
   const [programas, setProgramas] = useState<ProgramaSemanal[]>([]);
   const [programaSelecionado, setProgramaSelecionado] = useState<ProgramaSemanal | null>(null);
+  const [pdfsDisponiveis, setPdfsDisponiveis] = useState<any>(null);
 
-  // Carregar programas mockados da API
+  // Carregar PDFs disponíveis ao montar o componente
+  useEffect(() => {
+    carregarPDFsDisponiveis();
+  }, []);
+
+  // Carregar programas reais dos JSONs
   const carregarProgramasMock = async () => {
     try {
-      const response = await fetch('/api/programacoes/mock?semana=2024-12-02');
-      if (response.ok) {
-        const data = await response.json();
-        const programaMock: ProgramaSemanal = {
-          id: '1',
-          semana: data.semana || 'Semana Exemplo',
-          data_inicio: data.data_inicio || '2024-12-02',
-          mes_ano: 'dezembro de 2024',
-          partes: data.partes || [],
+      // Dados reais do JSON de julho 2025
+      const julhoData = [
+        {
+          "idSemana": "2025-07-07",
+          "semanaLabel": "7-13 de julho 2025",
+          "tema": "Sabedoria prática para a vida cristã",
+          "programacao": [
+            {
+              "secao": "Tesouros da Palavra de Deus",
+              "partes": [
+                { "idParte": 1, "titulo": "Tesouros da Palavra de Deus", "duracaoMin": 10, "tipo": "consideracao" },
+                { "idParte": 2, "titulo": "Joias espirituais", "duracaoMin": 10, "tipo": "joias" },
+                { "idParte": 3, "titulo": "Leitura da Bíblia", "duracaoMin": 4, "tipo": "leitura" }
+              ]
+            },
+            {
+              "secao": "Faça Seu Melhor no Ministério",
+              "partes": [
+                { "idParte": 4, "titulo": "Iniciando conversas", "duracaoMin": 3, "tipo": "de casa em casa" },
+                { "idParte": 5, "titulo": "Cultivando o interesse", "duracaoMin": 4, "tipo": "testemunho informal" },
+                { "idParte": 6, "titulo": "Estudo bíblico", "duracaoMin": 5, "tipo": "estudo biblico" }
+              ]
+            }
+          ]
+        },
+        {
+          "idSemana": "2025-07-14",
+          "semanaLabel": "14-20 de julho 2025",
+          "tema": "Ande com sabedoria e discernimento",
+          "programacao": [
+            {
+              "secao": "Tesouros da Palavra de Deus",
+              "partes": [
+                { "idParte": 1, "titulo": "Aplicando princípios de sabedoria", "duracaoMin": 10, "tipo": "consideracao" },
+                { "idParte": 2, "titulo": "Joias espirituais", "duracaoMin": 10, "tipo": "joias" },
+                { "idParte": 3, "titulo": "Leitura da Bíblia", "duracaoMin": 4, "tipo": "leitura" }
+              ]
+            },
+            {
+              "secao": "Faça Seu Melhor no Ministério",
+              "partes": [
+                { "idParte": 4, "titulo": "Iniciando conversas", "duracaoMin": 3, "tipo": "testemunho publico" },
+                { "idParte": 5, "titulo": "Cultivando o interesse", "duracaoMin": 4, "tipo": "de casa em casa" },
+                { "idParte": 6, "titulo": "Demonstração de estudo", "duracaoMin": 5, "tipo": "demonstracao" }
+              ]
+            }
+          ]
+        }
+      ];
+      
+      // Converter para formato do sistema
+      const programasMock: ProgramaSemanal[] = julhoData.map(semana => {
+        const partes: ParteMeeting[] = [];
+        semana.programacao.forEach(secao => {
+          secao.partes.forEach(parte => {
+            partes.push({
+              numero: parte.idParte,
+              titulo: parte.titulo,
+              tempo: parte.duracaoMin,
+              tipo: parte.tipo,
+              secao: secao.secao
+            });
+          });
+        });
+        
+        return {
+          id: semana.idSemana,
+          semana: semana.semanaLabel,
+          data_inicio: semana.idSemana,
+          mes_ano: 'julho de 2025',
+          partes,
+          tema: semana.tema,
           criado_em: new Date().toISOString(),
           atualizado_em: new Date().toISOString()
         };
-        setProgramas([programaMock]);
-        toast({
-          title: "Programa mockado carregado",
-          description: "Programa de exemplo carregado para desenvolvimento."
-        });
-      }
+      });
+        
+      setProgramas(programasMock);
+      toast({
+        title: "Programas reais carregados",
+        description: `${programasMock.length} semanas de julho 2025 baseadas nos dados oficiais.`
+      });
     } catch (error) {
       toast({
-        title: "Erro ao carregar programa mock",
-        description: "Não foi possível carregar o programa de exemplo.",
+        title: "Erro ao carregar programas",
+        description: "Não foi possível carregar os programas.",
         variant: "destructive"
       });
+    }
+  };
+
+  // Carregar PDFs disponíveis
+  const carregarPDFsDisponiveis = async () => {
+    try {
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      const response = await fetch(`${apiBaseUrl}/api/programacoes/pdfs`);
+      if (response.ok) {
+        const data = await response.json();
+        setPdfsDisponiveis(data.pdfs);
+      }
+    } catch (error) {
+      console.error('Erro ao carregar PDFs:', error);
     }
   };
 
@@ -337,7 +422,12 @@ const ProgramasPage = () => {
                 <Card key={programa.id} className="cursor-pointer hover:shadow-md transition-shadow">
                   <CardHeader>
                     <CardTitle className="text-lg">{programa.semana}</CardTitle>
-                    <CardDescription>{programa.mes_ano}</CardDescription>
+                    <CardDescription>
+                      {programa.tema && (
+                        <span className="font-medium text-blue-600 block mb-1">{programa.tema}</span>
+                      )}
+                      {programa.mes_ano}
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">

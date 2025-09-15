@@ -135,6 +135,7 @@ const StudentsSpreadsheet = ({ estudantes, onRefresh }: StudentsSpreadsheetProps
             onCellValueChanged={onCellValueChanged}
             pagination={true}
             paginationPageSize={25}
+            getRowId={(params) => params.data.id}
           />
         </div>
       </CardContent>

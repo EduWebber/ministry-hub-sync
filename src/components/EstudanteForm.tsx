@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,38 +10,31 @@ import { Badge } from "@/components/ui/badge";
 import { CalendarIcon, Save, X } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 import {
-  EstudanteFormData,
   EstudanteWithParent,
   Cargo,
   Genero,
   CARGO_LABELS,
-  GENERO_LABELS,
-  validateEstudante,
   getQualificacoes,
-  isMinor,
 } from "@/types/estudantes";
 
 interface EstudanteFormProps {
   estudante?: EstudanteWithParent;
   potentialParents: EstudanteWithParent[];
-  onSubmit: (data: EstudanteFormData) => Promise<boolean>;
+  onSubmit: (data: any) => Promise<boolean>;
   onCancel: () => void;
   loading?: boolean;
 }
 
-const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loading = false }: EstudanteFormProps) => {
+const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: EstudanteFormProps) => {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState<EstudanteFormData>({
+  const [formData, setFormData] = useState({
     nome: "",
-    idade: 18,
-    genero: "masculino",
+    data_nascimento: "",
+    genero: "masculino" as Genero,
     email: "",
     telefone: "",
-    data_batismo: "",
-    cargo: "publicador_batizado",
-    id_pai_mae: "",
+    cargo: "publicador_batizado" as Cargo,
     ativo: true,
-    observacoes: "",
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -52,26 +45,37 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
     if (estudante) {
       setFormData({
         nome: estudante.nome,
-        idade: estudante.idade || 18,
+        data_nascimento: estudante.data_nascimento || "",
         genero: estudante.genero,
         email: estudante.email || "",
         telefone: estudante.telefone || "",
-        data_batismo: estudante.data_batismo || "",
         cargo: estudante.cargo,
-        id_pai_mae: estudante.id_pai_mae || "",
         ativo: estudante.ativo ?? true,
-        observacoes: estudante.observacoes || "",
       });
     }
   }, [estudante]);
 
-  // Update qualifications when cargo, genero, or idade changes
-  useEffect(() => {
-    const newQualificacoes = getQualificacoes(formData.cargo, formData.genero, formData.idade);
-    setQualificacoes(newQualificacoes);
-  }, [formData.cargo, formData.genero, formData.idade]);
+  // Calculate age from birth date
+  const calculateAge = (birthDate: string): number => {
+    if (!birthDate) return 18;
+    const today = new Date();
+    const birth = new Date(birthDate);
+    let age = today.getFullYear() - birth.getFullYear();
+    const monthDiff = today.getMonth() - birth.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+      age--;
+    }
+    return age;
+  };
 
-  const handleInputChange = (field: keyof EstudanteFormData, value: string | number | boolean | Date | null) => {
+  // Update qualifications when cargo, genero, or data_nascimento changes
+  useEffect(() => {
+    const idade = calculateAge(formData.data_nascimento);
+    const newQualificacoes = getQualificacoes(formData.cargo, formData.genero, idade);
+    setQualificacoes(newQualificacoes);
+  }, [formData.cargo, formData.genero, formData.data_nascimento]);
+
+  const handleInputChange = (field: string, value: string | number | boolean | Date | null) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     
     // Clear error for this field
@@ -83,8 +87,15 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate form
-    const validationErrors = validateEstudante(formData);
+    // Basic validation
+    const validationErrors: Record<string, string> = {};
+    if (!formData.nome.trim()) {
+      validationErrors.nome = 'Nome é obrigatório';
+    }
+    if (!formData.genero) {
+      validationErrors.genero = 'Gênero é obrigatório';
+    }
+    
     setErrors(validationErrors);
     
     if (Object.keys(validationErrors).length > 0) {
@@ -98,22 +109,20 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
       if (!estudante) {
         setFormData({
           nome: "",
-          idade: 18,
+          data_nascimento: "",
           genero: "masculino",
           email: "",
           telefone: "",
-          data_batismo: "",
           cargo: "publicador_batizado",
-          id_pai_mae: "",
           ativo: true,
-          observacoes: "",
         });
       }
     }
   };
 
   const isEditing = !!estudante;
-  const showParentField = isMinor(formData.idade);
+  const idade = calculateAge(formData.data_nascimento);
+  // const showParentField = idade < 18; // Not used in current structure
 
   return (
     <Card className="w-full max-w-2xl mx-auto">
@@ -144,17 +153,20 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="idade">{t('common.age')} *</Label>
+              <Label htmlFor="data_nascimento">{t('common.birthDate')}</Label>
               <Input
-                id="idade"
-                type="number"
-                min="1"
-                max="120"
-                value={formData.idade}
-                onChange={(e) => handleInputChange("idade", parseInt(e.target.value) || 0)}
-                className={errors.idade ? "border-red-500" : ""}
+                id="data_nascimento"
+                type="date"
+                value={formData.data_nascimento}
+                onChange={(e) => handleInputChange("data_nascimento", e.target.value)}
+                className={errors.data_nascimento ? "border-red-500" : ""}
               />
-              {errors.idade && <p className="text-sm text-red-500">{errors.idade}</p>}
+              {errors.data_nascimento && <p className="text-sm text-red-500">{errors.data_nascimento}</p>}
+              {formData.data_nascimento && (
+                <p className="text-sm text-gray-500">
+                  Idade: {idade} anos
+                </p>
+              )}
             </div>
           </div>
 
@@ -220,39 +232,7 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
             </div>
           </div>
 
-          {/* Baptism Date */}
-          <div className="space-y-2">
-            <Label htmlFor="data_batismo">{t('students.baptizedOn')}</Label>
-            <Input
-              id="data_batismo"
-              type="date"
-              value={formData.data_batismo}
-              onChange={(e) => handleInputChange("data_batismo", e.target.value)}
-            />
-          </div>
 
-          {/* Parent/Guardian for minors */}
-          {showParentField && (
-            <div className="space-y-2">
-              <Label htmlFor="id_pai_mae">{t('students.responsible')} *</Label>
-              <Select value={formData.id_pai_mae} onValueChange={(value) => handleInputChange("id_pai_mae", value)}>
-                <SelectTrigger className={errors.id_pai_mae ? "border-red-500" : ""}>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {potentialParents.map((parent) => (
-                    <SelectItem key={parent.id} value={parent.id}>
-                      {parent.nome} ({parent.idade} anos)
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.id_pai_mae && <p className="text-sm text-red-500">{errors.id_pai_mae}</p>}
-              <p className="text-sm text-gray-500">
-                {t('students.minor')}: {t('students.responsible')}
-              </p>
-            </div>
-          )}
 
           {/* Active Status */}
           <div className="flex items-center space-x-2">
@@ -279,17 +259,7 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
             </p>
           </div>
 
-          {/* Observations */}
-          <div className="space-y-2">
-            <Label htmlFor="observacoes">{t('students.observations')}</Label>
-            <Textarea
-              id="observacoes"
-              value={formData.observacoes}
-              onChange={(e) => handleInputChange("observacoes", e.target.value)}
-              placeholder={t('students.observations')}
-              rows={3}
-            />
-          </div>
+
 
           {/* Form Actions */}
           <div className="flex gap-4 pt-4">

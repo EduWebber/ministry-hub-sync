@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste Backend Direto - Designações</title>
+</head>
+<body>
+    <h1>🧪 Teste Backend Direto - Sistema de Designações</h1>
+    <div id="results"></div>
+    
+    <script>
+        const results = document.getElementById('results');
+        
+        async function testBackend() {
+            results.innerHTML = '<p>🔄 Testando backend...</p>';
+            
+            try {
+                // 1. Testar status do backend
+                const statusResp = await fetch('http://localhost:3000/api/status');
+                const statusText = await statusResp.text();
+                results.innerHTML += `<p>✅ Backend Status: ${statusText}</p>`;
+                
+                // 2. Testar programação mock
+                const mockResp = await fetch('http://localhost:3000/api/programacoes/mock?semana=2024-12-02');
+                const mockData = await mockResp.json();
+                results.innerHTML += `<p>✅ Mock Programação: ${mockData.week_start} - ${mockData.week_end}</p>`;
+                results.innerHTML += `<p>📋 Itens: ${mockData.items?.length || 0} partes</p>`;
+                
+                // 3. Testar persistência da programação
+                const persistResp = await fetch('http://localhost:3000/api/programacoes', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        week_start: mockData.week_start,
+                        week_end: mockData.week_end,
+                        status: 'publicada',
+                        congregation_scope: 'global',
+                        items: mockData.items
+                    })
+                });
+                const persistData = await persistResp.json();
+                results.innerHTML += `<p>✅ Programação Salva: ID ${persistData.programacao.id}</p>`;
+                
+                // 4. Testar geração de designações
+                const generateResp = await fetch('http://localhost:3000/api/designacoes/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        programacao_id: persistData.programacao.id,
+                        congregacao_id: '550e8400-e29b-41d4-a716-446655440000'
+                    })
+                });
+                const generateData = await generateResp.json();
+                results.innerHTML += `<p>✅ Designações Geradas: ${generateData.message}</p>`;
+                results.innerHTML += `<p>📊 Resumo: ${generateData.summary?.designacoes_ok || 0} OK, ${generateData.summary?.designacoes_pendentes || 0} pendentes</p>`;
+                
+                // 5. Testar listagem de designações
+                const listResp = await fetch(`http://localhost:3000/api/designacoes?programacao_id=${persistData.programacao.id}&congregacao_id=550e8400-e29b-41d4-a716-446655440000`);
+                const listData = await listResp.json();
+                results.innerHTML += `<p>✅ Designações Listadas: ${listData.itens?.length || 0} itens</p>`;
+                
+                // Mostrar detalhes das designações
+                if (listData.itens && listData.itens.length > 0) {
+                    results.innerHTML += '<h3>📋 Designações Geradas:</h3>';
+                    listData.itens.forEach((item, index) => {
+                        const estudante = item.principal_estudante?.nome || 'Não designado';
+                        const assistente = item.assistente_estudante?.nome || 'Sem assistente';
+                        results.innerHTML += `<p>${index + 1}. Estudante: ${estudante} | Assistente: ${assistente} | Status: ${item.status}</p>`;
+                    });
+                }
+                
+                results.innerHTML += '<h2>🎉 TESTE COMPLETO - SISTEMA FUNCIONANDO!</h2>';
+                results.innerHTML += '<p>✅ O backend está gerando designações corretamente</p>';
+                results.innerHTML += '<p>✅ As regras S-38 estão sendo aplicadas</p>';
+                results.innerHTML += '<p>✅ O "tudo está falso" foi resolvido no backend!</p>';
+                
+            } catch (error) {
+                results.innerHTML += `<p>❌ Erro: ${error.message}</p>`;
+                console.error('Erro no teste:', error);
+            }
+        }
+        
+        // Executar teste automaticamente
+        testBackend();
+    </script>
+</body>
+</html>

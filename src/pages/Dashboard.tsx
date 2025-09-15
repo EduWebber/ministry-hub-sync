@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,17 +17,24 @@ import {
 } from "lucide-react";
 import SidebarLayout from "@/components/layout/SidebarLayout";
 import { useNavigate } from "react-router-dom";
+import { useEstudantes } from "@/hooks/useEstudantes";
 
 const Dashboard = () => {
   const navigate = useNavigate();
 
-  // Mock data para demonstração
-  const stats = {
-    totalEstudantes: 12,
-    estudantesAtivos: 10,
-    designacoesPendentes: 3,
-    proximaReuniao: "2024-12-12"
-  };
+  const { estudantes, isLoading: estudantesLoading } = useEstudantes();
+  
+  // Estatísticas reais dos estudantes
+  const stats = useMemo(() => {
+    const total = estudantes?.length || 0;
+    const ativos = estudantes?.filter((e: any) => e.ativo)?.length || 0;
+    return {
+      totalEstudantes: total,
+      estudantesAtivos: ativos,
+      designacoesPendentes: 0, // TODO: implementar contagem real
+      proximaReuniao: "2025-07-07"
+    };
+  }, [estudantes]);
 
   return (
     <SidebarLayout 
