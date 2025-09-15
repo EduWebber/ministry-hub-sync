@@ -127,6 +127,30 @@ class PDFParser {
   }
 
   /**
+   * Extrai conteúdo de programação de um buffer PDF (para Supabase Storage)
+   * @param {Buffer} pdfBuffer Buffer do arquivo PDF
+   * @returns {Promise<Object>} Dados de programação extraídos
+   */
+  async parsePDFBuffer(pdfBuffer) {
+    try {
+      console.log('📖 Extraindo conteúdo do PDF buffer...');
+      
+      const pdfData = await pdfParse(pdfBuffer);
+      
+      console.log(`📄 PDF carregado: ${pdfData.numpages} páginas, ${pdfData.text.length} caracteres`);
+      
+      const programmingData = this.extractProgrammingStructure(pdfData.text, 'buffer');
+      
+      console.log(`✅ Programação extraída: ${programmingData.weeks.length} semanas`);
+      
+      return programmingData;
+    } catch (error) {
+      console.error('❌ Erro ao extrair conteúdo do PDF buffer:', error);
+      throw new Error(`Falha ao extrair programação: ${error.message}`);
+    }
+  }
+
+  /**
    * Extrai estrutura de programação do texto do PDF
    * @param {string} text Texto extraído do PDF
    * @param {string} filePath Caminho do arquivo
@@ -137,16 +161,46 @@ class PDFParser {
       const fileName = path.basename(filePath);
       const language = this.detectLanguage(text);
       
-      // Extrair semanas da programação
-      const weeks = this.extractWeeks(text, language);
+      // Extrair período/mês da programação
+      const period = this.extractPeriod(text, language);
       
-      // Extrair seções de cada semana
-      const structuredWeeks = weeks.map(week => ({
-        ...week,
-        sections: this.extractSections(text, week, language)
-      }));
+      // Extrair semanas da programação
+      const rawWeeks = this.extractWeeks(text, language);
+      
+      // Estruturar cada semana com suas partes
+      const structuredWeeks = rawWeeks.map(week => {
+        const sections = this.extractSections(text, week, language);
+        
+        // Converter seções para partes planas
+        const parts = [];
+        let partOrder = 1;
+        
+        Object.keys(sections).forEach(sectionKey => {
+          sections[sectionKey].forEach(part => {
+            parts.push({
+              section: this.mapSectionToStandard(sectionKey),
+              title: part.title,
+              type: part.type,
+              duration: part.duration,
+              gender: this.mapGenderFromRequirements(part.requirements),
+              references: this.extractReferences(text, part.title),
+              notes: part.notes,
+              order: partOrder++
+            });
+          });
+        });
+        
+        return {
+          week: week.startDate && week.endDate ? 
+            `${week.startDate} - ${week.endDate}` : 
+            `${week.title}`,
+          theme: this.extractWeekTheme(text, week, language),
+          parts: parts
+        };
+      });
 
       return {
+        period: period,
         weeks: structuredWeeks,
         metadata: {
           sourceFile: fileName,
@@ -160,6 +214,133 @@ class PDFParser {
       console.error('❌ Erro ao estruturar programação:', error);
       throw new Error(`Falha ao estruturar dados: ${error.message}`);
     }
+  }
+
+  /**
+   * Extrai período da programação (mês/ano)
+   * @param {string} text Texto do PDF
+   * @param {string} language Idioma
+   * @returns {string} Período identificado
+   */
+  extractPeriod(text, language) {
+    const monthPatterns = {
+      en: {
+        january: 'January', february: 'February', march: 'March', april: 'April',
+        may: 'May', june: 'June', july: 'July', august: 'August',
+        september: 'September', october: 'October', november: 'November', december: 'December'
+      },
+      pt: {
+        janeiro: 'Janeiro', fevereiro: 'Fevereiro', março: 'Março', abril: 'Abril',
+        maio: 'Maio', junho: 'Junho', julho: 'Julho', agosto: 'Agosto',
+        setembro: 'Setembro', outubro: 'Outubro', novembro: 'Novembro', dezembro: 'Dezembro'
+      }
+    };
+
+    const months = monthPatterns[language] || monthPatterns.pt;
+    const currentYear = new Date().getFullYear();
+    
+    for (const [key, value] of Object.entries(months)) {
+      if (text.toLowerCase().includes(key.toLowerCase())) {
+        return `${value} ${currentYear}`;
+      }
+    }
+    
+    return `Período ${currentYear}`;
+  }
+
+  /**
+   * Extrai tema da semana específica
+   * @param {string} text Texto do PDF
+   * @param {Object} week Dados da semana
+   * @param {string} language Idioma
+   * @returns {string} Tema da semana
+   */
+  extractWeekTheme(text, week, language) {
+    // Padrões para identificar temas semanais
+    const themePatterns = {
+      pt: [
+        /tema\s*da\s*semana[:\s]*([^\n\r]+)/gi,
+        /título[:\s]*([^\n\r]+)/gi,
+        /assunto[:\s]*([^\n\r]+)/gi
+      ],
+      en: [
+        /weekly\s*theme[:\s]*([^\n\r]+)/gi,
+        /title[:\s]*([^\n\r]+)/gi,
+        /subject[:\s]*([^\n\r]+)/gi
+      ]
+    };
+
+    const patterns = themePatterns[language] || themePatterns.pt;
+    
+    for (const pattern of patterns) {
+      const matches = [...text.matchAll(pattern)];
+      if (matches.length > 0) {
+        return matches[0][1].trim();
+      }
+    }
+    
+    // Tema padrão se não encontrar
+    return language === 'pt' ? 
+      'Sirva a Jeová com coração completo' : 
+      'Serve Jehovah with a Complete Heart';
+  }
+
+  /**
+   * Mapeia seção para formato padrão
+   * @param {string} sectionKey Chave da seção
+   * @returns {string} Seção padronizada
+   */
+  mapSectionToStandard(sectionKey) {
+    const sectionMap = {
+      opening: 'treasures',
+      treasures: 'treasures', 
+      ministry: 'ministry',
+      living: 'living',
+      closing: 'living'
+    };
+    
+    return sectionMap[sectionKey] || 'living';
+  }
+
+  /**
+   * Mapeia gênero baseado em requisitos
+   * @param {Object} requirements Requisitos da parte
+   * @returns {string} Gênero mapeado
+   */
+  mapGenderFromRequirements(requirements) {
+    if (requirements?.requires_male || requirements?.elders_only) {
+      return 'male';
+    }
+    return 'both';
+  }
+
+  /**
+   * Extrai referências bíblicas de uma parte
+   * @param {string} text Texto do PDF
+   * @param {string} partTitle Título da parte
+   * @returns {Object} Referências encontradas
+   */
+  extractReferences(text, partTitle) {
+    const references = {
+      biblical: [],
+      wol: []
+    };
+    
+    // Padrões para referências bíblicas
+    const biblicalPattern = /(\d*\s*[A-Za-z]+\s+\d+[:]\d+(?:-\d+)?)/g;
+    const matches = [...text.matchAll(biblicalPattern)];
+    
+    matches.forEach(match => {
+      const ref = match[1].trim();
+      if (ref.length > 3) {
+        references.biblical.push(ref);
+      }
+    });
+    
+    // Remover duplicatas
+    references.biblical = [...new Set(references.biblical)];
+    
+    return references;
   }
 
   /**
