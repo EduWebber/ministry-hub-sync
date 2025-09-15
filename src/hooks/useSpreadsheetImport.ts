@@ -124,14 +124,14 @@ export const useSpreadsheetImport = () => {
               // Use existing profile
               profileId = existingProfile.id;
             } else {
-              // Gerar um UUID único para user_id para evitar violação da restrição
+              // Criar perfil sem user_id para estudantes importados
               const profileData = {
                 nome: result.data!.nome,
                 email: result.data!.email || '',
                 telefone: result.data!.telefone || null,
                 cargo: result.data!.cargo,
-                data_nascimento: result.data!.data_nascimento || null,
-                user_id: crypto.randomUUID() // Gerar UUID único para cada perfil
+                data_nascimento: result.data!.data_nascimento || null
+                // user_id será NULL para estudantes importados
               };
             
               const { data: profileResult, error: profileError } = await supabase
