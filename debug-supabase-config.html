@@ -1,43 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Debug Supabase Config</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase Config Debug</title>
 </head>
 <body>
-    <h1>Debug Supabase Configuration</h1>
-    <div id="config"></div>
-    <button onclick="clearAndReload()">Clear Cache & Reload</button>
+    <h1>Supabase Configuration Debug</h1>
+    <div id="config-info"></div>
+    <div id="error-info"></div>
 
     <script type="module">
-        // Simular as variáveis de ambiente do Vite
-        const config = {
-            VITE_SUPABASE_URL: 'https://nwpuurgwnnuejqinkvrh.supabase.co',
-            VITE_SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53cHV1cmd3bm51ZWpxaW5rdnJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0NjIwNjUsImV4cCI6MjA3MDAzODA2NX0.UHjSvXYY_c-_ydAIfELRUs4CMEBLKiztpBGQBNPHfak'
-        };
-
-        // Test with actual environment values
-        const testConfig = {
-            VITE_SUPABASE_URL: 'https://nwpuurgwnnuejqinkvrh.supabase.co',
-            VITE_SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53cHV1cmd3bm51ZWpxaW5rdnJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0NjIwNjUsImV4cCI6MjA3MDAzODA2NX0.UHjSvXYY_c-_ydAIfELRUs4CMEBLKiztpBGQBNPHfak'
-        };
-
-        document.getElementById('config').innerHTML = `
-            <h3>Current Configuration:</h3>
-            <p><strong>URL:</strong> ${config.VITE_SUPABASE_URL}</p>
-            <p><strong>Key:</strong> ${config.VITE_SUPABASE_ANON_KEY.substring(0, 50)}...</p>
+        // Test 1: Try to get config from environment variables
+        try {
+            console.log('Testing environment variables...');
+            const envUrl = import.meta.env.VITE_SUPABASE_URL;
+            const envKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
             
-            <h3>Expected Project ID:</h3>
-            <p>nwpuurgwnnuejqinkvrh</p>
+            console.log('Environment URL:', envUrl);
+            console.log('Environment Key:', envKey ? '****' + envKey.slice(-4) : 'Not found');
             
-            <h3>LocalStorage:</h3>
-            <pre>${JSON.stringify(localStorage, null, 2)}</pre>
-        `;
+            if (envUrl && envKey) {
+                document.getElementById('config-info').innerHTML += `
+                    <h2>Environment Variables</h2>
+                    <p>URL: ${envUrl}</p>
+                    <p>Key: ${envKey ? '****' + envKey.slice(-4) : 'Not found'}</p>
+                `;
+            }
+        } catch (error) {
+            console.error('Error reading environment variables:', error);
+            document.getElementById('error-info').innerHTML += `
+                <h2>Environment Variables Error</h2>
+                <p>${error.message}</p>
+            `;
+        }
 
-        window.clearAndReload = function() {
-            localStorage.clear();
-            sessionStorage.clear();
-            location.reload();
-        };
+        // Test 2: Try to get config from window object (if set by Vite)
+        try {
+            console.log('Testing window object...');
+            // This is just for demonstration - in a real Vite app, you'd use import.meta.env
+            const windowConfig = {
+                VITE_SUPABASE_URL: 'https://nwpuurgwnnuejqinkvrh.supabase.co',
+                VITE_SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsdm9qb2x2ZHNxcmZjempqanV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1ODcwNjUsImV4cCI6MjA3MzE2MzA2NX0.J5CE7TrRJj8C0gWjbokSkMSRW1S-q8AwKUV5Z7xuODQ'
+            };
+            
+            console.log('Window config URL:', windowConfig.VITE_SUPABASE_URL);
+            
+            if (windowConfig.VITE_SUPABASE_URL) {
+                document.getElementById('config-info').innerHTML += `
+                    <h2>Window Object Config</h2>
+                    <p>URL: ${windowConfig.VITE_SUPABASE_URL}</p>
+                `;
+            }
+        } catch (error) {
+            console.error('Error reading window config:', error);
+            document.getElementById('error-info').innerHTML += `
+                <h2>Window Config Error</h2>
+                <p>${error.message}</p>
+            `;
+        }
+
+        // Test 3: Display project reference
+        try {
+            const projectRef = 'nwpuurgwnnuejqinkvrh';
+            document.getElementById('config-info').innerHTML += `
+                <h2>Project Reference</h2>
+                <p>${projectRef}</p>
+            `;
+        } catch (error) {
+            console.error('Error displaying project reference:', error);
+        }
     </script>
 </body>
 </html>

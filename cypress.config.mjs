@@ -18,7 +18,7 @@ export default defineConfig({
     env: {
       // URLs do ambiente
       PRODUCTION_URL: 'https://sua-parte.lovable.app',
-      LOCAL_URL: 'http://localhost:5173',
+      LOCAL_URL: 'http://localhost:8080',
       
       // Credenciais de teste - Instrutor (Admin completo)
       INSTRUCTOR_EMAIL: process.env.CYPRESS_INSTRUCTOR_EMAIL || 'frankwebber33@hotmail.com',

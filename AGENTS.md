@@ -112,7 +112,7 @@ mcpServers:
 ```
 
 **Secrets necessários:**
-- `SUPABASE_PROJECT_REF`: nwpuurgwnnuejqinkvrh
+- `SUPABASE_PROJECT_REF`: dlvojolvdsqrfczjjjuw
 - `SUPABASE_ACCESS_TOKEN`: token pessoal (não versionar)
 
 ---

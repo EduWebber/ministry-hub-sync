@@ -27,8 +27,8 @@ class PDFParser {
         return [];
       }
 
-      const files = await fs.readdir(this.officialPath);
-      const pdfFiles = files.filter(file => file.toLowerCase().endsWith('.pdf'));
+      // Scan recursively for PDF files
+      const pdfFiles = await this.scanForPDFs(this.officialPath);
       
       console.log(`📄 Encontrados ${pdfFiles.length} arquivos PDF`);
       
@@ -49,13 +49,43 @@ class PDFParser {
   }
 
   /**
+   * Scan recursively for PDF files in a directory
+   * @param {string} dirPath Directory path to scan
+   * @returns {Promise<Array>} List of PDF file paths
+   */
+  async scanForPDFs(dirPath) {
+    try {
+      const entries = await fs.readdir(dirPath, { withFileTypes: true });
+      const pdfFiles = [];
+      
+      for (const entry of entries) {
+        const fullPath = path.join(dirPath, entry.name);
+        
+        if (entry.isDirectory()) {
+          // Recursively scan subdirectories
+          const subDirPDFs = await this.scanForPDFs(fullPath);
+          pdfFiles.push(...subDirPDFs);
+        } else if (entry.isFile() && entry.name.toLowerCase().endsWith('.pdf')) {
+          // Add PDF files to the list
+          pdfFiles.push(fullPath);
+        }
+      }
+      
+      return pdfFiles;
+    } catch (error) {
+      console.error(`❌ Erro ao escanear diretório ${dirPath}:`, error);
+      return [];
+    }
+  }
+
+  /**
    * Extrai metadados de um arquivo PDF
-   * @param {string} fileName Nome do arquivo
+   * @param {string} filePath Caminho completo do arquivo
    * @returns {Promise<Object>} Metadados do PDF
    */
-  async extractPDFMetadata(fileName) {
+  async extractPDFMetadata(filePath) {
     try {
-      const filePath = path.join(this.officialPath, fileName);
+      const fileName = path.basename(filePath);
       const stats = await fs.stat(filePath);
       
       // Verificar se é um PDF MWB válido
@@ -89,10 +119,10 @@ class PDFParser {
         dateCode
       };
     } catch (error) {
-      console.error(`❌ Erro ao extrair metadados de ${fileName}:`, error);
+      console.error(`❌ Erro ao extrair metadados de ${filePath}:`, error);
       return {
-        fileName,
-        filePath: path.join(this.officialPath, fileName),
+        fileName: path.basename(filePath),
+        filePath,
         size: 0,
         lastModified: new Date(),
         isValid: false,

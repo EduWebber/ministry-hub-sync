@@ -47,7 +47,7 @@ if (emergencyLogoutExists) {
     },
     {
       name: 'Clears Supabase-specific keys',
-      check: emergencyLogoutContent.includes('supabase.auth.token') && emergencyLogoutContent.includes('sb-nwpuurgwnnuejqinkvrh-auth-token'),
+      check: emergencyLogoutContent.includes('supabase.auth.token') && emergencyLogoutContent.includes('sb-dlvojolvdsqrfczjjjuw-auth-token'),
       required: true
     },
     {

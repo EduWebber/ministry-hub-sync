@@ -46,6 +46,9 @@ import UnifiedNavigation from './UnifiedNavigation';
 import ProgramFlowGuide from '@/components/programs/ProgramFlowGuide';
 import UnifiedBreadcrumbs from './UnifiedBreadcrumbs';
 
+// Check if we're in mock mode
+const isMockMode = import.meta.env.VITE_MOCK_MODE === 'true';
+
 // 🎯 COMPONENTES ADMIN REMOVIDOS - SISTEMA SIMPLIFICADO
 
 // 🚀 DASHBOARD UNIFICADO QUE ADAPTA AO ROLE DO USUÁRIO
@@ -69,11 +72,23 @@ export default function UnifiedDashboard() {
     try {
       setDashboardStats(prev => ({ ...prev, loading: true }));
 
+      // If in mock mode, return mock data
+      if (isMockMode) {
+        console.log('🧪 Mock mode: returning mock dashboard stats');
+        setDashboardStats({
+          totalEstudantes: 12,
+          totalProgramas: 8,
+          totalDesignacoes: 24,
+          loading: false
+        });
+        return;
+      }
+
       if (profile?.role === 'admin') {
         // 📊 ESTATÍSTICAS GLOBAIS PARA ADMIN
         const [estudantesResult, programasResult, designacoesResult] = await Promise.all([
           supabase.from('estudantes').select('id', { count: 'exact' }),
-          supabase.from('programas').select('id', { count: 'exact' }),
+          supabase.from('programas_ministeriais').select('id', { count: 'exact' }),
           supabase.from('designacoes').select('id', { count: 'exact' })
         ]);
 
@@ -85,22 +100,21 @@ export default function UnifiedDashboard() {
         });
       } else if (profile?.role === 'instrutor') {
         // 📊 ESTATÍSTICAS LOCAIS PARA INSTRUTOR
-        const [estudantesResult, programasResult, designacoesResult] = await Promise.all([
+        const [estudantesResult, programasResult] = await Promise.all([
           supabase.from('estudantes').select('id', { count: 'exact' }).eq('user_id', user.id),
-          supabase.from('programas').select('id', { count: 'exact' }).eq('user_id', user.id),
-          supabase.from('designacoes').select('id', { count: 'exact' }).eq('user_id', user.id)
+          supabase.from('programas_ministeriais').select('id', { count: 'exact' })
         ]);
 
         setDashboardStats({
           totalEstudantes: estudantesResult.count || 0,
           totalProgramas: programasResult.count || 0,
-          totalDesignacoes: designacoesResult.count || 0,
+          totalDesignacoes: 0, // We'll set this properly in the role specific data loading
           loading: false
         });
       } else if (profile?.role === 'estudante') {
         // 📊 ESTATÍSTICAS INDIVIDUAIS PARA ESTUDANTE
         const [designacoesResult] = await Promise.all([
-          supabase.from('designacoes').select('id', { count: 'exact' }).eq('id_estudante', user.id)
+          supabase.from('designacoes').select('id', { count: 'exact' }).eq('estudante_id', user.id)
         ]);
 
         setDashboardStats({
@@ -123,6 +137,30 @@ export default function UnifiedDashboard() {
     try {
       setLoading(true);
 
+      // If in mock mode, return mock data
+      if (isMockMode) {
+        console.log('🧪 Mock mode: returning mock role specific data');
+        setRecentAssignments([
+          {
+            id: 'mock-assignment-1',
+            estudante_id: 'mock-student-1',
+            tipo_parte: 'Leitura da Bíblia',
+            confirmado: true,
+            created_at: new Date().toISOString(),
+            estudantes: {
+              nome: 'João Silva',
+              cargo: 'publicador_batizado'
+            },
+            programas: {
+              mes_apostila: 'Setembro 2025',
+              semana: 1
+            }
+          }
+        ]);
+        setLoading(false);
+        return;
+      }
+
       if (profile.role === 'instrutor') {
         // 👨‍🏫 DADOS INSTRUTOR: Designações recentes da congregação
         const { data: assignments } = await supabase
@@ -130,9 +168,9 @@ export default function UnifiedDashboard() {
           .select(`
             *,
             estudantes!inner(nome, cargo),
-            programas!inner(mes_apostila, semana)
+            semanas_programa!inner(data_inicio, semana_numero)
           `)
-          .eq('user_id', user.id)
+          .eq('estudante_id', user.id)
           .order('created_at', { ascending: false })
           .limit(5);
 
@@ -143,9 +181,9 @@ export default function UnifiedDashboard() {
           .from('designacoes')
           .select(`
             *,
-            programas!inner(mes_apostila, semana, titulo_parte)
+            semanas_programa!inner(data_inicio, semana_numero)
           `)
-          .eq('id_estudante', user.id)
+          .eq('estudante_id', user.id)
           .order('created_at', { ascending: false })
           .limit(5);
 
@@ -190,7 +228,7 @@ export default function UnifiedDashboard() {
               <div>
                 <h1 className="text-3xl font-bold">Dashboard do Instrutor</h1>
                 <p className="text-muted-foreground mt-1">
-                  {profile.congregacao || 'Sua Congregação'} - Gestão Local
+                  {profile.congregacao_id || 'Sua Congregação'} - Gestão Local
                 </p>
               </div>
             </div>
@@ -318,7 +356,7 @@ export default function UnifiedDashboard() {
             <TabsContent value="overview">
               <Card>
                 <CardHeader>
-                  <CardTitle>Bem-vindo, {profile.nome_completo}!</CardTitle>
+                  <CardTitle>Bem-vindo, {profile.nome || profile.email}!</CardTitle>
                   <CardDescription>
                     Gerencie sua congregação e designações de forma eficiente
                   </CardDescription>
@@ -411,7 +449,7 @@ export default function UnifiedDashboard() {
               <div>
                 <h1 className="text-3xl font-bold">Meu Dashboard</h1>
                 <p className="text-muted-foreground mt-1">
-                  Bem-vindo, {profile.nome_completo}!
+                  Bem-vindo, {profile.nome || 'Estudante'}!
                 </p>
               </div>
             </div>

@@ -1,201 +1,376 @@
-# Fonte Definitiva de Verdade — Sistema Ministerial (v6) - PROBLEMAS REAIS
+# Fonte Definitiva de Verdade — Sistema Ministerial (v9) - JANEIRO 2025
 
-## ❌ **PROBLEMAS CRÍTICOS IDENTIFICADOS (Janeiro 2025)**
+## 🎯 **STATUS ATUAL DO PROJETO**
 
-### **1. ProtectedRoute com Loops Infinitos**
-```
-🔄 Redirecting to onboarding for incomplete setup
-✅ ProtectedRoute: Using profile role: instrutor  
-✅ ProtectedRoute: Rendering children - all checks passed
-🔄 Redirecting to onboarding for incomplete setup
-```
-**Problema:** ProtectedRoute está em loop constante de redirecionamento mesmo com usuário autenticado
+O **Ministry Hub Sync** é um sistema funcional de gerenciamento ministerial com **problemas críticos de performance e UX** que impedem deploy em produção.
 
-### **2. Bundle Excessivamente Grande**
+**RESUMO EXECUTIVO:**
+- ✅ **Funciona**: Todas as funcionalidades principais operacionais
+- ✅ **Supabase**: Configurado e conectado (dlvojolvdsqrfczjjjuw.supabase.co)
+- ❌ **Não está pronto**: Problemas críticos de performance (bundle 12MB, loops infinitos)
+- 🎯 **Necessário**: 1-2 semanas de otimizações antes da produção
+
+---
+
+## 🔧 **CONFIGURAÇÕES SUPABASE**
+
+### **Credenciais Ativas**
+- **URL**: `https://dlvojolvdsqrfczjjjuw.supabase.co`
+- **Anon Key**: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...J5CE7TrRJj8C0gWjbokSkMSRW1S-q8AwKUV5Z7xuODQ`
+- **Service Role**: Configurado no backend
+- **Site URL**: `http://localhost:3000`
+
+### **Auth URLs Configuradas**
+- ✅ `https://ministry-hub-sync.lovable.app/**`
+- ✅ `https://preview--ministry-hub-sync.lovable.app/**`
+- ✅ `https://681883d5-c9d4-49db-bf4d-3512cbc853de.lovableproject.com/**`
+- ✅ `https://id-preview--681883d5-c9d4-49db-bf4d-3512cbc853de.lovable.app/**`
+
+---
+
+## 🏗️ **ARQUITETURA TÉCNICA**
+
+### **Stack Tecnológico**
+- **Frontend**: React 18.3.1 + TypeScript + Vite
+- **Backend**: Node.js + Express (v2.0.0-simplified)
+- **Database**: Supabase PostgreSQL + RLS ✅ CONECTADO
+- **Testing**: Cypress E2E (13 testes passando)
+- **UI**: Radix UI + Tailwind CSS + AG Grid
+
+### **Estrutura de Dados**
+```sql
+-- Tabelas principais implementadas
+profiles (id, user_id, nome, email, role)
+estudantes (id, profile_id, genero, qualificacoes)
+programas_ministeriais (id, arquivo_nome, conteudo)
+designacoes (id, parte_id, estudante_id, status)
+congregacoes (id, nome, cidade)
 ```
-📦 Bundle Analysis: Total Size: 12.47 MB
-📊 206 recursos carregados
-Top 5 Largest Resources:
+
+---
+
+## ✨ **FUNCIONALIDADES IMPLEMENTADAS**
+
+### **🔐 Autenticação Multi-Role**
+- ✅ Login/cadastro Supabase Auth ✅ CONECTADO
+- ✅ Roles: admin, instrutor, estudante, family_member
+- ✅ Proteção de rotas por role
+- ❌ **PROBLEMA**: ProtectedRoute em loops infinitos
+
+### **👥 Gestão de Estudantes**
+- ✅ Importação Excel (.xlsx/.xls) com validação
+- ✅ AG Grid com filtros e busca
+- ✅ 51 estudantes mockados funcionais
+- ✅ Sistema de cache otimizado
+- ✅ Relacionamentos familiares
+
+### **📚 Programas Ministeriais**
+- ✅ Upload e parsing de PDFs
+- ✅ Dados mockados setembro 2025
+- ❌ **PROBLEMA**: Dados duplicados (dezembro 2024 x2)
+- ❌ **PROBLEMA**: Botão "Usar Programa" não funciona
+
+### **🎯 Sistema de Designações**
+- ✅ Interface drag-and-drop
+- ✅ Algoritmo básico de distribuição
+- ⚠️ **LIMITAÇÃO**: Regras S-38-T simplificadas
+- ⚠️ **LIMITAÇÃO**: Dados mockados
+
+### **📊 Dashboards**
+- ✅ **Instrutor**: Gestão completa funcional
+- ✅ **Estudante**: Visualização de designações
+- ✅ **Admin**: Controle simplificado
+- ⚠️ **LIMITAÇÃO**: Performance degradada
+
+---
+
+## ❌ **PROBLEMAS CRÍTICOS IDENTIFICADOS**
+
+### **🔥 CRÍTICOS (Impedem produção)**
+
+#### **1. Bundle Gigante - 12.47MB**
+```
+📦 Recursos carregados: 206
+🎯 Deveria ser: <100 recursos, <3MB total
+📊 Maiores chunks:
 - chunk-J6NKSBNC.js: 2040.54 KB
-- lucide-react.js: 1132.09 KB  
+- lucide-react.js: 1132.09 KB
 - date-fns_locale.js: 966.02 KB
 ```
-**Problema:** Bundle 4x maior que o recomendado (deveria ser <3MB)
 
-### **3. Programas com Dados Duplicados**
-Na página /programas:
-- "2-8 de dezembro de 2024" aparece **DUAS VEZES**
-- Dados inconsistentes entre julho 2025 e dezembro 2024
-- Botão "Usar Programa" não funciona
-
-### **4. Performance Degradada**
+#### **2. ProtectedRoute Loops Infinitos**
 ```
-📊 FCP: 360.00 ms (OK)
-📊 LCP: 1080.00 ms (RUIM - deveria ser <800ms)
-📊 CLS: 0.0057 (RUIM - deveria ser <0.1)
+🔄 Redirecting to onboarding for incomplete setup
+✅ ProtectedRoute: Using profile role: instrutor
+🔄 Redirecting to onboarding for incomplete setup
 ```
 
-### **5. Logs Excessivos no Console**
-- 50+ linhas de logs por carregamento de página
-- Debug tools carregando em produção
-- Logs repetitivos de autenticação
+#### **3. Performance Degradada**
+```
+📊 LCP: 1080ms (deveria ser <800ms)
+📊 CLS: 0.0057 (no limite)
+📊 Logs: 50+ por página (deveria ser <10)
+```
 
-### **6. Onboarding Quebrado**
-```
-🚀 Iniciando configuração inicial...
-✅ Onboarding marcado como concluído
-🚀 Redirecionando para configuração inicial...
-🚀 Pular onboarding e ir para Dashboard...
-```
-**Problema:** Lógica de onboarding conflitante
+#### **4. Dados Inconsistentes**
+- Programas duplicados em /programas
+- Mistura dezembro 2024 + julho 2025
+- Botões não funcionais
 
 ---
 
-## 🔧 **ARQUITETURA ATUAL (COM PROBLEMAS)**
+## 📊 **MÉTRICAS DE PERFORMANCE**
 
-### **Frontend Issues:**
-- React 18.3.1 com hooks mal otimizados
-- Vite com HMR desabilitado
-- 206 recursos sendo carregados
-- Componentes duplicados (Mock*, Working*, etc.)
-
-### **Backend Issues:**
-- Porta 3000 com conflitos EADDRINUSE
-- Logs de "No eligible students" constantes
-- Rotas de designações simplificadas demais
-
-### **Supabase Issues:**
-- Profile loading com timeout de 1 segundo
-- Auth state changes múltiplos
-- RLS policies possivelmente incorretas
-
----
-
-## 📊 **MÉTRICAS REAIS (NÃO OTIMIZADAS)**
-
-| Métrica | Atual | Recomendado | Status |
-|---------|-------|-------------|--------|
+| Métrica | Atual | Meta | Status |
+|---------|-------|------|--------|
 | Bundle Size | 12.47 MB | <3 MB | ❌ CRÍTICO |
+| Recursos | 206 | <100 | ❌ CRÍTICO |
 | LCP | 1080ms | <800ms | ❌ RUIM |
-| CLS | 0.0057 | <0.1 | ⚠️ LIMITE |
-| Recursos | 206 | <100 | ❌ EXCESSIVO |
-| Logs/página | 50+ | <10 | ❌ POLUÍDO |
+| Logs/página | 50+ | <10 | ❌ EXCESSIVO |
+| Supabase | ✅ Conectado | ✅ | ✅ OK |
 
 ---
 
-## 🚨 **PROBLEMAS POR PÁGINA**
+## 🚨 **STATUS POR FUNCIONALIDADE**
 
-### **/programas**
-- ❌ Dados duplicados (dezembro 2024 x2)
-- ❌ Botão "Usar Programa" não funciona
-- ❌ Mistura de dados julho 2025 e dezembro 2024
-- ❌ "Continuar para Designações" sempre visível
+### **Database & Auth** ✅ Funcional
+- ✅ Supabase conectado e configurado
+- ✅ RLS policies aplicadas
+- ✅ Auth URLs configuradas
+- ✅ Service role ativo
 
-### **/dashboard**  
-- ⚠️ Carrega mas com 51 estudantes mockados
-- ⚠️ Estatísticas não refletem dados reais
+### **Dashboard Instrutor** ✅ Funcional
+- ✅ Carrega em ~2s
+- ✅ Estatísticas exibidas
+- ✅ Navegação entre seções
 - ⚠️ Performance degradada
 
-### **/estudantes**
-- ⚠️ AG Grid com warnings excessivos
-- ⚠️ 51 estudantes fictícios
-- ⚠️ Filtros funcionam mas dados não são reais
+### **Gestão Estudantes** ✅ Funcional
+- ✅ AG Grid operacional
+- ✅ Importação Excel completa
+- ✅ Filtros e busca
+- ⚠️ Warnings AG Grid
 
-### **/designacoes**
-- ❌ Algoritmo rotativo muito simplificado
-- ❌ Não respeita regras S-38
-- ❌ Backend retorna dados mockados
+### **Programas** ❌ Problemas críticos
+- ❌ Dados duplicados
+- ❌ Botão "Usar Programa" quebrado
+- ❌ Inconsistências de data
+- ✅ Interface carrega
 
----
+### **Designações** ⚠️ Básico funcional
+- ✅ Interface drag-and-drop
+- ✅ Salva no banco
+- ⚠️ Algoritmo simplificado
+- ⚠️ Regras S-38 incompletas
 
-## 🔍 **ANÁLISE DOS LOGS**
-
-### **Problemas de Autenticação:**
-```
-AuthContext.tsx:252 🔄 Auth state change: SIGNED_IN
-AuthContext.tsx:252 🔄 Auth state change: SIGNED_IN  
-AuthContext.tsx:252 🔄 Auth state change: SIGNED_IN
-```
-**3x mudanças de estado para o mesmo usuário**
-
-### **Problemas de Routing:**
-```
-ProtectedRoute.tsx:177 🔄 Redirecting to onboarding for incomplete setup
-ProtectedRoute.tsx:272 ✅ ProtectedRoute: Rendering children - all checks passed
-ProtectedRoute.tsx:177 🔄 Redirecting to onboarding for incomplete setup
-```
-**Loop infinito de redirecionamento**
-
-### **Problemas de Performance:**
-```
-performance.ts:174 chunk-J6NKSBNC.js: 2040.54 KB
-performance.ts:174 lucide-react.js: 1132.09 KB
-```
-**Chunks individuais maiores que aplicações inteiras**
+### **Autenticação** ⚠️ Funcional com bugs
+- ✅ Login/logout funciona
+- ✅ Roles respeitados
+- ❌ Loops de redirecionamento
+- ❌ Auth state changes múltiplos
 
 ---
 
-## 🛠️ **CORREÇÕES NECESSÁRIAS (PRIORIDADE)**
+## 🔧 **ARQUIVOS PRINCIPAIS**
 
-### **🔥 CRÍTICO (Quebra o sistema)**
-1. **Corrigir loop do ProtectedRoute**
-2. **Remover dados duplicados em /programas**  
-3. **Reduzir bundle de 12MB para <5MB**
-4. **Corrigir lógica de onboarding**
+### **Frontend Core**
+```
+src/
+├── contexts/AuthContext.tsx     # Auth robusto (COM BUGS)
+├── hooks/useSpreadsheetImport.ts # Excel import completo
+├── components/ProtectedRoute.tsx # Proteção (COM LOOPS)
+├── pages/InstrutorDashboard.tsx # Dashboard principal
+└── pages/EstudantesPage.tsx     # Gestão estudantes
+```
 
-### **⚠️ ALTO (Degrada experiência)**
-1. **Otimizar LCP de 1080ms para <800ms**
-2. **Reduzir logs de 50+ para <10 por página**
-3. **Implementar lazy loading**
-4. **Corrigir botão "Usar Programa"**
+### **Backend Simplificado**
+```
+backend/
+├── server.js                   # Express simplificado
+├── routes/programacoes.js      # API programas
+└── routes/designacoes.js       # API designações
+```
 
-### **📝 MÉDIO (Melhorias)**
-1. **Implementar regras S-38 reais**
-2. **Substituir dados mockados por reais**
-3. **Otimizar AG Grid warnings**
-4. **Melhorar cache de componentes**
+### **Database**
+```
+supabase/migrations/
+└── 20250115_init_complete.sql  # Schema completo
+```
+
+### **Environment Files**
+```
+.env                           # Frontend config ✅ ATUALIZADO
+backend/.env                   # Backend config ✅ ATUALIZADO
+```
 
 ---
 
-## 📋 **CHECKLIST DE PROBLEMAS REAIS**
+## 🛠️ **PLANO DE CORREÇÕES**
 
-- [ ] ProtectedRoute em loop infinito
-- [ ] Bundle 12.47MB (4x maior que deveria)
-- [ ] Dados duplicados em /programas
-- [ ] LCP 1080ms (deveria ser <800ms)
-- [ ] 206 recursos carregados (deveria ser <100)
-- [ ] Logs excessivos (50+ por página)
-- [ ] Onboarding com lógica conflitante
-- [ ] Botão "Usar Programa" não funciona
-- [ ] Auth state changes múltiplos
-- [ ] Backend com logs "No eligible students"
-- [ ] HMR desabilitado no Vite
-- [ ] Componentes duplicados não removidos
-- [ ] AG Grid com warnings constantes
-- [ ] Debug tools carregando em produção
+### **Fase 1: Críticas (2-3 dias)**
+1. **Bundle Optimization**
+   - Lazy loading de rotas
+   - Code splitting por funcionalidade
+   - Tree shaking Lucide React
+   - Remover dependências não utilizadas
+
+2. **ProtectedRoute Fix**
+   - Debounce auth checks
+   - Simplificar lógica onboarding
+   - Evitar re-renders desnecessários
+
+3. **Data Cleanup**
+   - Remover duplicatas em programas
+   - Corrigir botão "Usar Programa"
+   - Validar consistência de dados
+
+### **Fase 2: Performance (2-3 dias)**
+1. **LCP Optimization**
+   - Preload recursos críticos
+   - Otimizar carregamento inicial
+   - Reduzir JavaScript blocking
+
+2. **Log Reduction**
+   - Níveis de log configuráveis ✅ VITE_LOG_LEVEL=info
+   - Remover debug de produção
+   - Otimizar auth logging
+
+### **Fase 3: Funcional (3-5 dias)**
+1. **S-38 Rules Complete**
+2. **Real Data Integration**
+3. **AG Grid Optimization**
+4. **Cache Improvements**
+
+---
+
+## 📋 **CHECKLIST CORREÇÕES**
+
+### **🔥 Críticas**
+- [ ] Bundle <5MB (atual: 12.47MB)
+- [ ] ProtectedRoute sem loops
+- [ ] Dados únicos em /programas
+- [ ] Botões 100% funcionais
+- [ ] Onboarding linear
+
+### **⚠️ Performance**
+- [ ] LCP <800ms (atual: 1080ms)
+- [ ] Recursos <100 (atual: 206)
+- [x] Log level configurado (VITE_LOG_LEVEL=info)
+- [ ] Auth state otimizado
+- [ ] HMR habilitado
+
+### **📝 Funcionais**
+- [ ] Regras S-38 completas
+- [ ] Dados reais integrados
+- [ ] AG Grid otimizado
+- [ ] Cache melhorado
+- [ ] Debug tools removidos
+
+### **✅ Infraestrutura**
+- [x] Supabase URL configurada
+- [x] Auth keys atualizadas
+- [x] Redirect URLs configuradas
+- [x] Environment files sincronizados
+
+---
+
+## 🚀 **COMANDOS ESSENCIAIS**
+
+### **Desenvolvimento**
+```bash
+npm run dev:all              # Backend + Frontend
+npm run dev:backend-only     # Porta 3000
+npm run dev:frontend-only    # Porta 8080
+```
+
+### **Análise**
+```bash
+npm run build:analyze       # Bundle analysis
+npm run cypress:run         # Testes E2E
+npm run testsprite:smoke    # Smoke tests
+```
+
+### **Correções**
+```bash
+npm run fix:policies-only   # RLS policies
+npm run verify:storage      # Storage config
+```
 
 ---
 
 ## 🎯 **REALIDADE DO SISTEMA**
 
-**O sistema FUNCIONA mas tem problemas sérios de:**
-- Performance (bundle 12MB)
-- UX (loops de redirecionamento)  
-- Dados (duplicações e inconsistências)
-- Logs (poluição do console)
-- Arquitetura (componentes duplicados)
+### **✅ PONTOS FORTES**
+- Arquitetura sólida e bem estruturada
+- Funcionalidades principais implementadas
+- Testes E2E abrangentes (13 passando)
+- Sistema de autenticação robusto
+- Importação Excel completa e validada
+- Interface moderna e responsiva
+- **Supabase configurado e conectado**
 
-**NÃO é um sistema "perfeito" ou "100% funcional".**
-**É um sistema que FUNCIONA mas precisa de otimizações críticas.**
+### **❌ PONTOS CRÍTICOS**
+- Performance inaceitável para produção
+- UX comprometida por bugs de navegação
+- Bundle 4x maior que deveria ser
+- Dados inconsistentes em algumas páginas
+- Debug tools ativados em produção
+
+### **🎯 CONCLUSÃO TÉCNICA**
+O sistema tem **base sólida** e **infraestrutura configurada** mas **não está pronto para produção**. Com 1-2 semanas de otimizações focadas, será um sistema robusto e performático.
+
+**PRIORIDADE ABSOLUTA**: Corrigir bundle size e ProtectedRoute loops antes de qualquer deploy.
 
 ---
 
-## 📝 **PRÓXIMOS PASSOS OBRIGATÓRIOS**
+## 📊 **MÉTRICAS DE SUCESSO**
 
-1. **Corrigir ProtectedRoute** (CRÍTICO)
-2. **Otimizar bundle** (CRÍTICO)  
-3. **Limpar dados duplicados** (ALTO)
-4. **Reduzir logs** (ALTO)
-5. **Implementar lazy loading** (MÉDIO)
+### **Performance Targets**
+- Bundle: <5MB ✅ (atual: 12.47MB ❌)
+- LCP: <800ms ✅ (atual: 1080ms ❌)
+- Recursos: <100 ✅ (atual: 206 ❌)
+- Logs: <10/página ✅ (atual: 50+ ❌)
 
-**Sem essas correções, o sistema não está pronto para produção.**
+### **Funcionalidade Targets**
+- Zero loops redirecionamento ✅
+- Dados únicos todas páginas ✅
+- Botões 100% funcionais ✅
+- Onboarding linear ✅
+
+### **Infraestrutura Targets**
+- [x] Supabase conectado ✅
+- [x] Auth configurado ✅
+- [x] Environment sincronizado ✅
+- [x] URLs de redirect configuradas ✅
+
+---
+
+## 📞 **INFORMAÇÕES TÉCNICAS**
+
+### **Ambiente**
+- **Node.js**: >=18.0.0
+- **Ports**: Frontend 8080, Backend 3000
+- **Database**: Supabase PostgreSQL ✅ CONECTADO
+- **Package Manager**: npm
+
+### **Variáveis Críticas**
+```env
+# Frontend (.env)
+VITE_SUPABASE_URL=https://dlvojolvdsqrfczjjjuw.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+VITE_LOG_LEVEL=info
+VITE_MOCK_MODE=true
+
+# Backend (backend/.env)
+SUPABASE_URL=https://dlvojolvdsqrfczjjjuw.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+NODE_ENV=development
+PORT=3000
+```
+
+---
+
+**📅 Atualização**: Janeiro 2025  
+**👨💻 Dev**: Roberto Araujo da Silva  
+**📊 Status**: Funcional com problemas críticos + Supabase configurado  
+**🎯 ETA Produção**: 1-2 semanas após correções

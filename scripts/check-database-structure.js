@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Configuração do Supabase
-const supabaseUrl = 'https://nwpuurgwnnuejqinkvrh.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53cHV1cmd3bm51ZWpxaW5rdnJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0NjIwNjUsImV4cCI6MjA3MDAzODA2NX0.UHjSvXYY_c-_ydAIfELRUs4CMEBLKiztpBGQBNPHfak';
+// Configuração do Supabase - usando variáveis de ambiente com fallback
+const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || 'https://nwpuurgwnnuejqinkvrh.supabase.co';
+const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsdm9qb2x2ZHNxcmZjempqanV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1ODcwNjUsImV4cCI6MjA3MzE2MzA2NX0.J5CE7TrRJj8C0gWjbokSkMSRW1S-q8AwKUV5Z7xuODQ';
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
@@ -31,102 +31,86 @@ async function checkDatabaseStructure() {
     // 2. Verificar se existe tabela auth.users
     console.log('\n🔐 Verificando tabela auth.users...');
     
+    // Esta consulta pode falhar se não tivermos permissões, mas vamos tentar
     try {
-      const { data: authUsers, error: authError } = await supabase.auth.admin.listUsers();
+      const { data: authUsers, error: authError } = await supabase
+        .from('users')
+        .select('count')
+        .limit(1);
+      
       if (authError) {
-        console.log('⚠️ Não é possível acessar auth.users (normal para usuários não-admin)');
+        console.log('ℹ️ Tabela auth.users não acessível (pode ser normal):', authError.message);
       } else {
         console.log('✅ Tabela auth.users acessível');
-        console.log('👥 Total de usuários:', authUsers.users.length);
       }
-    } catch (error) {
-      console.log('⚠️ Não é possível acessar auth.users (normal para usuários não-admin)');
+    } catch (authCheckError) {
+      console.log('ℹ️ Verificação de auth.users falhou (pode ser normal):', authCheckError.message);
     }
     
-    // 3. Verificar tabela estudantes
-    console.log('\n👥 Verificando tabela estudantes...');
+    // 3. Verificar estrutura da tabela estudantes
+    console.log('\n📚 Verificando tabela estudantes...');
     
-    try {
-      const { data: estudantes, error: estudantesError } = await supabase
-        .from('estudantes')
-        .select('*')
-        .limit(1);
-      
-      if (estudantesError) {
-        console.log('⚠️ Tabela estudantes não existe ou não acessível:', estudantesError.message);
-      } else {
-        console.log('✅ Tabela estudantes acessível');
-        if (estudantes && estudantes.length > 0) {
-          console.log('📊 Colunas disponíveis:', Object.keys(estudantes[0]));
-        }
+    const { data: estudantesSample, error: estudantesError } = await supabase
+      .from('estudantes')
+      .select('*')
+      .limit(1);
+    
+    if (estudantesError) {
+      console.error('❌ Erro ao acessar estudantes:', estudantesError);
+    } else {
+      console.log('✅ Tabela estudantes acessível');
+      if (estudantesSample && estudantesSample.length > 0) {
+        console.log('📊 Colunas disponíveis:', Object.keys(estudantesSample[0]));
+        console.log('📝 Exemplo de dados:', estudantesSample[0]);
       }
-    } catch (error) {
-      console.log('⚠️ Erro ao verificar estudantes:', error.message);
     }
     
-    // 4. Verificar tabela programas
-    console.log('\n📚 Verificando tabela programas...');
+    // 4. Verificar estrutura da tabela programacoes
+    console.log('\n📅 Verificando tabela programacoes...');
     
-    try {
-      const { data: programas, error: programasError } = await supabase
-        .from('programas')
-        .select('*')
-        .limit(1);
-      
-      if (programasError) {
-        console.log('⚠️ Tabela programas não existe ou não acessível:', programasError.message);
-      } else {
-        console.log('✅ Tabela programas acessível');
-        if (programas && programas.length > 0) {
-          console.log('📊 Colunas disponíveis:', Object.keys(programas[0]));
-        }
+    const { data: programacoesSample, error: programacoesError } = await supabase
+      .from('programacoes')
+      .select('*')
+      .limit(1);
+    
+    if (programacoesError) {
+      console.error('❌ Erro ao acessar programacoes:', programacoesError);
+    } else {
+      console.log('✅ Tabela programacoes acessível');
+      if (programacoesSample && programacoesSample.length > 0) {
+        console.log('📊 Colunas disponíveis:', Object.keys(programacoesSample[0]));
+        console.log('📝 Exemplo de dados:', programacoesSample[0]);
       }
-    } catch (error) {
-      console.log('⚠️ Erro ao verificar programas:', error.message);
     }
     
-    // 5. Listar todas as tabelas disponíveis
-    console.log('\n🗄️ Verificando tabelas disponíveis...');
+    // 5. Verificar relacionamentos
+    console.log('\n🔗 Verificando relacionamentos...');
     
-    try {
-      // Tentar acessar algumas tabelas comuns
-      const commonTables = ['congregacoes', 'family_members', 'invitations_log', 'meetings', 'designacoes'];
-      
-      for (const tableName of commonTables) {
-        try {
-          const { data, error } = await supabase
-            .from(tableName)
-            .select('count')
-            .limit(1);
-          
-          if (error) {
-            console.log(`   ⚠️ ${tableName}: ${error.message}`);
-          } else {
-            console.log(`   ✅ ${tableName}: Acessível`);
-          }
-        } catch (error) {
-          console.log(`   ❌ ${tableName}: ${error.message}`);
-        }
+    // Tentar uma consulta com join entre profiles e estudantes
+    const { data: joinData, error: joinError } = await supabase
+      .from('estudantes')
+      .select('id, profile_id, genero')
+      .limit(1);
+    
+    if (joinError) {
+      console.log('⚠️ Possível problema com relacionamentos:', joinError.message);
+    } else {
+      console.log('✅ Relacionamentos funcionando corretamente');
+      if (joinData && joinData.length > 0) {
+        console.log('📝 Exemplo de join:', joinData[0]);
       }
-    } catch (error) {
-      console.log('⚠️ Erro ao verificar tabelas:', error.message);
     }
     
-    console.log('\n🎯 RESUMO DO STATUS:');
-    console.log('   - O AdminDashboard não está funcionando porque:');
-    console.log('     1. As tabelas esperadas não existem ou têm estrutura diferente');
-    console.log('     2. As migrações não foram aplicadas');
-    console.log('     3. O banco está em estado inicial');
-    
-    console.log('\n💡 SOLUÇÕES:');
-    console.log('   1. Aplicar todas as migrações SQL no Supabase Dashboard');
-    console.log('   2. Ou criar as tabelas manualmente');
-    console.log('   3. Ou usar o sistema como está (funcionalidades limitadas)');
+    console.log('\n✅ Verificação de estrutura concluída!');
     
   } catch (error) {
-    console.error('❌ Erro durante verificação:', error);
+    console.error('❌ Erro inesperado na verificação:', error);
   }
 }
 
-// Executar verificação
-checkDatabaseStructure();
+// Executar se chamado diretamente
+if (import.meta.url === `file://${process.argv[1]}`) {
+  checkDatabaseStructure();
+}
+
+export default checkDatabaseStructure;

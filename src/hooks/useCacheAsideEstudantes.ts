@@ -12,16 +12,14 @@ import { useState, useCallback, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import { SystemCacheFactory, CacheAsideManager } from '../utils/cacheAsidePattern';
+import { Database } from '@/integrations/supabase/types';
 
-interface Estudante {
-  id: string;
-  nome: string;
-  genero: string;
-  qualificacoes: string[] | null;
-  disponibilidade: any | null;
-  ativo: boolean;
-  profile_id: string;
-  created_at: string;
+type EstudanteRow = Database['public']['Tables']['estudantes']['Row'];
+
+interface Estudante extends EstudanteRow {
+  profiles?: {
+    nome: string;
+  } | null;
 }
 
 interface CacheAsideMetrics {
@@ -119,7 +117,7 @@ export function useCacheAsideEstudantes() {
         return estudantesData || [];
       });
 
-      setEstudantes(data);
+      setEstudantes(data as Estudante[]);
 
       // 📊 Atualizar métricas
       const endTime = Date.now();
@@ -171,7 +169,7 @@ export function useCacheAsideEstudantes() {
       const { data, error } = await supabase
         .from('estudantes')
         .insert({
-          ...estudanteData,
+          genero: estudanteData.genero || 'masculino',
           profile_id: user.id,
           ativo: true
         })
@@ -223,12 +221,6 @@ export function useCacheAsideEstudantes() {
       estudantesCache.delete(`estudantes:${user?.id}`);
       estudantesCache.delete(`estudante:${estudanteId}`);
       
-      // Se mudou congregação, invalidar cache de congregação também
-      if (updates.congregacao) {
-        console.log('🏢 Invalidando cache de congregação');
-        // Aqui você invalidaria cache de congregação se existisse
-      }
-
       console.log('🗑️ Caches invalidados após atualização');
       console.log(`✏️ Estudante atualizado em ${Date.now() - startTime}ms`);
 

@@ -42,6 +42,9 @@ export const useAuth = () => {
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  // Check if we're in mock mode
+  const isMockMode = import.meta.env.VITE_MOCK_MODE === 'true';
+  
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -49,6 +52,31 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // 🔄 Função para recuperar autenticação
   const refreshAuth = useCallback(async () => {
+    // If in mock mode, set up mock user and profile
+    if (isMockMode) {
+      console.log('🧪 Mock mode: setting up mock user and profile');
+      const mockUser: User = {
+        id: 'mock-user-id',
+        aud: 'authenticated',
+        role: 'authenticated',
+        email: 'demo@example.com',
+        email_confirmed_at: new Date().toISOString(),
+        phone: '',
+        confirmed_at: new Date().toISOString(),
+        last_sign_in_at: new Date().toISOString(),
+        app_metadata: {},
+        user_metadata: {},
+        identities: [],
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      } as User;
+      
+      setUser(mockUser);
+      await loadProfile(mockUser.id);
+      setLoading(false);
+      return;
+    }
+    
     try {
       console.log('🔄 Attempting to refresh authentication...');
       
@@ -120,6 +148,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // 🔄 Função para carregar perfil do usuário
   const loadProfile = useCallback(async (userId: string) => {
+    // If in mock mode, return mock profile data
+    if (isMockMode) {
+      console.log('🧪 Mock mode: returning mock profile data');
+      const mockProfile: Profile = {
+        id: userId,
+        user_id: userId,
+        nome: 'Instrutor Demo',
+        email: 'demo@example.com',
+        role: 'instrutor',
+        congregacao_id: null,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      };
+      setProfile(mockProfile);
+      setAuthError(null);
+      return;
+    }
+    
     try {
       console.log('🔍 Loading profile for user:', userId);
       
@@ -132,14 +178,69 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       console.log('🔄 Tentando carregar perfil do Supabase...');
       
-      const { data: profileData, error: profileError } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('user_id', userId)
-        .maybeSingle();
+      // First, check if the user_id column exists in the profiles table
+      let hasUserIdColumn = true;
+      try {
+        // Try a simple query to check if user_id column exists
+        await supabase.from('profiles').select('user_id').limit(1);
+      } catch (columnCheckError) {
+        if (columnCheckError && 
+            (columnCheckError.message.includes('column profiles.user_id does not exist') || 
+             (columnCheckError as any).code === '42703')) {
+          hasUserIdColumn = false;
+          console.log('⚠️ user_id column does not exist in profiles table');
+        }
+      }
+      
+      let profileData: any = null;
+      let profileError: any = null;
+      
+      if (hasUserIdColumn) {
+        // Use the new schema with user_id column
+        try {
+          const result = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('user_id', userId)
+            .maybeSingle();
+          profileData = result.data;
+          profileError = result.error;
+        } catch (e) {
+          profileError = e;
+        }
+      } else {
+        // Use the legacy schema with id column
+        try {
+          const result = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', userId)
+            .maybeSingle();
+          profileData = result.data;
+          profileError = result.error;
+        } catch (e) {
+          profileError = e;
+        }
+      }
+        
+      // If the primary approach failed, try a fallback
+      if ((profileError || !profileData) && hasUserIdColumn) {
+        console.warn('⚠️ user_id query failed, trying legacy profile lookup');
+        try {
+          const result = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', userId)
+            .maybeSingle();
+          profileData = result.data;
+          profileError = result.error;
+        } catch (e) {
+          profileError = e;
+        }
+      }
         
       // Verificar se houve erro na requisição
-      if (profileError) {
+      if (profileError && !profileData) {
         console.error('❌ Error loading profile:', profileError);
         setAuthError(`Erro ao carregar perfil: ${profileError.message}`);
         return;
@@ -199,6 +300,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // 🔄 Função para lidar com mudanças de autenticação
   const handleAuthStateChange = useCallback(async (event: string, session: Session | null) => {
+    // If in mock mode, skip handling auth state changes from Supabase
+    if (isMockMode) {
+      console.log('🧪 Mock mode: skipping auth state change handling');
+      setLoading(false);
+      return;
+    }
+    
     console.log('🔄 Auth state change:', event, session?.user?.id);
     
     try {
@@ -252,24 +360,51 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Update profile (used by onboarding/setup screens)
   const updateProfile = useCallback(async (updates: Partial<Profile>) => {
+    // If in mock mode, simulate profile update
+    if (isMockMode) {
+      console.log('🧪 Mock mode: simulating profile update');
+      if (!user) {
+        return { data: null, error: { message: 'No user logged in' } };
+      }
+      
+      const updatedProfile = {
+        ...profile,
+        ...updates,
+        updated_at: new Date().toISOString(),
+      } as Profile;
+      
+      setProfile(updatedProfile);
+      return { data: updatedProfile, error: null };
+    }
+    
     try {
       if (!user) {
         return { data: null, error: { message: 'No user logged in' } };
       }
-<<<<<<< HEAD
       
-      // First, try to update the existing profile
-      let { data, error } = await supabase
-=======
       console.log('🔄 Updating profile for user_id:', user.id);
-      const { data, error } = await supabase
->>>>>>> cb5069e52f66eca9951404975794c3c89748f090
+      
+      // First, check if the user_id column exists in the profiles table
+      let hasUserIdColumn = true;
+      try {
+        // Try a simple query to check if user_id column exists
+        await supabase.from('profiles').select('user_id').limit(1);
+      } catch (columnCheckError) {
+        if (columnCheckError && 
+            (columnCheckError.message.includes('column profiles.user_id does not exist') || 
+             (columnCheckError as any).code === '42703')) {
+          hasUserIdColumn = false;
+          console.log('⚠️ user_id column does not exist in profiles table');
+        }
+      }
+      
+      let { data, error } = await supabase
         .from('profiles')
         .update({
           ...updates,
           updated_at: new Date().toISOString(),
         } as any)
-        .eq('user_id', user.id)
+        .eq(hasUserIdColumn ? 'user_id' : 'id', user.id)
         .select('*')
         .maybeSingle();
 
@@ -281,16 +416,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const metadata = userData.user?.user_metadata || {};
         
         // Create new profile
+        const profileData: any = {
+          email: user.email,
+          nome: (updates as any).nome || metadata.nome || user.email?.split('@')[0] || 'Usuário',
+          role: metadata.role || 'instrutor',
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        };
+        
+        // Add the appropriate ID field based on schema
+        if (hasUserIdColumn) {
+          profileData.user_id = user.id;
+        } else {
+          profileData.id = user.id;
+        }
+        
         const { data: newProfile, error: insertError } = await supabase
           .from('profiles')
-          .insert({
-            user_id: user.id,
-            email: user.email,
-            nome: updates.nome_completo || metadata.nome_completo || user.email?.split('@')[0] || 'Usuário',
-            role: metadata.role || 'instrutor',
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString(),
-          })
+          .insert(profileData)
           .select('*')
           .single();
 
@@ -317,6 +460,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // 🔄 Função de login com tratamento de erro robusto
   const signIn = useCallback(async (email: string, password: string) => {
+    // If in mock mode, simulate successful sign in
+    if (isMockMode) {
+      console.log('🧪 Mock mode: simulating successful sign in');
+      setLoading(true);
+      setAuthError(null);
+      
+      const mockUser: User = {
+        id: 'mock-user-id',
+        aud: 'authenticated',
+        role: 'authenticated',
+        email: email,
+        email_confirmed_at: new Date().toISOString(),
+        phone: '',
+        confirmed_at: new Date().toISOString(),
+        last_sign_in_at: new Date().toISOString(),
+        app_metadata: {},
+        user_metadata: {},
+        identities: [],
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      } as User;
+      
+      setUser(mockUser);
+      await loadProfile(mockUser.id);
+      setLoading(false);
+      return { error: null };
+    }
+    
     try {
       console.log('🔐 Attempting sign in for:', email);
       setLoading(true);
@@ -352,6 +523,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // 🔄 Função de cadastro com tratamento de erro robusto
   const signUp = useCallback(async (email: string, password: string, profileData: Partial<Profile>) => {
+    // If in mock mode, simulate successful sign up
+    if (isMockMode) {
+      console.log('🧪 Mock mode: simulating successful sign up');
+      setLoading(true);
+      setAuthError(null);
+      
+      const mockUser: User = {
+        id: 'mock-user-id',
+        aud: 'authenticated',
+        role: 'authenticated',
+        email: email,
+        email_confirmed_at: new Date().toISOString(),
+        phone: '',
+        confirmed_at: new Date().toISOString(),
+        last_sign_in_at: new Date().toISOString(),
+        app_metadata: {},
+        user_metadata: profileData,
+        identities: [],
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      } as User;
+      
+      setUser(mockUser);
+      setAuthError(null);
+      setLoading(false);
+      return { error: null };
+    }
+    
     try {
       console.log('📝 Attempting sign up for:', email);
       setLoading(true);
@@ -389,6 +588,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // 🔄 Função de logout com limpeza completa
   const signOut = useCallback(async (): Promise<{ error: AuthError | null }> => {
+    // If in mock mode, simulate sign out
+    if (isMockMode) {
+      console.log('🧪 Mock mode: simulating sign out');
+      setLoading(true);
+      setUser(null);
+      setProfile(null);
+      setAuthError(null);
+      setLoading(false);
+      return { error: null };
+    }
+    
     try {
       console.log('🚪 Signing out user');
       setLoading(true);
@@ -462,6 +672,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // 🔄 Efeito para inicializar autenticação (singleton subscription)
   const subscribedRef = useRef(false);
   useEffect(() => {
+    // If in mock mode, skip Supabase auth subscription
+    if (isMockMode) {
+      console.log('🧪 Mock mode: skipping Supabase auth subscription');
+      if (!subscribedRef.current) {
+        subscribedRef.current = true;
+        // Set up mock user and profile
+        void refreshAuth();
+      }
+      return;
+    }
+    
     if (subscribedRef.current) {
       if (import.meta.env.DEV) console.log('👀 Auth listener already subscribed, skipping');
       return;

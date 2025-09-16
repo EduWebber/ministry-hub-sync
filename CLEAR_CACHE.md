@@ -1,48 +1,51 @@
-# 🧹 Limpar Cache - Supabase
+# Limpeza de Cache do Sistema
 
-## 🎯 Problema
-Sistema ainda conectando ao projeto Supabase antigo (nwpuurgwnnuejqinkvrh) em vez do novo (dlvojolvdsqrfczjjjuw).
+## Problema
+Sistema ainda conectando ao projeto Supabase antigo (dlvojolvdsqrfczjjjuw) em vez do novo (nwpuurgwnnuejqinkvrh).
 
-## ✅ Correções Aplicadas
-1. ✅ Atualizado `.env` com credenciais corretas
-2. ✅ Corrigido `src/lib/supabase.ts` para usar variáveis de ambiente
-3. ✅ Corrigido `backend/config/supabase.js`
+## Solução
 
-## 🚀 Próximos Passos
+### 1. Verificação de Configuração
+1. Confirme que o arquivo [.env](file:///c:/Users/webbe/OneDrive/Documents/GitHub/ministry-hub-sync/.env) contém:
+   ```
+   VITE_SUPABASE_URL=https://nwpuurgwnnuejqinkvrh.supabase.co
+   VITE_SUPABASE_ANON_KEY=sua_chave_aqui
+   ```
 
-### 1. Limpar Cache do Navegador
-```
-Ctrl + Shift + R (Hard Reload)
-ou
-F12 → Network → Disable cache
-```
+2. Verifique que o arquivo `backend/config/database.js` contém:
+   ```javascript
+   const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || 'https://nwpuurgwnnuejqinkvrh.supabase.co';
+   ```
 
-### 2. Limpar localStorage
-```javascript
-// No console do navegador:
-localStorage.clear();
-sessionStorage.clear();
-```
+### 2. Limpeza de Cache do Navegador
+1. Abra o DevTools (F12)
+2. Vá para Application > Storage
+3. Clique em "Clear site data"
+4. Atualize a página
 
-### 3. Reiniciar Sistema
+### 3. Limpeza de Cache do Node.js
 ```bash
-# Parar tudo (Ctrl+C)
-npm run dev:all
+# Na raiz do projeto
+rm -rf node_modules/.vite
+npm install
 ```
 
-### 4. Verificar Conexão
-- Frontend: http://localhost:8080
-- Backend: http://localhost:3000/api/status
-- Supabase: https://dlvojolvdsqrfczjjjuw.supabase.co
+### 4. Verificação Final
+Após a limpeza, verifique no console do navegador:
+1. Não deve mais aparecer `dlvojolvdsqrfczjjjuw.supabase.co` (projeto antigo)
+2. O novo projeto `nwpuurgwnnuejqinkvrh.supabase.co` deve estar sendo usado
 
-## 🔍 Verificar se Funcionou
-1. Abrir DevTools → Network
-2. Fazer login
-3. Verificar se requests vão para `dlvojolvdsqrfczjjjuw.supabase.co`
-4. Não deve mais aparecer `nwpuurgwnnuejqinkvrh.supabase.co`
+### 5. Teste de Conexão
+```javascript
+// Teste simples de conexão
+import { createClient } from '@supabase/supabase-js';
 
-## 📋 Credenciais Corretas
-```
-URL: https://dlvojolvdsqrfczjjjuw.supabase.co
-KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsdm9qb2x2ZHNxcmZjempqanV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1ODcwNjUsImV4cCI6MjA3MzE2MzA2NX0.J5CE7TrRJj8C0gWjbokSkMSRW1S-q8AwKUV5Z7xuODQ
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
+);
+
+// Tente uma consulta simples
+const { data, error } = await supabase.from('profiles').select('*').limit(1);
+console.log('Conexão bem-sucedida:', data, error);
 ```

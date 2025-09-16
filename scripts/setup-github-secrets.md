@@ -15,7 +15,7 @@ Value: a0b30189-faea-475f-9aa8-89eface58524
 
 ```
 Name: VITE_SUPABASE_URL
-Value: https://nwpuurgwnnuejqinkvrh.supabase.co
+Value: https://dlvojolvdsqrfczjjjuw.supabase.co
 ```
 
 ```

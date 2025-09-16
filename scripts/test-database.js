@@ -1,82 +1,97 @@
 import { createClient } from '@supabase/supabase-js';
 
-const SUPABASE_URL = 'https://nwpuurgwnnuejqinkvrh.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53cHV1cmd3bm51ZWpxaW5rdnJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0NjIwNjUsImV4cCI6MjA3MDAzODA2NX0.UHjSvXYY_c-_ydAIfELRUs4CMEBLKiztpBGQBNPHfak';
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || 'https://nwpuurgwnnuejqinkvrh.supabase.co';
+const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsdm9qb2x2ZHNxcmZjempqanV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1ODcwNjUsImV4cCI6MjA3MzE2MzA2NX0.J5CE7TrRJj8C0gWjbokSkMSRW1S-q8AwKUV5Z7xuODQ';
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-async function testDatabaseSchema() {
-  console.log('🔍 Testing database schema...');
+async function testDatabase() {
+  console.log('🗄️ Testing database connectivity and structure...\n');
   
   try {
-    // Test 1: Check if profiles table exists and has role column
-    console.log('\n1. Testing profiles table structure...');
-    const { data: profiles, error: profilesError } = await supabase
+    // Test 1: Basic connectivity
+    console.log('1️⃣ Testing basic database connectivity...');
+    const { data, error } = await supabase.from('profiles').select('count').limit(1);
+    
+    if (error) {
+      console.error('❌ Database connection failed:', error.message);
+      return false;
+    }
+    
+    console.log('✅ Database connection successful');
+    
+    // Test 2: Check profiles table
+    console.log('\n2️⃣ Checking profiles table structure...');
+    const { data: profilesData, error: profilesError } = await supabase
       .from('profiles')
       .select('*')
       .limit(1);
     
     if (profilesError) {
-      console.error('❌ Profiles table error:', profilesError.message);
-    } else {
-      console.log('✅ Profiles table accessible');
-      if (profiles && profiles.length > 0) {
-        console.log('📋 Sample profile structure:', Object.keys(profiles[0]));
-        if (profiles[0].role !== undefined) {
-          console.log('✅ Role column exists in profiles table');
-        } else {
-          console.log('❌ Role column missing from profiles table');
-        }
-      } else {
-        console.log('ℹ️ No profiles found (table is empty)');
-      }
+      console.error('❌ Profiles table access failed:', profilesError.message);
+      return false;
     }
-
-    // Test 2: Check if user_profiles view exists
-    console.log('\n2. Testing user_profiles view...');
-    const { data: userProfiles, error: viewError } = await supabase
-      .from('user_profiles')
-      .select('*')
-      .limit(1);
     
-    if (viewError) {
-      console.error('❌ User profiles view error:', viewError.message);
-    } else {
-      console.log('✅ User profiles view accessible');
+    console.log('✅ Profiles table accessible');
+    if (profilesData && profilesData.length > 0) {
+      console.log('   Available columns:', Object.keys(profilesData[0]));
     }
-
-    // Test 3: Test authentication
-    console.log('\n3. Testing authentication...');
-    const { data: session, error: sessionError } = await supabase.auth.getSession();
     
-    if (sessionError) {
-      console.error('❌ Session error:', sessionError.message);
-    } else {
-      console.log('✅ Authentication system accessible');
-      console.log('📋 Current session:', session.session ? 'Active' : 'No active session');
-    }
-
-    // Test 4: Check estudantes table
-    console.log('\n4. Testing estudantes table...');
-    const { data: estudantes, error: estudantesError } = await supabase
+    // Test 3: Check estudantes table
+    console.log('\n3️⃣ Checking estudantes table structure...');
+    const { data: estudantesData, error: estudantesError } = await supabase
       .from('estudantes')
       .select('*')
       .limit(1);
     
     if (estudantesError) {
-      console.error('❌ Estudantes table error:', estudantesError.message);
-    } else {
-      console.log('✅ Estudantes table accessible');
+      console.error('❌ Estudantes table access failed:', estudantesError.message);
+      return false;
     }
-
+    
+    console.log('✅ Estudantes table accessible');
+    if (estudantesData && estudantesData.length > 0) {
+      console.log('   Available columns:', Object.keys(estudantesData[0]));
+    }
+    
+    // Test 4: Check programacoes table
+    console.log('\n4️⃣ Checking programacoes table structure...');
+    const { data: programacoesData, error: programacoesError } = await supabase
+      .from('programacoes')
+      .select('*')
+      .limit(1);
+    
+    if (programacoesError) {
+      console.error('❌ Programacoes table access failed:', programacoesError.message);
+      return false;
+    }
+    
+    console.log('✅ Programacoes table accessible');
+    if (programacoesData && programacoesData.length > 0) {
+      console.log('   Available columns:', Object.keys(programacoesData[0]));
+    }
+    
+    // Test 5: Test relationships
+    console.log('\n5️⃣ Testing table relationships...');
+    const { data: relationshipData, error: relationshipError } = await supabase
+      .from('estudantes')
+      .select('id, profile_id, perfil:profiles(nome_completo)')
+      .limit(1);
+    
+    if (relationshipError) {
+      console.log('⚠️ Relationship test failed:', relationshipError.message);
+    } else {
+      console.log('✅ Table relationships working');
+    }
+    
+    console.log('\n🎉 Database test completed successfully!');
+    return true;
+    
   } catch (error) {
-    console.error('💥 Unexpected error:', error);
+    console.error('❌ Database test failed:', error.message);
+    return false;
   }
 }
 
 // Run the test
-testDatabaseSchema().then(() => {
-  console.log('\n🏁 Database schema test completed');
-}).catch(error => {
-  console.error('💥 Test failed:', error);
-});
+testDatabase();

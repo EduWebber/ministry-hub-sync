@@ -3,48 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste de Autenticação - Sistema Ministerial</title>
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <title>Teste de Autenticação Frontend</title>
+    <script src="https://cdn.skypack.dev/@supabase/supabase-js"></script>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
-        .success { background-color: #d4edda; border-color: #c3e6cb; }
-        .error { background-color: #f8d7da; border-color: #f5c6cb; }
-        .info { background-color: #d1ecf1; border-color: #bee5eb; }
-        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
-        pre { background: #f8f9fa; padding: 10px; border-radius: 3px; overflow-x: auto; }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+        #status { font-weight: bold; }
     </style>
 </head>
 <body>
-    <h1>🔍 Teste de Autenticação - Sistema Ministerial</h1>
-    
-    <div class="test-section info">
-        <h3>📋 Status do Teste</h3>
-        <div id="status">Aguardando...</div>
-    </div>
+    <div class="container">
+        <h1>🧪 Teste de Autenticação Frontend</h1>
+        <p>Esta página testa a configuração de autenticação do Supabase no frontend.</p>
+        
+        <div class="test-section">
+            <h3>📋 Status do Teste</h3>
+            <div id="status">Aguardando...</div>
+        </div>
 
-    <div class="test-section">
-        <h3>🔐 Teste de Autenticação</h3>
-        <button onclick="testAuth()">Testar Login</button>
-        <div id="auth-result"></div>
-    </div>
+        <div class="test-section">
+            <h3>🔐 Teste de Autenticação</h3>
+            <button onclick="testAuth()">Testar Login</button>
+            <div id="auth-result"></div>
+        </div>
 
-    <div class="test-section">
-        <h3>👤 Teste de Carregamento de Perfil</h3>
-        <button onclick="testProfile()">Carregar Perfil</button>
-        <div id="profile-result"></div>
-    </div>
+        <div class="test-section">
+            <h3>👤 Teste de Carregamento de Perfil</h3>
+            <button onclick="testProfile()">Carregar Perfil</button>
+            <div id="profile-result"></div>
+        </div>
 
-    <div class="test-section">
-        <h3>📊 Teste de Dados do Dashboard</h3>
-        <button onclick="testDashboardData()">Carregar Dados do Dashboard</button>
-        <div id="dashboard-result"></div>
+        <div class="test-section">
+            <h3>📊 Teste de Dados do Dashboard</h3>
+            <button onclick="testDashboardData()">Carregar Dados do Dashboard</button>
+            <div id="dashboard-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔄 Teste de Configuração</h3>
+            <button onclick="testConfig()">Verificar Configuração</button>
+            <div id="config-result"></div>
+        </div>
     </div>
 
     <script>
-        // Configuração do Supabase
-        const supabaseUrl = 'https://nwpuurgwnnuejqinkvrh.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53cHV1cmd3bm51ZWpxaW5rdnJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0NjIwNjUsImV4cCI6MjA3MDAzODA2NX0.UHjSvXYY_c-_ydAIfELRUs4CMEBLKiztpBGQBNPHfak';
+        // Configuração do Supabase - usando variáveis de ambiente do Vite
+        const supabaseUrl = import.meta.env?.VITE_SUPABASE_URL || 'https://nwpuurgwnnuejqinkvrh.supabase.co';
+        const supabaseKey = import.meta.env?.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsdm9qb2x2ZHNxcmZjempqanV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1ODcwNjUsImV4cCI6MjA3MzE2MzA2NX0.J5CE7TrRJj8C0gWjbokSkMSRW1S-q8AwKUV5Z7xuODQ';
         
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
         
@@ -53,174 +90,174 @@
 
         function updateStatus(message, type = 'info') {
             const statusDiv = document.getElementById('status');
-            statusDiv.innerHTML = `<strong>${message}</strong>`;
-            statusDiv.parentElement.className = `test-section ${type}`;
+            statusDiv.textContent = message;
+            statusDiv.className = type;
         }
 
-        function showResult(elementId, data, type = 'info') {
-            const resultDiv = document.getElementById(elementId);
-            resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-            resultDiv.parentElement.className = `test-section ${type}`;
+        async function testConfig() {
+            const configResult = document.getElementById('config-result');
+            configResult.innerHTML = '<p>🔍 Verificando configuração...</p>';
+            
+            try {
+                // Verificar se as variáveis de ambiente estão disponíveis
+                const envUrl = import.meta.env?.VITE_SUPABASE_URL;
+                const envKey = import.meta.env?.VITE_SUPABASE_ANON_KEY;
+                
+                configResult.innerHTML = `
+                    <p class="info">🔧 Configuração atual:</p>
+                    <p><strong>URL:</strong> ${supabaseUrl}</p>
+                    <p><strong>Key:</strong> ${supabaseKey.substring(0, 20)}...</p>
+                    <p><strong>Variáveis de ambiente:</strong> ${envUrl ? '✅ Encontradas' : '❌ Não encontradas'}</p>
+                `;
+                
+                // Testar conexão básica
+                configResult.innerHTML += '<p>📡 Testando conexão...</p>';
+                const { data, error } = await supabase.from('profiles').select('count').limit(1);
+                
+                if (error) {
+                    configResult.innerHTML += `<p class="error">❌ Erro de conexão: ${error.message}</p>`;
+                } else {
+                    configResult.innerHTML += '<p class="success">✅ Conexão bem-sucedida!</p>';
+                }
+            } catch (error) {
+                configResult.innerHTML = `<p class="error">❌ Erro na verificação: ${error.message}</p>`;
+            }
         }
 
         async function testAuth() {
-            updateStatus('Testando autenticação...', 'info');
+            const authResult = document.getElementById('auth-result');
+            authResult.innerHTML = '<p>🔐 Tentando login...</p>';
             
             try {
                 const { data, error } = await supabase.auth.signInWithPassword({
                     email: 'frankwebber33@hotmail.com',
                     password: 'senha123'
                 });
-
-                if (error) {
-                    showResult('auth-result', { error: error.message }, 'error');
-                    updateStatus('❌ Erro na autenticação', 'error');
-                    return;
-                }
-
-                currentUser = data.user;
-                showResult('auth-result', {
-                    success: true,
-                    userId: data.user.id,
-                    email: data.user.email,
-                    role: data.user.user_metadata?.role,
-                    metadata: data.user.user_metadata
-                }, 'success');
                 
-                updateStatus('✅ Autenticação bem-sucedida', 'success');
+                if (error) {
+                    authResult.innerHTML = `<p class="error">❌ Login falhou: ${error.message}</p>`;
+                    updateStatus('Login falhou', 'error');
+                } else {
+                    currentUser = data.user;
+                    authResult.innerHTML = `
+                        <p class="success">✅ Login bem-sucedido!</p>
+                        <p><strong>Email:</strong> ${data.user.email}</p>
+                        <p><strong>User ID:</strong> ${data.user.id}</p>
+                        <button onclick="testLogout()">Logout</button>
+                    `;
+                    updateStatus('Autenticado', 'success');
+                }
             } catch (error) {
-                showResult('auth-result', { error: error.message }, 'error');
-                updateStatus('❌ Erro na autenticação', 'error');
+                authResult.innerHTML = `<p class="error">❌ Erro: ${error.message}</p>`;
+                updateStatus('Erro de autenticação', 'error');
+            }
+        }
+
+        async function testLogout() {
+            const authResult = document.getElementById('auth-result');
+            authResult.innerHTML = '<p>🚪 Fazendo logout...</p>';
+            
+            try {
+                const { error } = await supabase.auth.signOut();
+                
+                if (error) {
+                    authResult.innerHTML = `<p class="error">❌ Logout falhou: ${error.message}</p>`;
+                    updateStatus('Logout falhou', 'error');
+                } else {
+                    currentUser = null;
+                    currentProfile = null;
+                    authResult.innerHTML = '<p class="success">✅ Logout bem-sucedido!</p>';
+                    updateStatus('Desconectado', 'info');
+                    
+                    // Limpar resultados de perfil
+                    document.getElementById('profile-result').innerHTML = '';
+                    document.getElementById('dashboard-result').innerHTML = '';
+                }
+            } catch (error) {
+                authResult.innerHTML = `<p class="error">❌ Erro: ${error.message}</p>`;
+                updateStatus('Erro de logout', 'error');
             }
         }
 
         async function testProfile() {
+            const profileResult = document.getElementById('profile-result');
+            
             if (!currentUser) {
-                showResult('profile-result', { error: 'Usuário não autenticado' }, 'error');
+                profileResult.innerHTML = '<p class="error">❌ Nenhum usuário autenticado</p>';
                 return;
             }
-
-            updateStatus('Carregando perfil...', 'info');
-
+            
+            profileResult.innerHTML = '<p>👤 Carregando perfil...</p>';
+            
             try {
-                // Tentar carregar da tabela profiles
-                const { data: profileData, error: profileError } = await supabase
+                const { data, error } = await supabase
                     .from('profiles')
                     .select('*')
                     .eq('id', currentUser.id)
-                    .maybeSingle();
-
-                if (profileError) {
-                    if (profileError.code === 'PGRST116') {
-                        // Perfil não encontrado, criar a partir dos metadados
-                        const metadata = currentUser.user_metadata;
-                        const profileFromMetadata = {
-                            id: currentUser.id,
-                            nome_completo: metadata.nome_completo || currentUser.email?.split('@')[0] || 'Usuário',
-                            congregacao: metadata.congregacao || 'Não informado',
-                            cargo: metadata.cargo || 'instrutor',
-                            role: metadata.role || 'instrutor',
-                            email: currentUser.email || '',
-                            created_at: new Date().toISOString(),
-                            updated_at: new Date().toISOString()
-                        };
-                        
-                        currentProfile = profileFromMetadata;
-                        showResult('profile-result', {
-                            source: 'metadata',
-                            profile: profileFromMetadata
-                        }, 'success');
-                        updateStatus('✅ Perfil carregado a partir dos metadados', 'success');
-                    } else {
-                        showResult('profile-result', { error: profileError.message }, 'error');
-                        updateStatus('❌ Erro ao carregar perfil', 'error');
-                    }
-                } else if (profileData) {
-                    // Garantir que tenha o campo role
-                    const profileWithRole = {
-                        ...profileData,
-                        role: profileData.role || 'instrutor',
-                        email: profileData.email || currentUser.email || ''
-                    };
-                    
-                    currentProfile = profileWithRole;
-                    showResult('profile-result', {
-                        source: 'database',
-                        profile: profileWithRole
-                    }, 'success');
-                    updateStatus('✅ Perfil carregado do banco de dados', 'success');
+                    .single();
+                
+                if (error) {
+                    profileResult.innerHTML = `<p class="error">❌ Erro ao carregar perfil: ${error.message}</p>`;
                 } else {
-                    showResult('profile-result', { error: 'Nenhum perfil encontrado' }, 'error');
-                    updateStatus('❌ Perfil não encontrado', 'error');
+                    currentProfile = data;
+                    profileResult.innerHTML = `
+                        <p class="success">✅ Perfil carregado!</p>
+                        <p><strong>Nome:</strong> ${data.nome_completo || 'Não definido'}</p>
+                        <p><strong>Congregação:</strong> ${data.congregacao || 'Não definida'}</p>
+                        <p><strong>Cargo:</strong> ${data.cargo || 'Não definido'}</p>
+                        <p><strong>Role:</strong> ${data.role || 'Não definido'}</p>
+                    `;
                 }
             } catch (error) {
-                showResult('profile-result', { error: error.message }, 'error');
-                updateStatus('❌ Erro ao carregar perfil', 'error');
+                profileResult.innerHTML = `<p class="error">❌ Erro: ${error.message}</p>`;
             }
         }
 
         async function testDashboardData() {
-            if (!currentUser || !currentProfile) {
-                showResult('dashboard-result', { error: 'Usuário ou perfil não carregado' }, 'error');
+            const dashboardResult = document.getElementById('dashboard-result');
+            
+            if (!currentUser) {
+                dashboardResult.innerHTML = '<p class="error">❌ Nenhum usuário autenticado</p>';
                 return;
             }
-
-            updateStatus('Carregando dados do dashboard...', 'info');
-
+            
+            dashboardResult.innerHTML = '<p>📊 Carregando dados do dashboard...</p>';
+            
             try {
-                const results = {};
-
-                // Testar carregamento de estudantes
-                const { data: estudantes, error: estudantesError } = await supabase
+                // Contar estudantes ativos
+                const { count: activeStudents, error: studentsError } = await supabase
                     .from('estudantes')
-                    .select('*')
-                    .eq('user_id', currentUser.id)
-                    .limit(5);
-
-                results.estudantes = {
-                    count: estudantes?.length || 0,
-                    data: estudantes || [],
-                    error: estudantesError?.message || null
-                };
-
-                // Testar carregamento de programas
-                const { data: programas, error: programasError } = await supabase
-                    .from('programas')
-                    .select('*')
-                    .eq('user_id', currentUser.id)
-                    .limit(5);
-
-                results.programas = {
-                    count: programas?.length || 0,
-                    data: programas || [],
-                    error: programasError?.message || null
-                };
-
-                // Testar carregamento de designações
-                const { data: designacoes, error: designacoesError } = await supabase
-                    .from('designacoes')
-                    .select('*')
-                    .eq('user_id', currentUser.id)
-                    .limit(5);
-
-                results.designacoes = {
-                    count: designacoes?.length || 0,
-                    data: designacoes || [],
-                    error: designacoesError?.message || null
-                };
-
-                showResult('dashboard-result', results, 'success');
-                updateStatus('✅ Dados do dashboard carregados', 'success');
-
+                    .select('*', { count: 'exact', head: true })
+                    .eq('ativo', true);
+                
+                if (studentsError) {
+                    dashboardResult.innerHTML = `<p class="error">❌ Erro ao contar estudantes: ${studentsError.message}</p>`;
+                    return;
+                }
+                
+                // Contar programações
+                const { count: programs, error: programsError } = await supabase
+                    .from('programacoes')
+                    .select('*', { count: 'exact', head: true });
+                
+                if (programsError) {
+                    dashboardResult.innerHTML = `<p class="error">❌ Erro ao contar programações: ${programsError.message}</p>`;
+                    return;
+                }
+                
+                dashboardResult.innerHTML = `
+                    <p class="success">✅ Dados carregados!</p>
+                    <p><strong>Estudantes ativos:</strong> ${activeStudents}</p>
+                    <p><strong>Programações:</strong> ${programs}</p>
+                `;
             } catch (error) {
-                showResult('dashboard-result', { error: error.message }, 'error');
-                updateStatus('❌ Erro ao carregar dados do dashboard', 'error');
+                dashboardResult.innerHTML = `<p class="error">❌ Erro: ${error.message}</p>`;
             }
         }
 
         // Inicializar
-        updateStatus('Pronto para testar', 'info');
+        updateStatus('Pronto para testes', 'info');
+        console.log('🔧 Supabase configurado:', { supabaseUrl, supabaseKey });
     </script>
 </body>
 </html>
-

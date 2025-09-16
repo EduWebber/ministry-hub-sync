@@ -1,114 +1,110 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Configuração do Supabase
-const supabaseUrl = 'https://nwpuurgwnnuejqinkvrh.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53cHV1cmd3bm51ZWpxaW5rdnJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0NjIwNjUsImV4cCI6MjA3MDAzODA2NX0.UHjSvXYY_c-_ydAIfELRUs4CMEBLKiztpBGQBNPHfak';
+// Configuração do Supabase - usando variáveis de ambiente com fallback
+const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || 'https://nwpuurgwnnuejqinkvrh.supabase.co';
+const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsdm9qb2x2ZHNxcmZjempqanV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1ODcwNjUsImV4cCI6MjA3MzE2MzA2NX0.J5CE7TrRJj8C0gWjbokSkMSRW1S-q8AwKUV5Z7xuODQ';
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function checkProfilesStructure() {
-  console.log('🔍 Verificando estrutura real da tabela profiles...');
+  console.log('🔍 Verificando estrutura da tabela profiles...');
   
   try {
-    // 1. Verificar estrutura da tabela profiles
-    const { data: profilesSample, error: profilesError } = await supabase
+    // 1. Obter informações da tabela
+    console.log('\n📋 Informações básicas da tabela...');
+    
+    const { data: sampleData, error: sampleError } = await supabase
       .from('profiles')
       .select('*')
       .limit(1);
     
-    if (profilesError) {
-      console.error('❌ Erro ao acessar profiles:', profilesError);
+    if (sampleError) {
+      console.error('❌ Erro ao acessar tabela profiles:', sampleError);
       return;
     }
     
-    console.log('✅ Tabela profiles acessível');
-    
-    if (profilesSample && profilesSample.length > 0) {
-      const profile = profilesSample[0];
-      console.log('\n📊 COLUNAS DISPONÍVEIS:');
-      Object.keys(profile).forEach(key => {
-        console.log(`   - ${key}: ${typeof profile[key]} = ${profile[key]}`);
-      });
-      
-      console.log('\n📝 EXEMPLO DE DADOS:');
-      console.log(JSON.stringify(profile, null, 2));
+    if (sampleData && sampleData.length > 0) {
+      console.log('✅ Tabela profiles acessível');
+      console.log('📊 Colunas disponíveis:', Object.keys(sampleData[0]));
     } else {
-      console.log('⚠️ Tabela profiles está vazia');
+      console.log('⚠️ Tabela profiles vazia ou inacessível');
+      return;
     }
     
-    // 2. Verificar se há usuários admin
-    console.log('\n👑 Verificando usuários admin...');
+    // 2. Verificar colunas essenciais
+    console.log('\n🔍 Verificando colunas essenciais...');
     
-    // Tentar diferentes campos possíveis para role
-    const possibleRoleFields = ['role', 'cargo', 'tipo', 'user_role', 'role_type'];
+    const requiredColumns = ['id', 'nome_completo', 'congregacao', 'cargo', 'role'];
+    const availableColumns = Object.keys(sampleData[0]);
     
-    for (const field of possibleRoleFields) {
-      try {
-        const { data, error } = await supabase
-          .from('profiles')
-          .select(`id, ${field}`)
-          .limit(5);
-        
-        if (!error && data && data.length > 0) {
-          console.log(`✅ Campo '${field}' encontrado!`);
-          console.log('   Valores únicos:', [...new Set(data.map(item => item[field]))]);
-          break;
-        }
-      } catch (error) {
-        // Campo não existe, continuar
-      }
-    }
-    
-    // 3. Verificar se há campo congregacao
-    console.log('\n🏢 Verificando campo congregacao...');
-    
-    try {
-      const { data: congregacoes, error: congregacoesError } = await supabase
-        .from('profiles')
-        .select('congregacao')
-        .not('congregacao', 'is', null)
-        .limit(5);
-      
-      if (congregacoesError) {
-        console.log('⚠️ Campo congregacao não existe ou não acessível');
+    requiredColumns.forEach(column => {
+      if (availableColumns.includes(column)) {
+        console.log(`✅ Coluna ${column}: Presente`);
       } else {
-        console.log('✅ Campo congregacao encontrado!');
-        console.log('   Valores únicos:', [...new Set(congregacoes.map(item => item.congregacao))]);
+        console.log(`❌ Coluna ${column}: Ausente`);
       }
-    } catch (error) {
-      console.log('⚠️ Campo congregacao não existe');
+    });
+    
+    // 3. Verificar valores de cargo
+    console.log('\n🏷️ Verificando valores de cargo...');
+    
+    const { data: cargos, error: cargosError } = await supabase
+      .from('profiles')
+      .select('cargo')
+      .neq('cargo', null)
+      .limit(10);
+    
+    if (cargosError) {
+      console.log('⚠️ Erro ao verificar cargos:', cargosError.message);
+    } else {
+      const uniqueCargos = [...new Set(cargos.map(p => p.cargo))];
+      console.log('📊 Cargos encontrados:', uniqueCargos.join(', '));
     }
     
-    // 4. Contar total de usuários
-    console.log('\n📊 Contando total de usuários...');
+    // 4. Verificar valores de role
+    console.log('\n🎭 Verificando valores de role...');
     
+    const { data: roles, error: rolesError } = await supabase
+      .from('profiles')
+      .select('role')
+      .neq('role', null)
+      .limit(10);
+    
+    if (rolesError) {
+      console.log('⚠️ Erro ao verificar roles:', rolesError.message);
+    } else {
+      const uniqueRoles = [...new Set(roles.map(p => p.role))];
+      console.log('📊 Roles encontrados:', uniqueRoles.join(', '));
+    }
+    
+    // 5. Verificar relacionamento com auth.users
+    console.log('\n🔐 Verificando relacionamento com auth.users...');
+    
+    // Esta verificação pode falhar se não tivermos permissões adequadas
     try {
-      const { count, error } = await supabase
+      const { count, error: countError } = await supabase
         .from('profiles')
-        .select('*', { count: 'exact', head: true });
+        .select('id', { count: 'exact', head: true });
       
-      if (error) {
-        console.log('⚠️ Não foi possível contar usuários:', error.message);
+      if (countError) {
+        console.log('ℹ️ Não foi possível verificar contagem de perfis:', countError.message);
       } else {
-        console.log(`✅ Total de usuários: ${count}`);
+        console.log(`📊 Total de perfis: ${count}`);
       }
-    } catch (error) {
-      console.log('⚠️ Erro ao contar usuários:', error.message);
+    } catch (relationError) {
+      console.log('ℹ️ Verificação de relacionamento limitada:', relationError.message);
     }
     
-    console.log('\n🎯 PROBLEMA IDENTIFICADO:');
-    console.log('   O AdminDashboard não está funcionando porque:');
-    console.log('   1. A tabela profiles tem estrutura diferente do esperado');
-    console.log('   2. Campos como "email" e "role" podem não existir');
-    console.log('   3. O sistema está tentando acessar colunas inexistentes');
-    
-    console.log('\n💡 SOLUÇÃO IMEDIATA:');
-    console.log('   Modificar o AdminDashboard para usar a estrutura real da tabela');
+    console.log('\n✅ Verificação da estrutura de profiles concluída!');
     
   } catch (error) {
-    console.error('❌ Erro durante verificação:', error);
+    console.error('❌ Erro inesperado na verificação:', error);
   }
 }
 
-// Executar verificação
-checkProfilesStructure();
+// Executar se chamado diretamente
+if (import.meta.url === `file://${process.argv[1]}`) {
+  checkProfilesStructure();
+}
+
+export default checkProfilesStructure;

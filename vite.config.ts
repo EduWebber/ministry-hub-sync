@@ -56,7 +56,7 @@ export default defineConfig(({ mode }) => {
   server: {
     // Configuração padrão do servidor
     host: "::",
-    port: 5173,
+    port: 8080,
     strictPort: true,
     
     // Configuração de HMR desabilitada para estabilizar desenvolvimento

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
@@ -16,6 +17,7 @@ import {
   Genero,
   CARGO_LABELS,
   getQualificacoes,
+  EstudanteFormData,
 } from "@/types/estudantes";
 
 interface EstudanteFormProps {
@@ -26,20 +28,18 @@ interface EstudanteFormProps {
   loading?: boolean;
 }
 
-const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: EstudanteFormProps) => {
+const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loading = false }: EstudanteFormProps) => {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<EstudanteFormData>({
     nome: "",
     data_nascimento: "",
-    genero: "masculino" as Genero,
+    genero: "masculino",
     email: "",
     telefone: "",
-    cargo: "publicador_batizado" as Cargo,
+    cargo: "publicador_batizado",
     ativo: true,
-<<<<<<< HEAD
     observacoes: "",
     familia: "",
-    data_nascimento: "",
     estado_civil: "desconhecido",
     papel_familiar: "",
     id_pai: "",
@@ -51,7 +51,7 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
     responsavel_secundario: "",
     chairman: false,
     pray: false,
-    treasures: false,
+    tresures: false,
     gems: false,
     reading: false,
     starting: false,
@@ -59,8 +59,8 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
     making: false,
     explaining: false,
     talk: false,
-=======
->>>>>>> cb5069e52f66eca9951404975794c3c89748f090
+    idade: 18,
+    data_batismo: "",
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -70,38 +70,36 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
   useEffect(() => {
     if (estudante) {
       setFormData({
-        nome: estudante.nome,
-        data_nascimento: estudante.data_nascimento || "",
-        genero: estudante.genero,
-        email: estudante.email || "",
-        telefone: estudante.telefone || "",
-        cargo: estudante.cargo,
-        ativo: estudante.ativo ?? true,
-<<<<<<< HEAD
-        observacoes: estudante.observacoes || "",
-        familia: estudante.familia || "",
-        data_nascimento: estudante.data_nascimento || "",
-        estado_civil: estudante.estado_civil || "desconhecido",
-        papel_familiar: estudante.papel_familiar || "",
-        id_pai: estudante.id_pai || "",
-        id_mae: estudante.id_mae || "",
-        id_conjuge: estudante.id_conjuge || "",
-        coabitacao: estudante.coabitacao ?? false,
-        menor: estudante.menor ?? false,
-        responsavel_primario: estudante.responsavel_primario || "",
-        responsavel_secundario: estudante.responsavel_secundario || "",
-        chairman: estudante.chairman ?? false,
-        pray: estudante.pray ?? false,
-        treasures: estudante.treasures ?? false,
-        gems: estudante.gems ?? false,
-        reading: estudante.reading ?? false,
-        starting: estudante.starting ?? false,
-        following: estudante.following ?? false,
-        making: estudante.making ?? false,
-        explaining: estudante.explaining ?? false,
-        talk: estudante.talk ?? false,
-=======
->>>>>>> cb5069e52f66eca9951404975794c3c89748f090
+        nome: (estudante as any).nome || "",
+        data_nascimento: (estudante as any).data_nascimento || "",
+        genero: (estudante as any).genero || "masculino",
+        email: (estudante as any).email || "",
+        telefone: (estudante as any).telefone || "",
+        cargo: (estudante as any).cargo || "publicador_batizado",
+        ativo: (estudante as any).ativo ?? true,
+        observacoes: (estudante as any).observacoes || "",
+        familia: (estudante as any).familia || "",
+        estado_civil: (estudante as any).estado_civil || "desconhecido",
+        papel_familiar: (estudante as any).papel_familiar || "",
+        id_pai: (estudante as any).id_pai || "",
+        id_mae: (estudante as any).id_mae || "",
+        id_conjuge: (estudante as any).id_conjuge || "",
+        coabitacao: (estudante as any).coabitacao ?? false,
+        menor: (estudante as any).menor ?? false,
+        responsavel_primario: (estudante as any).responsavel_primario || "",
+        responsavel_secundario: (estudante as any).responsavel_secundario || "",
+        chairman: (estudante as any).chairman ?? false,
+        pray: (estudante as any).pray ?? false,
+        tresures: (estudante as any).tresures ?? false,
+        gems: (estudante as any).gems ?? false,
+        reading: (estudante as any).reading ?? false,
+        starting: (estudante as any).starting ?? false,
+        following: (estudante as any).following ?? false,
+        making: (estudante as any).making ?? false,
+        explaining: (estudante as any).explaining ?? false,
+        talk: (estudante as any).talk ?? false,
+        idade: (estudante as any).idade || 18,
+        data_batismo: (estudante as any).data_batismo || "",
       });
     }
   }, [estudante]);
@@ -166,10 +164,8 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
           telefone: "",
           cargo: "publicador_batizado",
           ativo: true,
-<<<<<<< HEAD
           observacoes: "",
           familia: "",
-          data_nascimento: "",
           estado_civil: "desconhecido",
           papel_familiar: "",
           id_pai: "",
@@ -181,7 +177,7 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
           responsavel_secundario: "",
           chairman: false,
           pray: false,
-          treasures: false,
+          tresures: false,
           gems: false,
           reading: false,
           starting: false,
@@ -189,8 +185,8 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
           making: false,
           explaining: false,
           talk: false,
-=======
->>>>>>> cb5069e52f66eca9951404975794c3c89748f090
+          idade: 18,
+          data_batismo: "",
         });
       }
     }
@@ -198,7 +194,6 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
 
   const isEditing = !!estudante;
   const idade = calculateAge(formData.data_nascimento);
-  // const showParentField = idade < 18; // Not used in current structure
 
   return (
     <Card className="w-full max-w-2xl mx-auto">
@@ -292,7 +287,7 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
                   </SelectTrigger>
                   <SelectContent>
                     {Object.entries(CARGO_LABELS).map(([value]) => (
-                      <SelectItem key={value} value={value}>
+                      <SelectItem key={value} value={value as Cargo}>
                         {t(`terms.${value}`)}
                       </SelectItem>
                     ))}
@@ -317,7 +312,7 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
                 <Input
                   id="email"
                   type="email"
-                  value={formData.email}
+                  value={formData.email || ""}
                   onChange={(e) => handleInputChange("email", e.target.value)}
                   placeholder={t('initialSetup.fields.emailPlaceholder')}
                   className={errors.email ? "border-red-500" : ""}
@@ -329,7 +324,7 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
                 <Label htmlFor="telefone">{t('common.phone')}</Label>
                 <Input
                   id="telefone"
-                  value={formData.telefone}
+                  value={formData.telefone || ""}
                   onChange={(e) => handleInputChange("telefone", e.target.value)}
                   placeholder={t('(11) 99999-9999')}
                   className={errors.telefone ? "border-red-500" : ""}
@@ -472,7 +467,7 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
                       .filter(parent => parent.genero === "masculino" && (!estudante || parent.id !== estudante.id))
                       .map(parent => (
                         <SelectItem key={parent.id} value={parent.id}>
-                          {parent.nome}
+                          {(parent as any).nome || `Pai ${parent.id.substring(0, 8)}`}
                         </SelectItem>
                       ))
                     }
@@ -496,7 +491,7 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
                       .filter(parent => parent.genero === "feminino" && (!estudante || parent.id !== estudante.id))
                       .map(parent => (
                         <SelectItem key={parent.id} value={parent.id}>
-                          {parent.nome}
+                          {(parent as any).nome || `Mãe ${parent.id.substring(0, 8)}`}
                         </SelectItem>
                       ))
                     }
@@ -520,7 +515,7 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
                       .filter(parent => (!estudante || parent.id !== estudante.id))
                       .map(parent => (
                         <SelectItem key={parent.id} value={parent.id}>
-                          {parent.nome}
+                          {(parent as any).nome || `Cônjuge ${parent.id.substring(0, 8)}`}
                         </SelectItem>
                       ))
                     }
@@ -558,7 +553,7 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
                         .filter(parent => (!estudante || parent.id !== estudante.id))
                         .map(parent => (
                           <SelectItem key={parent.id} value={parent.id}>
-                            {parent.nome}
+                            {(parent as any).nome || `Responsável ${parent.id.substring(0, 8)}`}
                           </SelectItem>
                         ))
                       }
@@ -584,7 +579,7 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
                         .filter(parent => (!estudante || parent.id !== estudante.id) && parent.id !== formData.responsavel_primario)
                         .map(parent => (
                           <SelectItem key={parent.id} value={parent.id}>
-                            {parent.nome}
+                            {(parent as any).nome || `Responsável ${parent.id.substring(0, 8)}`}
                           </SelectItem>
                         ))
                       }
@@ -624,11 +619,11 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
               
               <div className="flex items-center space-x-2">
                 <Switch
-                  id="treasures"
-                  checked={formData.treasures || false}
-                  onCheckedChange={(checked) => handleInputChange("treasures", checked)}
+                  id="tresures"
+                  checked={formData.tresures || false}
+                  onCheckedChange={(checked) => handleInputChange("tresures", checked)}
                 />
-                <Label htmlFor="treasures">Apto a "Tesouros"</Label>
+                <Label htmlFor="tresures">Apto a "Tesouros"</Label>
               </div>
               
               <div className="flex items-center space-x-2">
@@ -708,16 +703,13 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
               <Label htmlFor="observacoes">{t('students.observations')}</Label>
               <Textarea
                 id="observacoes"
-                value={formData.observacoes}
+                value={formData.observacoes || ""}
                 onChange={(e) => handleInputChange("observacoes", e.target.value)}
                 placeholder={t('students.observations')}
                 rows={4}
                 className="resize-none"
               />
             </div>
-<<<<<<< HEAD
-          </div>
-=======
 
             <div className="space-y-2">
               <Label htmlFor="data_nascimento">{t('common.birthDate')}</Label>
@@ -761,7 +753,7 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
                 </SelectTrigger>
                 <SelectContent>
                   {Object.entries(CARGO_LABELS).map(([value]) => (
-                    <SelectItem key={value} value={value}>
+                    <SelectItem key={value} value={value as Cargo}>
                       {t(`terms.${value}`)}
                     </SelectItem>
                   ))}
@@ -778,7 +770,7 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
               <Input
                 id="email"
                 type="email"
-                value={formData.email}
+                value={formData.email || ""}
                 onChange={(e) => handleInputChange("email", e.target.value)}
                 placeholder={t('initialSetup.fields.emailPlaceholder')}
                 className={errors.email ? "border-red-500" : ""}
@@ -790,7 +782,7 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
               <Label htmlFor="telefone">{t('common.phone')}</Label>
               <Input
                 id="telefone"
-                value={formData.telefone}
+                value={formData.telefone || ""}
                 onChange={(e) => handleInputChange("telefone", e.target.value)}
                 placeholder={t('(11) 99999-9999')}
                 className={errors.telefone ? "border-red-500" : ""}
@@ -798,8 +790,6 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
               {errors.telefone && <p className="text-sm text-red-500">{errors.telefone}</p>}
             </div>
           </div>
-
-
 
           {/* Active Status */}
           <div className="flex items-center space-x-2">
@@ -825,9 +815,6 @@ const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: Estud
               {t('forms.pleaseWait')}
             </p>
           </div>
-
-
->>>>>>> cb5069e52f66eca9951404975794c3c89748f090
 
           {/* Form Actions */}
           <div className="flex gap-4 pt-4">

@@ -1,28 +1,20 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
+import { Database } from '@/integrations/supabase/types';
 
-export interface EstudanteWithParent {
-  id: string;
+type EstudanteRow = Database['public']['Tables']['estudantes']['Row'];
+type ProfileRow = Database['public']['Tables']['profiles']['Row'];
+
+// Check if we're in mock mode
+const isMockMode = import.meta.env.VITE_MOCK_MODE === 'true';
+
+export interface EstudanteWithParent extends EstudanteRow {
   nome: string;
-<<<<<<< HEAD
-  genero: string;
-  qualificacoes: string[] | null;
-  disponibilidade: any | null;
-  ativo: boolean | null;
-  profile_id: string;
-  created_at: string | null;
-=======
-  genero: 'masculino' | 'feminino';
   email?: string;
   telefone?: string;
   data_nascimento?: string;
-  cargo: 'anciao' | 'servo_ministerial' | 'pioneiro_regular' | 'publicador_batizado' | 'publicador_nao_batizado' | 'estudante_novo';
-  ativo: boolean;
-  user_id: string;
-  created_at: string;
-  updated_at: string;
->>>>>>> cb5069e52f66eca9951404975794c3c89748f090
+  cargo: ProfileRow['cargo'];
 }
 
 export interface EstudanteFilters {
@@ -36,7 +28,10 @@ export interface EstudanteStatistics {
   total: number;
   ativos: number;
   inativos: number;
-  // Remove other statistics fields that don't exist in the current schema
+  menores: number;
+  homens: number;
+  mulheres: number;
+  qualificados: number;
 }
 
 export function useEstudantes(activeTab?: string) {
@@ -46,92 +41,153 @@ export function useEstudantes(activeTab?: string) {
   const [error, setError] = useState<string | null>(null);
 
   const fetchEstudantes = useCallback(async () => {
+    // If in mock mode, return mock data
+    if (isMockMode) {
+      console.log('🧪 Mock mode: returning mock estudantes data');
+      setIsLoading(true);
+      setError(null);
+      
+      // Mock estudantes data
+      const mockEstudantes: EstudanteWithParent[] = [
+        {
+          id: 'mock-estudante-1',
+          nome: 'João Silva',
+          email: 'joao@example.com',
+          telefone: '(11) 99999-9999',
+          data_nascimento: '1990-01-01',
+          cargo: 'publicador_batizado',
+          genero: 'masculino',
+          ativo: true,
+          profile_id: 'mock-profile-1',
+          created_at: new Date().toISOString(),
+          congregacao_id: null,
+          disponibilidade: null,
+          qualificacoes: null,
+          user_id: 'mock-user-id'
+        },
+        {
+          id: 'mock-estudante-2',
+          nome: 'Maria Santos',
+          email: 'maria@example.com',
+          telefone: '(11) 88888-8888',
+          data_nascimento: '1995-05-15',
+          cargo: 'publicador_batizado',
+          genero: 'feminino',
+          ativo: true,
+          profile_id: 'mock-profile-2',
+          created_at: new Date().toISOString(),
+          congregacao_id: null,
+          disponibilidade: null,
+          qualificacoes: null,
+          user_id: 'mock-user-id'
+        }
+      ];
+      
+      setEstudantes(mockEstudantes);
+      setIsLoading(false);
+      return;
+    }
+
     if (!user?.id) return;
 
     setIsLoading(true);
     setError(null);
 
     try {
-      // First get the profile to get the correct profile.id
-      const { data: profileData } = await supabase
-        .from('profiles')
-        .select('id')
-        .eq('user_id', user.id)
-        .single();
-
-      if (!profileData) {
-        setError('Perfil não encontrado');
-        setIsLoading(false);
-        return;
-      }
-
-      // Updated query to match the current database schema
-      const { data, error: fetchError } = await supabase
+      // Start with the most compatible query
+      const { data: initialData, error: initialError } = await supabase
         .from('estudantes')
         .select(`
           id,
-<<<<<<< HEAD
-          profile_id,
           genero,
-          qualificacoes,
-          disponibilidade,
-=======
-          genero,
->>>>>>> cb5069e52f66eca9951404975794c3c89748f090
           ativo,
-          created_at,
-<<<<<<< HEAD
-          profiles!inner(nome)
-        `)
-        .eq('profile_id', profileData.id)
-        // Fixed the order syntax for joined tables
-        .order('nome', { foreignTable: 'profiles' });
-=======
-          congregacao_id,
-          profiles!estudantes_profile_id_fkey (
-            nome,
-            email,
-            telefone,
-            data_nascimento,
-            cargo
-          )
+          created_at
         `)
         .eq('ativo', true);
->>>>>>> cb5069e52f66eca9951404975794c3c89748f090
 
-      if (fetchError) {
-        throw new Error(`Erro ao buscar estudantes: ${fetchError.message}`);
+      if (initialError) {
+        throw new Error(`Erro ao buscar estudantes: ${initialError.message}`);
+      }
+
+      // Try to get profile_id if the column exists
+      let estudantesData = initialData || [];
+      let hasProfileIdColumn = true;
+      
+      try {
+        const { data: profileIdTest } = await supabase
+          .from('estudantes')
+          .select('profile_id')
+          .limit(1);
+      } catch (e) {
+        hasProfileIdColumn = false;
+      }
+
+      // If profile_id column exists, fetch it
+      if (hasProfileIdColumn) {
+        const { data: fullData, error: fullError } = await supabase
+          .from('estudantes')
+          .select(`
+            id,
+            genero,
+            ativo,
+            created_at,
+            profile_id
+          `)
+          .eq('ativo', true);
+          
+        if (!fullError) {
+          estudantesData = fullData || [];
+        }
+      }
+
+      // Try to get additional profile information
+      let profileDataMap: Record<string, any> = {};
+      
+      // Only try to fetch profiles if profile_id exists in the data
+      const profileIds = estudantesData
+        .map((item: any) => item.profile_id)
+        .filter((id: any) => id !== undefined && id !== null);
+      
+      if (profileIds.length > 0) {
+        try {
+          const { data: profilesData, error: profilesError } = await supabase
+            .from('profiles')
+            .select('id, nome, email, telefone, data_nascimento, cargo')
+            .in('id', profileIds);
+            
+          if (!profilesError && profilesData) {
+            profileDataMap = profilesData.reduce((acc: any, profile: any) => {
+              acc[profile.id] = profile;
+              return acc;
+            }, {});
+          }
+        } catch (profileError) {
+          console.warn('Could not fetch profile data:', profileError);
+        }
       }
 
       // Transform the data to match the expected interface
-<<<<<<< HEAD
-      const transformedData = data?.map(estudante => ({
-        id: estudante.id,
-        nome: estudante.profiles?.nome || 'Sem nome',
-        genero: estudante.genero,
-        qualificacoes: estudante.qualificacoes,
-        disponibilidade: estudante.disponibilidade,
-        ativo: estudante.ativo,
-        profile_id: estudante.profile_id,
-        created_at: estudante.created_at
-      })) || [];
-
-=======
-      const transformedData = (data || []).map((item: any) => ({
-        id: item.id,
-        nome: item.profiles?.nome || 'Sem nome',
-        genero: item.genero,
-        email: item.profiles?.email || '',
-        telefone: item.profiles?.telefone || '',
-        data_nascimento: item.profiles?.data_nascimento || '',
-        cargo: item.profiles?.cargo || 'estudante_novo',
-        ativo: item.ativo ?? true,
-        user_id: item.user_id,
-        created_at: item.created_at,
-        updated_at: item.created_at // Using created_at as fallback
-      }));
+      const transformedData: EstudanteWithParent[] = estudantesData.map((item: any) => {
+        const profile = profileDataMap[item.profile_id];
+        return {
+          id: item.id,
+          nome: profile?.nome || 'Sem nome',
+          genero: item.genero,
+          email: profile?.email || '',
+          telefone: profile?.telefone || '',
+          data_nascimento: profile?.data_nascimento || '',
+          cargo: profile?.cargo || 'estudante_novo',
+          ativo: item.ativo ?? true,
+          profile_id: item.profile_id || null,
+          created_at: item.created_at,
+          // Add missing required fields with default values
+          congregacao_id: null,
+          disponibilidade: null,
+          qualificacoes: null,
+          user_id: null
+        };
+      });
       
->>>>>>> cb5069e52f66eca9951404975794c3c89748f090
       setEstudantes(transformedData);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Erro desconhecido';
@@ -143,28 +199,35 @@ export function useEstudantes(activeTab?: string) {
   }, [user?.id]);
 
   const createEstudante = useCallback(async (estudanteData: Partial<EstudanteWithParent>) => {
+    // If in mock mode, simulate creating a estudante
+    if (isMockMode) {
+      console.log('🧪 Mock mode: simulating create estudante');
+      if (!user?.id) throw new Error('Usuário não autenticado');
+      
+      const newEstudante: EstudanteWithParent = {
+        id: `mock-estudante-${Date.now()}`,
+        nome: estudanteData.nome || 'Novo Estudante',
+        email: estudanteData.email || '',
+        telefone: estudanteData.telefone || '',
+        data_nascimento: estudanteData.data_nascimento || '',
+        cargo: estudanteData.cargo || 'estudante_novo',
+        genero: estudanteData.genero || 'masculino',
+        ativo: true,
+        profile_id: `mock-profile-${Date.now()}`,
+        created_at: new Date().toISOString(),
+        congregacao_id: null,
+        disponibilidade: null,
+        qualificacoes: null,
+        user_id: user.id
+      };
+      
+      setEstudantes(prev => [...prev, newEstudante]);
+      return newEstudante;
+    }
+
     if (!user?.id) throw new Error('Usuário não autenticado');
 
     try {
-<<<<<<< HEAD
-      // First get the profile to get the correct profile.id
-      const { data: profileData } = await supabase
-        .from('profiles')
-        .select('id')
-        .eq('user_id', user.id)
-        .single();
-
-      if (!profileData) {
-        throw new Error('Perfil não encontrado');
-      }
-
-      // Updated to match the current schema
-      const dataToInsert = {
-        genero: estudanteData.genero || 'masculino',
-        profile_id: profileData.id,
-        ativo: true,
-        ...estudanteData
-=======
       // First create or find the profile
       const profileData = {
         user_id: user.id,
@@ -187,18 +250,12 @@ export function useEstudantes(activeTab?: string) {
       const estudanteRecord = {
         profile_id: profile.id,
         genero: estudanteData.genero || 'masculino',
-        user_id: user.id,
         ativo: true
->>>>>>> cb5069e52f66eca9951404975794c3c89748f090
       };
 
       const { data, error } = await supabase
         .from('estudantes')
-<<<<<<< HEAD
-        .insert([dataToInsert])
-=======
         .insert(estudanteRecord)
->>>>>>> cb5069e52f66eca9951404975794c3c89748f090
         .select()
         .single();
 
@@ -213,6 +270,17 @@ export function useEstudantes(activeTab?: string) {
   }, [user?.id, fetchEstudantes]);
 
   const updateEstudante = useCallback(async ({ id, data }: { id: string; data: Partial<EstudanteWithParent> }) => {
+    // If in mock mode, simulate updating a estudante
+    if (isMockMode) {
+      console.log('🧪 Mock mode: simulating update estudante');
+      setEstudantes(prev => 
+        prev.map(estudante => 
+          estudante.id === id ? { ...estudante, ...data } : estudante
+        )
+      );
+      return { id, ...data };
+    }
+
     try {
       // First get the estudante to find the profile_id
       const { data: estudante, error: fetchError } = await supabase
@@ -265,6 +333,17 @@ export function useEstudantes(activeTab?: string) {
   }, [fetchEstudantes]);
 
   const deleteEstudante = useCallback(async (estudanteId: string) => {
+    // If in mock mode, simulate deleting a estudante
+    if (isMockMode) {
+      console.log('🧪 Mock mode: simulating delete estudante');
+      setEstudantes(prev => 
+        prev.map(estudante => 
+          estudante.id === estudanteId ? { ...estudante, ativo: false } : estudante
+        )
+      );
+      return;
+    }
+
     try {
       const { error } = await supabase
         .from('estudantes')
@@ -285,7 +364,6 @@ export function useEstudantes(activeTab?: string) {
       const matchesSearch = !filters.searchTerm || 
         estudante.nome.toLowerCase().includes(filters.searchTerm.toLowerCase());
       
-      // Remove filters for fields that don't exist in the current schema
       const matchesAtivo = filters.ativo === 'todos' || 
         (filters.ativo === 'ativo' && estudante.ativo) ||
         (filters.ativo === 'inativo' && !estudante.ativo);
@@ -298,27 +376,20 @@ export function useEstudantes(activeTab?: string) {
     const total = estudantes.length;
     const ativos = estudantes.filter(e => e.ativo).length;
     const inativos = total - ativos;
-<<<<<<< HEAD
-=======
     const homens = estudantes.filter(e => e.genero === 'masculino').length;
     const mulheres = estudantes.filter(e => e.genero === 'feminino').length;
     const qualificados = estudantes.filter(e => 
-      ['anciao', 'servo_ministerial', 'publicador_batizado'].includes(e.cargo)
+      ['anciao', 'servo_ministerial', 'publicador_batizado'].includes(e.cargo || '')
     ).length;
->>>>>>> cb5069e52f66eca9951404975794c3c89748f090
 
     return {
       total,
       ativos,
-<<<<<<< HEAD
-      inativos
-=======
       inativos,
       menores: 0, // Not available without birth date calculation
       homens,
       mulheres,
       qualificados
->>>>>>> cb5069e52f66eca9951404975794c3c89748f090
     };
   }, [estudantes]);
 
@@ -344,5 +415,3 @@ export function useEstudantes(activeTab?: string) {
     getStatistics,
   };
 }
-
-// Remove constant definitions that don't match the current schema

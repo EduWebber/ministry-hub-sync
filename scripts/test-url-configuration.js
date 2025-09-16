@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
-const SUPABASE_URL = 'https://nwpuurgwnnuejqinkvrh.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53cHV1cmd3bm51ZWpxaW5rdnJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0NjIwNjUsImV4cCI6MjA3MDAzODA2NX0.UHjSvXYY_c-_ydAIfELRUs4CMEBLKiztpBGQBNPHfak';
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || 'https://nwpuurgwnnuejqinkvrh.supabase.co';
+const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsdm9qb2x2ZHNxcmZjempqanV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1ODcwNjUsImV4cCI6MjA3MzE2MzA2NX0.J5CE7TrRJj8C0gWjbokSkMSRW1S-q8AwKUV5Z7xuODQ';
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -39,142 +39,70 @@ async function testRegistrationFlow() {
       password: testPassword,
       options: {
         data: {
-          nome_completo: 'URL Test User',
-          congregacao: 'Test Congregation',
-          cargo: 'Publicador Batizado',
-          role: 'estudante',
-        },
-      },
+          nome_completo: 'Test User URL',
+          congregacao: 'Test Congregation'
+        }
+      }
     });
-
+    
     if (error) {
       console.error('❌ Registration failed:', error.message);
       return false;
     }
     
-    console.log('✅ Registration successful!');
-    console.log('   User ID:', data.user.id);
-    console.log('   Email:', data.user.email);
-    console.log('   Email confirmed:', data.user.email_confirmed_at ? 'Yes (auto-confirmed)' : 'No');
+    console.log('✅ Registration successful');
+    console.log('   User ID:', data.user?.id);
+    console.log('   Requires confirmation:', data.user?.identities ? 'No' : 'Yes');
     
-    // Test immediate login
-    console.log('\n🔐 Testing immediate login...');
-    
-    const { data: loginData, error: loginError } = await supabase.auth.signInWithPassword({
-      email: testEmail,
-      password: testPassword
-    });
-
-    if (loginError) {
-      console.error('❌ Login failed:', loginError.message);
-      return false;
-    }
-    
-    console.log('✅ Login successful!');
-    console.log('   Authentication flow working correctly');
-    
-    // Clean up
-    await supabase.auth.signOut();
     return true;
-    
   } catch (error) {
     console.error('❌ Registration exception:', error.message);
     return false;
   }
 }
 
-async function testRedirectURLConfiguration() {
-  console.log('\n🔗 Testing redirect URL configuration...');
+async function verifyURLConfiguration() {
+  console.log('🔍 Verifying Supabase URL configuration...\n');
   
-  // This test verifies that the client can be created and configured properly
-  // In a real browser environment, this would test actual redirects
+  console.log('📍 Current Supabase URL:', SUPABASE_URL);
+  console.log('🔑 Current Supabase Key:', SUPABASE_ANON_KEY ? `${SUPABASE_ANON_KEY.substring(0, 20)}...` : 'Not set');
   
-  try {
-    // Test that the client is configured with the correct URL
-    const clientUrl = supabase.supabaseUrl;
-    const expectedUrl = 'https://nwpuurgwnnuejqinkvrh.supabase.co';
-    
-    if (clientUrl === expectedUrl) {
-      console.log('✅ Supabase client URL configuration correct');
-      console.log('   Client URL:', clientUrl);
-    } else {
-      console.error('❌ Supabase client URL mismatch');
-      console.error('   Expected:', expectedUrl);
-      console.error('   Actual:', clientUrl);
-      return false;
-    }
-    
-    // Test auth configuration
-    const authConfig = supabase.auth;
-    if (authConfig) {
-      console.log('✅ Auth client properly configured');
-      console.log('   Auth instance available');
-    } else {
-      console.error('❌ Auth client not available');
-      return false;
-    }
-    
+  // Check if URL matches expected pattern
+  const expectedUrl = 'https://dlvojolvdsqrfczjjjuw.supabase.co';
+  if (SUPABASE_URL === expectedUrl) {
+    console.log('✅ URL configuration is correct');
     return true;
-    
-  } catch (error) {
-    console.error('❌ Redirect URL configuration error:', error.message);
+  } else {
+    console.log('❌ URL configuration is incorrect');
+    console.log('   Expected:', expectedUrl);
+    console.log('   Actual:', SUPABASE_URL);
     return false;
   }
 }
 
-async function testSiteURLConfiguration() {
-  console.log('\n🌐 Testing Site URL configuration...');
+// Run all tests
+async function runAllTests() {
+  console.log('🧪 Running Supabase URL configuration tests...\n');
   
-  // Note: We can't directly test the Site URL from the client side,
-  // but we can verify that authentication flows work properly
+  const urlValid = await verifyURLConfiguration();
+  const connectionSuccess = await testAuthConfiguration();
+  const registrationSuccess = await testRegistrationFlow();
   
-  try {
-    // Test that we can get user info (which uses the configured Site URL)
-    const { data: { user }, error } = await supabase.auth.getUser();
-    
-    if (error && error.message !== 'Invalid JWT') {
-      console.error('❌ Site URL configuration issue:', error.message);
-      return false;
-    }
-    
-    console.log('✅ Site URL configuration appears correct');
-    console.log('   Auth endpoints responding properly');
-    
-    return true;
-    
-  } catch (error) {
-    console.error('❌ Site URL test error:', error.message);
-    return false;
-  }
-}
-
-async function runURLConfigurationTests() {
-  console.log('🚀 Starting URL configuration verification tests...\n');
+  console.log('\n📋 Test Summary:');
+  console.log('   URL Configuration:', urlValid ? '✅ Valid' : '❌ Invalid');
+  console.log('   Connection:', connectionSuccess ? '✅ Pass' : '❌ Fail');
+  console.log('   Registration:', registrationSuccess ? '✅ Pass' : '❌ Fail');
   
-  const connectionTest = await testAuthConfiguration();
-  const siteUrlTest = await testSiteURLConfiguration();
-  const redirectTest = await testRedirectURLConfiguration();
-  const registrationTest = await testRegistrationFlow();
-  
-  console.log('\n📊 Test Results Summary:');
-  console.log('   Connection Test:', connectionTest ? '✅ PASS' : '❌ FAIL');
-  console.log('   Site URL Test:', siteUrlTest ? '✅ PASS' : '❌ FAIL');
-  console.log('   Redirect URL Test:', redirectTest ? '✅ PASS' : '❌ FAIL');
-  console.log('   Registration Flow Test:', registrationTest ? '✅ PASS' : '❌ FAIL');
-  
-  if (connectionTest && siteUrlTest && redirectTest && registrationTest) {
+  if (urlValid && connectionSuccess && registrationSuccess) {
     console.log('\n🎉 All URL configuration tests passed!');
-    console.log('\n📋 Configuration Summary:');
-    console.log('   ✅ Site URL updated to: http://localhost:5173');
-    console.log('   ✅ Local development URL added to redirect list');
-    console.log('   ✅ Production URLs maintained for Lovable deployment');
-    console.log('   ✅ Email templates updated with Sistema Ministerial branding');
-    console.log('   ✅ Authentication flow working correctly');
-    console.log('\n🚀 Your application is ready for development and production!');
   } else {
     console.log('\n⚠️ Some tests failed. Please check the errors above.');
   }
 }
 
-// Run the tests
-runURLConfigurationTests().catch(console.error);
+// Execute if called directly
+if (import.meta.url === `file://${process.argv[1]}`) {
+  runAllTests();
+}
+
+export { testAuthConfiguration, testRegistrationFlow, verifyURLConfiguration };

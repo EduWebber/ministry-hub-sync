@@ -1,9 +1,61 @@
 import { createClient } from '@supabase/supabase-js';
 
-const SUPABASE_URL = 'https://nwpuurgwnnuejqinkvrh.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53cHV1cmd3bm51ZWpxaW5rdnJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0NjIwNjUsImV4cCI6MjA3MDAzODA2NX0.UHjSvXYY_c-_ydAIfELRUs4CMEBLKiztpBGQBNPHfak';
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || 'https://nwpuurgwnnuejqinkvrh.supabase.co';
+const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsdm9qb2x2ZHNxcmZjempqanV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1ODcwNjUsImV4cCI6MjA3MzE2MzA2NX0.J5CE7TrRJj8C0gWjbokSkMSRW1S-q8AwKUV5Z7xuODQ';
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+async function testSupabaseURLConfig() {
+  console.log('🌐 Testing Supabase URL configuration...\n');
+  
+  try {
+    // Verify URL configuration
+    console.log('🔍 Verifying URL configuration...');
+    const expectedUrl = 'https://dlvojolvdsqrfczjjjuw.supabase.co';
+    
+    if (SUPABASE_URL === expectedUrl) {
+      console.log('✅ URL configuration is correct');
+    } else {
+      console.log('❌ URL configuration is incorrect');
+      console.log('   Expected:', expectedUrl);
+      console.log('   Actual:', SUPABASE_URL);
+      return false;
+    }
+    
+    // Test basic connectivity
+    console.log('\n📡 Testing connectivity...');
+    const { data, error } = await supabase.from('profiles').select('count').limit(1);
+    
+    if (error) {
+      console.error('❌ Connectivity test failed:', error.message);
+      return false;
+    }
+    
+    console.log('✅ Connectivity test passed');
+    
+    // Test authentication endpoint
+    console.log('\n🔐 Testing authentication endpoint...');
+    try {
+      const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+      
+      if (sessionError) {
+        console.log('⚠️ Auth endpoint accessible but session check failed:', sessionError.message);
+      } else {
+        console.log('✅ Authentication endpoint working correctly');
+      }
+    } catch (authError) {
+      console.error('❌ Authentication endpoint test failed:', authError.message);
+      return false;
+    }
+    
+    console.log('\n🎉 All URL configuration tests passed!');
+    return true;
+    
+  } catch (error) {
+    console.error('❌ Supabase URL configuration test failed:', error.message);
+    return false;
+  }
+}
 
 async function testSupabaseURLConfiguration() {
   console.log('🔧 Testing Supabase URL Configuration for Sistema Ministerial\n');
@@ -12,7 +64,7 @@ async function testSupabaseURLConfiguration() {
     // Test 1: Verify client configuration
     console.log('1️⃣ Testing Supabase client configuration...');
     const clientUrl = supabase.supabaseUrl;
-    const expectedUrl = 'https://nwpuurgwnnuejqinkvrh.supabase.co';
+    const expectedUrl = 'https://dlvojolvdsqrfczjjjuw.supabase.co';
     
     if (clientUrl === expectedUrl) {
       console.log('✅ Supabase client URL correct:', clientUrl);

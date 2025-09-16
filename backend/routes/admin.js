@@ -481,8 +481,6 @@ router.get('/programmings', requireAuth, async (req, res) => {
   }
 });
 
-<<<<<<< Current (Your changes)
-=======
 // =====================================================
 // ROTAS PARA BUCKET PORTUGUESMEET - SISTEMA MINISTERIAL
 // =====================================================
@@ -795,5 +793,4 @@ function mapGenero(gender) {
   return genderMap[gender?.toLowerCase()] || 'ambos';
 }
 
->>>>>>> Incoming (Background Agent changes)
 module.exports = router;

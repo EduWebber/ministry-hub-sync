@@ -76,7 +76,7 @@ if (forceLogoutExists) {
     },
     {
       name: 'Clears Supabase-specific keys',
-      check: forceLogoutContent.includes('supabase.auth.token') && forceLogoutContent.includes('sb-nwpuurgwnnuejqinkvrh-auth-token'),
+      check: forceLogoutContent.includes('supabase.auth.token') && forceLogoutContent.includes('sb-dlvojolvdsqrfczjjjuw-auth-token'),
       required: true
     },
     {

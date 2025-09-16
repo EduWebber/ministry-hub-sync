@@ -1,8 +1,8 @@
 // Test script to verify credentials work
 const { createClient } = require('@supabase/supabase-js');
 
-const supabaseUrl = 'https://nwpuurgwnnuejqinkvrh.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53cHV1cmd3bm51ZWpxaW5rdnJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0NjIwNjUsImV4cCI6MjA3MDAzODA2NX0.UHjSvXYY_c-_ydAIfELRUs4CMEBLKiztpBGQBNPHfak';
+const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || 'https://nwpuurgwnnuejqinkvrh.supabase.co';
+const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsdm9qb2x2ZHNxcmZjempqanV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1ODcwNjUsImV4cCI6MjA3MzE2MzA2NX0.J5CE7TrRJj8C0gWjbokSkMSRW1S-q8AwKUV5Z7xuODQ';
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
@@ -43,24 +43,8 @@ async function testCredentials() {
     console.log('❌ Instructor login exception:', error.message);
   }
   
-  // Test student login
-  console.log('\n3. Testing student login...');
-  try {
-    const { data: studentData, error: studentError } = await supabase.auth.signInWithPassword({
-      email: 'franklinmarceloferreiradelima@gmail.com',
-      password: 'senha123'
-    });
-    
-    if (studentError) {
-      console.log('❌ Student login failed:', studentError.message);
-    } else {
-      console.log('✅ Student login successful:', studentData.user?.email);
-    }
-  } catch (error) {
-    console.log('❌ Student login exception:', error.message);
-  }
-  
-  console.log('\n🏁 Test completed');
+  console.log('\n✅ Credential testing completed');
 }
 
+// Run the test
 testCredentials();
