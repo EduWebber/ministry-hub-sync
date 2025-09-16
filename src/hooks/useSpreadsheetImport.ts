@@ -107,94 +107,71 @@ export const useSpreadsheetImport = () => {
       for (let batchIndex = 0; batchIndex < batches.length; batchIndex++) {
         const batch = batches[batchIndex];
         
-        // Process each student individually - create profile first, then estudante
+        // Process each student in the batch
         for (const result of batch) {
           try {
-            // Check if profile already exists with this name and email
+            // Check for existing profile first
             const { data: existingProfile } = await supabase
               .from('profiles')
               .select('id')
               .eq('nome', result.data!.nome)
-              .eq('email', result.data!.email || '')
-              .single();
-
-            let profileId: string;
+              .maybeSingle();
 
             if (existingProfile) {
-              // Use existing profile
-              profileId = existingProfile.id;
-            } else {
-              // Criar perfil sem user_id para estudantes importados
-              const profileData = {
-                nome: result.data!.nome,
-                email: result.data!.email || '',
-                telefone: result.data!.telefone || null,
-                cargo: result.data!.cargo,
-                data_nascimento: result.data!.data_nascimento || null
-                // user_id será NULL para estudantes importados
-              };
-            
-              const { data: profileResult, error: profileError } = await supabase
-                .from('profiles')
-                .insert(profileData)
-                .select()
-                .single();
-              
-              if (profileError) {
-                console.error('Profile creation error:', profileError);
-                errors.push({
-                  ...result,
-                  errors: [`Erro ao criar perfil: ${profileError.message}`]
-                });
-                continue;
-              }
-              
-              profileId = profileResult.id;
+              errors.push({
+                ...result,
+                errors: [`Estudante já existe: ${result.data!.nome}`]
+              });
+              continue;
             }
-          
-          // Check if estudante already exists for this profile
-          const { data: existingEstudante } = await supabase
-            .from('estudantes')
-            .select('id')
-            .eq('profile_id', profileId)
-            .single();
 
-          if (existingEstudante) {
-            // Student already exists, skip
-            errors.push({
-              ...result,
-              errors: [`Estudante já existe no sistema`]
-            });
-            continue;
-          }
-          
-          // Create estudante record that references the profile
-          // Ensure we only include fields that exist in the estudantes table
-          const estudanteData = {
-            profile_id: profileId,
-            genero: result.data!.genero,
-            ativo: result.data!.ativo
-          };
-          
-          const { error: estudanteError } = await supabase
-            .from('estudantes')
-            .insert(estudanteData);
-          
-          if (estudanteError) {
-            console.error('Estudante creation error:', estudanteError);
-            errors.push({
-              ...result,
-              errors: [`Erro ao criar estudante: ${estudanteError.message}`]
-            });
-          } else {
-            imported++;
-          }
-            
+            // First create profile (without user_id for imported students)
+            const profileData = {
+              nome: result.data!.nome,
+              email: result.data!.email || `${result.data!.nome.toLowerCase().replace(/\s+/g, '.')}@temp.local`,
+              role: 'estudante' as const
+            };
+
+            const { data: profile, error: profileError } = await supabase
+              .from('profiles')
+              .insert(profileData)
+              .select()
+              .single();
+
+            if (profileError) {
+              console.error('Profile creation error:', profileError);
+              errors.push({
+                ...result,
+                errors: [`Erro ao criar perfil: ${profileError.message}`]
+              });
+              continue;
+            }
+
+            // Then create estudante record
+            const estudanteData = {
+              profile_id: profile.id,
+              genero: result.data!.genero,
+              ativo: result.data!.ativo ?? true
+            };
+
+            const { error: estudanteError } = await supabase
+              .from('estudantes')
+              .insert(estudanteData);
+
+            if (estudanteError) {
+              console.error('Estudante creation error:', estudanteError);
+              errors.push({
+                ...result,
+                errors: [`Erro ao criar estudante: ${estudanteError.message}`]
+              });
+            } else {
+              imported++;
+            }
           } catch (error) {
-            console.error('Individual student import error:', error);
+            console.error('Unexpected error:', error);
             errors.push({
               ...result,
-              errors: [`Erro na importação: ${error instanceof Error ? error.message : 'Erro desconhecido'}`]
+              errors: [`Erro inesperado: ${error instanceof Error ? error.message : 'Erro desconhecido'}`]
             });
           }
         }
@@ -265,11 +242,16 @@ export const useSpreadsheetImport = () => {
     if (!user) return;
 
     try {
-      // Get all students with their profiles
+      // Get all students with profiles for better matching
       const { data: allStudents } = await supabase
         .from('estudantes')
-        .select('id, profile_id, profiles(nome, email, telefone)')
-        .eq('ativo', true);
+        .select(`
+          id,
+          profiles!inner (
+            nome,
+            email
+          )
+        `);
 
       if (!allStudents) return;
 
@@ -277,24 +259,20 @@ export const useSpreadsheetImport = () => {
       const studentMaps = {
         byName: new Map<string, string>(),
         byEmail: new Map<string, string>(),
-        byPhone: new Map<string, string>(),
       };
 
-      allStudents.forEach(student => {
+      allStudents.forEach((student: any) => {
+        const profile = student.profiles;
+        if (!profile) return;
+        
         // Name mapping
-        if (student.profiles?.nome) {
-          studentMaps.byName.set(student.profiles.nome.toLowerCase().trim(), student.id);
+        if (profile.nome) {
+          studentMaps.byName.set(profile.nome.toLowerCase().trim(), student.id);
         }
 
         // Email mapping
-        if (student.profiles?.email) {
-          studentMaps.byEmail.set(student.profiles.email.toLowerCase().trim(), student.id);
-        }
-
-        // Phone mapping
-        if (student.profiles?.telefone) {
-          const normalizedPhone = normalizePhone(student.profiles.telefone);
-          studentMaps.byPhone.set(normalizedPhone, student.id);
+        if (profile.email) {
+          studentMaps.byEmail.set(profile.email.toLowerCase().trim(), student.id);
         }
       });
 
@@ -332,31 +310,17 @@ export const useSpreadsheetImport = () => {
           const emailDomain = student.email.split('@')[1];
           if (emailDomain) {
             for (const [email, id] of studentMaps.byEmail) {
-              if (email.includes(emailDomain) &&
-                  calculateNameSimilarity(
-                    allStudents.find(s => s.id === id)?.profiles?.nome || '',
-                    student.parentName
-                  ) > 0.7) {
-                parentId = id;
-                break;
+              if (email.includes(emailDomain)) {
+                const matchingStudent = allStudents.find((s: any) => s.id === id);
+                if (matchingStudent && matchingStudent.profiles &&
+                    calculateNameSimilarity(
+                      matchingStudent.profiles.nome || '',
+                      student.parentName
+                    ) > 0.7) {
+                  parentId = id;
+                  break;
+                }
               }
-            }
-          }
-        }
-
-        // Strategy 4: Phone-based matching
-        if (!parentId && student.telefone) {
-          const normalizedPhone = normalizePhone(student.telefone);
-          // Look for similar phone numbers (same area code)
-          const areaCode = normalizedPhone.substring(0, 4);
-          for (const [phone, id] of studentMaps.byPhone) {
-            if (phone.startsWith(areaCode) &&
-                calculateNameSimilarity(
-                  allStudents.find(s => s.id === id)?.profiles?.nome || '',
-                  student.parentName
-                ) > 0.7) {
-              parentId = id;
-              break;
             }
           }
         }
@@ -385,12 +349,50 @@ export const useSpreadsheetImport = () => {
   };
 
   /**
-   * Enhanced duplicate detection using database function
+   * Enhanced duplicate detection using profiles table
    */
   const checkDuplicates = async (students: ProcessedStudentData[]): Promise<string[]> => {
     if (!user) return [];
-    // Skip duplicate checking for now as the RPC function doesn't exist
-    return [];
+
+    try {
+      const duplicates: string[] = [];
+
+      // Get existing profiles for this user
+      const { data: existingProfiles } = await supabase
+        .from('profiles')
+        .select('nome, email')
+        .eq('role', 'estudante');
+
+      if (!existingProfiles) return [];
+
+      // Check each student against existing profiles
+      for (const student of students) {
+        const isDuplicate = existingProfiles.some(existing => {
+          // Check by name (exact match)
+          if (existing.nome && student.nome && 
+              existing.nome.toLowerCase().trim() === student.nome.toLowerCase().trim()) {
+            return true;
+          }
+          
+          // Check by email if both have email
+          if (existing.email && student.email && 
+              existing.email.toLowerCase().trim() === student.email.toLowerCase().trim()) {
+            return true;
+          }
+          
+          return false;
+        });
+
+        if (isDuplicate) {
+          duplicates.push(student.nome);
+        }
+      }
+
+      return duplicates;
+    } catch (error) {
+      console.error('Error checking duplicates:', error);
+      return [];
+    }
   };
 
   /**

@@ -1,42 +1,36 @@
 import { Cargo, Genero } from "./estudantes";
 
-// Raw data from Excel spreadsheet
+// Raw data from Excel spreadsheet - flexible interface
 export interface SpreadsheetRow {
-  "id"?: string;
-  "user_id"?: string;
-  "nome": string;
-  "familia": string;
-  "idade": number;
-  "genero": string;
-  "email"?: string;
-  "telefone"?: string;
-  "data_batismo"?: string;
-  "cargo": string;
-  "id_pai_mae"?: string;
-  "ativo": string;
-  "observacoes"?: string;
-  "created_at"?: string;
-  "updated_at"?: string;
-  "estado_civil"?: string;
-  "papel_familiar"?: string;
-  "id_pai"?: string;
-  "id_mae"?: string;
-  "id_conjuge"?: string;
-  "coabitacao"?: string;
-  "menor"?: string;
-  "responsavel_primario"?: string;
-  "responsavel_secundario"?: string;
-  "chairman"?: string;
-  "pray"?: string;
-  "tresures"?: string;
-  "gems"?: string;
-  "reading"?: string;
-  "starting"?: string;
-  "following"?: string;
-  "making"?: string;
-  "explaining"?: string;
-  "talk"?: string;
+  [key: string]: any;
+  // Common field variations
+  "ID Estudante"?: string | number;
+  "Nome Completo"?: string;
+  "nome"?: string;
+  "Idade"?: number;
+  "idade"?: number;
+  "Gênero (M/F)"?: string;
+  "genero"?: string;
+  "Data de Nascimento"?: string;
   "data_nascimento"?: string;
+  "Parente Responsável"?: string;
+  "parente_responsavel"?: string;
+  "Parentesco"?: string;
+  "parentesco"?: string;
+  "Família / Agrupamento"?: string;
+  "familia"?: string;
+  "Data de Batismo"?: string;
+  "data_batismo"?: string;
+  "Cargo Congregacional"?: string;
+  "cargo"?: string;
+  "Telefone"?: string;
+  "telefone"?: string;
+  "E-mail"?: string;
+  "email"?: string;
+  "Observações"?: string;
+  "observacoes"?: string;
+  "Status (Ativo/Inativo)"?: string;
+  "ativo"?: string | boolean;
 }
 
 // Processed data ready for database insertion
@@ -126,10 +120,10 @@ export const STATUS_MAPPING: Record<string, boolean> = {
   'Inativo': false,
   'ativo': true,
   'inativo': false,
-  'true': true,
-  'false': false,
   'VERDADEIRO': true,
   'FALSO': false,
+  'true': true,
+  'false': false,
   '1': true,
   '0': false
 };

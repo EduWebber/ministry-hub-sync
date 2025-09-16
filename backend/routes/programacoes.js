@@ -1,12 +1,75 @@
 const express = require('express');
 const router = express.Router();
+<<<<<<< HEAD
 const { supabase } = require('../config/supabase');
+=======
+const MWBParser = require('../services/mwbParser');
+>>>>>>> cb5069e52f66eca9951404975794c3c89748f090
 
 // =====================================================
 // API PARA INSTRUTORES - CONSUMO DE PROGRAMAS
 // =====================================================
 
+<<<<<<< HEAD
 // GET /api/programacoes - Listar programações publicadas para instrutores
+=======
+// Initialize MWB Parser
+const mwbParser = new MWBParser();
+
+// GET /api/programacoes/mock - Mock week data using MWB Parser
+router.get('/mock', async (req, res) => {
+  try {
+    const { semana, mes, ano } = req.query;
+    
+    if (semana) {
+      // Get specific week program
+      const program = mwbParser.getProgramForWeek(semana);
+      if (program) {
+        res.json({
+          semana: program.semana,
+          data_inicio: program.data_inicio,
+          partes: program.partes,
+          pdf_source: program.pdf_source
+        });
+      } else {
+        res.status(404).json({ success: false, error: 'Semana não encontrada' });
+      }
+    } else if (mes && ano) {
+      // Get all programs for month
+      const programs = mwbParser.getProgramsForMonth(ano, mes);
+      res.json({ programs });
+    } else {
+      // Default: current week
+      const program = mwbParser.getProgramForWeek('2024-12-02');
+      res.json({
+        semana: program.semana,
+        data_inicio: program.data_inicio,
+        partes: program.partes,
+        pdf_source: program.pdf_source
+      });
+    }
+  } catch (error) {
+    console.error('Error in /mock route:', error);
+    res.status(500).json({ success: false, error: 'Erro interno do servidor' });
+  }
+});
+
+// GET /api/programacoes/pdfs - List available PDFs
+router.get('/pdfs', async (req, res) => {
+  try {
+    const availablePDFs = mwbParser.getAvailablePDFs();
+    res.json({
+      success: true,
+      pdfs: availablePDFs,
+      total: availablePDFs.portuguese.length + availablePDFs.english.length
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: 'Erro interno do servidor' });
+  }
+});
+
+// GET /api/programacoes - List programacoes
+>>>>>>> cb5069e52f66eca9951404975794c3c89748f090
 router.get('/', async (req, res) => {
   try {
     const { congregacao_id, semana, periodo, status = 'published' } = req.query;

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,37 +11,32 @@ import { Separator } from "@/components/ui/separator";
 import { CalendarIcon, Save, X, User, Users, Phone, Mail, Calendar, Settings } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 import {
-  EstudanteFormData,
   EstudanteWithParent,
   Cargo,
   Genero,
   CARGO_LABELS,
-  GENERO_LABELS,
-  validateEstudante,
   getQualificacoes,
-  isMinor,
 } from "@/types/estudantes";
 
 interface EstudanteFormProps {
   estudante?: EstudanteWithParent;
   potentialParents: EstudanteWithParent[];
-  onSubmit: (data: EstudanteFormData) => Promise<boolean>;
+  onSubmit: (data: any) => Promise<boolean>;
   onCancel: () => void;
   loading?: boolean;
 }
 
-const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loading = false }: EstudanteFormProps) => {
+const EstudanteForm = ({ estudante, onSubmit, onCancel, loading = false }: EstudanteFormProps) => {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState<EstudanteFormData>({
+  const [formData, setFormData] = useState({
     nome: "",
-    idade: 18,
-    genero: "masculino",
+    data_nascimento: "",
+    genero: "masculino" as Genero,
     email: "",
     telefone: "",
-    data_batismo: "",
-    cargo: "publicador_batizado",
-    id_pai_mae: "",
+    cargo: "publicador_batizado" as Cargo,
     ativo: true,
+<<<<<<< HEAD
     observacoes: "",
     familia: "",
     data_nascimento: "",
@@ -64,6 +59,8 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
     making: false,
     explaining: false,
     talk: false,
+=======
+>>>>>>> cb5069e52f66eca9951404975794c3c89748f090
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -74,14 +71,13 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
     if (estudante) {
       setFormData({
         nome: estudante.nome,
-        idade: estudante.idade || 18,
+        data_nascimento: estudante.data_nascimento || "",
         genero: estudante.genero,
         email: estudante.email || "",
         telefone: estudante.telefone || "",
-        data_batismo: estudante.data_batismo || "",
         cargo: estudante.cargo,
-        id_pai_mae: estudante.id_pai_mae || "",
         ativo: estudante.ativo ?? true,
+<<<<<<< HEAD
         observacoes: estudante.observacoes || "",
         familia: estudante.familia || "",
         data_nascimento: estudante.data_nascimento || "",
@@ -104,17 +100,33 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
         making: estudante.making ?? false,
         explaining: estudante.explaining ?? false,
         talk: estudante.talk ?? false,
+=======
+>>>>>>> cb5069e52f66eca9951404975794c3c89748f090
       });
     }
   }, [estudante]);
 
-  // Update qualifications when cargo, genero, or idade changes
-  useEffect(() => {
-    const newQualificacoes = getQualificacoes(formData.cargo, formData.genero, formData.idade);
-    setQualificacoes(newQualificacoes);
-  }, [formData.cargo, formData.genero, formData.idade]);
+  // Calculate age from birth date
+  const calculateAge = (birthDate: string): number => {
+    if (!birthDate) return 18;
+    const today = new Date();
+    const birth = new Date(birthDate);
+    let age = today.getFullYear() - birth.getFullYear();
+    const monthDiff = today.getMonth() - birth.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+      age--;
+    }
+    return age;
+  };
 
-  const handleInputChange = (field: keyof EstudanteFormData, value: string | number | boolean | Date | null) => {
+  // Update qualifications when cargo, genero, or data_nascimento changes
+  useEffect(() => {
+    const idade = calculateAge(formData.data_nascimento);
+    const newQualificacoes = getQualificacoes(formData.cargo, formData.genero, idade);
+    setQualificacoes(newQualificacoes);
+  }, [formData.cargo, formData.genero, formData.data_nascimento]);
+
+  const handleInputChange = (field: string, value: string | number | boolean | Date | null) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     
     // Clear error for this field
@@ -126,8 +138,15 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate form
-    const validationErrors = validateEstudante(formData);
+    // Basic validation
+    const validationErrors: Record<string, string> = {};
+    if (!formData.nome.trim()) {
+      validationErrors.nome = 'Nome é obrigatório';
+    }
+    if (!formData.genero) {
+      validationErrors.genero = 'Gênero é obrigatório';
+    }
+    
     setErrors(validationErrors);
     
     if (Object.keys(validationErrors).length > 0) {
@@ -141,14 +160,13 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
       if (!estudante) {
         setFormData({
           nome: "",
-          idade: 18,
+          data_nascimento: "",
           genero: "masculino",
           email: "",
           telefone: "",
-          data_batismo: "",
           cargo: "publicador_batizado",
-          id_pai_mae: "",
           ativo: true,
+<<<<<<< HEAD
           observacoes: "",
           familia: "",
           data_nascimento: "",
@@ -171,13 +189,16 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
           making: false,
           explaining: false,
           talk: false,
+=======
+>>>>>>> cb5069e52f66eca9951404975794c3c89748f090
         });
       }
     }
   };
 
   const isEditing = !!estudante;
-  const showParentField = isMinor(formData.idade);
+  const idade = calculateAge(formData.data_nascimento);
+  // const showParentField = idade < 18; // Not used in current structure
 
   return (
     <Card className="w-full max-w-2xl mx-auto">
@@ -694,7 +715,119 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
                 className="resize-none"
               />
             </div>
+<<<<<<< HEAD
           </div>
+=======
+
+            <div className="space-y-2">
+              <Label htmlFor="data_nascimento">{t('common.birthDate')}</Label>
+              <Input
+                id="data_nascimento"
+                type="date"
+                value={formData.data_nascimento}
+                onChange={(e) => handleInputChange("data_nascimento", e.target.value)}
+                className={errors.data_nascimento ? "border-red-500" : ""}
+              />
+              {errors.data_nascimento && <p className="text-sm text-red-500">{errors.data_nascimento}</p>}
+              {formData.data_nascimento && (
+                <p className="text-sm text-gray-500">
+                  Idade: {idade} anos
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Gender and Role */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="genero">{t('common.gender')} *</Label>
+              <Select value={formData.genero} onValueChange={(value: Genero) => handleInputChange("genero", value)}>
+                <SelectTrigger className={errors.genero ? "border-red-500" : ""}>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="masculino">{t('students.genders.male')}</SelectItem>
+                  <SelectItem value="feminino">{t('students.genders.female')}</SelectItem>
+                </SelectContent>
+              </Select>
+              {errors.genero && <p className="text-sm text-red-500">{errors.genero}</p>}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="cargo">{t('common.role')} *</Label>
+              <Select value={formData.cargo} onValueChange={(value: Cargo) => handleInputChange("cargo", value)}>
+                <SelectTrigger className={errors.cargo ? "border-red-500" : ""}>
+                  <SelectValue placeholder={t('auth.selectRole')} />
+                </SelectTrigger>
+                <SelectContent>
+                  {Object.entries(CARGO_LABELS).map(([value]) => (
+                    <SelectItem key={value} value={value}>
+                      {t(`terms.${value}`)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.cargo && <p className="text-sm text-red-500">{errors.cargo}</p>}
+            </div>
+          </div>
+
+          {/* Contact Information */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="email">{t('common.email')}</Label>
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => handleInputChange("email", e.target.value)}
+                placeholder={t('initialSetup.fields.emailPlaceholder')}
+                className={errors.email ? "border-red-500" : ""}
+              />
+              {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="telefone">{t('common.phone')}</Label>
+              <Input
+                id="telefone"
+                value={formData.telefone}
+                onChange={(e) => handleInputChange("telefone", e.target.value)}
+                placeholder={t('(11) 99999-9999')}
+                className={errors.telefone ? "border-red-500" : ""}
+              />
+              {errors.telefone && <p className="text-sm text-red-500">{errors.telefone}</p>}
+            </div>
+          </div>
+
+
+
+          {/* Active Status */}
+          <div className="flex items-center space-x-2">
+            <Switch
+              id="ativo"
+              checked={formData.ativo}
+              onCheckedChange={(checked) => handleInputChange("ativo", checked)}
+            />
+            <Label htmlFor="ativo">{t('common.active')}</Label>
+          </div>
+
+          {/* Qualifications Display */}
+          <div className="space-y-2">
+            <Label>{t('students.qualifications')}</Label>
+            <div className="flex flex-wrap gap-2">
+              {qualificacoes.map((qual) => (
+                <Badge key={qual} variant="outline">
+                  {qual}
+                </Badge>
+              ))}
+            </div>
+            <p className="text-sm text-gray-500">
+              {t('forms.pleaseWait')}
+            </p>
+          </div>
+
+
+>>>>>>> cb5069e52f66eca9951404975794c3c89748f090
 
           {/* Form Actions */}
           <div className="flex gap-4 pt-4">

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mock Login - Sistema Ministerial</title>
+</head>
+<body>
+    <h1>🚀 Mock Login - Bypass Authentication</h1>
+    <p>Simulando login para testar designações...</p>
+    
+    <script>
+        // Simular usuário logado
+        const mockUser = {
+            id: '40d6c45c-b9c2-4585-a405-88cb43907849',
+            email: 'frankwebber33@hotmail.com',
+            user_metadata: {
+                full_name: 'Frank Lima'
+            }
+        };
+
+        const mockProfile = {
+            id: 'f2c84343-2343-4309-8561-a5e0acb529dd',
+            user_id: '40d6c45c-b9c2-4585-a405-88cb43907849',
+            nome: 'Frank Lima',
+            nome_completo: 'Frank Lima',
+            email: 'frankwebber33@hotmail.com',
+            role: 'instrutor',
+            cargo: 'servo_ministerial',
+            congregacao_id: '550e8400-e29b-41d4-a716-446655440000'
+        };
+
+        // Salvar no localStorage
+        localStorage.setItem('supabase.auth.token', JSON.stringify({
+            access_token: 'mock-token',
+            refresh_token: 'mock-refresh',
+            expires_at: Date.now() + 3600000,
+            user: mockUser
+        }));
+
+        localStorage.setItem('user_profile', JSON.stringify(mockProfile));
+        localStorage.setItem('onboarding_completed', '1');
+
+        // Simular session no sessionStorage também
+        sessionStorage.setItem('supabase.auth.token', JSON.stringify({
+            access_token: 'mock-token',
+            refresh_token: 'mock-refresh',
+            expires_at: Date.now() + 3600000,
+            user: mockUser
+        }));
+
+        alert('✅ Mock login configurado! Redirecionando para designações...');
+        
+        // Redirecionar após 2 segundos
+        setTimeout(() => {
+            window.location.href = 'http://localhost:8080/designacoes';
+        }, 2000);
+    </script>
+</body>
+</html>

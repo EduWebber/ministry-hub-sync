@@ -256,9 +256,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (!user) {
         return { data: null, error: { message: 'No user logged in' } };
       }
+<<<<<<< HEAD
       
       // First, try to update the existing profile
       let { data, error } = await supabase
+=======
+      console.log('🔄 Updating profile for user_id:', user.id);
+      const { data, error } = await supabase
+>>>>>>> cb5069e52f66eca9951404975794c3c89748f090
         .from('profiles')
         .update({
           ...updates,
@@ -266,7 +271,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         } as any)
         .eq('user_id', user.id)
         .select('*')
-        .single();
+        .maybeSingle();
 
       // If update failed because profile doesn't exist, create it
       if (error && (error as any).code === 'PGRST116') {

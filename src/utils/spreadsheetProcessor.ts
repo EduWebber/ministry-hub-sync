@@ -63,94 +63,118 @@ export const readExcelFile = (file: File): Promise<SpreadsheetRow[]> => {
 };
 
 /**
+ * Gets field value from row using multiple possible column names
+ */
+const getFieldValue = (row: any, fieldNames: string[]): any => {
+  for (const fieldName of fieldNames) {
+    if (row[fieldName] !== undefined && row[fieldName] !== null && row[fieldName] !== '') {
+      return row[fieldName];
+    }
+  }
+  return null;
+};
+
+/**
  * Validates and processes a single row
  */
 export const processRow = (row: SpreadsheetRow, index: number): ValidationResult => {
   const errors: string[] = [];
   const warnings: string[] = [];
   
+  // Get field values using flexible column mapping
+  const nome = getFieldValue(row, ['nome', 'Nome Completo', 'Nome', 'name']);
+  const idade = getFieldValue(row, ['idade', 'Idade', 'age']);
+  const genero = getFieldValue(row, ['genero', 'Gênero (M/F)', 'Gênero', 'Genero', 'gender']);
+  const familia = getFieldValue(row, ['familia', 'Família / Agrupamento', 'Família', 'Familia', 'family']);
+  const cargo = getFieldValue(row, ['cargo', 'Cargo Congregacional', 'Cargo', 'role']);
+  const ativo = getFieldValue(row, ['ativo', 'Status (Ativo/Inativo)', 'Status', 'status', 'active']);
+  const email = getFieldValue(row, ['email', 'E-mail', 'Email']);
+  const telefone = getFieldValue(row, ['telefone', 'Telefone', 'phone']);
+  const dataBatismo = getFieldValue(row, ['data_batismo', 'Data de Batismo', 'Batismo']);
+  const observacoes = getFieldValue(row, ['observacoes', 'Observações', 'Observacoes', 'notes']);
+  
   // Required fields validation
-  if (!row["nome"] || typeof row["nome"] !== 'string' || row["nome"].trim().length < 2) {
+  if (!nome || typeof nome !== 'string' || nome.trim().length < 2) {
     errors.push('Nome completo é obrigatório e deve ter pelo menos 2 caracteres');
   }
   
-  if (!row["idade"] || typeof row["idade"] !== 'number' || row["idade"] < 1 || row["idade"] > 120) {
+  if (!idade || typeof idade !== 'number' || idade < 1 || idade > 120) {
     errors.push('Idade deve ser um número entre 1 e 120');
   }
   
-  if (!row["genero"] || !GENDER_MAPPING[row["genero"]]) {
-    errors.push('Gênero deve ser masculino ou feminino');
+  if (!genero || !GENDER_MAPPING[genero]) {
+    errors.push('Gênero deve ser M ou F');
   }
   
-  if (!row["familia"] || typeof row["familia"] !== 'string') {
-    errors.push('Família é obrigatório');
+  if (!familia || typeof familia !== 'string') {
+    errors.push('Família/Agrupamento é obrigatório');
   }
   
-  if (!row["cargo"] || !CARGO_MAPPING[row["cargo"]]) {
-    errors.push(`Cargo congregacional inválido: ${row["cargo"]}`);
+  if (!cargo || !CARGO_MAPPING[cargo]) {
+    errors.push(`Cargo congregacional inválido: ${cargo}`);
   }
   
-  if (!row["ativo"] || STATUS_MAPPING[row["ativo"]] === undefined) {
-    errors.push('Status deve ser VERDADEIRO ou FALSO');
+  if (ativo === null || STATUS_MAPPING[ativo] === undefined) {
+    errors.push('Status deve ser Ativo ou Inativo');
   }
   
   // Email validation
-  if (row["email"] && typeof row["email"] === 'string' && row["email"].trim()) {
+  if (email && typeof email === 'string' && email.trim()) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(row["email"].trim())) {
+    if (!emailRegex.test(email.trim())) {
       errors.push('E-mail inválido');
     }
   }
   
   // Phone validation
-  if (row["telefone"] && typeof row["telefone"] === 'string' && row["telefone"].trim()) {
+  if (telefone && typeof telefone === 'string' && telefone.trim()) {
     const phoneRegex = /^[\d\s\-()]+$/;
-    if (!phoneRegex.test(row["telefone"].trim()) || row["telefone"].trim().length < 8) {
+    if (!phoneRegex.test(telefone.trim()) || telefone.trim().length < 8) {
       errors.push('Telefone inválido');
     }
   }
   
   // Date validations
-  let dataBatismo: string | undefined;
-  if (row["data_batismo"] && typeof row["data_batismo"] === 'string' && row["data_batismo"].trim()) {
+  let processedDataBatismo: string | undefined;
+  if (dataBatismo && typeof dataBatismo === 'string' && dataBatismo.trim()) {
     try {
-      // Check if it's already in YYYY-MM-DD format
-      if (row["data_batismo"].match(/^\d{4}-\d{2}-\d{2}$/)) {
-        dataBatismo = row["data_batismo"];
+      const parsedDate = parseBrazilianDate(dataBatismo);
+      if (parsedDate) {
+        processedDataBatismo = format(parsedDate, 'yyyy-MM-dd');
       } else {
-        const parsedDate = parseBrazilianDate(row["data_batismo"]);
-        if (parsedDate) {
-          dataBatismo = format(parsedDate, 'yyyy-MM-dd');
-        } else {
-          warnings.push('Data de batismo inválida - será ignorada');
-        }
+        warnings.push('Data de batismo inválida - será ignorada');
       }
     } catch {
       warnings.push('Data de batismo inválida - será ignorada');
     }
   }
   
-  // Age vs birth date consistency
-  if (row["data_nascimento"] && typeof row["data_nascimento"] === 'string' && row["data_nascimento"].trim()) {
+  // Get birth date for validation
+  const dataNascimento = getFieldValue(row, ['data_nascimento', 'Data de Nascimento', 'Nascimento']);
+  let processedDataNascimento: string | undefined;
+  if (dataNascimento && typeof dataNascimento === 'string' && dataNascimento.trim()) {
     try {
-      let birthDate: Date | null = null;
-      // Check if it's already in YYYY-MM-DD format
-      if (row["data_nascimento"].match(/^\d{4}-\d{2}-\d{2}$/)) {
-        birthDate = new Date(row["data_nascimento"]);
-      } else {
-        birthDate = parseBrazilianDate(row["data_nascimento"]);
-      }
-      
-      if (birthDate) {
-        const calculatedAge = new Date().getFullYear() - birthDate.getFullYear();
-        const ageDiff = Math.abs(calculatedAge - (row["idade"] as number));
+      const parsedDate = parseBrazilianDate(dataNascimento);
+      if (parsedDate) {
+        processedDataNascimento = format(parsedDate, 'yyyy-MM-dd');
+        // Age vs birth date consistency
+        const calculatedAge = new Date().getFullYear() - parsedDate.getFullYear();
+        const ageDiff = Math.abs(calculatedAge - idade);
         if (ageDiff > 1) {
-          warnings.push(`Idade informada (${row["idade"]}) não confere com data de nascimento`);
+          warnings.push(`Idade informada (${idade}) não confere com data de nascimento`);
         }
       }
     } catch {
       warnings.push('Data de nascimento inválida');
     }
+  }
+  
+  // Minor validation
+  const parenteResponsavel = getFieldValue(row, ['parente_responsavel', 'Parente Responsável', 'Responsavel']);
+  const parentesco = getFieldValue(row, ['parentesco', 'Parentesco', 'relationship']);
+  const isMinor = idade < 18;
+  if (isMinor && (!parenteResponsavel || !parentesco)) {
+    warnings.push('Menor de idade sem responsável definido');
   }
   
   if (errors.length > 0) {
@@ -162,59 +186,19 @@ export const processRow = (row: SpreadsheetRow, index: number): ValidationResult
     };
   }
   
-  // Process birth date
-  let dataNascimento: string | undefined;
-  if (row["data_nascimento"] && typeof row["data_nascimento"] === 'string' && row["data_nascimento"].trim()) {
-    try {
-      // Check if it's already in YYYY-MM-DD format
-      if (row["data_nascimento"].match(/^\d{4}-\d{2}-\d{2}$/)) {
-        dataNascimento = row["data_nascimento"];
-      } else {
-        const parsedDate = parseBrazilianDate(row["data_nascimento"]);
-        if (parsedDate) {
-          dataNascimento = format(parsedDate, 'yyyy-MM-dd');
-        }
-      }
-    } catch {
-      // Ignore invalid birth dates
-    }
-  }
-  
   // Process valid data
   const processedData: ProcessedStudentData = {
-    id: row["id"] && typeof row["id"] === 'string' ? row["id"].trim() || undefined : undefined,
-    user_id: row["user_id"] && typeof row["user_id"] === 'string' ? row["user_id"].trim() || undefined : undefined,
-    nome: (row["nome"] as string).trim(),
-    familia: (row["familia"] as string).trim(),
-    idade: row["idade"] as number,
-    genero: GENDER_MAPPING[row["genero"]],
-    email: row["email"] && typeof row["email"] === 'string' ? row["email"].trim() || undefined : undefined,
-    telefone: row["telefone"] && typeof row["telefone"] === 'string' ? row["telefone"].trim() || undefined : undefined,
-    data_batismo: dataBatismo,
-    cargo: CARGO_MAPPING[row["cargo"]],
-    id_pai_mae: row["id_pai_mae"] && typeof row["id_pai_mae"] === 'string' ? row["id_pai_mae"].trim() || undefined : undefined,
-    ativo: STATUS_MAPPING[row["ativo"]],
-    observacoes: row["observacoes"] && typeof row["observacoes"] === 'string' ? row["observacoes"].trim() || undefined : undefined,
-    estado_civil: row["estado_civil"] && typeof row["estado_civil"] === 'string' ? row["estado_civil"].trim() || undefined : undefined,
-    papel_familiar: row["papel_familiar"] && typeof row["papel_familiar"] === 'string' ? row["papel_familiar"].trim() || undefined : undefined,
-    id_pai: row["id_pai"] && typeof row["id_pai"] === 'string' ? row["id_pai"].trim() || undefined : undefined,
-    id_mae: row["id_mae"] && typeof row["id_mae"] === 'string' ? row["id_mae"].trim() || undefined : undefined,
-    id_conjuge: row["id_conjuge"] && typeof row["id_conjuge"] === 'string' ? row["id_conjuge"].trim() || undefined : undefined,
-    coabitacao: row["coabitacao"] ? BOOLEAN_MAPPING[row["coabitacao"]] || false : false,
-    menor: row["menor"] ? BOOLEAN_MAPPING[row["menor"]] || false : false,
-    responsavel_primario: row["responsavel_primario"] && typeof row["responsavel_primario"] === 'string' ? row["responsavel_primario"].trim() || undefined : undefined,
-    responsavel_secundario: row["responsavel_secundario"] && typeof row["responsavel_secundario"] === 'string' ? row["responsavel_secundario"].trim() || undefined : undefined,
-    chairman: row["chairman"] ? BOOLEAN_MAPPING[row["chairman"]] || false : false,
-    pray: row["pray"] ? BOOLEAN_MAPPING[row["pray"]] || false : false,
-    tresures: row["tresures"] ? BOOLEAN_MAPPING[row["tresures"]] || false : false,
-    gems: row["gems"] ? BOOLEAN_MAPPING[row["gems"]] || false : false,
-    reading: row["reading"] ? BOOLEAN_MAPPING[row["reading"]] || false : false,
-    starting: row["starting"] ? BOOLEAN_MAPPING[row["starting"]] || false : false,
-    following: row["following"] ? BOOLEAN_MAPPING[row["following"]] || false : false,
-    making: row["making"] ? BOOLEAN_MAPPING[row["making"]] || false : false,
-    explaining: row["explaining"] ? BOOLEAN_MAPPING[row["explaining"]] || false : false,
-    talk: row["talk"] ? BOOLEAN_MAPPING[row["talk"]] || false : false,
-    data_nascimento: dataNascimento
+    nome: nome.trim(),
+    idade: idade,
+    genero: GENDER_MAPPING[genero],
+    email: email && typeof email === 'string' ? email.trim() || undefined : undefined,
+    telefone: telefone && typeof telefone === 'string' ? telefone.trim() || undefined : undefined,
+    data_batismo: processedDataBatismo,
+    cargo: CARGO_MAPPING[cargo],
+    ativo: STATUS_MAPPING[ativo],
+    observacoes: observacoes && typeof observacoes === 'string' ? observacoes.trim() || undefined : undefined,
+    familia: familia.trim(),
+    data_nascimento: processedDataNascimento
   };
   
   return {

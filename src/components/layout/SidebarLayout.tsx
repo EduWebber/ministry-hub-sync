@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { ReactNode } from 'react';
 import LayoutShell from '@/components/LayoutShell';
 
@@ -31,3 +32,23 @@ export default function SidebarLayout({ title, actions, children }: SidebarLayou
     </LayoutShell>
   );
 }
+=======
+import React from 'react';
+import UnifiedLayout from './UnifiedLayout';
+
+interface SidebarLayoutProps {
+  title: string;
+  actions?: React.ReactNode;
+  children: React.ReactNode;
+}
+
+const SidebarLayout: React.FC<SidebarLayoutProps> = ({ title, actions, children }) => {
+  return (
+    <UnifiedLayout title={title} actions={actions}>
+      {children}
+    </UnifiedLayout>
+  );
+};
+
+export default SidebarLayout;
+>>>>>>> cb5069e52f66eca9951404975794c3c89748f090
