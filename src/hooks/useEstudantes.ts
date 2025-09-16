@@ -14,7 +14,9 @@ export interface EstudanteWithParent extends EstudanteRow {
   email?: string;
   telefone?: string;
   data_nascimento?: string;
-  cargo: ProfileRow['cargo'];
+  cargo?: ProfileRow['cargo'];
+  // Add missing required fields for compatibility
+  nome_completo?: string;
 }
 
 export interface EstudanteFilters {
@@ -52,6 +54,7 @@ export function useEstudantes(activeTab?: string) {
         {
           id: 'mock-estudante-1',
           nome: 'João Silva',
+          nome_completo: 'João Silva',
           email: 'joao@example.com',
           telefone: '(11) 99999-9999',
           data_nascimento: '1990-01-01',
@@ -68,6 +71,7 @@ export function useEstudantes(activeTab?: string) {
         {
           id: 'mock-estudante-2',
           nome: 'Maria Santos',
+          nome_completo: 'Maria Santos',
           email: 'maria@example.com',
           telefone: '(11) 88888-8888',
           data_nascimento: '1995-05-15',
@@ -172,6 +176,7 @@ export function useEstudantes(activeTab?: string) {
         return {
           id: item.id,
           nome: profile?.nome || 'Sem nome',
+          nome_completo: profile?.nome || 'Sem nome',
           genero: item.genero,
           email: profile?.email || '',
           telefone: profile?.telefone || '',
@@ -207,6 +212,7 @@ export function useEstudantes(activeTab?: string) {
       const newEstudante: EstudanteWithParent = {
         id: `mock-estudante-${Date.now()}`,
         nome: estudanteData.nome || 'Novo Estudante',
+        nome_completo: estudanteData.nome || 'Novo Estudante',
         email: estudanteData.email || '',
         telefone: estudanteData.telefone || '',
         data_nascimento: estudanteData.data_nascimento || '',

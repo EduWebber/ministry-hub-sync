@@ -57,11 +57,10 @@ export default function ProgramasPage() {
       const to = from + PAGE_SIZE - 1;
       
       const q = supabase
-        .from("programas")
+        .from("programas_ministeriais")
         .select("*", { count: "exact" })
-        .eq("user_id", userId)
-        .ilike("titulo", `%${search}%`)
-        .order("data_programa", { ascending: false })
+        .ilike("arquivo_nome", `%${search}%`)
+        .order("created_at", { ascending: false })
         .range(from, to);
       
       const { data, error, count } = await q;
@@ -87,9 +86,8 @@ export default function ProgramasPage() {
     
     try {
       const { data, error } = await supabase
-        .from("programas")
-        .select("*")
-        .eq("user_id", userId);
+        .from("programas_ministeriais")
+        .select("*");
       
       if (error) {
         console.error(error);
@@ -154,7 +152,7 @@ export default function ProgramasPage() {
     
     try {
       const { error } = await supabase
-        .from("programas")
+        .from("programas_ministeriais")
         .update({ [field]: value })
         .eq("id", row.id);
       
