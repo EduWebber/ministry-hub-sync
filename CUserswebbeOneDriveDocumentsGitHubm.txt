@@ -1,0 +1,4617 @@
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\estudantes_ficticios_corrigido_status.xlsx"  http://localhost:8080/estudantes  Sistema Ministerial
+
+Bem-vindo
+
+Dashboard
+
+Estudantes
+
+Programas
+
+Designações
+
+Relatórios
+
+JW-style UI • S-38-T
+
+v2 • Unified Shell
+
+Gestão de Estudantes
+
+🔄 Atualizar
+
+Importar
+
+Novo Estudante
+
+Lista
+
+Novo
+
+Importar
+
+Planilha
+
+Estatísticas
+
+Prévia da Importação
+
+Arquivo: estudantes_ficticios_corrigido_status.xlsx • 100 registros encontrados
+
+
+
+100
+
+Válidos
+
+0
+
+Com Erros
+
+100
+
+Com Avisos
+
+100%
+
+Taxa de Sucesso
+
+Registros válidos
+
+100 de 100
+
+100 registros contêm avisos mas serão importados. Revise os dados após a importação.
+
+Detalhes dos Problemas
+
+Baixar Relatório
+
+Linha Excel	Tipo	Problema
+
+2	Aviso	Data de batismo inválida - será ignorada
+
+3	Aviso	Data de batismo inválida - será ignorada
+
+4	Aviso	Data de batismo inválida - será ignorada
+
+4	Aviso	Menor de idade sem responsável definido
+
+5	Aviso	Data de batismo inválida - será ignorada
+
+6	Aviso	Data de batismo inválida - será ignorada
+
+7	Aviso	Data de batismo inválida - será ignorada
+
+8	Aviso	Data de batismo inválida - será ignorada
+
+9	Aviso	Data de batismo inválida - será ignorada
+
+10	Aviso	Data de batismo inválida - será ignorada
+
+11	Aviso	Data de batismo inválida - será ignorada
+
+12	Aviso	Data de batismo inválida - será ignorada
+
+13	Aviso	Data de batismo inválida - será ignorada
+
+14	Aviso	Data de batismo inválida - será ignorada
+
+15	Aviso	Data de batismo inválida - será ignorada
+
+15	Aviso	Menor de idade sem responsável definido
+
+16	Aviso	Data de batismo inválida - será ignorada
+
+17	Aviso	Data de batismo inválida - será ignorada
+
+18	Aviso	Data de batismo inválida - será ignorada
+
+19	Aviso	Data de batismo inválida - será ignorada
+
+20	Aviso	Data de batismo inválida - será ignorada
+
+21	Aviso	Data de batismo inválida - será ignorada
+
+22	Aviso	Data de batismo inválida - será ignorada
+
+23	Aviso	Data de batismo inválida - será ignorada
+
+24	Aviso	Data de batismo inválida - será ignorada
+
+25	Aviso	Data de batismo inválida - será ignorada
+
+26	Aviso	Data de batismo inválida - será ignorada
+
+27	Aviso	Data de batismo inválida - será ignorada
+
+28	Aviso	Data de batismo inválida - será ignorada
+
+29	Aviso	Data de batismo inválida - será ignorada
+
+30	Aviso	Data de batismo inválida - será ignorada
+
+30	Aviso	Menor de idade sem responsável definido
+
+31	Aviso	Data de batismo inválida - será ignorada
+
+32	Aviso	Data de batismo inválida - será ignorada
+
+33	Aviso	Data de batismo inválida - será ignorada
+
+34	Aviso	Data de batismo inválida - será ignorada
+
+35	Aviso	Data de batismo inválida - será ignorada
+
+36	Aviso	Data de batismo inválida - será ignorada
+
+37	Aviso	Data de batismo inválida - será ignorada
+
+38	Aviso	Data de batismo inválida - será ignorada
+
+39	Aviso	Data de batismo inválida - será ignorada
+
+39	Aviso	Menor de idade sem responsável definido
+
+40	Aviso	Data de batismo inválida - será ignorada
+
+41	Aviso	Data de batismo inválida - será ignorada
+
+42	Aviso	Data de batismo inválida - será ignorada
+
+43	Aviso	Data de batismo inválida - será ignorada
+
+44	Aviso	Data de batismo inválida - será ignorada
+
+45	Aviso	Data de batismo inválida - será ignorada
+
+46	Aviso	Data de batismo inválida - será ignorada
+
+47	Aviso	Data de batismo inválida - será ignorada
+
+48	Aviso	Data de batismo inválida - será ignorada
+
+49	Aviso	Data de batismo inválida - será ignorada
+
+50	Aviso	Data de batismo inválida - será ignorada
+
+51	Aviso	Data de batismo inválida - será ignorada
+
+52	Aviso	Data de batismo inválida - será ignorada
+
+53	Aviso	Data de batismo inválida - será ignorada
+
+53	Aviso	Menor de idade sem responsável definido
+
+54	Aviso	Data de batismo inválida - será ignorada
+
+55	Aviso	Data de batismo inválida - será ignorada
+
+56	Aviso	Data de batismo inválida - será ignorada
+
+57	Aviso	Data de batismo inválida - será ignorada
+
+58	Aviso	Data de batismo inválida - será ignorada
+
+59	Aviso	Data de batismo inválida - será ignorada
+
+60	Aviso	Data de batismo inválida - será ignorada
+
+61	Aviso	Data de batismo inválida - será ignorada
+
+62	Aviso	Data de batismo inválida - será ignorada
+
+63	Aviso	Data de batismo inválida - será ignorada
+
+64	Aviso	Data de batismo inválida - será ignorada
+
+65	Aviso	Data de batismo inválida - será ignorada
+
+66	Aviso	Data de batismo inválida - será ignorada
+
+67	Aviso	Data de batismo inválida - será ignorada
+
+68	Aviso	Data de batismo inválida - será ignorada
+
+69	Aviso	Data de batismo inválida - será ignorada
+
+70	Aviso	Data de batismo inválida - será ignorada
+
+70	Aviso	Menor de idade sem responsável definido
+
+71	Aviso	Data de batismo inválida - será ignorada
+
+72	Aviso	Data de batismo inválida - será ignorada
+
+72	Aviso	Menor de idade sem responsável definido
+
+73	Aviso	Data de batismo inválida - será ignorada
+
+74	Aviso	Data de batismo inválida - será ignorada
+
+74	Aviso	Menor de idade sem responsável definido
+
+75	Aviso	Data de batismo inválida - será ignorada
+
+76	Aviso	Data de batismo inválida - será ignorada
+
+77	Aviso	Data de batismo inválida - será ignorada
+
+78	Aviso	Data de batismo inválida - será ignorada
+
+79	Aviso	Data de batismo inválida - será ignorada
+
+79	Aviso	Menor de idade sem responsável definido
+
+80	Aviso	Data de batismo inválida - será ignorada
+
+81	Aviso	Data de batismo inválida - será ignorada
+
+82	Aviso	Data de batismo inválida - será ignorada
+
+83	Aviso	Data de batismo inválida - será ignorada
+
+84	Aviso	Data de batismo inválida - será ignorada
+
+85	Aviso	Data de batismo inválida - será ignorada
+
+86	Aviso	Data de batismo inválida - será ignorada
+
+87	Aviso	Data de batismo inválida - será ignorada
+
+88	Aviso	Data de batismo inválida - será ignorada
+
+88	Aviso	Menor de idade sem responsável definido
+
+89	Aviso	Data de batismo inválida - será ignorada
+
+90	Aviso	Data de batismo inválida - será ignorada
+
+91	Aviso	Data de batismo inválida - será ignorada
+
+92	Aviso	Data de batismo inválida - será ignorada
+
+93	Aviso	Data de batismo inválida - será ignorada
+
+94	Aviso	Data de batismo inválida - será ignorada
+
+95	Aviso	Data de batismo inválida - será ignorada
+
+96	Aviso	Data de batismo inválida - será ignorada
+
+97	Aviso	Data de batismo inválida - será ignorada
+
+98	Aviso	Data de batismo inválida - será ignorada
+
+99	Aviso	Data de batismo inválida - será ignorada
+
+100	Aviso	Data de batismo inválida - será ignorada
+
+101	Aviso	Data de batismo inválida - será ignorada
+
+101	Aviso	Menor de idade sem responsável definido
+
+Importar 100 Estudantes
+
+Cancelar
+
+Continuar para Programas    POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+useSpreadsheetImport.ts:162 Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:162
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:118
+
+handleImport @ SpreadsheetUpload.tsx:107
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+@supabase_supabase-js.js?v=08e7f12f:4230  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+  POST https://dlvojolvdsqrfczjjjuw.supabase.co/rest/v1/estudantes 403 (Forbidden)
+
+(anonymous) @ 
+(anonymous) @ 
+fulfilled @ 
+Promise.then
+
+step @ 
+(anonymous) @ 
+__awaiter6 @ 
+(anonymous) @ 
+then @ 
+ Estudante creation error: {code: '42501', details: null, hint: null, message: 'new row violates row-level security policy for table "estudantes"'}
+
+importStudents @ useSpreadsheetImport.ts:99
+
+await in importStudents
+
+proceedWithImport @ SpreadsheetUpload.tsx:112
+
+handleImport @ SpreadsheetUpload.tsx:103
+
+await in handleImport
+
+callCallback2 @ chunk-NFC5BX5N.js?v=c0ddba4d:3674
+
+invokeGuardedCallbackDev @ chunk-NFC5BX5N.js?v=c0ddba4d:3699
+
+invokeGuardedCallback @ chunk-NFC5BX5N.js?v=c0ddba4d:3733
+
+invokeGuardedCallbackAndCatchFirstError @ chunk-NFC5BX5N.js?v=c0ddba4d:3736
+
+executeDispatch @ chunk-NFC5BX5N.js?v=c0ddba4d:7014
+
+processDispatchQueueItemsInOrder @ chunk-NFC5BX5N.js?v=c0ddba4d:7034
+
+processDispatchQueue @ chunk-NFC5BX5N.js?v=c0ddba4d:7043
+
+dispatchEventsForPlugins @ chunk-NFC5BX5N.js?v=c0ddba4d:7051
+
+(anonymous) @ chunk-NFC5BX5N.js?v=c0ddba4d:7174
+
+batchedUpdates$1 @ chunk-NFC5BX5N.js?v=c0ddba4d:18913
+
+batchedUpdates @ chunk-NFC5BX5N.js?v=c0ddba4d:3579
+
+dispatchEventForPluginEventSystem @ chunk-NFC5BX5N.js?v=c0ddba4d:7173
+
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-NFC5BX5N.js?v=c0ddba4d:5478
+
+dispatchEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5472
+
+dispatchDiscreteEvent @ chunk-NFC5BX5N.js?v=c0ddba4d:5449
+
+​

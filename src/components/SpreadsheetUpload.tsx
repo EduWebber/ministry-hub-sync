@@ -22,6 +22,9 @@ import { createErrorReport, createEnhancedErrorReport } from '@/utils/spreadshee
 import TemplateDownload from './TemplateDownload';
 import ImportHelp from './ImportHelp';
 
+// Check if we're in mock mode
+const isMockMode = import.meta.env.VITE_MOCK_MODE === 'true';
+
 interface SpreadsheetUploadProps {
   onImportComplete?: () => void;
   onViewList?: () => void;
@@ -89,6 +92,12 @@ const SpreadsheetUpload: React.FC<SpreadsheetUploadProps> = ({ onImportComplete,
 
   const handleImport = async () => {
     if (validationResults.length === 0) return;
+
+    // If in mock mode, skip duplicate checking and proceed directly
+    if (isMockMode) {
+      await proceedWithImport();
+      return;
+    }
 
     // Check for duplicates first
     const validStudents = validationResults

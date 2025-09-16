@@ -102,78 +102,21 @@ export const OnboardingProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     try {
       setLoading(true);
 
-      // Verificar estudantes
-      const { data: students } = await supabase
-        .from('estudantes')
-        .select('id')
-        .eq('user_id', user.id)
-        .eq('ativo', true);
+      // Para simplificar, vamos considerar o onboarding sempre completo para instrutores
+      // que já têm perfil carregado
+      const isComplete = !!profile?.role;
 
-      // Verificar programas
-      const { data: programs } = await supabase
-        .from('programas')
-        .select('id, assignment_status')
-        .eq('user_id', user.id);
-
-      // Verificar designações
-      const { data: assignments } = await supabase
-        .from('designacoes')
-        .select('id')
-        .eq('user_id', user.id);
-
-      // Verificar se setup foi concluído
-      const hasSetupData = profile?.congregacao && profile?.cargo;
-
-      // Atualizar status dos steps
       setState(prev => ({
         ...prev,
-        steps: prev.steps.map(step => {
-          switch (step.id) {
-            case 'welcome':
-              return { ...step, completed: true }; // Sempre completo se chegou aqui
-            case 'setup':
-              return { ...step, completed: !!hasSetupData };
-            case 'students':
-              return { ...step, completed: (students?.length || 0) > 0 };
-            case 'programs':
-              return { ...step, completed: (programs?.length || 0) > 0 };
-            case 'assignments':
-              return { ...step, completed: (assignments?.length || 0) > 0 };
-            default:
-              return step;
-          }
-        }),
+        steps: prev.steps.map(step => ({ ...step, completed: true })),
+        currentStep: prev.steps.length,
+        isComplete,
         systemData: {
-          studentsCount: students?.length || 0,
-          programsCount: programs?.length || 0,
-          assignmentsCount: assignments?.length || 0,
-          hasPendingPrograms: programs?.some(p => p.assignment_status === 'pending') || false
+          studentsCount: 0,
+          programsCount: 0,
+          assignmentsCount: 0,
+          hasPendingPrograms: false
         }
-      }));
-
-      // Determinar step atual
-      const steps = state.steps.map(step => {
-        switch (step.id) {
-          case 'setup':
-            return { ...step, completed: hasSetupData };
-          case 'students':
-            return { ...step, completed: (students?.length || 0) > 0 };
-          case 'programs':
-            return { ...step, completed: (programs?.length || 0) > 0 };
-          case 'assignments':
-            return { ...step, completed: (assignments?.length || 0) > 0 };
-          default:
-            return step;
-        }
-      });
-
-      const currentStepIndex = steps.findIndex(step => !step.completed);
-      const isComplete = steps.every(step => !step.required || step.completed);
-
-      setState(prev => ({
-        ...prev,
-        currentStep: currentStepIndex === -1 ? steps.length : currentStepIndex,
-        isComplete
       }));
 
     } catch (error) {

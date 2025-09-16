@@ -57,9 +57,7 @@ const ProtectedRoute = ({
   // Set up profile timeout - reduced to 1 second for better UX
   useEffect(() => {
     if (user && !profile && !loading) {
-      console.log('⏰ Setting profile timeout - will fallback to metadata in 1 second');
       const timeout = setTimeout(() => {
-        console.log('⏰ Profile timeout reached, using metadata fallback');
         setProfileTimeout(true);
       }, 1000); // Reduced to 1 second for faster fallback
 
@@ -68,27 +66,13 @@ const ProtectedRoute = ({
   }, [user, profile, loading]);
 
   useEffect(() => {
-    console.log('🛡️ ProtectedRoute check:', {
-      loading,
-      hasUser: !!user,
-      hasProfile: !!profile,
-      userRole: profile?.role,
-      metadataRole: user?.user_metadata?.role,
-      profileTimeout,
-      allowedRoles,
-      requireAuth,
-      redirectTo,
-      userMetadata: user?.user_metadata
-    });
-
+    // Reduced logging - only log important state changes
     if (loading) {
-      console.log('⏳ ProtectedRoute waiting for auth to load...');
       return;
     }
 
     // If authentication is required but user is not logged in
     if (requireAuth && !user) {
-      console.log('🚫 ProtectedRoute: No user, redirecting to auth');
       if (!didRedirect && location.pathname !== '/auth') {
         setDidRedirect(true);
         navigate('/auth', { replace: true });
@@ -103,23 +87,13 @@ const ProtectedRoute = ({
       // Get role from profile if available, otherwise from user metadata
       if (profile) {
         userRole = profile.role as UserRole;
-        console.log('✅ ProtectedRoute: Using profile role:', userRole);
       } else if (user.user_metadata?.role) {
         userRole = user.user_metadata?.role as UserRole;
-        if (profileTimeout) {
-          console.log('⚠️ ProtectedRoute: Using metadata role fallback:', userRole, '(profile loading timed out)');
-        } else {
-          console.log('🔄 ProtectedRoute: Using metadata role temporarily:', userRole, '(profile still loading)');
-        }
       }
 
       if (userRole) {
         // Check if user's role is allowed
         if (!allowedRoles.includes(userRole)) {
-          console.log('🚫 ProtectedRoute: Role not allowed, redirecting...', {
-            userRole,
-            allowedRoles
-          });
           
           // Redirect based on user role
           if (redirectTo) {
@@ -164,32 +138,14 @@ const ProtectedRoute = ({
           }
           return;
         } else {
-          console.log('✅ ProtectedRoute: Access granted for role:', userRole);
           setAccessCheckComplete(true);
-
-          // Additional check for instructors accessing main app without onboarding
-          if (userRole === 'instrutor' && allowedRoles.includes('instrutor')) {
-            const currentPath = location.pathname;
-            const isOnboardingRoute = ['/bem-vindo', '/configuracao-inicial', '/primeiro-programa'].includes(currentPath);
-            const isMainAppRoute = ['/dashboard', '/estudantes', '/programas', '/designacoes'].includes(currentPath);
-
-            if (!onboardingComplete && isMainAppRoute) {
-              console.log('🔄 Redirecting to onboarding for incomplete setup');
-              if (!didRedirect && currentPath !== '/bem-vindo') {
-                setDidRedirect(true);
-                navigate('/bem-vindo', { replace: true });
-              }
-              return;
-            }
-          }
+          // Onboarding check removed - allow direct access to main app
         }
       } else {
         // No role found - check if we should wait or timeout
         if (!profileTimeout) {
-          console.log('⏳ ProtectedRoute: No role found, waiting for profile...');
           return;
         } else {
-          console.log('❌ ProtectedRoute: Profile timeout reached, no role available, redirecting to auth');
           if (!didRedirect && location.pathname !== '/auth') {
             setDidRedirect(true);
             navigate('/auth', { replace: true });
@@ -202,7 +158,6 @@ const ProtectedRoute = ({
 
   // Show loading state while auth or onboarding is loading
   if (loading || onboardingLoading) {
-    console.log('🔄 ProtectedRoute: Showing loading state');
     return (
       <LoadingScreen 
         message="Carregando Sistema Ministerial" 
@@ -223,14 +178,8 @@ const ProtectedRoute = ({
     // Get role from profile if available, otherwise from user metadata
     if (profile) {
       userRole = profile.role as UserRole;
-      console.log('✅ ProtectedRoute: Using profile role:', userRole);
     } else if (user.user_metadata?.role) {
       userRole = user.user_metadata?.role as UserRole;
-      if (profileTimeout) {
-        console.log('⚠️ ProtectedRoute: Using metadata role fallback:', userRole, '(profile loading timed out)');
-      } else {
-        console.log('🔄 ProtectedRoute: Using metadata role temporarily:', userRole, '(profile still loading)');
-      }
     }
 
     if (!userRole) {
@@ -269,7 +218,6 @@ const ProtectedRoute = ({
   }
 
   // Render children if all checks pass
-  console.log('✅ ProtectedRoute: Rendering children - all checks passed');
   return <>{children}</>;
 };
 

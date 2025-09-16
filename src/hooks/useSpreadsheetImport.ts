@@ -14,9 +14,14 @@ import {
 import { readExcelFile, processRow } from '@/utils/spreadsheetProcessor';
 import { Cargo } from '@/types/estudantes';
 import { v4 as uuidv4 } from 'uuid';
+import { useEstudantes } from './useEstudantes';
+
+// Check if we're in mock mode
+const isMockMode = import.meta.env.VITE_MOCK_MODE === 'true';
 
 export const useSpreadsheetImport = () => {
   const { user } = useAuth();
+  const { createEstudante } = useEstudantes();
   const [loading, setLoading] = useState(false);
   const [validationResults, setValidationResults] = useState<ValidationResult[]>([]);
   const [importSummary, setImportSummary] = useState<ImportSummary | null>(null);
@@ -88,6 +93,69 @@ export const useSpreadsheetImport = () => {
     const errors: ValidationResult[] = [];
 
     try {
+      // If in mock mode, simulate importing students
+      if (isMockMode) {
+        console.log('🧪 Mock mode: simulating student import');
+        setImportProgress({
+          current: 0,
+          total: validResults.length,
+          phase: 'importing',
+          message: 'Importando estudantes...'
+        });
+
+        // Simulate importing each student
+        for (let i = 0; i < validResults.length; i++) {
+          const result = validResults[i];
+          if (result.data) {
+            try {
+              // Simulate creating a student
+              await new Promise(resolve => setTimeout(resolve, 100)); // Simulate async operation
+              imported++;
+            } catch (error) {
+              errors.push({
+                ...result,
+                errors: [`Erro ao criar estudante: ${error instanceof Error ? error.message : 'Erro desconhecido'}`]
+              });
+            }
+          }
+
+          // Update progress
+          setImportProgress({
+            current: i + 1,
+            total: validResults.length,
+            phase: 'importing',
+            message: `Importando estudantes... ${i + 1}/${validResults.length}`
+          });
+        }
+
+        // Complete progress
+        setImportProgress({
+          current: validResults.length,
+          total: validResults.length,
+          phase: 'complete',
+          message: 'Importação concluída!'
+        });
+
+        const summary: ImportSummary = {
+          totalRows: validationResults.length,
+          validRows: validResults.length,
+          invalidRows: validationResults.filter(r => !r.isValid).length,
+          imported,
+          errors: [...validationResults.filter(r => !r.isValid), ...errors],
+          warnings: validationResults.filter(r => r.warnings.length > 0)
+        };
+
+        setImportSummary(summary);
+
+        toast({
+          title: 'Importação concluída',
+          description: `${imported} estudantes importados com sucesso`,
+          variant: imported > 0 ? 'default' : 'destructive'
+        });
+
+        return summary;
+      }
+
       // Process in batches to avoid timeout
       const batchSize = 10;
       const batches = [];

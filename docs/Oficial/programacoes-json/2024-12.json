@@ -1,0 +1,44 @@
+[
+  {
+    "idSemana": "2024-12-02",
+    "semanaLabel": "2-8 de dezembro de 2024",
+    "tema": "Sabedoria prática para a vida cristã",
+    "programacao": [
+      {
+        "secao": "Tesouros da Palavra de Deus",
+        "partes": [
+          { "idParte": 1, "titulo": "Tesouros da Palavra de Deus", "duracaoMin": 10, "tipo": "consideracao" },
+          { "idParte": 2, "titulo": "Joias espirituais", "duracaoMin": 10, "tipo": "joias" },
+          { "idParte": 3, "titulo": "Leitura da Bíblia", "duracaoMin": 4, "tipo": "leitura" }
+        ]
+      },
+      {
+        "secao": "Faça Seu Melhor no Ministério",
+        "partes": [
+          { "idParte": 4, "titulo": "Iniciando conversas", "duracaoMin": 3, "tipo": "de casa em casa" }
+        ]
+      }
+    ]
+  },
+  {
+    "idSemana": "2024-12-09",
+    "semanaLabel": "9-15 de dezembro de 2024",
+    "tema": "Ande com sabedoria e discernimento",
+    "programacao": [
+      {
+        "secao": "Tesouros da Palavra de Deus",
+        "partes": [
+          { "idParte": 1, "titulo": "Aplicando princípios de sabedoria", "duracaoMin": 10, "tipo": "consideracao" },
+          { "idParte": 2, "titulo": "Joias espirituais", "duracaoMin": 10, "tipo": "joias" },
+          { "idParte": 3, "titulo": "Leitura da Bíblia", "duracaoMin": 4, "tipo": "leitura" }
+        ]
+      },
+      {
+        "secao": "Faça Seu Melhor no Ministério",
+        "partes": [
+          { "idParte": 4, "titulo": "Cultivando o interesse", "duracaoMin": 4, "tipo": "testemunho informal" }
+        ]
+      }
+    ]
+  }
+]

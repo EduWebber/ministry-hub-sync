@@ -1,0 +1,81 @@
+import * as XLSX from 'xlsx';
+
+// Create a proper template with correct date formats
+const createCorrectTemplate = () => {
+  const workbook = XLSX.utils.book_new();
+  
+  // Headers matching the expected format
+  const headers = [
+    'nome',
+    'familia',
+    'idade',
+    'genero',
+    'email',
+    'telefone',
+    'data_batismo',
+    'cargo',
+    'ativo',
+    'observacoes',
+    'data_nascimento'
+  ];
+  
+  // Sample data with correct formats
+  const sampleData = [
+    [
+      'João Silva Santos',
+      'Silva',
+      25,
+      'M',
+      'joao.silva@email.com',
+      '(11) 99999-9999',
+      '20/06/2020',
+      'Publicador Batizado',
+      'Ativo',
+      'Disponível para designações',
+      '15/03/1999'
+    ],
+    [
+      'Maria Santos Oliveira',
+      'Santos',
+      16,
+      'F',
+      'maria.santos@email.com',
+      '(11) 88888-8888',
+      '',
+      'Estudante Novo',
+      'Ativo',
+      'Menor de idade',
+      '10/08/2008'
+    ],
+    [
+      'Pedro Almeida Costa',
+      'Almeida',
+      35,
+      'M',
+      'pedro.almeida@email.com',
+      '(11) 77777-7777',
+      '15/12/2015',
+      'Ancião',
+      'Ativo',
+      '',
+      '05/04/1988'
+    ]
+  ];
+  
+  // Create worksheet
+  const data = [headers, ...sampleData];
+  const worksheet = XLSX.utils.aoa_to_sheet(data);
+  
+  // Set column widths
+  worksheet['!cols'] = headers.map(() => ({ wch: 20 }));
+  
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Estudantes');
+  
+  // Generate and save file
+  const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
+  return excelBuffer;
+};
+
+// This would normally be executed in a Node.js environment with fs module
+// For browser usage, you would use XLSX.writeFile or create a download link
+console.log('Template creation function ready. Execute in appropriate environment.');

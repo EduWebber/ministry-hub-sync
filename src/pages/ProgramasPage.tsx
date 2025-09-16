@@ -251,11 +251,14 @@ const ProgramasPage = () => {
   // Carregar programas reais dos JSONs
   const carregarProgramasMock = async () => {
     try {
-      // Dados reais do JSON de julho 2025
-      const julhoData = [
+      // Limpar programas existentes primeiro
+      setProgramas([]);
+      
+      // Dados reais do JSON de dezembro 2024
+      const dezembroData = [
         {
-          "idSemana": "2025-07-07",
-          "semanaLabel": "7-13 de julho 2025",
+          "idSemana": "2024-12-02",
+          "semanaLabel": "2-8 de dezembro de 2024",
           "tema": "Sabedoria prática para a vida cristã",
           "programacao": [
             {
@@ -269,16 +272,14 @@ const ProgramasPage = () => {
             {
               "secao": "Faça Seu Melhor no Ministério",
               "partes": [
-                { "idParte": 4, "titulo": "Iniciando conversas", "duracaoMin": 3, "tipo": "de casa em casa" },
-                { "idParte": 5, "titulo": "Cultivando o interesse", "duracaoMin": 4, "tipo": "testemunho informal" },
-                { "idParte": 6, "titulo": "Estudo bíblico", "duracaoMin": 5, "tipo": "estudo biblico" }
+                { "idParte": 4, "titulo": "Iniciando conversas", "duracaoMin": 3, "tipo": "de casa em casa" }
               ]
             }
           ]
         },
         {
-          "idSemana": "2025-07-14",
-          "semanaLabel": "14-20 de julho 2025",
+          "idSemana": "2024-12-09",
+          "semanaLabel": "9-15 de dezembro de 2024",
           "tema": "Ande com sabedoria e discernimento",
           "programacao": [
             {
@@ -292,9 +293,7 @@ const ProgramasPage = () => {
             {
               "secao": "Faça Seu Melhor no Ministério",
               "partes": [
-                { "idParte": 4, "titulo": "Iniciando conversas", "duracaoMin": 3, "tipo": "testemunho publico" },
-                { "idParte": 5, "titulo": "Cultivando o interesse", "duracaoMin": 4, "tipo": "de casa em casa" },
-                { "idParte": 6, "titulo": "Demonstração de estudo", "duracaoMin": 5, "tipo": "demonstracao" }
+                { "idParte": 4, "titulo": "Cultivando o interesse", "duracaoMin": 4, "tipo": "testemunho informal" }
               ]
             }
           ]
@@ -302,7 +301,7 @@ const ProgramasPage = () => {
       ];
       
       // Converter para formato do sistema
-      const programasMock: ProgramaSemanal[] = julhoData.map(semana => {
+      const programasMock: ProgramaSemanal[] = dezembroData.map(semana => {
         const partes: ParteMeeting[] = [];
         semana.programacao.forEach(secao => {
           secao.partes.forEach(parte => {
@@ -320,7 +319,7 @@ const ProgramasPage = () => {
           id: semana.idSemana,
           semana: semana.semanaLabel,
           data_inicio: semana.idSemana,
-          mes_ano: 'julho de 2025',
+          mes_ano: 'dezembro de 2024',
           partes,
           tema: semana.tema,
           criado_em: new Date().toISOString(),
@@ -330,8 +329,8 @@ const ProgramasPage = () => {
         
       setProgramas(programasMock);
       toast({
-        title: "Programas reais carregados",
-        description: `${programasMock.length} semanas de julho 2025 baseadas nos dados oficiais.`
+        title: "Programas carregados",
+        description: `${programasMock.length} semanas de dezembro 2024 carregadas com sucesso.`
       });
     } catch (error) {
       toast({
@@ -357,7 +356,14 @@ const ProgramasPage = () => {
   };
 
   const handleImportComplete = (programa: ProgramaSemanal) => {
-    setProgramas(prev => [...prev, programa]);
+    setProgramas(prev => {
+      // Evitar duplicatas
+      const exists = prev.find(p => p.id === programa.id);
+      if (exists) {
+        return prev.map(p => p.id === programa.id ? programa : p);
+      }
+      return [...prev, programa];
+    });
     setActiveTab('list');
     toast({
       title: "Programa importado!",
