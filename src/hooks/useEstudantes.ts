@@ -63,7 +63,7 @@ export function useEstudantes(activeTab?: string) {
           congregacao_id: null,
           disponibilidade: null,
           qualificacoes: null,
-          user_id: 'mock-user-id'
+          user_id: '550e8400-e29b-41d4-a716-446655440000'
         },
         {
           id: 'mock-estudante-2',
@@ -79,7 +79,7 @@ export function useEstudantes(activeTab?: string) {
           congregacao_id: null,
           disponibilidade: null,
           qualificacoes: null,
-          user_id: 'mock-user-id'
+          user_id: '550e8400-e29b-41d4-a716-446655440000'
         }
       ];
       

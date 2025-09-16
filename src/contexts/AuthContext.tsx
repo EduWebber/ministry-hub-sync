@@ -56,7 +56,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (isMockMode) {
       console.log('🧪 Mock mode: setting up mock user and profile');
       const mockUser: User = {
-        id: 'mock-user-id',
+        id: '550e8400-e29b-41d4-a716-446655440000',
         aud: 'authenticated',
         role: 'authenticated',
         email: 'demo@example.com',
@@ -467,7 +467,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setAuthError(null);
       
       const mockUser: User = {
-        id: 'mock-user-id',
+        id: '550e8400-e29b-41d4-a716-446655440000',
         aud: 'authenticated',
         role: 'authenticated',
         email: email,
@@ -530,7 +530,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setAuthError(null);
       
       const mockUser: User = {
-        id: 'mock-user-id',
+        id: '550e8400-e29b-41d4-a716-446655440000',
         aud: 'authenticated',
         role: 'authenticated',
         email: email,
