@@ -222,6 +222,10 @@
   },
   "auth": {
     "login": "Entrar",
+    "loginDescription": "Faça login para acessar o sistema",
+    "signup": "Cadastrar",
+    "signingIn": "Entrando...",
+    "success": "Login realizado com sucesso!",
     "email": "Email",
     "password": "Senha",
     "signIn": "Fazer Login",

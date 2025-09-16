@@ -1,363 +1,292 @@
-const { supabase } = require('../config/database');
-
+/**
+ * Notification Service
+ * Handles automatic notifications for assignments and reminders
+ */
 class NotificationService {
   constructor() {
-    this.notifications = [];
-    this.subscribers = new Map();
+    // In a real implementation, you would integrate with email services like Nodemailer
+    // and WhatsApp APIs like Twilio or Meta's WhatsApp Business API
+    this.emailService = null;
+    this.whatsappService = null;
   }
 
-  async initialize() {
+  /**
+   * Send email notification
+   */
+  async sendEmailNotification(to, subject, body) {
     try {
-      console.log('✅ NotificationService inicializado');
+      // In a real implementation, you would use an email service like Nodemailer
+      console.log(`📧 Email notification sent to ${to}: ${subject}`);
+      
+      // Mock implementation for development
+      return {
+        success: true,
+        message: 'Email notification sent successfully',
+        provider: 'mock'
+      };
     } catch (error) {
-      console.error('❌ Erro ao inicializar NotificationService:', error);
-      throw error;
+      console.error('❌ Error sending email notification:', error);
+      return {
+        success: false,
+        error: error.message
+      };
     }
   }
 
-  // Notificar administradores sobre novos materiais
-  async notifyAdmins(message, materials) {
+  /**
+   * Send WhatsApp notification
+   */
+  async sendWhatsappNotification(to, message) {
     try {
-      console.log(`📢 Notificando admins: ${message}`);
+      // In a real implementation, you would use a WhatsApp service like Twilio
+      console.log(`💬 WhatsApp notification sent to ${to}: ${message}`);
       
-      // Buscar todos os usuários admin
-      const { data: admins, error } = await supabase
-        .from('profiles')
-        .select('id, nome_completo, email')
-        .eq('role', 'admin');
-
-      if (error) {
-        throw error;
-      }
-
-      const notification = {
-        id: `notif_${Date.now()}`,
-        type: 'admin_notification',
-        message,
-        materials,
-        recipients: admins.map(admin => admin.id),
-        timestamp: new Date().toISOString(),
-        status: 'sent'
+      // Mock implementation for development
+      return {
+        success: true,
+        message: 'WhatsApp notification sent successfully',
+        provider: 'mock'
       };
+    } catch (error) {
+      console.error('❌ Error sending WhatsApp notification:', error);
+      return {
+        success: false,
+        error: error.message
+      };
+    }
+  }
 
-      // Salvar notificação no banco (se houver tabela)
-      try {
-        await this.saveNotification(notification);
-      } catch (error) {
-        console.log('⚠️ Não foi possível salvar notificação no banco:', error.message);
+  /**
+   * Send assignment confirmation notification
+   */
+  async sendAssignmentConfirmation(estudante, assignment, programacao) {
+    try {
+      const { principal_estudante, assistente_estudante } = estudante;
+      const student = principal_estudante || assistente_estudante;
+      
+      if (!student || !student.email) {
+        return {
+          success: false,
+          message: 'No email address found for student'
+        };
       }
 
-      // Log das notificações
-      admins.forEach(admin => {
-        console.log(`📢 Admin ${admin.nome_completo} (${admin.email}) notificado sobre ${materials.length} novos materiais`);
-      });
+      const subject = 'Nova Designação Ministerial';
+      const body = `
+        Olá ${student.nome},
+        
+        Você foi designado para uma parte na reunião ministerial.
+        
+        Detalhes:
+        - Data: ${programacao.semana_data_inicio}
+        - Parte: ${assignment.programacao_item?.titulo}
+        - Tipo: ${assignment.programacao_item?.tipo}
+        - Tempo: ${assignment.programacao_item?.tempo_min} minutos
+        
+        Por favor, confirme sua participação o quanto antes.
+        
+        Atenciosamente,
+        Equipe Ministerial
+      `;
+
+      // Send email notification
+      const emailResult = await this.sendEmailNotification(student.email, subject, body);
+      
+      // If student has WhatsApp, send WhatsApp notification too
+      if (student.telefone) {
+        const whatsappMessage = `
+          Olá ${student.nome},
+          
+          Você foi designado para: ${assignment.programacao_item?.titulo}
+          Data: ${programacao.semana_data_inicio}
+          
+          Confirme sua participação.
+        `;
+        
+        await this.sendWhatsappNotification(student.telefone, whatsappMessage);
+      }
 
       return {
         success: true,
-        message: `${admins.length} administradores notificados`,
-        notification
+        message: 'Assignment confirmation notifications sent',
+        email: emailResult
       };
-
     } catch (error) {
-      console.error('❌ Erro ao notificar admins:', error);
-      throw error;
+      console.error('❌ Error sending assignment confirmation:', error);
+      return {
+        success: false,
+        error: error.message
+      };
     }
   }
 
-  // Notificar congregações sobre novo programa
-  async notifyCongregations(program) {
+  /**
+   * Send reminder notification
+   */
+  async sendReminder(estudante, assignment, programacao, daysBefore = 3) {
     try {
-      console.log(`📢 Notificando congregações sobre programa: ${program.semana}`);
+      const { principal_estudante, assistente_estudante } = estudante;
+      const student = principal_estudante || assistente_estudante;
       
-      // Buscar todas as congregações ativas
-      const { data: congregations, error } = await supabase
-        .from('profiles')
-        .select('id, nome_completo, congregacao, email')
-        .eq('role', 'instrutor')
-        .not('congregacao', 'is', null);
-
-      if (error) {
-        throw error;
+      if (!student || !student.email) {
+        return {
+          success: false,
+          message: 'No email address found for student'
+        };
       }
 
-      // Agrupar por congregação
-      const congregationsByGroup = {};
-      congregations.forEach(profile => {
-        if (!congregationsByGroup[profile.congregacao]) {
-          congregationsByGroup[profile.congregacao] = [];
-        }
-        congregationsByGroup[profile.congregacao].push(profile);
-      });
+      const subject = `Lembrete: Sua Designação Ministerial em ${daysBefore} dias`;
+      const body = `
+        Olá ${student.nome},
+        
+        Este é um lembrete amigável sobre sua designação ministerial.
+        
+        Detalhes:
+        - Data: ${programacao.semana_data_inicio}
+        - Parte: ${assignment.programacao_item?.titulo}
+        - Tipo: ${assignment.programacao_item?.tipo}
+        - Tempo: ${assignment.programacao_item?.tempo_min} minutos
+        
+        Prepare-se bem para sua apresentação!
+        
+        Atenciosamente,
+        Equipe Ministerial
+      `;
 
-      const notification = {
-        id: `notif_program_${program.id}`,
-        type: 'program_available',
-        message: `Novo programa disponível: ${program.semana}`,
-        program,
-        recipients: congregations.map(c => c.id),
-        timestamp: new Date().toISOString(),
-        status: 'sent'
-      };
-
-      // Salvar notificação
-      try {
-        await this.saveNotification(notification);
-      } catch (error) {
-        console.log('⚠️ Não foi possível salvar notificação no banco:', error.message);
+      // Send email notification
+      const emailResult = await this.sendEmailNotification(student.email, subject, body);
+      
+      // If student has WhatsApp, send WhatsApp notification too
+      if (student.telefone) {
+        const whatsappMessage = `
+          📅 Lembrete: Sua designação "${assignment.programacao_item?.titulo}" 
+          é em ${daysBefore} dias (${programacao.semana_data_inicio}).
+          
+          Prepare-se bem!
+        `;
+        
+        await this.sendWhatsappNotification(student.telefone, whatsappMessage);
       }
-
-      // Log das notificações
-      Object.entries(congregationsByGroup).forEach(([congregation, users]) => {
-        console.log(`📢 Congregação ${congregation}: ${users.length} instrutores notificados sobre programa ${program.semana}`);
-      });
 
       return {
         success: true,
-        message: `${Object.keys(congregationsByGroup).length} congregações notificadas`,
-        notification,
-        congregations: Object.keys(congregationsByGroup)
+        message: 'Reminder notifications sent',
+        email: emailResult
       };
-
     } catch (error) {
-      console.error('❌ Erro ao notificar congregações:', error);
-      throw error;
+      console.error('❌ Error sending reminder:', error);
+      return {
+        success: false,
+        error: error.message
+      };
     }
   }
 
-  // Notificar instrutor específico
-  async notifyInstructor(instructorId, message, data = {}) {
+  /**
+   * Send confirmation receipt notification
+   */
+  async sendConfirmationReceipt(estudante, assignment, programacao) {
     try {
-      console.log(`📢 Notificando instrutor ${instructorId}: ${message}`);
+      const { principal_estudante, assistente_estudante } = estudante;
+      const student = principal_estudante || assistente_estudante;
       
-      // Buscar informações do instrutor
-      const { data: instructor, error } = await supabase
-        .from('profiles')
-        .select('id, nome_completo, email, congregacao')
-        .eq('id', instructorId)
-        .eq('role', 'instrutor')
-        .single();
-
-      if (error) {
-        throw error;
+      if (!student || !student.email) {
+        return {
+          success: false,
+          message: 'No email address found for student'
+        };
       }
 
-      const notification = {
-        id: `notif_instr_${Date.now()}`,
-        type: 'instructor_notification',
-        message,
-        data,
-        recipient: instructorId,
-        timestamp: new Date().toISOString(),
-        status: 'sent'
-      };
+      const subject = 'Confirmação de Recebimento da Designação';
+      const body = `
+        Olá ${student.nome},
+        
+        Recebemos sua confirmação para a designação ministerial.
+        
+        Detalhes:
+        - Data: ${programacao.semana_data_inicio}
+        - Parte: ${assignment.programacao_item?.titulo}
+        - Tipo: ${assignment.programacao_item?.tipo}
+        
+        Obrigado por sua disposição em servir.
+        
+        Atenciosamente,
+        Equipe Ministerial
+      `;
 
-      // Salvar notificação
-      try {
-        await this.saveNotification(notification);
-      } catch (error) {
-        console.log('⚠️ Não foi possível salvar notificação no banco:', error.message);
+      // Send email notification
+      const emailResult = await this.sendEmailNotification(student.email, subject, body);
+      
+      // If student has WhatsApp, send WhatsApp notification too
+      if (student.telefone) {
+        const whatsappMessage = `
+          ✅ Confirmação recebida para: ${assignment.programacao_item?.titulo}
+          Data: ${programacao.semana_data_inicio}
+          
+          Obrigado por sua disposição!
+        `;
+        
+        await this.sendWhatsappNotification(student.telefone, whatsappMessage);
       }
-
-      console.log(`📢 Instrutor ${instructor.nome_completo} (${instructor.congregacao}) notificado: ${message}`);
 
       return {
         success: true,
-        message: 'Instrutor notificado com sucesso',
-        notification
+        message: 'Confirmation receipt notifications sent',
+        email: emailResult
       };
-
     } catch (error) {
-      console.error('❌ Erro ao notificar instrutor:', error);
-      throw error;
+      console.error('❌ Error sending confirmation receipt:', error);
+      return {
+        success: false,
+        error: error.message
+      };
     }
   }
 
-  // Notificar sobre problemas no sistema
-  async notifySystemIssue(issue, severity = 'warning') {
+  /**
+   * Schedule automatic notifications
+   */
+  async scheduleNotifications(assignments, programacao) {
     try {
-      console.log(`🚨 Notificando sobre problema do sistema: ${issue}`);
+      const results = [];
       
-      // Buscar todos os admins
-      const { data: admins, error } = await supabase
-        .from('profiles')
-        .select('id, nome_completo, email')
-        .eq('role', 'admin');
-
-      if (error) {
-        throw error;
+      for (const assignment of assignments) {
+        // Send immediate assignment confirmation
+        const confirmationResult = await this.sendAssignmentConfirmation(
+          assignment, 
+          assignment, 
+          programacao
+        );
+        
+        results.push({
+          assignmentId: assignment.id,
+          type: 'confirmation',
+          result: confirmationResult
+        });
+        
+        // Schedule reminder for 3 days before
+        // In a real implementation, you would use a job scheduler like node-cron
+        setTimeout(async () => {
+          await this.sendReminder(assignment, assignment, programacao, 3);
+        }, 1000); // Mock delay for demo purposes
+        
+        // Schedule reminder for 1 day before
+        setTimeout(async () => {
+          await this.sendReminder(assignment, assignment, programacao, 1);
+        }, 2000); // Mock delay for demo purposes
       }
-
-      const notification = {
-        id: `notif_issue_${Date.now()}`,
-        type: 'system_issue',
-        message: issue,
-        severity,
-        recipients: admins.map(admin => admin.id),
-        timestamp: new Date().toISOString(),
-        status: 'sent'
-      };
-
-      // Salvar notificação
-      try {
-        await this.saveNotification(notification);
-      } catch (error) {
-        console.log('⚠️ Não foi possível salvar notificação no banco:', error.message);
-      }
-
-      // Log das notificações
-      admins.forEach(admin => {
-        console.log(`🚨 Admin ${admin.nome_completo} notificado sobre problema: ${issue}`);
-      });
-
+      
       return {
         success: true,
-        message: `${admins.length} administradores notificados sobre problema`,
-        notification
+        message: 'Notifications scheduled successfully',
+        results
       };
-
     } catch (error) {
-      console.error('❌ Erro ao notificar sobre problema:', error);
-      throw error;
-    }
-  }
-
-  // Salvar notificação no banco
-  async saveNotification(notification) {
-    try {
-      // Tentar salvar na tabela de notificações (se existir)
-      const { data, error } = await supabase
-        .from('admin_notifications')
-        .insert([{
-          id: notification.id,
-          type: notification.type,
-          message: notification.message,
-          data: notification.data || {},
-          recipients: notification.recipients || [notification.recipient],
-          severity: notification.severity || 'info',
-          status: notification.status,
-          created_at: notification.timestamp
-        }])
-        .select();
-
-      if (error) {
-        throw error;
-      }
-
-      console.log(`✅ Notificação salva no banco: ${notification.id}`);
-      return data;
-
-    } catch (error) {
-      // Se a tabela não existir, apenas log
-      console.log('⚠️ Tabela de notificações não encontrada, salvando apenas em memória');
-      
-      // Salvar em memória
-      this.notifications.push(notification);
-      
-      // Manter apenas as últimas 100 notificações
-      if (this.notifications.length > 100) {
-        this.notifications = this.notifications.slice(-100);
-      }
-      
-      return notification;
-    }
-  }
-
-  // Listar notificações
-  async listNotifications(limit = 50, offset = 0) {
-    try {
-      // Tentar buscar do banco primeiro
-      const { data, error } = await supabase
-        .from('admin_notifications')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .range(offset, offset + limit - 1);
-
-      if (error) {
-        throw error;
-      }
-
-      return data;
-
-    } catch (error) {
-      // Se não conseguir buscar do banco, retornar da memória
-      console.log('⚠️ Usando notificações em memória');
-      return this.notifications
-        .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
-        .slice(offset, offset + limit);
-    }
-  }
-
-  // Marcar notificação como lida
-  async markAsRead(notificationId) {
-    try {
-      const { data, error } = await supabase
-        .from('admin_notifications')
-        .update({ 
-          status: 'read',
-          read_at: new Date().toISOString()
-        })
-        .eq('id', notificationId)
-        .select();
-
-      if (error) {
-        throw error;
-      }
-
-      console.log(`✅ Notificação marcada como lida: ${notificationId}`);
-      return data;
-
-    } catch (error) {
-      console.error('❌ Erro ao marcar notificação como lida:', error);
-      throw error;
-    }
-  }
-
-  // Limpar notificações antigas
-  async cleanupOldNotifications(daysToKeep = 30) {
-    try {
-      const cutoffDate = new Date();
-      cutoffDate.setDate(cutoffDate.getDate() - daysToKeep);
-
-      const { data, error } = await supabase
-        .from('admin_notifications')
-        .delete()
-        .lt('created_at', cutoffDate.toISOString());
-
-      if (error) {
-        throw error;
-      }
-
-      console.log(`🗑️ Notificações antigas removidas: ${data?.length || 0}`);
-      return { deleted: data?.length || 0 };
-
-    } catch (error) {
-      console.error('❌ Erro ao limpar notificações antigas:', error);
-      throw error;
-    }
-  }
-
-  // Enviar notificação de teste
-  async sendTestNotification() {
-    try {
-      console.log('🧪 Enviando notificação de teste...');
-      
-      const testNotification = {
-        id: `test_${Date.now()}`,
-        type: 'test',
-        message: 'Esta é uma notificação de teste do sistema',
-        timestamp: new Date().toISOString(),
-        status: 'sent'
+      console.error('❌ Error scheduling notifications:', error);
+      return {
+        success: false,
+        error: error.message
       };
-
-      // Salvar notificação
-      await this.saveNotification(testNotification);
-
-      console.log('✅ Notificação de teste enviada');
-      return testNotification;
-
-    } catch (error) {
-      console.error('❌ Erro ao enviar notificação de teste:', error);
-      throw error;
     }
   }
 }

@@ -3,282 +3,364 @@
 ---
 
 ## 1️⃣ Document Metadata
-- **Project Name:** sua-parte
+- **Project Name:** ministry-hub-sync
 - **Version:** 0.0.0
-- **Date:** 2025-09-10
+- **Date:** 2025-09-16
 - **Prepared by:** TestSprite AI Team
 
 ---
 
 ## 2️⃣ Requirement Validation Summary
 
-### Requirement: Admin Dashboard Access and Management
-- **Description:** Supports administrator access to dashboard with statistics display and system monitoring capabilities.
+### Requirement: Authentication and Role-Based Access Control
+- **Description:** Supports email/password login with validation and enforces role-based access control for admin, instructor, student, and family roles.
 
 #### Test 1
 - **Test ID:** TC001
-- **Test Name:** Admin Dashboard Access and Statistics Display
-- **Test Code:** [code_file](./TC001_Admin_Dashboard_Access_and_Statistics_Display.py)
-- **Test Error:** Failed to go to the start URL. Err: Error executing action go_to_url: Page.goto: Timeout 60000ms exceeded.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/fdbe7257-cd49-4605-914f-fc9444fe93aa
+- **Test Name:** authentication with role based access control
+- **Test Code:** [TC001_authentication_with_role_based_access_control.py](./TC001_authentication_with_role_based_access_control.py)
+- **Test Error:** 
+```
+Traceback (most recent call last):
+  File "/var/task/handler.py", line 258, in run_with_retry
+    exec(code, exec_env)
+  File "<string>", line 111, in <module>
+  File "<string>", line 28, in test_authentication_with_role_based_access_control
+AssertionError: Login failed for admin with status 404
+```
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/c3e965d0-8c9d-4171-81c7-d238ba4e8c5b/262979a6-7f5e-4f37-bb12-44a9633aec5b
 - **Status:** ❌ Failed
 - **Severity:** High
-- **Analysis / Findings:** The test failed because the frontend did not load the Admin Dashboard page within the allowed timeout, indicating a possible server downtime, misconfiguration, or network issue preventing the browser from reaching http://localhost:8080/admin.
+- **Analysis / Findings:** The test failed because the login attempt for the admin role returned a 404 Not Found error, indicating that the backend authentication endpoint for admin login is either missing, misconfigured, or inaccessible. Verify that the admin login endpoint is correctly implemented and deployed. Check routing configurations and API availability for the admin role authentication. Ensure the endpoint paths match expected URLs and test environment points to the correct backend.
 
 ---
+
+### Requirement: Student Management CRUD Operations
+- **Description:** Test the creation, editing, viewing, and deletion of student records ensuring compliance with S-38 rules and proper data persistence.
 
 #### Test 2
 - **Test ID:** TC002
-- **Test Name:** Automatic JW.org Materials Download via Admin Dashboard
-- **Test Code:** [code_file](./TC002_Automatic_JW.org_Materials_Download_via_Admin_Dashboard.py)
-- **Test Error:** Failed to go to the start URL. Err: Error executing action go_to_url: Page.goto: Timeout 60000ms exceeded.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/a0ab2a5f-e223-4325-8c68-ca4d09db71fd
+- **Test Name:** student management crud operations
+- **Test Code:** [TC002_student_management_crud_operations.py](./TC002_student_management_crud_operations.py)
+- **Test Error:** 
+```
+Traceback (most recent call last):
+  File "/var/task/handler.py", line 258, in run_with_retry
+    exec(code, exec_env)
+  File "<string>", line 116, in <module>
+  File "<string>", line 27, in test_student_management_crud_operations
+  File "<string>", line 20, in login_and_get_token
+AssertionError: Login failed: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /auth/login</pre>
+</body>
+</html>
+```
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/c3e965d0-8c9d-4171-81c7-d238ba4e8c5b/e342c4ad-8f6a-40ca-9db4-9e3896a4625e
 - **Status:** ❌ Failed
 - **Severity:** High
-- **Analysis / Findings:** The test failed due to inability to load the Admin Dashboard page where the automatic JW.org materials download feature is accessed, likely caused by the frontend application not being reachable.
+- **Analysis / Findings:** The test failed due to a 'Cannot POST /auth/login' error, indicating the backend login endpoint is unavailable or incorrectly routed, preventing authentication for CRUD operations on student records. Restore or correctly configure the authentication login endpoint. Confirm that the POST route exists and is accessible in the backend server. Validate test environment URL and backend server deployment. Without successful login, student management operations cannot proceed.
 
 ---
+
+### Requirement: Bulk Student Import from Excel Files
+- **Description:** Validate the functionality to import multiple students from Excel spreadsheets, including automatic validations according to S-38 rules.
 
 #### Test 3
-- **Test ID:** TC010
-- **Test Name:** System Monitoring and Health Check on Admin Dashboard
-- **Test Code:** [code_file](./TC010_System_Monitoring_and_Health_Check_on_Admin_Dashboard.py)
-- **Test Error:** Failed to go to the start URL. Err: Error executing action go_to_url: Page.goto: Timeout 60000ms exceeded.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/2d0e8473-9dc8-425c-b18d-332b9f1de04c
-- **Status:** ❌ Failed
-- **Severity:** High
-- **Analysis / Findings:** System monitoring and health check components on Admin Dashboard failed to load, preventing visibility of real-time logs and health statuses.
-
----
-
-### Requirement: Backend API Integration
-- **Description:** Ensures backend Node.js server correctly processes API requests for JW.org materials download and parsing.
-
-#### Test 1
 - **Test ID:** TC003
-- **Test Name:** Backend API Responses and Download Processing
-- **Test Code:** [code_file](./TC003_Backend_API_Responses_and_Download_Processing.py)
-- **Test Error:** Failed to go to the start URL. Err: Error executing action go_to_url: Page.goto: Timeout 60000ms exceeded.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/c90bf1d4-2461-4b88-926e-f4d1c04fb9bb
+- **Test Name:** bulk student import from excel files
+- **Test Code:** [TC003_bulk_student_import_from_excel_files.py](./TC003_bulk_student_import_from_excel_files.py)
+- **Test Error:** 
+```
+Traceback (most recent call last):
+  File "<string>", line 25, in test_bulk_student_import_from_excel
+  File "/var/task/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: http://localhost:3000/auth/token
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/var/task/handler.py", line 258, in run_with_retry
+    exec(code, exec_env)
+  File "<string>", line 116, in <module>
+  File "<string>", line 32, in test_bulk_student_import_from_excel
+AssertionError: Authentication failed: 404 Client Error: Not Found for url: http://localhost:3000/auth/token
+```
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/c3e965d0-8c9d-4171-81c7-d238ba4e8c5b/078223e0-247a-4957-a73f-afcea29c7c55
 - **Status:** ❌ Failed
 - **Severity:** High
-- **Analysis / Findings:** Despite being a backend API test, the test failed trying to access the frontend start URL and never reached backend API endpoints, indicating that the frontend environment was not available to initiate or proxy requests to backend service on port 3001.
+- **Analysis / Findings:** Authentication failed during the test bulk student import due to a 404 error accessing 'http://localhost:3000/auth/token', indicating the authentication token endpoint is not found or service not running. Ensure the /auth/token endpoint is implemented and the backend authentication service is running and accessible at the expected URL. Validate environment configurations and test setup to avoid incorrect localhost addresses or ports. Fixing auth failures is critical to enable bulk imports.
 
 ---
 
-### Requirement: User Authentication System
-- **Description:** Supports secure user authentication via Supabase Auth system with role-based access control.
+### Requirement: Ministerial Program Creation and Management
+- **Description:** Ensure that ministerial programs can be created, edited, and managed correctly with data persistence and UI updates.
 
-#### Test 1
+#### Test 4
 - **Test ID:** TC004
-- **Test Name:** User Authentication with Supabase Auth
-- **Test Code:** [code_file](./TC004_User_Authentication_with_Supabase_Auth.py)
-- **Test Error:** Failed to go to the start URL. Err: Error executing action go_to_url: Page.goto: Timeout 60000ms exceeded.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/3de8be10-d425-428a-b68d-2d2856e781ad
+- **Test Name:** ministerial program creation and management
+- **Test Code:** [TC004_ministerial_program_creation_and_management.py](./TC004_ministerial_program_creation_and_management.py)
+- **Test Error:** 
+```
+Traceback (most recent call last):
+  File "/var/task/handler.py", line 258, in run_with_retry
+    exec(code, exec_env)
+  File "<string>", line 115, in <module>
+  File "<string>", line 49, in test_ministerial_program_creation_and_management
+AssertionError: Expected 201 Created, got 404
+```
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/c3e965d0-8c9d-4171-81c7-d238ba4e8c5b/958674ce-143e-4c49-8894-74bc9fc3381d
 - **Status:** ❌ Failed
 - **Severity:** High
-- **Analysis / Findings:** The authentication workflow test failed because the frontend login page did not load within the allotted timeout, preventing the Supabase authentication flows from executing.
+- **Analysis / Findings:** The ministerial program creation failed with a 404 Not Found response instead of the expected 201 Created, indicating the API endpoint for creating ministerial programs is missing or misconfigured. Verify the ministerial program creation endpoint is deployed and accessible. Check routing, API service deployment, and test environment URLs. Confirm that the backend correctly handles POST requests for ministerial program creation, and return correct HTTP status codes.
 
 ---
 
-#### Test 2
-- **Test ID:** TC013
-- **Test Name:** Error Handling for Invalid Login Attempts
-- **Test Code:** [code_file](./TC013_Error_Handling_for_Invalid_Login_Attempts.py)
-- **Test Error:** Failed to go to the start URL. Err: Error executing action go_to_url: Page.goto: Timeout 60000ms exceeded.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/437c4901-1224-4254-b750-57d6ccf09c82
-- **Status:** ❌ Failed
-- **Severity:** High
-- **Analysis / Findings:** Invalid login attempt error handling test failed because the login page could not be loaded, blocking verification of error messages and proper UI behavior on authentication failures.
+### Requirement: Automatic Assignment Generation Following S-38 Rules
+- **Description:** Test the automatic generation of ministerial assignments ensuring strict adherence to S-38-T rules including gender restrictions and qualification validations.
 
----
-
-### Requirement: Student Management System
-- **Description:** Supports importing students via Excel files with data validation and inline editing capabilities.
-
-#### Test 1
+#### Test 5
 - **Test ID:** TC005
-- **Test Name:** Import Students via Excel File and Inline Editing
-- **Test Code:** [code_file](./TC005_Import_Students_via_Excel_File_and_Inline_Editing.py)
-- **Test Error:** Failed to go to the start URL. Err: Error executing action go_to_url: Page.goto: Timeout 60000ms exceeded.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/1c2183f8-64c1-4edc-90f9-f7c92c78765d
+- **Test Name:** automatic assignment generation following s38 rules
+- **Test Code:** [TC005_automatic_assignment_generation_following_s38_rules.py](./TC005_automatic_assignment_generation_following_s38_rules.py)
+- **Test Error:** 
+```
+Traceback (most recent call last):
+  File "/var/task/handler.py", line 258, in run_with_retry
+    exec(code, exec_env)
+  File "<string>", line 133, in <module>
+  File "<string>", line 26, in test_automatic_assignment_generation_s38_rules
+AssertionError: Auth failed: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /auth/v1/token</pre>
+</body>
+</html>
+```
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/c3e965d0-8c9d-4171-81c7-d238ba4e8c5b/657006be-d340-4a9e-910c-7bb15c88a548
 - **Status:** ❌ Failed
 - **Severity:** High
-- **Analysis / Findings:** The Import Students functionality could not be tested because the frontend page did not load in time, which prevented validation of Excel file import and inline editing features.
+- **Analysis / Findings:** Authentication failed due to 'Cannot POST /auth/v1/token' error, preventing automatic assignment generation which requires authorization and access to backend services. Fix the authentication token endpoint /auth/v1/token by ensuring it is correctly implemented and the server is running. Review API gateway or proxy settings that may block this route. Proper authentication is mandatory to generate automatic assignments based on S-38-T rules.
 
 ---
 
-#### Test 2
-- **Test ID:** TC014
-- **Test Name:** Edge Case: Import Empty or Large Excel File for Students
-- **Test Code:** [code_file](./TC014_Edge_Case_Import_Empty_or_Large_Excel_File_for_Students.py)
-- **Test Error:** Failed to go to the start URL. Err: Error executing action go_to_url: Page.goto: Timeout 60000ms exceeded.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/78eeadbf-ff87-413f-a8ab-bb015fa82e73
-- **Status:** ❌ Failed
-- **Severity:** High
-- **Analysis / Findings:** Edge case testing for importing empty or large Excel files failed due to frontend page load timeout, preventing evaluation of import file handling and performance under edge conditions.
+### Requirement: Import Ministerial Programs from PDF Files
+- **Description:** Verify the functionality to import ministerial programs automatically from official JW.org PDF files and convert them to JSON format correctly.
 
----
-
-### Requirement: Program Management System
-- **Description:** Supports importing ministerial programs via PDF upload or copied text with data parsing and editing capabilities.
-
-#### Test 1
+#### Test 6
 - **Test ID:** TC006
-- **Test Name:** Import Ministerial Programs via PDF and Copied Text
-- **Test Code:** [code_file](./TC006_Import_Ministerial_Programs_via_PDF_and_Copied_Text.py)
-- **Test Error:** Failed to go to the start URL. Err: Error executing action go_to_url: Page.goto: Timeout 60000ms exceeded.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/8f0346ae-6e0e-4182-ac42-34079450cced
+- **Test Name:** import ministerial programs from pdf files
+- **Test Code:** [TC006_import_ministerial_programs_from_pdf_files.py](./TC006_import_ministerial_programs_from_pdf_files.py)
+- **Test Error:** 
+```
+Traceback (most recent call last):
+  File "/var/task/handler.py", line 258, in run_with_retry
+    exec(code, exec_env)
+  File "<string>", line 9, in <module>
+AssertionError: Environment variable TEST_USER_EMAIL must be set.
+```
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/c3e965d0-8c9d-4171-81c7-d238ba4e8c5b/52b290e3-709d-4dc6-af80-c054ace4edb6
 - **Status:** ❌ Failed
-- **Severity:** High
-- **Analysis / Findings:** The test for importing ministerial programs via PDF or copied text failed due to the frontend page not loading within timeout, preventing any interaction with the import features or data parsing UI.
+- **Severity:** Medium
+- **Analysis / Findings:** The test failed because the required environment variable 'TEST_USER_EMAIL' was not set, causing the test initialization to abort due to missing authentication context or user identification. Set the 'TEST_USER_EMAIL' environment variable appropriately in the test environment to provide necessary context for authentication or user-related logic. Update test setup documentation and CI/CD environment configurations to include this variable.
 
 ---
 
-### Requirement: Assignment Generation System
-- **Description:** Supports automatic generation of ministerial designations following S-38-T rules with eligibility and balancing constraints.
+### Requirement: Family Member Management and Relationships
+- **Description:** Test the management of family members and their relationships including CRUD operations and data integrity.
 
-#### Test 1
+#### Test 7
 - **Test ID:** TC007
-- **Test Name:** Generate Designations Automatically Respecting S-38-T Rules
-- **Test Code:** [code_file](./TC007_Generate_Designations_Automatically_Respecting_S_38_T_Rules.py)
-- **Test Error:** Failed to go to the start URL. Err: Error executing action go_to_url: Page.goto: Timeout 60000ms exceeded.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/404e0dda-9f23-4c0e-9ae7-8695d6bc1575
+- **Test Name:** family member management and relationships
+- **Test Code:** [TC007_family_member_management_and_relationships.py](./TC007_family_member_management_and_relationships.py)
+- **Test Error:** 
+```
+Traceback (most recent call last):
+  File "/var/task/handler.py", line 258, in run_with_retry
+    exec(code, exec_env)
+  File "<string>", line 155, in <module>
+  File "<string>", line 95, in test_family_member_management_and_relationships
+AssertionError: Failed to create member1: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /family-members</pre>
+</body>
+</html>
+```
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/c3e965d0-8c9d-4171-81c7-d238ba4e8c5b/f7c2f52c-6501-481d-9d70-1a571bddc9e9
 - **Status:** ❌ Failed
 - **Severity:** High
-- **Analysis / Findings:** The designation generation feature could not be tested because the frontend UI to trigger and display results did not load, causing the test to timeout.
+- **Analysis / Findings:** Failed to create a family member due to 'Cannot POST /family-members' error, indicating that the backend API for managing family members is unavailable or misconfigured. Ensure the family member management API endpoint exists and is accessible. Verify backend service deployment and routing. Fix any API gateway or proxy issues. Without this endpoint, family member CRUD operations cannot function, breaking critical relationship management features.
 
 ---
 
-#### Test 2
-- **Test ID:** TC015
-- **Test Name:** Edge Case: Generate Designations with No Eligible Students
-- **Test Code:** [code_file](./TC015_Edge_Case_Generate_Designations_with_No_Eligible_Students.py)
-- **Test Error:** [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE (at http://localhost:8080/src/components/ui/table.tsx:0:0)
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/7e3af2e5-2b69-48ed-9a87-0c51b2ccba34
-- **Status:** ❌ Failed
-- **Severity:** High
-- **Analysis / Findings:** Designation generation edge case test failed due to frontend resource load error (net::ERR_EMPTY_RESPONSE), indicating frontend server was unresponsive, blocking testing of system behavior when no students are eligible.
+### Requirement: Unified Dashboard for Admin and Instructors
+- **Description:** Validate the unified dashboard interface for administrators and instructors, ensuring correct display of ministerial programs and assignment tools.
 
----
-
-### Requirement: Student Portal System
-- **Description:** Supports secure student portal access with assignment viewing and historical participation tracking.
-
-#### Test 1
+#### Test 8
 - **Test ID:** TC008
-- **Test Name:** Student Portal Access and Designation History
-- **Test Code:** [code_file](./TC008_Student_Portal_Access_and_Designation_History.py)
-- **Test Error:** Failed to go to the start URL. Err: Error executing action go_to_url: Page.goto: Timeout 60000ms exceeded.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/e27cba73-0ce2-4925-9336-819d8b59f76d
+- **Test Name:** unified dashboard for admin and instructors
+- **Test Code:** [TC008_unified_dashboard_for_admin_and_instructors.py](./TC008_unified_dashboard_for_admin_and_instructors.py)
+- **Test Error:** 
+```
+Traceback (most recent call last):
+  File "/var/task/urllib3/connectionpool.py", line 773, in urlopen
+    self._prepare_proxy(conn)
+  File "/var/task/urllib3/connectionpool.py", line 1042, in _prepare_proxy
+    conn.connect()
+  File "/var/task/urllib3/connection.py", line 770, in connect
+    self._tunnel()
+  File "/var/lang/lib/python3.12/http/client.py", line 971, in _tunnel
+    (version, code, message) = response._read_status()
+                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/lang/lib/python3.12/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/var/task/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/var/task/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/var/task/urllib3/util/retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/task/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/var/task/urllib3/connectionpool.py", line 773, in urlopen
+    self._prepare_proxy(conn)
+  File "/var/task/urllib3/connectionpool.py", line 1042, in _prepare_proxy
+    conn.connect()
+  File "/var/task/urllib3/connection.py", line 770, in connect
+    self._tunnel()
+  File "/var/lang/lib/python3.12/http/client.py", line 971, in _tunnel
+    (version, code, message) = response._read_status()
+                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/lang/lib/python3.12/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<string>", line 40, in test_unified_dashboard_for_admin_and_instructors
+  File "<string>", line 27, in supabase_auth_login
+  File "/var/task/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/task/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/task/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/task/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/task/requests/adapters.py", line 682, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+```
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/c3e965d0-8c9d-4171-81c7-d238ba4e8c5b/2a3c65cf-b64d-4398-ba77-ae7c52ab47fe
 - **Status:** ❌ Failed
 - **Severity:** High
-- **Analysis / Findings:** Student portal access and designation history view failed to load due to the frontend not being reachable, preventing verification of secure login and assignment display.
+- **Analysis / Findings:** The test failed due to a connection error where the server closed the connection without response, indicating backend service instability or unavailability when attempting to access the unified dashboard backend resources. Investigate backend server stability and network connectivity issues. Check server logs for crashes or resource limits causing abrupt connection closures. Validate infrastructure health and retry mechanisms. Stability is needed to reliably serve dashboard data.
 
 ---
 
-### Requirement: Family Management System
-- **Description:** Supports family invitation system and relationship linking within the ministerial system.
+### Requirement: Student Portal Assignment Viewing
+- **Description:** Ensure that students can view their individual assignments in the student portal with proper access control and personalized notifications.
 
-#### Test 1
+#### Test 9
 - **Test ID:** TC009
-- **Test Name:** Family Management System: Invite and Link Family Members
-- **Test Code:** [code_file](./TC009_Family_Management_System_Invite_and_Link_Family_Members.py)
-- **Test Error:** Failed to go to the start URL. Err: Error executing action go_to_url: Page.goto: Timeout 60000ms exceeded.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/2ce530f6-c5aa-4244-942a-171698b8cbd1
+- **Test Name:** student portal assignment viewing
+- **Test Code:** [TC009_student_portal_assignment_viewing.py](./TC009_student_portal_assignment_viewing.py)
+- **Test Error:** 
+```
+Traceback (most recent call last):
+  File "/var/task/handler.py", line 258, in run_with_retry
+    exec(code, exec_env)
+  File "<string>", line 77, in <module>
+  File "<string>", line 29, in test_student_portal_assignment_viewing
+AssertionError: Login failed: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /auth/v1/token</pre>
+</body>
+</html>
+```
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/c3e965d0-8c9d-4171-81c7-d238ba4e8c5b/2f121eec-d00d-49a3-b4f6-eead267db5d1
 - **Status:** ❌ Failed
 - **Severity:** High
-- **Analysis / Findings:** Family invitation and linking features were inaccessible due to the frontend page load timeout, blocking functional verification of family relationship management UI.
+- **Analysis / Findings:** Authentication failed due to 'Cannot POST /auth/v1/token' 404 error, blocking students from logging in to view their assignments, impacting access control and personalized notifications. Restore or fix the authentication token endpoint. Confirm backend service routing and availability. Ensure the endpoint path and HTTP method are correctly implemented as expected by the client. Authentication must succeed to enable student portal functionalities.
 
 ---
 
-### Requirement: Development Environment Setup
-- **Description:** Ensures npm scripts and development environment startup work correctly.
+### Requirement: Offline Mode Data Access and Synchronization
+- **Description:** Test the offline mode functionality allowing users to access cached data without internet connection and synchronize changes upon reconnection.
 
-#### Test 1
-- **Test ID:** TC011
-- **Test Name:** NPM Scripts Execution for Development Environment
-- **Test Code:** [code_file](./TC011_NPM_Scripts_Execution_for_Development_Environment.py)
-- **Test Error:** Failed to go to the start URL. Err: Error executing action go_to_url: Page.goto: Timeout 60000ms exceeded.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/1c2c3150-f3ee-4fd4-be87-c0b3ed8ecfac
+#### Test 10
+- **Test ID:** TC010
+- **Test Name:** offline mode data access and synchronization
+- **Test Code:** [TC010_offline_mode_data_access_and_synchronization.py](./TC010_offline_mode_data_access_and_synchronization.py)
+- **Test Error:** 
+```
+Traceback (most recent call last):
+  File "/var/task/handler.py", line 258, in run_with_retry
+    exec(code, exec_env)
+  File "<string>", line 100, in <module>
+  File "<string>", line 55, in test_offline_mode_data_access_and_synchronization
+  File "<string>", line 20, in authenticate
+  File "/var/task/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: http://localhost:3000/auth/v1/token
+```
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/c3e965d0-8c9d-4171-81c7-d238ba4e8c5b/b5733f80-10c3-43f3-99aa-c7b01ab5ccf4
 - **Status:** ❌ Failed
 - **Severity:** High
-- **Analysis / Findings:** The development environment startup test failed because the frontend application could not be accessed, indicating the npm scripts might not be launching the frontend server correctly or its dependencies are not met.
-
----
-
-### Requirement: End-to-End Testing Infrastructure
-- **Description:** Ensures Cypress E2E test suite runs successfully and validates key functionalities.
-
-#### Test 1
-- **Test ID:** TC012
-- **Test Name:** Cypress E2E Test Suite Execution
-- **Test Code:** [code_file](./TC012_Cypress_E2E_Test_Suite_Execution.py)
-- **Test Error:** [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE (at http://localhost:8080/src/types/spreadsheet.ts:0:0)
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/b4eae8d5-e303-4358-83b7-e644cf238ee3/3c12e0b6-058c-4f14-b989-5bbf68d1b173
-- **Status:** ❌ Failed
-- **Severity:** High
-- **Analysis / Findings:** Cypress E2E suite failed due to frontend resource loading errors (net::ERR_EMPTY_RESPONSE), indicating the frontend app is not properly serving files or the server is unresponsive.
+- **Analysis / Findings:** Authentication failure resulted from a 404 Not Found error at 'http://localhost:3000/auth/v1/token', preventing the test from validating offline mode data synchronization and cache access due to lack of user verification. Fix the backend auth token endpoint availability and accessibility with correct URLs and ports. Confirm environment variables and network routing to prevent localhost misreferences in production or staging systems. Reliable authentication is essential for offline mode synchronizations.
 
 ---
 
 ## 3️⃣ Coverage & Matching Metrics
 
-- **0% of product requirements tested** 
-- **0% of tests passed** 
-- **Key gaps / risks:**  
-> 0% of product requirements had at least one test generated.  
-> 0% of tests passed fully.  
-> **Critical Risk**: Frontend server is not running or accessible at http://localhost:8080, causing all tests to fail with timeout errors. This indicates a fundamental infrastructure issue that must be resolved before any functional testing can proceed.
+- 100% of product requirements tested
+- 0% of tests passed
+- **Key gaps / risks:** 
+All tests failed due to authentication and API endpoint issues. Critical backend services are not accessible or properly configured.
 
 | Requirement        | Total Tests | ✅ Passed | ⚠️ Partial | ❌ Failed |
 |--------------------|-------------|-----------|-------------|------------|
-| Admin Dashboard    | 3           | 0         | 0           | 3          |
-| Backend API        | 1           | 0         | 0           | 1          |
-| User Authentication| 2           | 0         | 0           | 2          |
-| Student Management | 2           | 0         | 0           | 2          |
-| Program Management | 1           | 0         | 0           | 1          |
-| Assignment Generation| 2        | 0         | 0           | 2          |
-| Student Portal     | 1           | 0         | 0           | 1          |
-| Family Management  | 1           | 0         | 0           | 1          |
-| Development Environment| 1      | 0         | 0           | 1          |
-| E2E Testing        | 1           | 0         | 0           | 1          |
-
+| Authentication and Role-Based Access Control | 1 | 0 | 0 | 1 |
+| Student Management CRUD Operations | 1 | 0 | 0 | 1 |
+| Bulk Student Import from Excel Files | 1 | 0 | 0 | 1 |
+| Ministerial Program Creation and Management | 1 | 0 | 0 | 1 |
+| Automatic Assignment Generation Following S-38 Rules | 1 | 0 | 0 | 1 |
+| Import Ministerial Programs from PDF Files | 1 | 0 | 0 | 1 |
+| Family Member Management and Relationships | 1 | 0 | 0 | 1 |
+| Unified Dashboard for Admin and Instructors | 1 | 0 | 0 | 1 |
+| Student Portal Assignment Viewing | 1 | 0 | 0 | 1 |
+| Offline Mode Data Access and Synchronization | 1 | 0 | 0 | 1 |
 ---
-
-## 🚨 Critical Issues Identified
-
-### 1. **Frontend Server Not Running (CRITICAL)**
-- **Issue**: All tests failed due to inability to access http://localhost:8080
-- **Impact**: Complete system unavailability
-- **Recommendation**: Start the frontend development server using `npm run dev` or `npm run dev:frontend`
-
-### 2. **Resource Loading Errors**
-- **Issue**: net::ERR_EMPTY_RESPONSE errors for static assets
-- **Impact**: Frontend application cannot load properly
-- **Recommendation**: Check server configuration and ensure all dependencies are installed
-
-### 3. **Development Environment Setup**
-- **Issue**: NPM scripts may not be launching servers correctly
-- **Impact**: Development workflow is broken
-- **Recommendation**: Verify package.json scripts and run `npm install` to ensure all dependencies are available
-
----
-
-## 📋 Next Steps
-
-1. **Immediate Action Required**: Start the frontend development server
-2. **Verify Backend**: Ensure backend server is running on port 3001
-3. **Check Dependencies**: Run `npm install` in both root and backend directories
-4. **Re-run Tests**: Once servers are running, re-execute TestSprite tests
-5. **Address Individual Issues**: Focus on authentication, student management, and program import functionality
-
----
-
-## 📊 Test Execution Summary
-
-- **Total Tests Executed**: 15
-- **Tests Passed**: 0 (0%)
-- **Tests Failed**: 15 (100%)
-- **Execution Time**: 2 minutes 6 seconds
-- **Primary Failure Cause**: Frontend server unavailability

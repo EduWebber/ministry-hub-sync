@@ -1,5 +1,6 @@
 ---
-trigger: manual
+trigger: always_on
+alwaysApply: true
 ---
 # 🛠️ Rules and User Guidelines - Sistema Ministerial
 

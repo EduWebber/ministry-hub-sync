@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState, useCallback, use
 import { supabase } from '../integrations/supabase/client';
 import { User, Session, AuthError } from '@supabase/supabase-js';
 import { checkAndClearInvalidTokens, recoverFromAuthError, clearAuthStorage } from '@/utils/auth-recovery';
+import { isMockMode, debugAuthStatus } from '@/utils/debug-utils';
 
 interface Profile {
   id: string;
@@ -43,7 +44,7 @@ export const useAuth = () => {
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Check if we're in mock mode
-  const isMockMode = import.meta.env.VITE_MOCK_MODE === 'true';
+  const isMockModeValue = isMockMode();
   
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -53,7 +54,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // 🔄 Função para recuperar autenticação
   const refreshAuth = useCallback(async () => {
     // If in mock mode, set up mock user and profile
-    if (isMockMode) {
+    if (isMockModeValue) {
       console.log('🧪 Mock mode: setting up mock user and profile');
       const mockUser: User = {
         id: '550e8400-e29b-41d4-a716-446655440000',
@@ -149,7 +150,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // 🔄 Função para carregar perfil do usuário
   const loadProfile = useCallback(async (userId: string) => {
     // If in mock mode, return mock profile data
-    if (isMockMode) {
+    if (isMockModeValue) {
       console.log('🧪 Mock mode: returning mock profile data');
       const mockProfile: Profile = {
         id: userId,
@@ -301,7 +302,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // 🔄 Função para lidar com mudanças de autenticação
   const handleAuthStateChange = useCallback(async (event: string, session: Session | null) => {
     // If in mock mode, skip handling auth state changes from Supabase
-    if (isMockMode) {
+    if (isMockModeValue) {
       console.log('🧪 Mock mode: skipping auth state change handling');
       setLoading(false);
       return;
@@ -330,6 +331,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(session.user);
         await loadProfile(session.user.id);
       }
+      
+      // Debug auth status
+      debugAuthStatus(user, profile);
     } catch (error) {
       console.error('❌ Error handling auth state change:', error);
       setAuthError('Erro ao processar mudança de autenticação');
@@ -361,7 +365,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Update profile (used by onboarding/setup screens)
   const updateProfile = useCallback(async (updates: Partial<Profile>) => {
     // If in mock mode, simulate profile update
-    if (isMockMode) {
+    if (isMockModeValue) {
       console.log('🧪 Mock mode: simulating profile update');
       if (!user) {
         return { data: null, error: { message: 'No user logged in' } };
@@ -461,7 +465,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // 🔄 Função de login com tratamento de erro robusto
   const signIn = useCallback(async (email: string, password: string) => {
     // If in mock mode, simulate successful sign in
-    if (isMockMode) {
+    if (isMockModeValue) {
       console.log('🧪 Mock mode: simulating successful sign in');
       setLoading(true);
       setAuthError(null);
@@ -524,7 +528,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // 🔄 Função de cadastro com tratamento de erro robusto
   const signUp = useCallback(async (email: string, password: string, profileData: Partial<Profile>) => {
     // If in mock mode, simulate successful sign up
-    if (isMockMode) {
+    if (isMockModeValue) {
       console.log('🧪 Mock mode: simulating successful sign up');
       setLoading(true);
       setAuthError(null);
@@ -589,7 +593,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // 🔄 Função de logout com limpeza completa
   const signOut = useCallback(async (): Promise<{ error: AuthError | null }> => {
     // If in mock mode, simulate sign out
-    if (isMockMode) {
+    if (isMockModeValue) {
       console.log('🧪 Mock mode: simulating sign out');
       setLoading(true);
       setUser(null);
@@ -673,7 +677,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const subscribedRef = useRef(false);
   useEffect(() => {
     // If in mock mode, skip Supabase auth subscription
-    if (isMockMode) {
+    if (isMockModeValue) {
       console.log('🧪 Mock mode: skipping Supabase auth subscription');
       if (!subscribedRef.current) {
         subscribedRef.current = true;

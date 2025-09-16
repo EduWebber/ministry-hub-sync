@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -32,6 +33,10 @@ import Hero from "@/components/Hero";
 import { useAuth } from "@/contexts/AuthContext";
 import { useEstudantes } from "@/hooks/useEstudantes";
 import { JWContentParser } from "@/components/JWContentParser";
+import DesignacoesReais from "@/components/DesignacoesReais";
+
+// Check if we're in mock mode
+const isMockMode = import.meta.env.VITE_MOCK_MODE === 'true';
 
 // Tipos para o sistema de designações
 interface DesignacaoMinisterial {
@@ -280,6 +285,7 @@ const GeradorDesignacoes: React.FC<{
   const [congregacaoId, setCongregacaoId] = useState<string>("");
   const [programacaoId, setProgramacaoId] = useState<string>("");
   const [programacaoItens, setProgramacaoItens] = useState<any[]>([]);
+  const uniqueCongs = Array.from(new Set((estudantes || []).map((e: any) => e?.congregacao_id).filter(Boolean)));
 
   // Preencher automaticamente a congregação com base no primeiro estudante ativo
   useEffect(() => {
@@ -469,8 +475,21 @@ const GeradorDesignacoes: React.FC<{
             <p className="text-sm text-gray-600">{estudantes.length} estudantes</p>
           </div>
           <div>
-            <label className="text-sm font-medium">Congregação (UUID):</label>
-            <Input value={congregacaoId} onChange={(e) => setCongregacaoId(e.target.value)} placeholder="00000000-0000-0000-0000-000000000000" />
+            <p className="text-sm font-medium">Congregação:</p>
+            <Select value={congregacaoId} onValueChange={setCongregacaoId}>
+              <SelectTrigger>
+                <SelectValue placeholder="Selecione a congregação" />
+              </SelectTrigger>
+              <SelectContent>
+                {uniqueCongs.length === 0 ? (
+                  <SelectItem value="" disabled>Nenhuma congregação encontrada</SelectItem>
+                ) : (
+                  uniqueCongs.map((id: string) => (
+                    <SelectItem key={id} value={id}>{id}</SelectItem>
+                  ))
+                )}
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
@@ -732,6 +751,8 @@ const PortalEstudante: React.FC = () => {
 
 // Componente principal
 export default function Designacoes() {
+  const navigate = useNavigate();
+  
   const { user } = useAuth();
   const { estudantes } = useEstudantes();
   const [programaAtual, setProgramaAtual] = useState<ProgramaSemanal | null>(null);
@@ -1055,8 +1076,8 @@ export default function Designacoes() {
       </main>
       <Footer />
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 32 }}>
-        <Button variant="outline" onClick={() => window.location.href = '/programas'}>Voltar</Button>
-        <Button variant="default" onClick={() => window.location.href = '/relatorios'}>Prosseguir</Button>
+        <Button variant="outline" onClick={() => navigate('/programas')}>Voltar</Button>
+        <Button variant="default" onClick={() => navigate('/relatorios')}>Prosseguir</Button>
       </div>
     </div>
   );

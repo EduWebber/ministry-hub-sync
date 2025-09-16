@@ -1,0 +1,52 @@
+[
+  {
+    "id": "TC001",
+    "title": "authentication with role based access control",
+    "description": "Verify that the authentication system using Supabase Auth correctly authenticates users and enforces role-based access control for admin, instructor, student, and family roles."
+  },
+  {
+    "id": "TC002",
+    "title": "student management crud operations",
+    "description": "Test the creation, editing, viewing, and deletion of student records ensuring compliance with S-38 rules and proper data persistence."
+  },
+  {
+    "id": "TC003",
+    "title": "bulk student import from excel files",
+    "description": "Validate the functionality to import multiple students from Excel spreadsheets, including automatic validations according to S-38 rules."
+  },
+  {
+    "id": "TC004",
+    "title": "ministerial program creation and management",
+    "description": "Ensure that ministerial programs can be created, edited, and managed correctly with data persistence and UI updates."
+  },
+  {
+    "id": "TC005",
+    "title": "automatic assignment generation following s38 rules",
+    "description": "Test the automatic generation of ministerial assignments ensuring strict adherence to S-38-T rules including gender restrictions and qualification validations."
+  },
+  {
+    "id": "TC006",
+    "title": "import ministerial programs from pdf files",
+    "description": "Verify the functionality to import ministerial programs automatically from official JW.org PDF files and convert them to JSON format correctly."
+  },
+  {
+    "id": "TC007",
+    "title": "family member management and relationships",
+    "description": "Test the management of family members and their relationships including CRUD operations and data integrity."
+  },
+  {
+    "id": "TC008",
+    "title": "unified dashboard for admin and instructors",
+    "description": "Validate the unified dashboard interface for administrators and instructors, ensuring correct display of ministerial programs and assignment tools."
+  },
+  {
+    "id": "TC009",
+    "title": "student portal assignment viewing",
+    "description": "Ensure that students can view their individual assignments in the student portal with proper access control and personalized notifications."
+  },
+  {
+    "id": "TC010",
+    "title": "offline mode data access and synchronization",
+    "description": "Test the offline mode functionality allowing users to access cached data without internet connection and synchronize changes upon reconnection."
+  }
+]

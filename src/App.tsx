@@ -7,6 +7,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { OnboardingProvider } from "@/contexts/OnboardingContext"; 
 import { TutorialProvider } from "@/contexts/TutorialContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { ProgramProvider } from "@/contexts/ProgramContext";
 import { TutorialOverlay } from "@/components/tutorial";
 
 // Eager load critical components
@@ -39,11 +40,13 @@ const PrimeiroPrograma = lazy(() => import("./pages/PrimeiroPrograma"));
 const ConviteAceitar = lazy(() => import("./pages/convite/aceitar"));
 const FamiliaPage = lazy(() => import("./pages/estudante/[id]/familia"));
 const Reunioes = lazy(() => import("./pages/Reunioes"));
+const OfflineTestPage = lazy(() => import("./pages/OfflineTestPage"));
 
 // Dev-only lazy loads
 const ProgramasTest = lazy(() => import("./pages/ProgramasTest"));
 const DensityToggleTestPage = lazy(() => import("./pages/DensityToggleTest"));
 const ZoomResponsivenessTestPage = lazy(() => import("./pages/ZoomResponsivenessTest"));
+const DashboardContextPage = lazy(() => import("./pages/DashboardContextPage"));
 
 const queryClient = new QueryClient();
 
@@ -104,164 +107,167 @@ const App = () => (
     <LanguageProvider>
       <AuthProvider>
         <OnboardingProvider>
-          <TutorialProvider>
-          <TooltipProvider>
-            <Sonner />
-            <TutorialOverlay />
-            <BrowserRouter
-              future={{
-                v7_startTransition: true,
-                v7_relativeSplatPath: true
-              }}
-            >
-              <Suspense fallback={<PageLoader />}>
-                <Routes>
-                  {/* Public Routes */}
-                  <Route path="/" element={<Index />} />
-                  <Route path="/auth" element={<Auth />} />
-                  <Route path="/demo" element={<Demo />} />
-                  <Route path="/funcionalidades" element={<Funcionalidades />} />
-                  <Route path="/congregacoes" element={<Congregacoes />} />
-                  <Route path="/suporte" element={<Suporte />} />
-                  <Route path="/sobre" element={<Sobre />} />
-                  <Route path="/doar" element={<Doar />} />
+          <ProgramProvider>
+            <TutorialProvider>
+            <TooltipProvider>
+              <Sonner />
+              <TutorialOverlay />
+              <BrowserRouter
+                future={{
+                  v7_startTransition: true,
+                  v7_relativeSplatPath: true
+                }}
+              >
+                <Suspense fallback={<PageLoader />}>
+                  <Routes>
+                    {/* Public Routes */}
+                    <Route path="/" element={<Index />} />
+                    <Route path="/auth" element={<Auth />} />
+                    <Route path="/demo" element={<Demo />} />
+                    <Route path="/funcionalidades" element={<Funcionalidades />} />
+                    <Route path="/congregacoes" element={<Congregacoes />} />
+                    <Route path="/suporte" element={<Suporte />} />
+                    <Route path="/sobre" element={<Sobre />} />
+                    <Route path="/doar" element={<Doar />} />
 
-                  {/* Onboarding Routes */}
-                  <Route
-                    path="/bem-vindo"
-                    element={
-                      <ProtectedRoute allowedRoles={['instrutor']}>
-                        <BemVindo />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/configuracao-inicial"
-                    element={
-                      <ProtectedRoute allowedRoles={['instrutor']}>
-                        <ConfiguracaoInicial />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/primeiro-programa"
-                    element={
-                      <ProtectedRoute allowedRoles={['instrutor']}>
-                        <PrimeiroPrograma />
-                      </ProtectedRoute>
-                    }
-                  />
+                    {/* Onboarding Routes */}
+                    <Route
+                      path="/bem-vindo"
+                      element={
+                        <ProtectedRoute allowedRoles={['instrutor']}>
+                          <BemVindo />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/configuracao-inicial"
+                      element={
+                        <ProtectedRoute allowedRoles={['instrutor']}>
+                          <ConfiguracaoInicial />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/primeiro-programa"
+                      element={
+                        <ProtectedRoute allowedRoles={['instrutor']}>
+                          <PrimeiroPrograma />
+                        </ProtectedRoute>
+                      }
+                    />
 
-                  {/* Debug Routes - Only in development */}
-                  {import.meta.env.DEV && (
-                    <>
-                      <Route path="/density-toggle-test" element={<DensityToggleTestPage />} />
-                      <Route path="/zoom-responsiveness-test" element={<ZoomResponsivenessTestPage />} />
-                      <Route
-                        path="/programas-test"
-                        element={
-                          <ProtectedRoute allowedRoles={['instrutor']}>
-                            <ProgramasTest />
-                          </ProtectedRoute>
-                        }
-                      />
-                    </>
-                  )}
+                    {/* Debug Routes - Only in development */}
+                    {import.meta.env.DEV && (
+                      <>
+                        <Route path="/density-toggle-test" element={<DensityToggleTestPage />} />
+                        <Route path="/zoom-responsiveness-test" element={<ZoomResponsivenessTestPage />} />
+                        <Route path="/offline-test" element={<OfflineTestPage />} />
+                        <Route
+                          path="/programas-test"
+                          element={
+                            <ProtectedRoute allowedRoles={['instrutor']}>
+                              <ProgramasTest />
+                            </ProtectedRoute>
+                          }
+                        />
+                      </>
+                    )}
 
-                  {/* Dashboard Principal */}
-                  <Route 
-                    path="/dashboard" 
-                    element={
-                      <ProtectedRoute allowedRoles={['instrutor']}>
-                        <InstrutorDashboard />
-                      </ProtectedRoute>
-                    } 
-                  />
+                    {/* Dashboard Principal */}
+                    <Route 
+                      path="/dashboard" 
+                      element={
+                        <ProtectedRoute allowedRoles={['instrutor']}>
+                          <InstrutorDashboard />
+                        </ProtectedRoute>
+                      } 
+                    />
 
-                  {/* Instrutor Routes */}
-                  <Route
-                    path="/estudantes"
-                    element={
-                      <ProtectedRoute allowedRoles={['instrutor']}>
-                        <EstudantesPage />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/programas"
-                    element={
-                      <ProtectedRoute allowedRoles={['instrutor']}>
-                        <ProgramasPage />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/designacoes"
-                    element={
-                      <ProtectedRoute allowedRoles={['instrutor']}>
-                        <DesignacoesPage />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/relatorios"
-                    element={
-                      <ProtectedRoute allowedRoles={['instrutor']}>
-                        <RelatoriosPage />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/reunioes"
-                    element={
-                      <ProtectedRoute allowedRoles={['instrutor']}>
-                        <Reunioes />
-                      </ProtectedRoute>
-                    }
-                  />
+                    {/* Instrutor Routes */}
+                    <Route
+                      path="/estudantes"
+                      element={
+                        <ProtectedRoute allowedRoles={['instrutor']}>
+                          <EstudantesPage />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/programas"
+                      element={
+                        <ProtectedRoute allowedRoles={['instrutor']}>
+                          <ProgramasPage />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/designacoes"
+                      element={
+                        <ProtectedRoute allowedRoles={['instrutor']}>
+                          <DesignacoesPage />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/relatorios"
+                      element={
+                        <ProtectedRoute allowedRoles={['instrutor']}>
+                          <RelatoriosPage />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/reunioes"
+                      element={
+                        <ProtectedRoute allowedRoles={['instrutor']}>
+                          <Reunioes />
+                        </ProtectedRoute>
+                      }
+                    />
 
-                  {/* Estudante Routes */}
-                  <Route
-                    path="/estudante/:id"
-                    element={
-                      <ProtectedRoute allowedRoles={['estudante']}>
-                        <UnifiedDashboard />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/estudante/:id/familia"
-                    element={
-                      <ProtectedRoute allowedRoles={['estudante', 'instrutor']}>
-                        <FamiliaPage />
-                      </ProtectedRoute>
-                    }
-                  />
+                    {/* Estudante Routes */}
+                    <Route
+                      path="/estudante/:id"
+                      element={
+                        <ProtectedRoute allowedRoles={['estudante']}>
+                          <UnifiedDashboard />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/estudante/:id/familia"
+                      element={
+                        <ProtectedRoute allowedRoles={['estudante', 'instrutor']}>
+                          <FamiliaPage />
+                        </ProtectedRoute>
+                      }
+                    />
 
-                  {/* Family Routes */}
-                  <Route path="/convite/aceitar" element={<ConviteAceitar />} />
-                  <Route
-                    path="/portal-familiar"
-                    element={
-                      <ProtectedRoute allowedRoles={['family_member']}>
-                        <PortalFamiliar />
-                      </ProtectedRoute>
-                    }
-                  />
+                    {/* Family Routes */}
+                    <Route path="/convite/aceitar" element={<ConviteAceitar />} />
+                    <Route
+                      path="/portal-familiar"
+                      element={
+                        <ProtectedRoute allowedRoles={['family_member']}>
+                          <PortalFamiliar />
+                        </ProtectedRoute>
+                      }
+                    />
 
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Suspense>
-              <FlowNav />
-            </BrowserRouter>
-          </TooltipProvider>
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </Suspense>
+                <FlowNav />
+              </BrowserRouter>
+            </TooltipProvider>
 
-          {/* Auth Recovery Button */}
-          <div className="fixed top-4 right-4 z-50">
-            <AuthRecoveryButton />
-          </div>
+            {/* Auth Recovery Button */}
+            <div className="fixed top-4 right-4 z-50">
+              <AuthRecoveryButton />
+            </div>
 
-          </TutorialProvider>
+            </TutorialProvider>
+          </ProgramProvider>
         </OnboardingProvider>
       </AuthProvider>
     </LanguageProvider>

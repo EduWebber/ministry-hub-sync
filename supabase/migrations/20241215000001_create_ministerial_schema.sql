@@ -196,3 +196,4 @@ COMMENT ON TABLE designacoes IS 'Atribuições de estudantes às partes dos prog
 COMMENT ON COLUMN programas_ministeriais.pdf_url IS 'URL do PDF original no Supabase Storage bucket portuguesmeet';
 COMMENT ON COLUMN partes.referencias IS 'JSON com referências bíblicas e materiais: {"biblical": ["João 3:16"], "wol": ["w23.09-E 15-21"]}';
 COMMENT ON COLUMN estudantes.privilegios IS 'Array JSON de privilégios: ["ancião", "servo_ministerial", "pioneiro_regular"]';
+

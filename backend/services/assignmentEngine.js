@@ -57,6 +57,21 @@ class AssignmentEngine {
         gender: 'male_only',
         assistant: false,
         qualifications: ['qualified_male']
+      },
+      spiritual_gems: {
+        gender: 'male_only',
+        assistant: false,
+        qualifications: ['qualified_male']
+      },
+      treasures_talk: {
+        gender: 'male_only',
+        assistant: false,
+        qualifications: ['qualified_male']
+      },
+      congregation_study: {
+        gender: 'male_only',
+        assistant: false,
+        qualifications: ['elder']
       }
     };
   }
@@ -131,7 +146,8 @@ class AssignmentEngine {
       // Categorize by gender and qualifications
       const gender = student.genero || student.gender || 'male';
       const privileges = Array.isArray(student.privilegios) ? student.privilegios : 
-                        Array.isArray(student.privileges) ? student.privileges : [];
+                        Array.isArray(student.privileges) ? student.privileges : 
+                        (Array.isArray(student.privileges) ? student.privileges : []);
       const isPublisher = student.publicador !== false && student.publisher !== false;
 
       if (gender === 'male' || gender === 'masculino') {
@@ -141,9 +157,7 @@ class AssignmentEngine {
         } else if (privileges.includes('ministerial_servant') || privileges.includes('servo_ministerial')) {
           categories.ministerial_servants.push(student);
           categories.male_qualified.push(student);
-        }
-        
-        if (isPublisher) {
+        } else if (isPublisher) {
           categories.male_publishers.push(student);
         }
       } else if (gender === 'female' || gender === 'feminino') {
@@ -176,7 +190,22 @@ class AssignmentEngine {
 
     if (eligiblePrincipal.length === 0) {
       console.warn(`No eligible students for part ${parte.numero}: ${parte.titulo}`);
-      return null;
+      return {
+        id: this.generateAssignmentId(),
+        programacao_id: programId,
+        congregacao_id: congregationId,
+        programacao_item_id: parte.id,
+        parte_numero: parte.numero,
+        parte_titulo: parte.titulo,
+        parte_tipo: parte.tipo,
+        principal_estudante_id: null,
+        assistente_estudante_id: null,
+        status: 'no_eligible_students',
+        observacoes: 'Nenhum estudante elegível encontrado',
+        s38_compliance: {
+          rules_applied: rules
+        }
+      };
     }
 
     // Select principal student (simple rotation for now)
@@ -201,7 +230,7 @@ class AssignmentEngine {
       id: this.generateAssignmentId(),
       programacao_id: programId,
       congregacao_id: congregationId,
-      programacao_item_id: `item-${parte.numero}`,
+      programacao_item_id: parte.id,
       parte_numero: parte.numero,
       parte_titulo: parte.titulo,
       parte_tipo: parte.tipo,
@@ -224,10 +253,20 @@ class AssignmentEngine {
     const tipo = parte.tipo;
     
     // Handle special cases
-    if (tipo === 'explaining_beliefs' || parte.titulo.toLowerCase().includes('explicando')) {
+    if (tipo === 'explaining_beliefs' || (parte.titulo && parte.titulo.toLowerCase().includes('explicando'))) {
       // Check if it's a talk or demonstration based on instructions
       const isTalk = parte.instrucoes && parte.instrucoes.toLowerCase().includes('discurso');
       return this.s38Rules[isTalk ? 'explaining_beliefs_talk' : 'explaining_beliefs_demo'];
+    }
+
+    // Handle treasures section parts
+    if (parte.secao === 'TREASURES' || (parte.titulo && parte.titulo.toLowerCase().includes('tesouro'))) {
+      if (tipo === 'talk' || (parte.titulo && parte.titulo.toLowerCase().includes('discurso'))) {
+        return this.s38Rules.treasures_talk;
+      }
+      if (tipo === 'spiritual_gems' || (parte.titulo && parte.titulo.toLowerCase().includes('joias'))) {
+        return this.s38Rules.spiritual_gems;
+      }
     }
 
     return this.s38Rules[tipo] || null;
@@ -243,6 +282,8 @@ class AssignmentEngine {
     if (rules.gender === 'male_only') {
       if (rules.qualifications && rules.qualifications.includes('qualified_male')) {
         candidates = categorizedStudents.male_qualified;
+      } else if (rules.qualifications && rules.qualifications.includes('elder')) {
+        candidates = categorizedStudents.elders;
       } else {
         candidates = categorizedStudents.male_publishers;
       }
@@ -281,12 +322,15 @@ class AssignmentEngine {
         candidates = categorizedStudents.female_publishers;
       }
     } else if (rules.assistant_gender === 'same_or_family') {
-      // Same gender or family member (simplified: same gender for now)
+      // Same gender or family member
       if (principalGender === 'male' || principalGender === 'masculino') {
         candidates = categorizedStudents.male_publishers;
       } else {
         candidates = categorizedStudents.female_publishers;
       }
+      
+      // TODO: Add family member logic here
+      // For now, we'll just add same gender candidates
     }
 
     // Filter out used students and the principal student
@@ -301,8 +345,9 @@ class AssignmentEngine {
    * Check if student meets qualifications
    */
   studentMeetsQualifications(student, requiredQualifications) {
-    const studentPrivileges = student.privilegios || student.privileges || [];
-    const isPublisher = student.publicador || student.publisher || true;
+    const studentPrivileges = Array.isArray(student.privilegios) ? student.privilegios : 
+                             Array.isArray(student.privileges) ? student.privileges : [];
+    const isPublisher = student.publicador !== false && student.publisher !== false;
 
     for (const qualification of requiredQualifications) {
       switch (qualification) {
@@ -319,6 +364,10 @@ class AssignmentEngine {
         case 'elder':
           if (!studentPrivileges.some(p => ['elder', 'anciao'].includes(p))) return false;
           break;
+        case 'baptized_or_unbaptized_publisher':
+          // Any publisher qualifies
+          if (!isPublisher) return false;
+          break;
       }
     }
 
@@ -331,9 +380,20 @@ class AssignmentEngine {
   getStudentQualifications(student) {
     return {
       gender: student.genero || student.gender || 'male',
-      privileges: student.privilegios || student.privileges || [],
-      publisher: student.publicador || student.publisher || true,
-      baptized: student.batizado || student.baptized || false
+      privileges: Array.isArray(student.privilegios) ? student.privilegios : 
+                 Array.isArray(student.privileges) ? student.privileges : [],
+      publisher: student.publicador !== false && student.publisher !== false,
+      baptized: student.batizado !== false && student.baptized !== false,
+      // S-38 specific qualifications
+      reading: student.reading || false,
+      treasures: student.treasures || false,
+      gems: student.gems || false,
+      talk: student.talk || false,
+      explaining: student.explaining || false,
+      starting: student.starting || false,
+      following: student.following || false,
+      making: student.making || false,
+      congregation_study: student.congregation_study || false
     };
   }
 

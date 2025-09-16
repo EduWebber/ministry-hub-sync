@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 8080 --strictPort",
+    "dev": "vite --port 8081 --strictPort",
     "dev:all": "npm run simple-kill-ports && concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "start:clean": "start-system-clean.bat",
     "kill-ports": "scripts\\kill-ports.bat",

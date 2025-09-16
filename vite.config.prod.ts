@@ -43,6 +43,18 @@ export default defineConfig({
               },
             },
           },
+          {
+            urlPattern: /\/api\//,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'api-cache',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 dias
+              },
+            },
+          },
+        ],
         ],
       },
       manifest: {

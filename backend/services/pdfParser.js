@@ -215,7 +215,8 @@ class PDFParser {
               gender: this.mapGenderFromRequirements(part.requirements),
               references: this.extractReferences(text, part.title),
               notes: part.notes,
-              order: partOrder++
+              order: partOrder++,
+              s38_rules: this.extractS38Rules(part, sectionKey)
             });
           });
         });
@@ -244,6 +245,64 @@ class PDFParser {
       console.error('❌ Erro ao estruturar programação:', error);
       throw new Error(`Falha ao estruturar dados: ${error.message}`);
     }
+  }
+
+  /**
+   * Extrai regras S-38 para uma parte específica
+   * @param {Object} part Parte da programação
+   * @param {string} sectionKey Seção da parte
+   * @returns {Object} Regras S-38 aplicáveis
+   */
+  extractS38Rules(part, sectionKey) {
+    const rules = {};
+    
+    // Regras baseadas no tipo de parte
+    switch (part.type) {
+      case 'bible_reading':
+        rules.gender = 'male_only';
+        rules.assistant_required = false;
+        rules.introduction_allowed = false;
+        rules.conclusion_allowed = false;
+        break;
+        
+      case 'starting':
+      case 'following':
+      case 'making_disciples':
+        rules.gender = 'both';
+        rules.assistant_required = true;
+        rules.assistant_gender = 'same_or_family';
+        break;
+        
+      case 'talk':
+        rules.gender = 'male_only';
+        rules.assistant_required = false;
+        rules.qualification_required = true;
+        break;
+        
+      case 'spiritual_gems':
+        rules.gender = 'male_only';
+        rules.assistant_required = false;
+        rules.qualification_required = true;
+        break;
+        
+      case 'treasures':
+        rules.gender = 'male_only';
+        rules.assistant_required = false;
+        rules.qualification_required = true;
+        break;
+        
+      case 'congregation_study':
+        rules.gender = 'male_only';
+        rules.assistant_required = false;
+        rules.qualification_required = 'elder';
+        break;
+        
+      default:
+        rules.gender = 'both';
+        rules.assistant_required = false;
+    }
+    
+    return rules;
   }
 
   /**
@@ -706,7 +765,15 @@ class PDFParser {
       'bible reading': 'bible_reading',
       'leitura da bíblia': 'bible_reading',
       'talk': 'talk',
-      'discurso': 'talk'
+      'discurso': 'talk',
+      'starting a conversation': 'starting',
+      'iniciando conversas': 'starting',
+      'following up': 'following',
+      'cultivando o interesse': 'following',
+      'making disciples': 'making_disciples',
+      'fazendo discípulos': 'making_disciples',
+      'congregation bible study': 'congregation_study',
+      'estudo bíblico de congregação': 'congregation_study'
     };
     
     return typeMap[partName.toLowerCase()] || 'unknown';

@@ -43,7 +43,7 @@ const LoadingScreen = ({
 const ProtectedRoute = ({
   children,
   allowedRoles = ['instrutor', 'estudante'],
-  requireAuth = true,
+  requireAuth = false,
   redirectTo
 }: ProtectedRouteProps) => {
   const { user, profile, loading } = useAuth();

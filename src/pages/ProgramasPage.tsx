@@ -18,6 +18,8 @@ import {
   Download
 } from "lucide-react";
 import SidebarLayout from "@/components/layout/SidebarLayout";
+import { useNavigate } from "react-router-dom";
+import { useProgramContext } from "@/contexts/ProgramContext";
 
 // Tipos para o sistema de programas
 interface ProgramaSemanal {
@@ -238,6 +240,8 @@ const ImportacaoPDF: React.FC<{ onImportComplete: (programa: ProgramaSemanal) =>
 };
 
 const ProgramasPage = () => {
+  const navigate = useNavigate();
+  const { setSelectedProgramId, setSelectedCongregacaoId } = useProgramContext();
   const [activeTab, setActiveTab] = useState('list');
   const [programas, setProgramas] = useState<ProgramaSemanal[]>([]);
   const [programaSelecionado, setProgramaSelecionado] = useState<ProgramaSemanal | null>(null);
@@ -248,94 +252,54 @@ const ProgramasPage = () => {
     carregarPDFsDisponiveis();
   }, []);
 
-  // Carregar programas reais dos JSONs
-  const carregarProgramasMock = async () => {
+  // Carregar programas reais dos arquivos JSON
+  const carregarProgramasReais = async () => {
     try {
-      // Limpar programas existentes primeiro
-      setProgramas([]);
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      const response = await fetch(`${apiBaseUrl}/api/programacoes/json-files`);
       
-      // Dados reais do JSON de dezembro 2024
-      const dezembroData = [
-        {
-          "idSemana": "2024-12-02",
-          "semanaLabel": "2-8 de dezembro de 2024",
-          "tema": "Sabedoria prática para a vida cristã",
-          "programacao": [
-            {
-              "secao": "Tesouros da Palavra de Deus",
-              "partes": [
-                { "idParte": 1, "titulo": "Tesouros da Palavra de Deus", "duracaoMin": 10, "tipo": "consideracao" },
-                { "idParte": 2, "titulo": "Joias espirituais", "duracaoMin": 10, "tipo": "joias" },
-                { "idParte": 3, "titulo": "Leitura da Bíblia", "duracaoMin": 4, "tipo": "leitura" }
-              ]
-            },
-            {
-              "secao": "Faça Seu Melhor no Ministério",
-              "partes": [
-                { "idParte": 4, "titulo": "Iniciando conversas", "duracaoMin": 3, "tipo": "de casa em casa" }
-              ]
-            }
-          ]
-        },
-        {
-          "idSemana": "2024-12-09",
-          "semanaLabel": "9-15 de dezembro de 2024",
-          "tema": "Ande com sabedoria e discernimento",
-          "programacao": [
-            {
-              "secao": "Tesouros da Palavra de Deus",
-              "partes": [
-                { "idParte": 1, "titulo": "Aplicando princípios de sabedoria", "duracaoMin": 10, "tipo": "consideracao" },
-                { "idParte": 2, "titulo": "Joias espirituais", "duracaoMin": 10, "tipo": "joias" },
-                { "idParte": 3, "titulo": "Leitura da Bíblia", "duracaoMin": 4, "tipo": "leitura" }
-              ]
-            },
-            {
-              "secao": "Faça Seu Melhor no Ministério",
-              "partes": [
-                { "idParte": 4, "titulo": "Cultivando o interesse", "duracaoMin": 4, "tipo": "testemunho informal" }
-              ]
-            }
-          ]
-        }
-      ];
+      if (!response.ok) {
+        throw new Error('Falha ao carregar programas');
+      }
       
-      // Converter para formato do sistema
-      const programasMock: ProgramaSemanal[] = dezembroData.map(semana => {
-        const partes: ParteMeeting[] = [];
-        semana.programacao.forEach(secao => {
-          secao.partes.forEach(parte => {
-            partes.push({
-              numero: parte.idParte,
+      const data = await response.json();
+      
+      if (data.success && data.programas) {
+        // Converter dados JSON para formato do sistema
+        const programasConvertidos: ProgramaSemanal[] = data.programas.map((prog: any) => ({
+          id: prog.idSemana || prog.id,
+          semana: prog.semanaLabel || prog.semana,
+          data_inicio: prog.idSemana || prog.dataInicio || prog.data_inicio,
+          mes_ano: prog.mesAno || prog.mes_ano || new Date(prog.idSemana || Date.now()).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' }),
+          tema: prog.tema,
+          partes: prog.programacao ? prog.programacao.flatMap((secao: any) => 
+            secao.partes.map((parte: any, index: number) => ({
+              numero: parte.idParte || index + 1,
               titulo: parte.titulo,
-              tempo: parte.duracaoMin,
+              tempo: parte.duracaoMin || parte.tempo,
               tipo: parte.tipo,
-              secao: secao.secao
-            });
-          });
-        });
-        
-        return {
-          id: semana.idSemana,
-          semana: semana.semanaLabel,
-          data_inicio: semana.idSemana,
-          mes_ano: 'dezembro de 2024',
-          partes,
-          tema: semana.tema,
+              secao: secao.secao,
+              referencia: parte.referencia,
+              instrucoes: parte.instrucoes
+            }))
+          ) : prog.partes || [],
           criado_em: new Date().toISOString(),
           atualizado_em: new Date().toISOString()
-        };
-      });
+        }));
         
-      setProgramas(programasMock);
-      toast({
-        title: "Programas carregados",
-        description: `${programasMock.length} semanas de dezembro 2024 carregadas com sucesso.`
-      });
+        setProgramas(programasConvertidos);
+        toast({
+          title: "Programas carregados",
+          description: `${programasConvertidos.length} programa(s) carregado(s) dos arquivos JSON.`
+        });
+      } else {
+        throw new Error('Nenhum programa encontrado');
+      }
     } catch (error) {
+      console.error('Erro ao carregar programas:', error);
       toast({
         title: "Erro ao carregar programas",
-        description: "Não foi possível carregar os programas.",
+        description: "Não foi possível carregar os programas dos arquivos JSON.",
         variant: "destructive"
       });
     }
@@ -376,9 +340,9 @@ const ProgramasPage = () => {
       title="Programas Ministeriais"
       actions={
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" onClick={carregarProgramasMock}>
+          <Button variant="outline" size="sm" onClick={carregarProgramasReais}>
             <Download className="w-4 h-4 mr-2" />
-            Carregar Mock
+            Carregar Programas
           </Button>
           <Button size="sm" onClick={() => setActiveTab("import")}>
             <Upload className="w-4 h-4 mr-2" />
@@ -411,9 +375,9 @@ const ProgramasPage = () => {
                 <h3 className="text-lg font-medium text-gray-600 mb-2">Nenhum programa carregado</h3>
                 <p className="text-gray-500 mb-4">Importe uma apostila PDF ou carregue um programa de exemplo</p>
                 <div className="flex justify-center gap-2">
-                  <Button variant="outline" onClick={carregarProgramasMock}>
+                  <Button variant="outline" onClick={carregarProgramasReais}>
                     <Download className="w-4 h-4 mr-2" />
-                    Carregar Exemplo
+                    Carregar Programas
                   </Button>
                   <Button onClick={() => setActiveTab("import")}>
                     <Upload className="w-4 h-4 mr-2" />
@@ -443,7 +407,7 @@ const ProgramasPage = () => {
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">Data:</span>
-                        <span className="text-sm">{new Date(programa.data_inicio).toLocaleDateString('pt-BR')}</span>
+                        <span className="text-sm">{programa.data_inicio ? new Date(programa.data_inicio).toLocaleDateString('pt-BR') : programa.semana.split(' ')[0]}</span>
                       </div>
                     </div>
                     <div className="mt-4 flex justify-between">
@@ -460,11 +424,13 @@ const ProgramasPage = () => {
                       <Button 
                         size="sm"
                         onClick={() => {
-                          // Integração futura: navegar para designações com este programa
-                          toast({
-                            title: "Programa selecionado",
-                            description: "Vá para Designações para gerar as atribuições."
-                          });
+                          // Navigate to designacoes page with the selected program
+                          // Set the program in context
+                          setSelectedProgramId(programa.id);
+                          // For now, we'll use a default congregacao ID
+                          // In a real app, this would be selected by the user
+                          setSelectedCongregacaoId('congregacao-1');
+                          navigate('/designacoes');
                         }}
                       >
                         Usar Programa

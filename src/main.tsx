@@ -1,28 +1,41 @@
 import { createRoot } from 'react-dom/client'
+import React from 'react'
 import App from './App'
 import './index.css'
+import './utils/env-debug'
+import './utils/verify-system'
 import './styles/responsive.css'
 import './styles/page-shell.css'
-import i18n from './i18n' // Import i18n instance
+import i18n from './i18n'
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import SafeAreaLayout from "@/layouts/SafeAreaLayout";
 import { DensityProvider } from "@/contexts/DensityContext";
 import { monitorWebVitals, analyzeBundle } from './config/performance';
+
 // Register Service Worker only in production to avoid HMR conflicts in dev
 if (import.meta.env.PROD) {
   import('./sw-register');
 }
 
+// Create root only once
+let root: ReturnType<typeof createRoot> | null = null;
+
 // Função para renderizar a aplicação após i18n estar pronto
 const renderApp = () => {
-  createRoot(document.getElementById("root")!).render(
-    <ErrorBoundary>
-      <DensityProvider>
-        <SafeAreaLayout>
-          <App />
-        </SafeAreaLayout>
-      </DensityProvider>
-    </ErrorBoundary>
+  if (!root) {
+    root = createRoot(document.getElementById("root")!);
+  }
+  
+  root.render(
+    <React.StrictMode>
+      <ErrorBoundary>
+        <DensityProvider>
+          <SafeAreaLayout>
+            <App />
+          </SafeAreaLayout>
+        </DensityProvider>
+      </ErrorBoundary>
+    </React.StrictMode>
   );
 };
 

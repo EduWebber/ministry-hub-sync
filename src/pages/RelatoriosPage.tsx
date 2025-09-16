@@ -1,315 +1,475 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { DatePickerWithRange } from "@/components/ui/date-range-picker";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { toast } from "@/hooks/use-toast";
 import { 
-  BarChart3, 
-  Users, 
-  Calendar, 
-  TrendingUp,
-  Download,
-  FileSpreadsheet,
+  BarChart, 
+  BarChartIcon,
   PieChart,
-  Activity
+  FileText,
+  Download,
+  RefreshCw,
+  Users,
+  TrendingUp,
+  Award,
+  Target,
+  Zap
 } from "lucide-react";
 import SidebarLayout from "@/components/layout/SidebarLayout";
-import { useEstudantes } from "@/hooks/useEstudantes";
+import QualificacoesAvancadas from "@/components/QualificacoesAvancadas";
+import { useProgramContext } from "@/contexts/ProgramContext";
 
 const RelatoriosPage = () => {
-  const [activeTab, setActiveTab] = useState('estudante');
-  const [selectedPeriod, setSelectedPeriod] = useState<any>(null);
-  const { estudantes, getStatistics } = useEstudantes();
-  const statistics = getStatistics();
+  const { selectedCongregacaoId, setSelectedCongregacaoId } = useProgramContext();
+  // Update congregacaoId to use context
+  const congregacaoId = selectedCongregacaoId || '';
+  const setCongregacaoId = setSelectedCongregacaoId;
+  const [activeTab, setActiveTab] = useState('engagement');
+  const [isLoading, setIsLoading] = useState(false);
+  const [reportData, setReportData] = useState<any>(null);
+  const [dateRange, setDateRange] = useState({ start: '', end: '' });
 
-  // Mock data para demonstração
-  const mockRelatorioEstudante = {
-    'est1': {
-      nome: 'João Silva',
-      total_designacoes: 12,
-      por_tipo: {
-        'leitura_biblica': 3,
-        'demonstracao': 6,
-        'discurso': 3
-      },
-      ultima_designacao: '2024-11-28',
-      proxima_designacao: '2024-12-19'
-    },
-    'est2': {
-      nome: 'Maria Santos',
-      total_designacoes: 8,
-      por_tipo: {
-        'demonstracao': 8
-      },
-      ultima_designacao: '2024-11-21',
-      proxima_designacao: '2024-12-12'
+  // Carregar dados do relatório
+  const carregarRelatorio = async (tipo: string) => {
+    setIsLoading(true);
+    try {
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      let url = `${apiBaseUrl}/api/reports/${tipo}`;
+      
+      // Adicionar parâmetros de consulta
+      const params = new URLSearchParams();
+      if (congregacaoId) params.append('congregacao_id', congregacaoId);
+      if (dateRange.start) params.append('start_date', dateRange.start);
+      if (dateRange.end) params.append('end_date', dateRange.end);
+      
+      if (params.toString()) {
+        url += `?${params.toString()}`;
+      }
+
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        throw new Error('Falha ao carregar relatório');
+      }
+      
+      const data = await response.json();
+      setReportData(data);
+      
+      toast({
+        title: "Relatório carregado",
+        description: `Dados do relatório "${tipo}" carregados com sucesso.`
+      });
+    } catch (error) {
+      console.error('Erro ao carregar relatório:', error);
+      toast({
+        title: "Erro ao carregar relatório",
+        description: "Não foi possível carregar os dados do relatório.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const mockRelatorioSemanal = {
-    '2024-12-02': {
-      semana: '2-8 de dezembro de 2024',
-      partes_total: 4,
-      partes_designadas: 4,
-      partes_pendentes: 0,
-      estudantes_envolvidos: 6
-    },
-    '2024-11-25': {
-      semana: '25 nov - 1 dez de 2024',
-      partes_total: 4,
-      partes_designadas: 3,
-      partes_pendentes: 1,
-      estudantes_envolvidos: 5
-    }
-  };
+  // Exportar dados
+  const exportarDados = async (format: 'csv' | 'json') => {
+    try {
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      let url = `${apiBaseUrl}/api/reports/export?type=${format}`;
+      
+      // Adicionar parâmetros de consulta
+      const params = new URLSearchParams();
+      if (congregacaoId) params.append('congregacao_id', congregacaoId);
+      if (dateRange.start) params.append('start_date', dateRange.start);
+      if (dateRange.end) params.append('end_date', dateRange.end);
+      
+      if (params.toString()) {
+        url += `&${params.toString()}`;
+      }
 
-  const exportarRelatorio = (tipo: string) => {
-    // Implementação futura de exportação
-    console.log(`Exportando relatório ${tipo}`);
+      // Criar link para download
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `relatorio-designacoes.${format}`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      toast({
+        title: "Exportação iniciada",
+        description: `Os dados estão sendo exportados em formato ${format.toUpperCase()}.`
+      });
+    } catch (error) {
+      console.error('Erro ao exportar dados:', error);
+      toast({
+        title: "Erro na exportação",
+        description: "Não foi possível exportar os dados.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
     <SidebarLayout 
-      title="Relatórios e Análises"
+      title="Relatórios e Métricas"
       actions={
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" onClick={() => exportarRelatorio('excel')}>
-            <FileSpreadsheet className="w-4 h-4 mr-2" />
-            Exportar Excel
+          <Button variant="outline" size="sm" onClick={() => carregarRelatorio(activeTab)} disabled={isLoading}>
+            {isLoading ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <RefreshCw className="w-4 h-4 mr-2" />}
+            Atualizar
           </Button>
-          <Button variant="outline" size="sm" onClick={() => exportarRelatorio('pdf')}>
+          <Button variant="outline" size="sm" onClick={() => exportarDados('csv')}>
             <Download className="w-4 h-4 mr-2" />
-            Exportar PDF
+            Exportar CSV
           </Button>
         </div>
       }
     >
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="estudante" className="flex items-center gap-2">
-            <Users className="w-4 h-4" />
-            Por Estudante
-          </TabsTrigger>
-          <TabsTrigger value="semana" className="flex items-center gap-2">
-            <Calendar className="w-4 h-4" />
-            Por Semana
-          </TabsTrigger>
-          <TabsTrigger value="periodo" className="flex items-center gap-2">
-            <BarChart3 className="w-4 h-4" />
-            Período
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="estudante" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Users className="w-5 h-5" />
-                Relatório por Estudante
-              </CardTitle>
-              <CardDescription>
-                Análise individual de designações e participação
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {Object.entries(mockRelatorioEstudante).map(([id, dados]: [string, any]) => (
-                  <Card key={id}>
-                    <CardHeader className="pb-3">
-                      <CardTitle className="text-lg">{dados.nome}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      <div className="flex justify-between">
-                        <span className="text-sm text-gray-600">Total de designações:</span>
-                        <Badge variant="secondary">{dados.total_designacoes}</Badge>
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <p className="text-sm font-medium">Por tipo:</p>
-                        {Object.entries(dados.por_tipo).map(([tipo, count]: [string, any]) => (
-                          <div key={tipo} className="flex justify-between text-sm">
-                            <span className="capitalize">{tipo.replace('_', ' ')}</span>
-                            <span>{count}</span>
-                          </div>
-                        ))}
-                      </div>
-                      
-                      <div className="space-y-1 pt-2 border-t">
-                        <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Última:</span>
-                          <span>{new Date(dados.ultima_designacao).toLocaleDateString('pt-BR')}</span>
-                        </div>
-                        <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Próxima:</span>
-                          <span>{dados.proxima_designacao ? new Date(dados.proxima_designacao).toLocaleDateString('pt-BR') : 'N/A'}</span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="semana" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Calendar className="w-5 h-5" />
-                Relatório Semanal
-              </CardTitle>
-              <CardDescription>
-                Resumo de designações por semana de reunião
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {Object.entries(mockRelatorioSemanal).map(([data, dados]: [string, any]) => (
-                  <Card key={data} className="border-l-4 border-l-blue-500">
-                    <CardHeader className="pb-3">
-                      <CardTitle className="text-lg">{dados.semana}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-blue-600">{dados.partes_total}</div>
-                          <div className="text-sm text-gray-600">Total de partes</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-green-600">{dados.partes_designadas}</div>
-                          <div className="text-sm text-gray-600">Designadas</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-red-600">{dados.partes_pendentes}</div>
-                          <div className="text-sm text-gray-600">Pendentes</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-purple-600">{dados.estudantes_envolvidos}</div>
-                          <div className="text-sm text-gray-600">Estudantes</div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="periodo" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <BarChart3 className="w-5 h-5" />
-                Análise por Período
-              </CardTitle>
-              <CardDescription>
-                Estatísticas e tendências de designações ao longo do tempo
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex items-center gap-4">
-                <Select defaultValue="trimestre">
-                  <SelectTrigger className="w-48">
-                    <SelectValue placeholder="Selecionar período" />
+      <div className="space-y-6">
+        {/* Filtros */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <BarChartIcon className="w-5 h-5" />
+              Filtros de Relatório
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div>
+                <label className="text-sm font-medium">Congregação:</label>
+                <Select value={congregacaoId} onValueChange={setCongregacaoId}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Todas as congregações" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="mes">Último mês</SelectItem>
-                    <SelectItem value="trimestre">Último trimestre</SelectItem>
-                    <SelectItem value="semestre">Último semestre</SelectItem>
-                    <SelectItem value="ano">Último ano</SelectItem>
+                    <SelectItem value="__all__">Todas as congregações</SelectItem>
+                    <SelectItem value="congregacao-1">Congregação Central</SelectItem>
+                    <SelectItem value="congregacao-2">Congregação Norte</SelectItem>
+                    <SelectItem value="congregacao-3">Congregação Sul</SelectItem>
                   </SelectContent>
                 </Select>
-                
-                <Button variant="outline">
-                  <Activity className="w-4 h-4 mr-2" />
-                  Atualizar
+              </div>
+              <div>
+                <label className="text-sm font-medium">Data Início:</label>
+                <Input 
+                  type="date" 
+                  value={dateRange.start} 
+                  onChange={(e) => setDateRange({...dateRange, start: e.target.value})} 
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium">Data Fim:</label>
+                <Input 
+                  type="date" 
+                  value={dateRange.end} 
+                  onChange={(e) => setDateRange({...dateRange, end: e.target.value})} 
+                />
+              </div>
+              <div className="flex items-end">
+                <Button 
+                  onClick={() => carregarRelatorio(activeTab)} 
+                  disabled={isLoading}
+                  className="w-full"
+                >
+                  {isLoading ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <BarChartIcon className="w-4 h-4 mr-2" />}
+                  Gerar Relatório
                 </Button>
               </div>
+            </div>
+          </CardContent>
+        </Card>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Navegação entre relatórios */}
+        <div className="flex flex-wrap gap-2">
+          <Button 
+            variant={activeTab === 'engagement' ? 'default' : 'outline'} 
+            onClick={() => {
+              setActiveTab('engagement');
+              carregarRelatorio('engagement-metrics');
+            }}
+          >
+            <TrendingUp className="w-4 h-4 mr-2" />
+            Engajamento
+          </Button>
+          <Button 
+            variant={activeTab === 'performance' ? 'default' : 'outline'} 
+            onClick={() => {
+              setActiveTab('performance');
+              carregarRelatorio('performance');
+            }}
+          >
+            <Award className="w-4 h-4 mr-2" />
+            Desempenho
+          </Button>
+          <Button 
+            variant={activeTab === 'qualifications' ? 'default' : 'outline'} 
+            onClick={() => {
+              setActiveTab('qualifications');
+              carregarRelatorio('qualifications');
+            }}
+          >
+            <Users className="w-4 h-4 mr-2" />
+            Qualificações
+          </Button>
+          <Button 
+            variant={activeTab === 'advanced-qualifications' ? 'default' : 'outline'} 
+            onClick={() => {
+              setActiveTab('advanced-qualifications');
+            }}
+          >
+            <Zap className="w-4 h-4 mr-2" />
+            Qualificações Avançadas
+          </Button>
+          <Button 
+            variant={activeTab === 'participation' ? 'default' : 'outline'} 
+            onClick={() => {
+              setActiveTab('participation');
+              carregarRelatorio('participation-history');
+            }}
+          >
+            <FileText className="w-4 h-4 mr-2" />
+            Participações
+          </Button>
+        </div>
+
+        {/* Conteúdo do relatório */}
+        {!reportData && !isLoading && (
+          <Card>
+            <CardContent className="p-12 text-center">
+              <Alert>
+                <BarChartIcon className="h-4 w-4" />
+                <AlertDescription>
+                  Selecione um tipo de relatório e clique em "Gerar Relatório" para visualizar os dados.
+                </AlertDescription>
+              </Alert>
+              <Button 
+                className="mt-4" 
+                onClick={() => carregarRelatorio(activeTab)} 
+                disabled={isLoading}
+              >
+                {isLoading ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <BarChartIcon className="w-4 h-4 mr-2" />}
+                Gerar Relatório
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Relatório de Engajamento */}
+        {activeTab === 'engagement' && reportData && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Card>
+              <CardHeader>
+                <CardTitle>Total de Designações</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">{reportData.metrics?.total_designacoes || 0}</div>
+                <p className="text-sm text-gray-500">Todas as designações criadas</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Estudantes Ativos</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">{reportData.metrics?.total_estudantes || 0}</div>
+                <p className="text-sm text-gray-500">Estudantes disponíveis</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Designações Atribuídas</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">{reportData.metrics?.designacoes_atribuidas || 0}</div>
+                <p className="text-sm text-gray-500">Com estudantes designados</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Taxa de Participação</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">{reportData.metrics?.taxa_participacao || 0}%</div>
+                <p className="text-sm text-gray-500">Engajamento dos estudantes</p>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Relatório de Desempenho */}
+        {activeTab === 'performance' && reportData && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Desempenho dos Estudantes</CardTitle>
+              <CardDescription>
+                Classificação por frequência e qualificações
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Estudante</TableHead>
+                    <TableHead>Gênero</TableHead>
+                    <TableHead>Frequência</TableHead>
+                    <TableHead>Qualificações</TableHead>
+                    <TableHead>Nível</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {reportData.estudantes?.map((estudante: any) => (
+                    <TableRow key={estudante.id}>
+                      <TableCell className="font-medium">{estudante.nome}</TableCell>
+                      <TableCell>
+                        <Badge variant={estudante.genero === 'masculino' ? 'default' : 'secondary'}>
+                          {estudante.genero === 'masculino' ? 'M' : 'F'}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>{estudante.frequencia}</TableCell>
+                      <TableCell>{estudante.qualificacoes}</TableCell>
+                      <TableCell>
+                        <Badge variant={
+                          estudante.nivel_qualificacao === 'Avançado' ? 'default' :
+                          estudante.nivel_qualificacao === 'Intermediário' ? 'secondary' : 'outline'
+                        }>
+                          {estudante.nivel_qualificacao}
+                        </Badge>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Relatório de Qualificações */}
+        {activeTab === 'qualifications' && reportData && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Qualificações dos Estudantes</CardTitle>
+              <CardDescription>
+                Distribuição de habilidades e privilégios
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <Card>
-                  <CardHeader className="pb-3">
-                    <CardTitle className="flex items-center gap-2 text-base">
-                      <TrendingUp className="w-4 h-4" />
-                      Distribuição
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      <div className="flex justify-between">
-                        <span className="text-sm">Leitura Bíblica</span>
-                        <Badge variant="outline">25%</Badge>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-sm">Demonstrações</span>
-                        <Badge variant="outline">50%</Badge>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-sm">Discursos</span>
-                        <Badge variant="outline">25%</Badge>
-                      </div>
-                    </div>
+                  <CardContent className="p-4 text-center">
+                    <div className="text-2xl font-bold">{reportData.summary?.estudantes_avancados || 0}</div>
+                    <p className="text-sm text-gray-500">Estudantes Avançados</p>
                   </CardContent>
                 </Card>
-
                 <Card>
-                  <CardHeader className="pb-3">
-                    <CardTitle className="flex items-center gap-2 text-base">
-                      <PieChart className="w-4 h-4" />
-                      Rotatividade
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      <div className="flex justify-between">
-                        <span className="text-sm">Taxa de participação</span>
-                        <Badge variant="default">85%</Badge>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-sm">Média por estudante</span>
-                        <Badge variant="secondary">2.3</Badge>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-sm">Estudantes ativos</span>
-                        <Badge variant="outline">{statistics.ativos}</Badge>
-                      </div>
-                    </div>
+                  <CardContent className="p-4 text-center">
+                    <div className="text-2xl font-bold">{reportData.summary?.estudantes_intermediarios || 0}</div>
+                    <p className="text-sm text-gray-500">Estudantes Intermediários</p>
                   </CardContent>
                 </Card>
-
                 <Card>
-                  <CardHeader className="pb-3">
-                    <CardTitle className="flex items-center gap-2 text-base">
-                      <Activity className="w-4 h-4" />
-                      Tendências
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      <div className="flex justify-between">
-                        <span className="text-sm">Crescimento mensal</span>
-                        <Badge variant="default" className="bg-green-100 text-green-800">+12%</Badge>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-sm">Novos estudantes</span>
-                        <Badge variant="secondary">3</Badge>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-sm">Meta alcançada</span>
-                        <Badge variant="default" className="bg-blue-100 text-blue-800">90%</Badge>
-                      </div>
-                    </div>
+                  <CardContent className="p-4 text-center">
+                    <div className="text-2xl font-bold">{reportData.summary?.estudantes_basicos || 0}</div>
+                    <p className="text-sm text-gray-500">Estudantes Básicos</p>
                   </CardContent>
                 </Card>
               </div>
+              
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Estudante</TableHead>
+                    <TableHead>Gênero</TableHead>
+                    <TableHead>Qualificações</TableHead>
+                    <TableHead>Privilégios</TableHead>
+                    <TableHead>Nível</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {reportData.report?.map((estudante: any) => (
+                    <TableRow key={estudante.id}>
+                      <TableCell className="font-medium">{estudante.nome}</TableCell>
+                      <TableCell>
+                        <Badge variant={estudante.genero === 'masculino' ? 'default' : 'secondary'}>
+                          {estudante.genero === 'masculino' ? 'M' : 'F'}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>{estudante.total_qualificacoes}/9</TableCell>
+                      <TableCell>
+                        {estudante.privilégios?.length > 0 
+                          ? estudante.privilégios.join(', ') 
+                          : 'Nenhum'}
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant={
+                          estudante.nivel_desenvolvimento === 'Avançado' ? 'default' :
+                          estudante.nivel_desenvolvimento === 'Intermediário' ? 'secondary' : 'outline'
+                        }>
+                          {estudante.nivel_desenvolvimento}
+                        </Badge>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </CardContent>
           </Card>
-        </TabsContent>
-      </Tabs>
+        )}
+
+        {/* Relatório de Qualificações Avançadas */}
+        {activeTab === 'advanced-qualifications' && (
+          <QualificacoesAvancadas congregacaoId={congregacaoId} />
+        )}
+
+        {/* Relatório de Participações */}
+        {activeTab === 'participation' && reportData && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Histórico de Participações</CardTitle>
+              <CardDescription>
+                Registro de todas as designações atribuídas
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Data</TableHead>
+                    <TableHead>Estudante Principal</TableHead>
+                    <TableHead>Assistente</TableHead>
+                    <TableHead>Parte</TableHead>
+                    <TableHead>Tipo</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {reportData.participations?.map((participation: any) => (
+                    <TableRow key={participation.id}>
+                      <TableCell>{new Date(participation.created_at).toLocaleDateString()}</TableCell>
+                      <TableCell>
+                        {participation.principal_estudante?.nome || 'Não designado'}
+                      </TableCell>
+                      <TableCell>
+                        {participation.assistente_estudante?.nome || 'Nenhum'}
+                      </TableCell>
+                      <TableCell>{participation.programacao_item?.titulo || 'Parte não identificada'}</TableCell>
+                      <TableCell>
+                        <Badge variant="secondary">
+                          {participation.programacao_item?.tipo || 'Desconhecido'}
+                        </Badge>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        )}
+      </div>
     </SidebarLayout>
   );
 };

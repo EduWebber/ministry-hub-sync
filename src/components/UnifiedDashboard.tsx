@@ -45,6 +45,7 @@ import { supabase } from '@/lib/supabase';
 import UnifiedNavigation from './UnifiedNavigation';
 import ProgramFlowGuide from '@/components/programs/ProgramFlowGuide';
 import UnifiedBreadcrumbs from './UnifiedBreadcrumbs';
+import { useProgramContext } from '@/contexts/ProgramContext';
 
 // Check if we're in mock mode
 const isMockMode = import.meta.env.VITE_MOCK_MODE === 'true';
@@ -54,6 +55,7 @@ const isMockMode = import.meta.env.VITE_MOCK_MODE === 'true';
 // 🚀 DASHBOARD UNIFICADO QUE ADAPTA AO ROLE DO USUÁRIO
 export default function UnifiedDashboard() {
   const { user, profile } = useAuth();
+  const { selectedCongregacaoId, selectedProgramId, selectedWeekStart } = useProgramContext();
   const [activeTab, setActiveTab] = useState('overview');
   const [dashboardStats, setDashboardStats] = useState({
     totalEstudantes: 0,
@@ -231,6 +233,25 @@ export default function UnifiedDashboard() {
                   {profile.congregacao_id || 'Sua Congregação'} - Gestão Local
                 </p>
               </div>
+            </div>
+
+            {/* Context Information */}
+            <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <h3 className="font-medium text-blue-900 mb-2">Contexto Atual do Sistema</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm">
+                <div>
+                  <span className="font-medium">Congregação:</span> {selectedCongregacaoId || 'Não definida'}
+                </div>
+                <div>
+                  <span className="font-medium">Programa:</span> {selectedProgramId || 'Não definido'}
+                </div>
+                <div>
+                  <span className="font-medium">Semana:</span> {selectedWeekStart || 'Não definida'}
+                </div>
+              </div>
+              <Button variant="link" size="sm" className="p-0 h-auto mt-2" asChild>
+                <a href="/dashboard/contexto">Gerenciar contexto</a>
+              </Button>
             </div>
 
             {/* Fluxo orientado para novo usuário */}

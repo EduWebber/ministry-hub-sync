@@ -22,6 +22,9 @@ import {
 } from "lucide-react";
 import SidebarLayout from "@/components/layout/SidebarLayout";
 import { useEstudantes } from "@/hooks/useEstudantes";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useProgramContext } from "@/contexts/ProgramContext";
 
 // Tipos para o sistema de designações
 interface DesignacaoMinisterial {
@@ -53,78 +56,101 @@ interface ParteMeeting {
   secao: string;
   referencia?: string;
   instrucoes?: string;
+  regras_papel?: {
+    genero?: string;
+    assistente_necessario?: boolean;
+  };
 }
 
 const DesignacoesPage = () => {
+  const navigate = useNavigate();
+  const { selectedCongregacaoId, setSelectedCongregacaoId, selectedProgramId, setSelectedProgramId } = useProgramContext();
   const [programaAtual, setProgramaAtual] = useState<ProgramaSemanal | null>(null);
-  const [designacoes, setDesignacoes] = useState<DesignacaoMinisterial[]>([]);
-
+  const [designacoes, setDesignacoes] = useState<any[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const { estudantes, isLoading: estudantesLoading } = useEstudantes();
+  const { user } = useAuth();
 
-
+  // Load selected program from context when component mounts
+  useEffect(() => {
+    const savedProgram = localStorage.getItem('selectedProgram');
+    if (savedProgram) {
+      try {
+        const programa = JSON.parse(savedProgram);
+        setProgramaAtual(programa);
+        // Set program ID in context
+        setSelectedProgramId(programa.id);
+        toast({
+          title: "Programa carregado",
+          description: `Programa "${programa.semana}" carregado com sucesso.`
+        });
+        // Clear the saved program so it's not loaded again
+        localStorage.removeItem('selectedProgram');
+      } catch (error) {
+        console.error('Erro ao carregar programa salvo:', error);
+      }
+    }
+  }, []);
+  
+  // Update congregacaoId to use context
+  const congregacaoId = selectedCongregacaoId || '';
+  const setCongregacaoId = setSelectedCongregacaoId;
 
   // Carregar semana real dos dados JSON
   const carregarSemanaAtual = async () => {
     setIsLoading(true);
     try {
-      // Dados reais do JSON de julho 2025
-      const semanaData = {
-        "idSemana": "2025-07-07",
-        "semanaLabel": "7-13 de julho 2025",
-        "tema": "Sabedoria prática para a vida cristã",
-        "programacao": [
-          {
-            "secao": "Tesouros da Palavra de Deus",
-            "partes": [
-              { "idParte": 1, "titulo": "Tesouros da Palavra de Deus", "duracaoMin": 10, "tipo": "consideracao" },
-              { "idParte": 2, "titulo": "Joias espirituais", "duracaoMin": 10, "tipo": "joias" },
-              { "idParte": 3, "titulo": "Leitura da Bíblia", "duracaoMin": 4, "tipo": "leitura" }
-            ]
-          },
-          {
-            "secao": "Faça Seu Melhor no Ministério",
-            "partes": [
-              { "idParte": 4, "titulo": "Iniciando conversas", "duracaoMin": 3, "tipo": "de casa em casa" },
-              { "idParte": 5, "titulo": "Cultivando o interesse", "duracaoMin": 4, "tipo": "testemunho informal" },
-              { "idParte": 6, "titulo": "Estudo bíblico", "duracaoMin": 5, "tipo": "estudo biblico" }
-            ]
-          }
-        ]
-      };
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      const response = await fetch(`${apiBaseUrl}/api/programacoes/json-files`);
       
-      // Converter para formato do sistema
-      const partes: ParteMeeting[] = [];
-      semanaData.programacao.forEach(secao => {
-        secao.partes.forEach(parte => {
-          partes.push({
-            numero: parte.idParte,
-            titulo: parte.titulo,
-            tempo: parte.duracaoMin,
-            tipo: parte.tipo,
-            secao: secao.secao
+      if (!response.ok) {
+        throw new Error('Falha ao carregar programas');
+      }
+      
+      const data = await response.json();
+      
+      // Pegar o primeiro programa disponível
+      if (data.programas && data.programas.length > 0) {
+        const programaData = data.programas[0];
+        
+        // Converter para formato do sistema
+        const partes: ParteMeeting[] = [];
+        if (programaData.programacao) {
+          programaData.programacao.forEach((secao: any) => {
+            secao.partes.forEach((parte: any) => {
+              partes.push({
+                numero: parte.idParte,
+                titulo: parte.titulo,
+                tempo: parte.duracaoMin,
+                tipo: parte.tipo,
+                secao: secao.secao,
+                referencia: parte.referencia,
+                instrucoes: parte.instrucoes,
+                regras_papel: parte.restricoes
+              });
+            });
           });
+        }
+        
+        const programa: ProgramaSemanal = {
+          id: programaData.idSemana,
+          semana: programaData.semanaLabel,
+          data_inicio: programaData.idSemana,
+          mes_ano: programaData.tema || 'Programa Ministerial',
+          partes
+        };
+        
+        setProgramaAtual(programa);
+        toast({
+          title: "Programa carregado",
+          description: `Programa "${programa.semana}" carregado com sucesso.`
         });
-      });
-      
-      const programa: ProgramaSemanal = {
-        id: semanaData.idSemana,
-        semana: semanaData.semanaLabel,
-        data_inicio: '2025-07-07',
-        mes_ano: 'julho de 2025',
-        partes
-      };
-      
-      setProgramaAtual(programa);
-      toast({
-        title: "Semana real carregada",
-        description: `Programa "${programa.semana}" dos dados oficiais carregado.`
-      });
+      }
     } catch (error) {
+      console.error('Erro ao carregar semana:', error);
       toast({
-        title: "Erro ao carregar semana",
+        title: "Erro ao carregar programa",
         description: "Não foi possível carregar a programação.",
         variant: "destructive"
       });
@@ -133,9 +159,9 @@ const DesignacoesPage = () => {
     }
   };
 
-  // Funções auxiliares simplificadas
+  // Salvar designações no backend
   const salvarDesignacoes = async () => {
-    if (designacoes.length === 0) {
+    if (!programaAtual || designacoes.length === 0) {
       toast({
         title: 'Nenhuma designação para salvar',
         description: 'Gere as designações primeiro.',
@@ -144,14 +170,55 @@ const DesignacoesPage = () => {
       return;
     }
     
-    // Simulação de salvamento
-    toast({
-      title: 'Designações salvas!',
-      description: `${designacoes.length} designações foram salvas com sucesso.`
-    });
+    if (!congregacaoId) {
+      toast({
+        title: 'Congregação requerida',
+        description: 'Selecione uma congregação antes de salvar.',
+        variant: 'destructive'
+      });
+      return;
+    }
+    
+    try {
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      const response = await fetch(`${apiBaseUrl}/api/designacoes`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          programacao_id: programaAtual.id,
+          congregacao_id: congregacaoId,
+          itens: designacoes.map(d => ({
+            programacao_item_id: d.programacao_item_id,
+            principal_estudante_id: d.principal_estudante_id,
+            assistente_estudante_id: d.assistente_estudante_id,
+            observacoes: d.observacoes
+          }))
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Falha ao salvar designações');
+      }
+      
+      const result = await response.json();
+      
+      toast({
+        title: 'Designações salvas!',
+        description: `${designacoes.length} designações foram salvas com sucesso.`
+      });
+    } catch (error) {
+      console.error('Erro ao salvar designações:', error);
+      toast({
+        title: 'Erro ao salvar designações',
+        description: 'Não foi possível salvar as designações.',
+        variant: 'destructive'
+      });
+    }
   };
 
-  // Gerar designações automaticamente (simplificado)
+  // Gerar designações automaticamente (conectado ao backend)
   const gerarDesignacoes = async () => {
     if (!programaAtual) {
       toast({
@@ -161,44 +228,57 @@ const DesignacoesPage = () => {
       });
       return;
     }
+    
+    if (!congregacaoId) {
+      toast({
+        title: 'Congregação requerida',
+        description: 'Selecione uma congregação antes de gerar designações.',
+        variant: 'destructive'
+      });
+      return;
+    }
 
     setIsGenerating(true);
     try {
-      // Geração simples com estudantes disponíveis
-      const estudantesDisponiveis = estudantes?.filter((e: any) => e.ativo) || [];
+      // Generate designations directly
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      const response = await fetch(`${apiBaseUrl}/api/designacoes/generate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          programacao_id: programaAtual.id,
+          congregacao_id: congregacaoId
+        })
+      });
       
-      if (estudantesDisponiveis.length === 0) {
-        throw new Error('Nenhum estudante ativo disponível');
+      if (!response.ok) {
+        throw new Error('Falha ao gerar designações');
       }
       
-      const designacoesGeradas: DesignacaoMinisterial[] = programaAtual.partes.map((parte, index) => {
-        // Algoritmo simples: distribuição rotativa
-        const estudantePrincipal = estudantesDisponiveis[index % estudantesDisponiveis.length];
-        const precisaAssistente = ['demonstracao', 'de casa em casa', 'testemunho informal'].includes(parte.tipo);
-        const estudanteAssistente = precisaAssistente && estudantesDisponiveis.length > 1 
-          ? estudantesDisponiveis[(index + 1) % estudantesDisponiveis.length]
-          : undefined;
-        
-        return {
-          id: `${programaAtual.id}-${parte.numero}-${Date.now()}`,
-          semana: programaAtual.semana,
-          data_inicio: programaAtual.data_inicio,
-          parte_numero: parte.numero,
-          parte_titulo: parte.titulo,
-          parte_tempo: parte.tempo,
-          parte_tipo: parte.tipo as any,
-          estudante_principal_id: estudantePrincipal.id,
-          estudante_ajudante_id: estudanteAssistente?.id,
-          status: 'confirmada' as const
-        };
-      });
+      const result = await response.json();
+      console.log('Resposta da API de geração:', result);
+      
+      // Atualizar estado com as designações geradas
+      // O backend retorna as designações no campo 'designacoes'
+      const designacoesGeradas = result.designacoes || [];
+      console.log('Designações geradas:', designacoesGeradas);
+      
+      if (designacoesGeradas.length > 0) {
+        setDesignacoes(designacoesGeradas);
 
-      setDesignacoes(designacoesGeradas);
-
-      toast({ 
-        title: 'Designações geradas!', 
-        description: `${designacoesGeradas.length} designações foram criadas automaticamente.` 
-      });
+        toast({ 
+          title: 'Designações geradas!', 
+          description: `${designacoesGeradas.length} designações foram criadas automaticamente.` 
+        });
+      } else {
+        toast({ 
+          title: 'Nenhuma designação gerada', 
+          description: 'Não foi possível gerar designações. Verifique se há estudantes elegíveis na congregação.', 
+          variant: 'destructive' 
+        });
+      }
     } catch (error: any) {
       toast({ 
         title: 'Erro ao gerar designações', 
@@ -220,7 +300,9 @@ const DesignacoesPage = () => {
   };
 
   // Obter nome do estudante por ID
-  const getEstudanteNome = (id: string) => {
+  const getEstudanteNome = (id: string | null) => {
+    if (!id) return 'Não designado';
+    
     // Try real students first
     const estudante = estudantes?.find((e: any) => e.id === id);
     if (estudante?.nome) {
@@ -232,11 +314,11 @@ const DesignacoesPage = () => {
   };
 
   // Função para obter o status visual
-  const getStatusBadge = (designacao: DesignacaoMinisterial) => {
-    if (!designacao.estudante_principal_id) {
+  const getStatusBadge = (designacao: any) => {
+    if (!designacao.principal_estudante_id) {
       return <Badge variant="destructive">Pendente</Badge>;
     }
-    if (designacao.status === 'confirmada') {
+    if (designacao.status === 'OK') {
       return <Badge variant="default">Confirmada</Badge>;
     }
     return <Badge variant="secondary">Designada</Badge>;
@@ -249,13 +331,13 @@ const DesignacoesPage = () => {
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" onClick={carregarSemanaAtual} disabled={isLoading}>
             {isLoading ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Download className="w-4 h-4 mr-2" />}
-            Carregar Semana Real (Jul 2025)
+            Carregar Programa
           </Button>
           <Button variant="outline" size="sm" onClick={() => setDesignacoes([])}>
             <RefreshCw className="w-4 h-4 mr-2" />
             Limpar
           </Button>
-          <Button size="sm" onClick={gerarDesignacoes} disabled={isGenerating || !programaAtual}>
+          <Button size="sm" onClick={gerarDesignacoes} disabled={isGenerating || !programaAtual || !congregacaoId}>
             {isGenerating ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Users className="w-4 h-4 mr-2" />}
             Gerar Designações Automáticas
           </Button>
@@ -278,7 +360,7 @@ const DesignacoesPage = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label className="text-sm font-medium">Programa:</label>
                 <p className="text-sm text-gray-600">{programaAtual ? programaAtual.semana : 'Nenhum programa carregado'}</p>
@@ -288,6 +370,19 @@ const DesignacoesPage = () => {
                 <p className="text-sm text-gray-600">
                   {estudantesLoading ? 'Carregando...' : `${estudantes?.length || 0} estudantes`}
                 </p>
+              </div>
+              <div>
+                <label className="text-sm font-medium">Congregação:</label>
+                <Select value={congregacaoId} onValueChange={setCongregacaoId}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione uma congregação" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="congregacao-1">Congregação Central</SelectItem>
+                    <SelectItem value="congregacao-2">Congregação Norte</SelectItem>
+                    <SelectItem value="congregacao-3">Congregação Sul</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
           </CardContent>
@@ -300,12 +395,12 @@ const DesignacoesPage = () => {
               <Alert>
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>
-                  Nenhuma semana carregada. Carregue a semana atual (mock) ou importe um PDF na aba Programas.
+                  Nenhuma semana carregada. Carregue a semana atual ou importe um PDF na aba Programas.
                 </AlertDescription>
               </Alert>
               <Button className="mt-4" onClick={carregarSemanaAtual} disabled={isLoading}>
                 {isLoading ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Download className="w-4 h-4 mr-2" />}
-                Carregar Semana Real (Jul 2025)
+                Carregar Programa
               </Button>
             </CardContent>
           </Card>
@@ -334,7 +429,7 @@ const DesignacoesPage = () => {
                   <Button 
                     className="mt-4" 
                     onClick={gerarDesignacoes} 
-                    disabled={isGenerating}
+                    disabled={isGenerating || !congregacaoId}
                   >
                     {isGenerating ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Users className="w-4 h-4 mr-2" />}
                     Gerar Designações Automáticas
@@ -353,30 +448,41 @@ const DesignacoesPage = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {designacoes.map((designacao) => (
-                      <TableRow key={designacao.id}>
-                        <TableCell className="font-medium">
-                          <div>
-                            <p>{designacao.parte_titulo}</p>
-                            <p className="text-sm text-gray-500">#{designacao.parte_numero}</p>
-                          </div>
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant="secondary">
-                            <Clock className="w-3 h-3 mr-1" />
-                            {designacao.parte_tempo} min
-                          </Badge>
-                        </TableCell>
-                        <TableCell>{getEstudanteNome(designacao.estudante_principal_id)}</TableCell>
-                        <TableCell>{designacao.estudante_ajudante_id ? getEstudanteNome(designacao.estudante_ajudante_id) : '—'}</TableCell>
-                        <TableCell>{getStatusBadge(designacao)}</TableCell>
-                        <TableCell>
-                          <Button variant="ghost" size="sm" disabled>
-                            Editar
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
+                    {designacoes.map((designacao: any, index: number) => {
+                      console.log('Renderizando designação:', designacao);
+                      return (
+                        <TableRow key={designacao.id || designacao.programacao_item_id || index}>
+                          <TableCell className="font-medium">
+                            <div>
+                              <p>{designacao.parte_titulo || designacao.titulo || (designacao.programacao_itens && designacao.programacao_itens.titulo) || 'Parte não identificada'}</p>
+                              <p className="text-sm text-gray-500">#{designacao.parte_numero || designacao.numero || 'N/A'}</p>
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant="secondary">
+                              <Clock className="w-3 h-3 mr-1" />
+                              {designacao.parte_tempo || designacao.tempo || (designacao.programacao_itens && designacao.programacao_itens.tempo) || 0} min
+                            </Badge>
+                          </TableCell>
+                          <TableCell>
+                            {designacao.principal_estudante_id 
+                              ? getEstudanteNome(designacao.principal_estudante_id) 
+                              : 'Não designado'}
+                          </TableCell>
+                          <TableCell>
+                            {designacao.assistente_estudante_id 
+                              ? getEstudanteNome(designacao.assistente_estudante_id) 
+                              : '—'}
+                          </TableCell>
+                          <TableCell>{getStatusBadge(designacao)}</TableCell>
+                          <TableCell>
+                            <Button variant="ghost" size="sm" disabled>
+                              Editar
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
                   </TableBody>
                 </Table>
               )}

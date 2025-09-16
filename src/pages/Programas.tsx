@@ -4,6 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Download, FileText, BookOpen, Calendar, Eye, AlertTriangle } from 'lucide-react';
 import { parseMWBContent, MWBProgram } from '@/utils/mwbParser';
+import ProgramasReais from '@/components/ProgramasReais';
+
+// Check if we're in mock mode
+const isMockMode = import.meta.env.VITE_MOCK_MODE === 'true';
 
 interface PDFEntry {
   label: string;
@@ -58,7 +62,7 @@ const extractMonthCode = (fileName: string): string | null => {
 
 const Programas: React.FC = () => {
   const [activeLang, setActiveLang] = useState<'pt' | 'en'>('pt');
-  const [selected, setSelected] = useState<PDFEntry | null>(ptPDFs[0]);
+  const [selected, setSelected] = useState<PDFEntry | null>(isMockMode ? ptPDFs[0] : null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [semanas, setSemanas] = useState<SemanaJSON[]>([]);
@@ -73,6 +77,11 @@ const Programas: React.FC = () => {
 
   // Buscar programação real do backend quando houver JSON disponível
   useEffect(() => {
+    // If not in mock mode, we don't need to fetch mock data
+    if (!isMockMode) {
+      return;
+    }
+    
     const run = async () => {
       if (!selected) return;
       setError(null);
@@ -109,6 +118,32 @@ const Programas: React.FC = () => {
     };
     run();
   }, [selected]);
+
+  // When not in mock mode, show real Supabase data
+  if (!isMockMode) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <div className="w-full max-w-[1600px] mx-auto px-4 lg:px-8 py-8">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Programação da Reunião - Dados Reais</h1>
+            <p className="text-gray-600">Exibindo programações reais do banco de dados Supabase.</p>
+          </div>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <BookOpen className="h-5 w-5 text-blue-600" />
+                Programações Ministeriais Reais
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ProgramasReais />
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
