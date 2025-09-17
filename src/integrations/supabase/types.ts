@@ -35,6 +35,78 @@ export type Database = {
         }
         Relationships: []
       }
+      designacao_itens: {
+        Row: {
+          assistente_estudante_id: string | null
+          congregacao_id: string
+          created_at: string | null
+          id: string
+          observacoes: string | null
+          principal_estudante_id: string | null
+          programacao_id: string
+          programacao_item_id: string
+          status: string | null
+        }
+        Insert: {
+          assistente_estudante_id?: string | null
+          congregacao_id: string
+          created_at?: string | null
+          id?: string
+          observacoes?: string | null
+          principal_estudante_id?: string | null
+          programacao_id: string
+          programacao_item_id: string
+          status?: string | null
+        }
+        Update: {
+          assistente_estudante_id?: string | null
+          congregacao_id?: string
+          created_at?: string | null
+          id?: string
+          observacoes?: string | null
+          principal_estudante_id?: string | null
+          programacao_id?: string
+          programacao_item_id?: string
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "designacao_itens_assistente_estudante_id_fkey"
+            columns: ["assistente_estudante_id"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "designacao_itens_congregacao_id_fkey"
+            columns: ["congregacao_id"]
+            isOneToOne: false
+            referencedRelation: "congregacoes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "designacao_itens_principal_estudante_id_fkey"
+            columns: ["principal_estudante_id"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "designacao_itens_programacao_id_fkey"
+            columns: ["programacao_id"]
+            isOneToOne: false
+            referencedRelation: "programacoes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "designacao_itens_programacao_item_id_fkey"
+            columns: ["programacao_item_id"]
+            isOneToOne: false
+            referencedRelation: "programacao_itens"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       designacoes: {
         Row: {
           ajudante_id: string | null
@@ -45,6 +117,7 @@ export type Database = {
           parte_id: string
           status: string | null
           updated_at: string | null
+          user_id: string | null
         }
         Insert: {
           ajudante_id?: string | null
@@ -55,6 +128,7 @@ export type Database = {
           parte_id: string
           status?: string | null
           updated_at?: string | null
+          user_id?: string | null
         }
         Update: {
           ajudante_id?: string | null
@@ -65,6 +139,7 @@ export type Database = {
           parte_id?: string
           status?: string | null
           updated_at?: string | null
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -232,6 +307,101 @@ export type Database = {
         }
         Relationships: []
       }
+      programacao_itens: {
+        Row: {
+          created_at: string | null
+          id: string
+          lang: Json | null
+          minutes: number
+          order: number
+          programacao_id: string
+          rules: Json | null
+          section: string
+          type: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          lang?: Json | null
+          minutes: number
+          order: number
+          programacao_id: string
+          rules?: Json | null
+          section: string
+          type: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          lang?: Json | null
+          minutes?: number
+          order?: number
+          programacao_id?: string
+          rules?: Json | null
+          section?: string
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "programacao_itens_programacao_id_fkey"
+            columns: ["programacao_id"]
+            isOneToOne: false
+            referencedRelation: "programacoes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      programacoes: {
+        Row: {
+          congregation_scope: string | null
+          created_at: string | null
+          id: string
+          status: string | null
+          updated_at: string | null
+          week_end: string
+          week_start: string
+        }
+        Insert: {
+          congregation_scope?: string | null
+          created_at?: string | null
+          id?: string
+          status?: string | null
+          updated_at?: string | null
+          week_end: string
+          week_start: string
+        }
+        Update: {
+          congregation_scope?: string | null
+          created_at?: string | null
+          id?: string
+          status?: string | null
+          updated_at?: string | null
+          week_end?: string
+          week_start?: string
+        }
+        Relationships: []
+      }
+      programas: {
+        Row: {
+          assignment_status: string | null
+          created_at: string | null
+          id: string
+          user_id: string | null
+        }
+        Insert: {
+          assignment_status?: string | null
+          created_at?: string | null
+          id?: string
+          user_id?: string | null
+        }
+        Update: {
+          assignment_status?: string | null
+          created_at?: string | null
+          id?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       programas_ministeriais: {
         Row: {
           arquivo_nome: string
@@ -308,14 +478,72 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      batch_import_legacy_students: {
+        Args: { p_instrutor_user_id: string }
+        Returns: {
+          estudante_ids: string[]
+          imported_count: number
+          profile_ids: string[]
+        }[]
+      }
+      check_student_duplicate: {
+        Args: {
+          p_email?: string
+          p_nome: string
+          p_telefone?: string
+          p_user_id: string
+        }
+        Returns: boolean
+      }
       get_user_role: {
         Args: { user_uuid: string }
         Returns: Database["public"]["Enums"]["app_role"]
       }
+      import_legacy_student_data: {
+        Args: {
+          p_ativo?: boolean
+          p_cargo?: string
+          p_chairman?: boolean
+          p_data_batismo?: string
+          p_data_nascimento?: string
+          p_email?: string
+          p_explaining?: boolean
+          p_familia?: string
+          p_following?: boolean
+          p_gems?: boolean
+          p_genero?: string
+          p_idade?: number
+          p_making?: boolean
+          p_nome: string
+          p_observacoes?: string
+          p_pray?: boolean
+          p_reading?: boolean
+          p_starting?: boolean
+          p_talk?: boolean
+          p_telefone?: string
+          p_treasures?: boolean
+          p_user_id: string
+        }
+        Returns: string
+      }
+      import_student_simple: {
+        Args: {
+          p_ativo?: boolean
+          p_cargo?: string
+          p_email?: string
+          p_genero?: string
+          p_nome: string
+          p_qualificacoes?: string[]
+          p_telefone?: string
+          p_user_id: string
+        }
+        Returns: {
+          estudante_id: string
+          profile_id: string
+        }[]
+      }
     }
     Enums: {
-      app_cargo: "anciao" | "servo_ministerial" | "pioneiro_regular" | "publicador_batizado" | "publicador_nao_batizado" | "estudante_novo"
-      app_genero: "masculino" | "feminino"
       app_role: "admin" | "instrutor" | "estudante"
       genero_requerido: "masculino" | "feminino" | "ambos"
       tipo_designacao:
