@@ -2,11 +2,11 @@ import { createRoot } from 'react-dom/client'
 import React from 'react'
 import App from './App'
 import './index.css'
-import './utils/env-debug'
-import './utils/verify-system'
-import './styles/responsive.css'
-import './styles/page-shell.css'
-import i18n from './i18n'
+import '@/utils/env-debug'
+import '@/utils/verify-system'
+import '@/styles/responsive.css'
+import '@/styles/page-shell.css'
+import i18n from '@/i18n'
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import SafeAreaLayout from "@/layouts/SafeAreaLayout";
 import { DensityProvider } from "@/contexts/DensityContext";

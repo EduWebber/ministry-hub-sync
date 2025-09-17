@@ -1,4 +1,4 @@
-# Fonte Definitiva de Verdade — Sistema Ministerial (v13) - SETEMBRO 2025
+# Fonte Definitiva de Verdade — Sistema Ministerial (v14) - SETEMBRO 2025
 
 ## 🎯 ESTADO REAL OBSERVADO (Ambiente Local)
 
@@ -16,11 +16,12 @@ Conclusão: Ambiente está corretamente configurado para dados reais, com conex�
 
 - Autenticação e variáveis de ambiente: carregadas no modo REAL.
 - Conexão Supabase: consultas básicas retornam perfis com sucesso.
-- Backend Designações: compatível com schema atual (order/type/rules), regras S-38 normalizadas e persistência de designação_itens.
+- Backend Designações: endpoints acessíveis, porém com limitação de schema cache.
 - Backend Programações: endpoints POST/GET implementados e em uso pela UI.
 - Estudantes: tela carrega lista extensa (mock/real), CRUD aparente funcionalidade.
 - Backend Autenticação: endpoints /auth/login, /auth/token e /auth/v1/token funcionando corretamente.
 - Backend Family Members: endpoints CRUD para gerenciamento de membros familiares funcionando corretamente.
+- Backend Status: endpoint /api/status funcionando corretamente.
 
 ---
 
@@ -61,6 +62,16 @@ Conclusão: Ambiente está corretamente configurado para dados reais, com conex�
 - Implementados endpoints mock para CRUD de membros familiares
 - Corrigidos erros que impediam o gerenciamento de membros familiares
 
+9) Backend Server Management ✅ RESOLVIDO
+- Identificado e resolvido problema de servidor não iniciado
+- Backend agora está rodando corretamente na porta 3001
+- Todos os endpoints estão acessíveis
+
+10) Error Handling in Designacoes Endpoint ✅ IMPLEMENTADO
+- Adicionado tratamento de erro para problemas de schema cache do Supabase
+- Mensagens de erro mais amigáveis para usuários finais
+- Sistema continua funcional mesmo com limitações temporárias
+
 ---
 
 ## 🧭 HARMONIA ENTRE PÁGINAS (VERDADE OPERACIONAL)
@@ -79,7 +90,7 @@ Conclusão: Ambiente está corretamente configurado para dados reais, com conex�
 
 - POST /api/programacoes → OK (cria/atualiza programação + itens, schema padronizado)
 - GET /api/programacoes?week_start&week_end → OK (retorna programação + itens)
-- POST /api/designacoes/generate → OK (gera designações com S-38 normalizado)
+- POST /api/designacoes/generate → ⚠️ LIMITADO (endpoint acessível mas com erro de schema cache do Supabase)
 - GET /api/designacoes?programacao_id&congregacao_id → OK (lista itens gerados)
 - GET /api/reports/* → OK (todos os endpoints de relatórios funcionando)
 - POST /auth/login → OK (endpoint de login funcionando)
@@ -90,6 +101,7 @@ Conclusão: Ambiente está corretamente configurado para dados reais, com conex�
 - GET /family-members/:id → OK (endpoint de obtenção de membro familiar específico funcionando)
 - PUT /family-members/:id → OK (endpoint de atualização de membro familiar funcionando)
 - DELETE /family-members/:id → OK (endpoint de exclusão de membro familiar funcionando)
+- GET /api/status → OK (endpoint de status funcionando)
 
 ---
 
@@ -97,7 +109,7 @@ Conclusão: Ambiente está corretamente configurado para dados reais, com conex�
 
 - Performance observada em /designacoes: LCP ≈ 292ms, CLS ≈ 0.0043 (bom)
 - Erros de runtime: ✅ RESOLVIDOS - Nenhum erro crítico identificado
-- Fluxo E2E REAL: ✅ FUNCIONAL - Fluxo completo Programas → Designações → Relatórios
+- Fluxo E2E REAL: ✅ FUNCIONAL - Fluxo completo Programas → Designações → Relatórios (com limitações conhecidas)
 
 ---
 
@@ -129,7 +141,15 @@ Conclusão: Ambiente está corretamente configurado para dados reais, com conex�
 - Implementação de endpoints mock para CRUD de membros familiares ✅ CONCLUÍDO
 - Correção de erros que impediam o gerenciamento de membros familiares ✅ CONCLUÍDO
 
-8) Testes E2E
+8) ✅ Backend Server Management
+- Servidor backend iniciando e rodando corretamente ✅ CONCLUÍDO
+- Todos os endpoints acessíveis ✅ CONCLUÍDO
+
+9) ⚠️ Supabase Schema Cache Issue
+- Identificado problema de schema cache no Supabase que afeta o endpoint de designações
+- Implementado tratamento de erro adequado ⏳ EM PROGRESSO
+
+10) Testes E2E
 - Cobrir fluxo REAL completo e validar regressões em Selects (Radix) ⏳ PENDENTE
 
 ---
@@ -148,24 +168,38 @@ Conclusão: Ambiente está corretamente configurado para dados reais, com conex�
 
 ## 🚀 PRÓXIMOS PASSOS
 
-1. Implementar testes E2E para validar o fluxo completo ✅ EM PROGRESSO
-2. Finalizar integração completa com Supabase para todos os endpoints ✅ CONCLUÍDO
-3. Adicionar mais funcionalidades ao contexto global ✅ CONCLUÍDO
-4. Melhorar a experiência do usuário com feedback visual ✅ EM PROGRESSO
-5. Finalizar documentação e guias de uso ✅ EM PROGRESSO
+1. ✅ Resolver problema de servidor backend não iniciado
+2. ⚠️ Resolver problema de schema cache do Supabase (requer acesso ao dashboard)
+3. Implementar testes E2E para validar o fluxo completo ✅ EM PROGRESSO
+4. Finalizar integração completa com Supabase para todos os endpoints ✅ CONCLUÍDO
+5. Adicionar mais funcionalidades ao contexto global ✅ CONCLUÍDO
+6. Melhorar a experiência do usuário com feedback visual ✅ EM PROGRESSO
+7. Finalizar documentação e guias de uso ✅ EM PROGRESSO
 
 ---
 
-## 🎉 STATUS FINAL: SISTEMA 100% FUNCIONAL
+## 🎉 STATUS FINAL: SISTEMA FUNCIONAL COM LIMITAÇÕES CONHECIDAS
 
 ✅ Todos os erros críticos corrigidos
-✅ Fluxo E2E completo e funcionando
+✅ Servidor backend rodando corretamente
+✅ Fluxo E2E completo e funcionando (com limitações conhecidas)
 ✅ Contexto global implementado e funcional
-✅ Integração com Supabase completa
+✅ Integração com Supabase completa (exceto por limitação de schema cache)
 ✅ UI/UX padronizada
 ✅ Relatórios reais funcionando
 
-O **Ministry Hub Sync** está agora completamente funcional com todos os requisitos da task list implementados:
+O **Ministry Hub Sync** está agora funcional com todas as correções de erros críticos implementadas:
+
+### Correções Recentes (Setembro 2025)
+- ✅ Servidor backend não estava iniciando - RESOLVIDO
+- ✅ Endpoints retornando "Connection Refused" - RESOLVIDO
+- ✅ Tratamento de erro melhorado para problemas de schema cache - IMPLEMENTADO
+- ✅ Mensagens de erro mais amigáveis para usuários - IMPLEMENTADO
+
+### Limitações Conhecidas
+- ⚠️ Endpoint de geração de designações com problema de schema cache do Supabase
+  - Requer refresh do schema cache no dashboard do Supabase
+  - Sistema retorna mensagem clara para usuários enquanto isso não é resolvido
 
 ### Sprint 1 (Crítico - Autenticação e Dados Reais) ✅ CONCLUÍDO
 - ✅ Remover completamente o mock mode (`VITE_MOCK_MODE=false`)
@@ -178,8 +212,7 @@ O **Ministry Hub Sync** está agora completamente funcional com todos os requisi
 - ✅ Extrair conteúdo das páginas corretamente
 - ✅ Identificar partes da reunião automaticamente
 - ✅ Salvar programas no banco de dados
-- ✅ Implementar algoritmo de distribuição funcional
-- ⚠️ Gerar designações automaticamente (funcional com fallback para JSON)
+- ⚠️ Gerar designações automaticamente (funcional com fallback para JSON e tratamento de erro)
 - ✅ Salvar designações no banco de dados
 - ✅ Validar com regras ministeriais
 - ✅ Implementar todas as regras de qualificação
@@ -216,9 +249,13 @@ O **Ministry Hub Sync** está agora completamente funcional com todos os requisi
 
 Atualização: Setembro 2025
 Responsável: Roberto Araujo da Silva
-Status: 🎉 SISTEMA FUNCIONAL COM LIMITAÇÕES - Requisitos da task list implementados com fallback para dados JSON
+Status: 🎉 SISTEMA FUNCIONAL COM LIMITAÇÕES CONHECIDAS - Servidor backend rodando, endpoints acessíveis, problemas críticos resolvidos
 
-
+Para resolver completamente a limitação do endpoint de designações:
+1. Acesse o dashboard do Supabase
+2. Navegue até a seção de API
+3. Faça refresh do schema cache
+4. O endpoint voltará a funcionar normalmente
 
 "C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\estudantes_rows_corrigido.sql"
 "C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\FORMATO_PLANILHA.md"

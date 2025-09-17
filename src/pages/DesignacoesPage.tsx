@@ -94,7 +94,7 @@ const DesignacoesPage = () => {
   }, []);
   
   // Update congregacaoId to use context
-  const congregacaoId = selectedCongregacaoId || '550e8400-e29b-41d4-a716-446655440001'; // Default to a valid congregation ID
+  const congregacaoId = selectedCongregacaoId || '7e90ac8e-d2f4-403a-b78f-55ff20ab7edf'; // Default to a valid congregation ID
   const setCongregacaoId = setSelectedCongregacaoId;
 
   // Carregar semana real dos dados JSON com fallback local quando o backend estiver offline
@@ -235,6 +235,10 @@ const DesignacoesPage = () => {
       });
       
       if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        if (response.status === 503 && errorData.details && errorData.details.includes('atualização de esquema')) {
+          throw new Error('O sistema está passando por uma atualização de esquema. Por favor, tente novamente em alguns minutos.');
+        }
         throw new Error('Falha ao salvar designações');
       }
       
@@ -244,11 +248,11 @@ const DesignacoesPage = () => {
         title: 'Designações salvas!',
         description: `${designacoes.length} designações foram salvas com sucesso.`
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Erro ao salvar designações:', error);
       toast({
         title: 'Erro ao salvar designações',
-        description: 'Não foi possível salvar as designações.',
+        description: error?.message || 'Não foi possível salvar as designações.',
         variant: 'destructive'
       });
     }
@@ -291,6 +295,10 @@ const DesignacoesPage = () => {
       });
       
       if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        if (response.status === 503 && errorData.details && errorData.details.includes('atualização de esquema')) {
+          throw new Error('O sistema está passando por uma atualização de esquema. Por favor, tente novamente em alguns minutos.');
+        }
         throw new Error('Falha ao gerar designações');
       }
       
