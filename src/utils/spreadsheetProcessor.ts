@@ -82,6 +82,8 @@ export const processRow = (row: SpreadsheetRow, index: number): ValidationResult
   const warnings: string[] = [];
   
   // Get field values using flexible column mapping
+  const family_id = getFieldValue(row, ['family_id']);
+  const user_id = getFieldValue(row, ['user_id']);
   const nome = getFieldValue(row, ['nome', 'Nome Completo', 'Nome', 'name']);
   const idade = getFieldValue(row, ['idade', 'Idade', 'age']);
   const genero = getFieldValue(row, ['genero', 'Gênero (M/F)', 'Gênero', 'Genero', 'gender']);
@@ -92,6 +94,25 @@ export const processRow = (row: SpreadsheetRow, index: number): ValidationResult
   const telefone = getFieldValue(row, ['telefone', 'Telefone', 'phone']);
   const dataBatismo = getFieldValue(row, ['data_batismo', 'Data de Batismo', 'Batismo']);
   const observacoes = getFieldValue(row, ['observacoes', 'Observações', 'Observacoes', 'notes']);
+  const estado_civil = getFieldValue(row, ['estado_civil']);
+  const papel_familiar = getFieldValue(row, ['papel_familiar']);
+  const id_pai = getFieldValue(row, ['id_pai']);
+  const id_mae = getFieldValue(row, ['id_mae']);
+  const id_conjuge = getFieldValue(row, ['id_conjuge']);
+  const coabitacao = getFieldValue(row, ['coabitacao']);
+  const menor = getFieldValue(row, ['menor']);
+  const responsavel_primario = getFieldValue(row, ['responsavel_primario']);
+  const responsavel_secundario = getFieldValue(row, ['responsavel_secundario']);
+  const chairman = getFieldValue(row, ['chairman']);
+  const pray = getFieldValue(row, ['pray']);
+  const treasures = getFieldValue(row, ['treasures']);
+  const gems = getFieldValue(row, ['gems']);
+  const reading = getFieldValue(row, ['reading']);
+  const starting = getFieldValue(row, ['starting']);
+  const following = getFieldValue(row, ['following']);
+  const making = getFieldValue(row, ['making']);
+  const explaining = getFieldValue(row, ['explaining']);
+  const talk = getFieldValue(row, ['talk']);
   
   // Required fields validation
   if (!nome || typeof nome !== 'string' || nome.trim().length < 2) {
@@ -110,12 +131,15 @@ export const processRow = (row: SpreadsheetRow, index: number): ValidationResult
     errors.push('Família/Agrupamento é obrigatório');
   }
   
-  if (!cargo || !CARGO_MAPPING[cargo]) {
-    errors.push(`Cargo congregacional inválido: ${cargo}`);
+  // Cargo and status are optional in the new model; coerce if provided
+  let processedCargo: string | undefined;
+  if (cargo && CARGO_MAPPING[cargo]) {
+    processedCargo = CARGO_MAPPING[cargo];
   }
-  
-  if (ativo === null || STATUS_MAPPING[ativo] === undefined) {
-    errors.push('Status deve ser Ativo ou Inativo');
+
+  let processedAtivo: boolean = true;
+  if (ativo !== null && ativo !== undefined && STATUS_MAPPING[String(ativo)] !== undefined) {
+    processedAtivo = STATUS_MAPPING[String(ativo)];
   }
   
   // Email validation
@@ -154,7 +178,7 @@ export const processRow = (row: SpreadsheetRow, index: number): ValidationResult
   let processedDataNascimento: string | undefined;
   if (dataNascimento && typeof dataNascimento === 'string' && dataNascimento.trim()) {
     try {
-      const parsedDate = parseBrazilianDate(dataNascimento);
+      const parsedDate = parseBrazilianOrIsoDate(dataNascimento);
       if (parsedDate) {
         processedDataNascimento = format(parsedDate, 'yyyy-MM-dd');
         // Age vs birth date consistency
@@ -170,10 +194,10 @@ export const processRow = (row: SpreadsheetRow, index: number): ValidationResult
   }
   
   // Minor validation
-  const parenteResponsavel = getFieldValue(row, ['parente_responsavel', 'Parente Responsável', 'Responsavel']);
-  const parentesco = getFieldValue(row, ['parentesco', 'Parentesco', 'relationship']);
-  const isMinor = idade < 18;
-  if (isMinor && (!parenteResponsavel || !parentesco)) {
+  const parenteResponsavel = getFieldValue(row, ['parente_responsavel', 'Parente Responsável', 'Responsavel', 'responsavel_primario']);
+  const parentesco = getFieldValue(row, ['parentesco', 'Parentesco', 'relationship', 'papel_familiar']);
+  const isMinor = idade < 18 || BOOLEAN_MAPPING[String(menor)] === true;
+  if (isMinor && (!parenteResponsavel && !responsavel_primario)) {
     warnings.push('Menor de idade sem responsável definido');
   }
   
@@ -188,16 +212,37 @@ export const processRow = (row: SpreadsheetRow, index: number): ValidationResult
   
   // Process valid data
   const processedData: ProcessedStudentData = {
+    family_id: family_id || undefined,
+    user_id: user_id || undefined,
     nome: nome.trim(),
     idade: idade,
     genero: GENDER_MAPPING[genero],
     email: email && typeof email === 'string' ? email.trim() || undefined : undefined,
     telefone: telefone && typeof telefone === 'string' ? telefone.trim() || undefined : undefined,
     data_batismo: processedDataBatismo,
-    cargo: CARGO_MAPPING[cargo],
-    ativo: STATUS_MAPPING[ativo],
+    cargo: processedCargo as any,
+    ativo: processedAtivo,
     observacoes: observacoes && typeof observacoes === 'string' ? observacoes.trim() || undefined : undefined,
-    familia: familia.trim(),
+    familia: familia?.trim?.() || '',
+    estado_civil: estado_civil || undefined,
+    papel_familiar: papel_familiar || undefined,
+    id_pai: id_pai || undefined,
+    id_mae: id_mae || undefined,
+    id_conjuge: id_conjuge || undefined,
+    coabitacao: BOOLEAN_MAPPING[String(coabitacao)] ?? undefined,
+    menor: BOOLEAN_MAPPING[String(menor)] ?? undefined,
+    responsavel_primario: responsavel_primario || parenteResponsavel || undefined,
+    responsavel_secundario: responsavel_secundario || undefined,
+    chairman: BOOLEAN_MAPPING[String(chairman)] ?? undefined,
+    pray: BOOLEAN_MAPPING[String(pray)] ?? undefined,
+    treasures: BOOLEAN_MAPPING[String(treasures)] ?? undefined,
+    gems: BOOLEAN_MAPPING[String(gems)] ?? undefined,
+    reading: BOOLEAN_MAPPING[String(reading)] ?? undefined,
+    starting: BOOLEAN_MAPPING[String(starting)] ?? undefined,
+    following: BOOLEAN_MAPPING[String(following)] ?? undefined,
+    making: BOOLEAN_MAPPING[String(making)] ?? undefined,
+    explaining: BOOLEAN_MAPPING[String(explaining)] ?? undefined,
+    talk: BOOLEAN_MAPPING[String(talk)] ?? undefined,
     data_nascimento: processedDataNascimento
   };
   
@@ -239,6 +284,24 @@ export const parseBrazilianDate = (dateString: string): Date | null => {
   } catch {
     return null;
   }
+};
+
+/**
+ * Parses Brazilian date or ISO-like "yyyy-MM-dd HH:mm:ss" to Date
+ */
+export const parseBrazilianOrIsoDate = (dateString: string): Date | null => {
+  if (!dateString || typeof dateString !== 'string') return null;
+  const cleanDate = dateString.trim();
+  if (!cleanDate) return null;
+
+  // Try ISO-like with time first
+  try {
+    const isoLike = parse(cleanDate, 'yyyy-MM-dd HH:mm:ss', new Date());
+    if (isValid(isoLike)) return isoLike;
+  } catch {}
+
+  // Fallback to Brazilian formats
+  return parseBrazilianDate(cleanDate);
 };
 
 /**

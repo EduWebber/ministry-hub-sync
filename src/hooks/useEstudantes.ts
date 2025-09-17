@@ -283,7 +283,7 @@ export function useEstudantes() {
   }, [fetchEstudantes]);
 
   // Additional convenience functions
-  const addEstudante = useCallback(async (estudanteData: any) => {
+  const createEstudante = useCallback(async (data: any) => {
     if (isMockModeValue) {
       console.log('🧪 Mock mode: simulating add estudante');
       return { success: true, data: { id: 'mock-new-student' } };
@@ -292,7 +292,7 @@ export function useEstudantes() {
     return { success: false, error: 'Not implemented yet' };
   }, []);
 
-  const updateEstudante = useCallback(async (id: string, updates: any) => {
+  const updateEstudanteInternal = useCallback(async (id: string, updates: any) => {
     if (isMockModeValue) {
       console.log('🧪 Mock mode: simulating update estudante');
       return { success: true };
@@ -310,30 +310,74 @@ export function useEstudantes() {
     return { success: false, error: 'Not implemented yet' };
   }, []);
 
-  // Calculate statistics
-  const statistics: EstudanteStatistics = {
-    total: estudantes.length,
-    ativos: estudantes.filter(e => e.ativo).length,
-    inativos: estudantes.filter(e => !e.ativo).length,
-    menores: estudantes.filter(e => {
-      if (!e.data_nascimento) return false;
-      const age = new Date().getFullYear() - new Date(e.data_nascimento).getFullYear();
-      return age < 18;
-    }).length,
-    homens: estudantes.filter(e => e.genero === 'masculino').length,
-    mulheres: estudantes.filter(e => e.genero === 'feminino').length,
-    qualificados: estudantes.filter(e => (e.qualificacoes?.length || 0) >= 3).length
-  };
+  // Helpers expected by pages
+  const refetch = useCallback(() => fetchEstudantes(), [fetchEstudantes]);
+
+  const updateEstudante = useCallback(async ({ id, data }: { id: string; data: any }) => {
+    return updateEstudanteInternal(id, data);
+  }, [updateEstudanteInternal]);
+
+  const filterEstudantes = useCallback((filters: any) => {
+    let list = estudantes || [];
+    if (!filters) return list;
+    const { searchTerm, cargo, genero, ativo } = filters;
+
+    if (searchTerm && String(searchTerm).trim().length > 0) {
+      const q = String(searchTerm).toLowerCase();
+      list = list.filter((e: any) =>
+        (e.nome && e.nome.toLowerCase().includes(q)) ||
+        (e.nome_completo && e.nome_completo.toLowerCase().includes(q)) ||
+        (e.email && e.email.toLowerCase().includes(q))
+      );
+    }
+
+    if (cargo && cargo !== 'todos') {
+      list = list.filter((e: any) => (e.cargo || '').toString() === cargo);
+    }
+
+    if (genero && genero !== 'todos') {
+      list = list.filter((e: any) => e.genero === genero);
+    }
+
+    if (ativo !== undefined && ativo !== 'todos') {
+      const desired = ativo === true || ativo === 'true';
+      list = list.filter((e: any) => Boolean(e.ativo) === desired);
+    }
+
+    return list;
+  }, [estudantes]);
+
+  // Define getStatistics function
+  const getStatistics = useCallback((): EstudanteStatistics => {
+    return {
+      total: estudantes.length,
+      ativos: estudantes.filter(e => e.ativo).length,
+      inativos: estudantes.filter(e => !e.ativo).length,
+      menores: estudantes.filter(e => {
+        if (!e.data_nascimento) return false;
+        const age = new Date().getFullYear() - new Date(e.data_nascimento).getFullYear();
+        return age < 18;
+      }).length,
+      homens: estudantes.filter(e => e.genero === 'masculino').length,
+      mulheres: estudantes.filter(e => e.genero === 'feminino').length,
+      qualificados: estudantes.filter(e => (e.qualificacoes?.length || 0) >= 3).length
+    };
+  }, [estudantes]);
+
+  // Calculate statistics using the getStatistics function
+  const statistics = getStatistics();
 
   return {
     estudantes,
     isLoading,
     error,
     statistics,
-    fetchEstudantes,
-    addEstudante,
+    refetch,
+    createEstudante,
     updateEstudante,
-    deleteEstudante
+    deleteEstudante,
+    filterEstudantes,
+    getStatistics
   };
 }
 

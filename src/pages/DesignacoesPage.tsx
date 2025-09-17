@@ -94,66 +94,101 @@ const DesignacoesPage = () => {
   }, []);
   
   // Update congregacaoId to use context
-  const congregacaoId = selectedCongregacaoId || '';
+  const congregacaoId = selectedCongregacaoId || '550e8400-e29b-41d4-a716-446655440001'; // Default to a valid congregation ID
   const setCongregacaoId = setSelectedCongregacaoId;
 
-  // Carregar semana real dos dados JSON
+  // Carregar semana real dos dados JSON com fallback local quando o backend estiver offline
   const carregarSemanaAtual = async () => {
     setIsLoading(true);
+
+    // Fallback local (Janeiro/2026) no formato esperado pelo conversor abaixo
+    const fallbackProgramas = [
+      {
+        idSemana: '2026-01-05',
+        semanaLabel: '5-11 de janeiro 2026',
+        tema: 'Recomeçando com sabedoria',
+        programacao: [
+          {
+            secao: 'Tesouros da Palavra de Deus',
+            partes: [
+              { idParte: 1, titulo: 'Tesouros da Palavra de Deus', duracaoMin: 10, tipo: 'consideracao' },
+              { idParte: 2, titulo: 'Joias espirituais', duracaoMin: 10, tipo: 'joias' },
+              { idParte: 3, titulo: 'Leitura da Bíblia', duracaoMin: 4, tipo: 'leitura', restricoes: { genero: 'M' } }
+            ]
+          },
+          {
+            secao: 'Faça Seu Melhor no Ministério',
+            partes: [
+              { idParte: 4, titulo: 'Iniciando conversas', duracaoMin: 2, tipo: 'testemunho informal' },
+              { idParte: 5, titulo: 'Cultivando o interesse', duracaoMin: 3, tipo: 'de casa em casa' },
+              { idParte: 6, titulo: 'Fazendo discípulos', duracaoMin: 5, tipo: 'estudo biblico' }
+            ]
+          },
+          {
+            secao: 'Nossa Vida Cristã',
+            partes: [
+              { idParte: 7, titulo: 'Tema local (ancião)', duracaoMin: 15, tipo: 'consideracao' },
+              { idParte: 8, titulo: 'Estudo bíblico de congregação', duracaoMin: 30, tipo: 'estudo' }
+            ]
+          }
+        ]
+      }
+    ];
+
+    const toProgramaSemanal = (programaData: any): ProgramaSemanal => {
+      const partes: ParteMeeting[] = [];
+      if (programaData.programacao) {
+        programaData.programacao.forEach((secao: any) => {
+          secao.partes.forEach((parte: any) => {
+            partes.push({
+              numero: parte.idParte,
+              titulo: parte.titulo,
+              tempo: parte.duracaoMin,
+              tipo: parte.tipo,
+              secao: secao.secao,
+              referencia: parte.referencia,
+              instrucoes: parte.instrucoes,
+              regras_papel: parte.restricoes
+            });
+          });
+        });
+      }
+      return {
+        id: programaData.idSemana,
+        semana: programaData.semanaLabel,
+        data_inicio: programaData.idSemana,
+        mes_ano: programaData.tema || 'Programa Ministerial',
+        partes
+      };
+    };
+
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      // Use the correct API base URL from environment variables
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
       const response = await fetch(`${apiBaseUrl}/api/programacoes/json-files`);
-      
+
       if (!response.ok) {
         throw new Error('Falha ao carregar programas');
       }
-      
+
       const data = await response.json();
-      
-      // Pegar o primeiro programa disponível
+
       if (data.programas && data.programas.length > 0) {
-        const programaData = data.programas[0];
-        
-        // Converter para formato do sistema
-        const partes: ParteMeeting[] = [];
-        if (programaData.programacao) {
-          programaData.programacao.forEach((secao: any) => {
-            secao.partes.forEach((parte: any) => {
-              partes.push({
-                numero: parte.idParte,
-                titulo: parte.titulo,
-                tempo: parte.duracaoMin,
-                tipo: parte.tipo,
-                secao: secao.secao,
-                referencia: parte.referencia,
-                instrucoes: parte.instrucoes,
-                regras_papel: parte.restricoes
-              });
-            });
-          });
-        }
-        
-        const programa: ProgramaSemanal = {
-          id: programaData.idSemana,
-          semana: programaData.semanaLabel,
-          data_inicio: programaData.idSemana,
-          mes_ano: programaData.tema || 'Programa Ministerial',
-          partes
-        };
-        
+        const programa = toProgramaSemanal(data.programas[0]);
         setProgramaAtual(programa);
-        toast({
-          title: "Programa carregado",
-          description: `Programa "${programa.semana}" carregado com sucesso.`
-        });
+        toast({ title: 'Programa carregado', description: `Programa "${programa.semana}" carregado com sucesso.` });
+        return;
       }
+
+      // Sem dados do backend — usar fallback
+      const fallback = toProgramaSemanal(fallbackProgramas[0]);
+      setProgramaAtual(fallback);
+      toast({ title: 'Programa (local) carregado', description: `Usando dados locais: ${fallback.semana}` });
     } catch (error) {
-      console.error('Erro ao carregar semana:', error);
-      toast({
-        title: "Erro ao carregar programa",
-        description: "Não foi possível carregar a programação.",
-        variant: "destructive"
-      });
+      console.warn('Backend indisponível, usando fallback local.', error);
+      const fallback = toProgramaSemanal(fallbackProgramas[0]);
+      setProgramaAtual(fallback);
+      toast({ title: 'Programa (local) carregado', description: `Usando dados locais: ${fallback.semana}` });
     } finally {
       setIsLoading(false);
     }
@@ -180,7 +215,8 @@ const DesignacoesPage = () => {
     }
     
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      // Use the correct API base URL from environment variables
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
       const response = await fetch(`${apiBaseUrl}/api/designacoes`, {
         method: 'POST',
         headers: {
@@ -190,9 +226,9 @@ const DesignacoesPage = () => {
           programacao_id: programaAtual.id,
           congregacao_id: congregacaoId,
           itens: designacoes.map(d => ({
-            programacao_item_id: d.programacao_item_id,
-            principal_estudante_id: d.principal_estudante_id,
-            assistente_estudante_id: d.assistente_estudante_id,
+            programacao_item_id: d.programacao_item_id || d.id,
+            principal_estudante_id: d.principal_estudante_id || d.estudante_principal_id,
+            assistente_estudante_id: d.assistente_estudante_id || d.estudante_ajudante_id,
             observacoes: d.observacoes
           }))
         })
@@ -241,7 +277,8 @@ const DesignacoesPage = () => {
     setIsGenerating(true);
     try {
       // Generate designations directly
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+      // Use the correct API base URL from environment variables
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
       const response = await fetch(`${apiBaseUrl}/api/designacoes/generate`, {
         method: 'POST',
         headers: {
@@ -378,7 +415,7 @@ const DesignacoesPage = () => {
                     <SelectValue placeholder="Selecione uma congregação" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="congregacao-1">Congregação Central</SelectItem>
+                    <SelectItem value="550e8400-e29b-41d4-a716-446655440001">Congregação Central</SelectItem>
                     <SelectItem value="congregacao-2">Congregação Norte</SelectItem>
                     <SelectItem value="congregacao-3">Congregação Sul</SelectItem>
                   </SelectContent>

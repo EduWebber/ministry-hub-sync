@@ -37,6 +37,7 @@ export interface SpreadsheetRow {
 export interface ProcessedStudentData {
   id?: string;
   user_id?: string;
+  family_id?: string;
   nome: string;
   familia: string;
   idade: number;
@@ -44,7 +45,7 @@ export interface ProcessedStudentData {
   email?: string;
   telefone?: string;
   data_batismo?: string;
-  cargo: Cargo;
+  cargo?: Cargo;
   id_pai_mae?: string;
   ativo: boolean;
   observacoes?: string;
@@ -59,7 +60,7 @@ export interface ProcessedStudentData {
   responsavel_secundario?: string;
   chairman?: boolean;
   pray?: boolean;
-  tresures?: boolean;
+  treasures?: boolean;
   gems?: boolean;
   reading?: boolean;
   starting?: boolean;
@@ -143,75 +144,90 @@ export const BOOLEAN_MAPPING: Record<string, boolean> = {
 
 // Template column definitions
 export const TEMPLATE_COLUMNS = [
+  'family_id',
+  'user_id',
   'nome',
   'familia',
   'idade',
   'genero',
-  'email',
-  'telefone',
-  'data_batismo',
-  'cargo',
-  'ativo',
-  'observacoes',
-  'data_nascimento',
+  'estado_civil',
+  'papel_familiar',
+  'id_pai',
+  'id_mae',
+  'id_conjuge',
+  'coabitacao',
+  'menor',
+  'responsavel_primario',
+  'responsavel_secundario',
   'chairman',
   'pray',
-  'tresures',
+  'treasures',
   'gems',
   'reading',
   'starting',
   'following',
   'making',
   'explaining',
-  'talk'
+  'talk',
+  'data_nascimento'
 ] as const;
 
 // Sample data for template
 export const TEMPLATE_SAMPLE_DATA: Partial<SpreadsheetRow>[] = [
   {
-    "nome": "João Silva",
-    "familia": "Silva",
-    "idade": 25,
+    "family_id": "78814c76-75b0-42ae-bb7c-9a8f0a3e5919",
+    "user_id": "",
+    "nome": "Eduardo Almeida",
+    "familia": "Almeida",
+    "idade": 45,
     "genero": "masculino",
-    "email": "joao.silva@email.com",
-    "telefone": "(11) 99999-9999",
-    "data_batismo": "2020-06-20",
-    "cargo": "publicador_batizado",
-    "ativo": "VERDADEIRO",
-    "observacoes": "Disponível para designações",
-    "data_nascimento": "1999-03-15",
-    "chairman": "FALSO",
-    "pray": "VERDADEIRO",
-    "tresures": "FALSO",
-    "gems": "VERDADEIRO",
-    "reading": "VERDADEIRO",
-    "starting": "VERDADEIRO",
-    "following": "VERDADEIRO",
-    "making": "VERDADEIRO",
-    "explaining": "VERDADEIRO",
-    "talk": "VERDADEIRO"
+    "estado_civil": "casado",
+    "papel_familiar": "pai",
+    "id_pai": "",
+    "id_mae": "",
+    "id_conjuge": "",
+    "coabitacao": true,
+    "menor": false,
+    "responsavel_primario": "",
+    "responsavel_secundario": "",
+    "chairman": true,
+    "pray": true,
+    "treasures": false,
+    "gems": true,
+    "reading": true,
+    "starting": true,
+    "following": true,
+    "making": true,
+    "explaining": true,
+    "talk": true,
+    "data_nascimento": "1980-08-22 00:00:00"
   },
   {
-    "nome": "Maria Santos",
-    "familia": "Santos",
-    "idade": 16,
-    "genero": "feminino",
-    "email": "maria.santos@email.com",
-    "telefone": "(11) 88888-8888",
-    "data_batismo": "",
-    "cargo": "estudante_novo",
-    "ativo": "VERDADEIRO",
-    "observacoes": "Menor de idade",
-    "data_nascimento": "2008-08-10",
-    "chairman": "FALSO",
-    "pray": "FALSO",
-    "tresures": "FALSO",
-    "gems": "FALSO",
-    "reading": "VERDADEIRO",
-    "starting": "VERDADEIRO",
-    "following": "VERDADEIRO",
-    "making": "VERDADEIRO",
-    "explaining": "VERDADEIRO",
-    "talk": "FALSO"
+    "family_id": "78814c76-75b0-42ae-bb7c-9a8f0a3e5919",
+    "user_id": "",
+    "nome": "Thiago Almeida",
+    "familia": "Almeida",
+    "idade": 13,
+    "genero": "masculino",
+    "estado_civil": "solteiro",
+    "papel_familiar": "filho",
+    "id_pai": "3f9fb7cc-4efe-43b6-82b6-063f5c59ce74",
+    "id_mae": "6c705a63-00b8-4cfb-867d-588dfc1aa850",
+    "id_conjuge": "",
+    "coabitacao": true,
+    "menor": true,
+    "responsavel_primario": "3f9fb7cc-4efe-43b6-82b6-063f5c59ce74",
+    "responsavel_secundario": "6c705a63-00b8-4cfb-867d-588dfc1aa850",
+    "chairman": false,
+    "pray": false,
+    "treasures": false,
+    "gems": false,
+    "reading": true,
+    "starting": true,
+    "following": true,
+    "making": true,
+    "explaining": true,
+    "talk": false,
+    "data_nascimento": "2012-08-18 00:00:00"
   }
 ];

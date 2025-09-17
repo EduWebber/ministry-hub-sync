@@ -51,7 +51,7 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
     responsavel_secundario: "",
     chairman: false,
     pray: false,
-    tresures: false,
+    treasures: false,
     gems: false,
     reading: false,
     starting: false,
@@ -90,7 +90,7 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
         responsavel_secundario: (estudante as any).responsavel_secundario || "",
         chairman: (estudante as any).chairman ?? false,
         pray: (estudante as any).pray ?? false,
-        tresures: (estudante as any).tresures ?? false,
+        treasures: (estudante as any).treasures ?? false,
         gems: (estudante as any).gems ?? false,
         reading: (estudante as any).reading ?? false,
         starting: (estudante as any).starting ?? false,
@@ -177,7 +177,7 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
           responsavel_secundario: "",
           chairman: false,
           pray: false,
-          tresures: false,
+          treasures: false,
           gems: false,
           reading: false,
           starting: false,
@@ -619,11 +619,11 @@ const EstudanteForm = ({ estudante, potentialParents, onSubmit, onCancel, loadin
               
               <div className="flex items-center space-x-2">
                 <Switch
-                  id="tresures"
-                  checked={formData.tresures || false}
-                  onCheckedChange={(checked) => handleInputChange("tresures", checked)}
+                  id="treasures"
+                  checked={formData.treasures || false}
+                  onCheckedChange={(checked) => handleInputChange("treasures", checked)}
                 />
-                <Label htmlFor="tresures">Apto a "Tesouros"</Label>
+                <Label htmlFor="treasures">Apto a "Tesouros"</Label>
               </div>
               
               <div className="flex items-center space-x-2">

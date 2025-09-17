@@ -88,7 +88,7 @@ export interface EstudanteEnhanced {
   // Qualification flags (S-38-T compliance)
   chairman: boolean;    // Pode presidir?
   pray: boolean;        // Pode orar?
-  tresures: boolean;    // Apto a "Tesouros"?
+  treasures: boolean;    // Apto a "Tesouros"?
   gems: boolean;        // Apto a "Joias"?
   reading: boolean;     // Apto a Leitura da Bíblia
   starting: boolean;    // Apto a Iniciar Conversação

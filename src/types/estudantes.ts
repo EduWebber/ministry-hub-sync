@@ -6,8 +6,8 @@ export type EstudanteInsert = Database["public"]["Tables"]["estudantes"]["Insert
 export type EstudanteUpdate = Database["public"]["Tables"]["estudantes"]["Update"];
 
 // Enums from database
-export type Genero = Database["public"]["Enums"]["app_genero"];
-export type Cargo = Database["public"]["Enums"]["app_cargo"];
+export type Genero = "masculino" | "feminino";
+export type Cargo = "anciao" | "servo_ministerial" | "pioneiro_regular" | "publicador_batizado" | "publicador_nao_batizado" | "estudante_novo";
 
 // Extended types for UI
 export interface EstudanteWithParent extends EstudanteRow {
@@ -17,7 +17,7 @@ export interface EstudanteWithParent extends EstudanteRow {
   congregacao?: string;
   chairman?: boolean;
   pray?: boolean;
-  tresures?: boolean;
+  treasures?: boolean;
   gems?: boolean;
   reading?: boolean;
   starting?: boolean;
@@ -148,7 +148,7 @@ export interface EstudanteFormData {
   responsavel_secundario?: string;
   chairman: boolean;
   pray: boolean;
-  tresures: boolean;
+  treasures: boolean;
   gems: boolean;
   reading: boolean;
   starting: boolean;
@@ -156,14 +156,6 @@ export interface EstudanteFormData {
   making: boolean;
   explaining: boolean;
   talk: boolean;
-  tresures?: boolean;
-  gems?: boolean;
-  reading?: boolean;
-  starting?: boolean;
-  following?: boolean;
-  making?: boolean;
-  explaining?: boolean;
-  talk?: boolean;
 }
 
 // Filter and search types

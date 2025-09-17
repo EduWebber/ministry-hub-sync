@@ -50,6 +50,130 @@ import { useProgramContext } from '@/contexts/ProgramContext';
 // Check if we're in mock mode
 const isMockMode = import.meta.env.VITE_MOCK_MODE === 'true';
 
+// Programação Especial - Janeiro 2026
+const programacaoEspecialJaneiro2026 = [
+  {
+    idSemana: '2026-01-05',
+    semanaLabel: '5-11 de janeiro 2026',
+    tema: 'Recomeçando com sabedoria',
+    programacao: [
+      {
+        secao: 'Tesouros da Palavra de Deus',
+        partes: [
+          { idParte: 1, titulo: 'Tesouros da Palavra de Deus', duracaoMin: 10, tipo: 'consideracao' },
+          { idParte: 2, titulo: 'Joias espirituais', duracaoMin: 10, tipo: 'joias' },
+          { idParte: 3, titulo: 'Leitura da Bíblia', duracaoMin: 4, tipo: 'leitura', restricoes: { genero: 'M' } }
+        ]
+      },
+      {
+        secao: 'Faça Seu Melhor no Ministério',
+        partes: [
+          { idParte: 4, titulo: 'Iniciando conversas', duracaoMin: 2, tipo: 'testemunho informal' },
+          { idParte: 5, titulo: 'Cultivando o interesse', duracaoMin: 3, tipo: 'de casa em casa' },
+          { idParte: 6, titulo: 'Fazendo discípulos', duracaoMin: 5, tipo: 'estudo biblico' }
+        ]
+      },
+      {
+        secao: 'Nossa Vida Cristã',
+        partes: [
+          { idParte: 7, titulo: 'Tema local (ancião)', duracaoMin: 15, tipo: 'consideracao' },
+          { idParte: 8, titulo: 'Estudo bíblico de congregação', duracaoMin: 30, tipo: 'estudo' }
+        ]
+      }
+    ]
+  },
+  {
+    idSemana: '2026-01-12',
+    semanaLabel: '12-18 de janeiro 2026',
+    tema: 'Confiança em Jeová no novo ano',
+    programacao: [
+      {
+        secao: 'Tesouros da Palavra de Deus',
+        partes: [
+          { idParte: 1, titulo: 'Confiando em Jeová', duracaoMin: 10, tipo: 'consideracao' },
+          { idParte: 2, titulo: 'Joias espirituais', duracaoMin: 10, tipo: 'joias' },
+          { idParte: 3, titulo: 'Leitura da Bíblia', duracaoMin: 4, tipo: 'leitura', restricoes: { genero: 'M' } }
+        ]
+      },
+      {
+        secao: 'Faça Seu Melhor no Ministério',
+        partes: [
+          { idParte: 4, titulo: 'Iniciando conversas', duracaoMin: 3, tipo: 'de casa em casa' },
+          { idParte: 5, titulo: 'Cultivando o interesse', duracaoMin: 4, tipo: 'testemunho publico' },
+          { idParte: 6, titulo: 'Demonstração', duracaoMin: 5, tipo: 'demonstracao' }
+        ]
+      },
+      {
+        secao: 'Nossa Vida Cristã',
+        partes: [
+          { idParte: 7, titulo: 'Vídeo com consideração', duracaoMin: 15, tipo: 'video+consideracao' },
+          { idParte: 8, titulo: 'Estudo bíblico de congregação', duracaoMin: 30, tipo: 'estudo' }
+        ]
+      }
+    ]
+  },
+  {
+    idSemana: '2026-01-19',
+    semanaLabel: '19-25 de janeiro 2026',
+    tema: 'Ande por fé e não por vista',
+    programacao: [
+      {
+        secao: 'Tesouros da Palavra de Deus',
+        partes: [
+          { idParte: 1, titulo: 'Fé ativa em ação', duracaoMin: 10, tipo: 'consideracao' },
+          { idParte: 2, titulo: 'Joias espirituais', duracaoMin: 10, tipo: 'joias' },
+          { idParte: 3, titulo: 'Leitura da Bíblia', duracaoMin: 4, tipo: 'leitura', restricoes: { genero: 'M' } }
+        ]
+      },
+      {
+        secao: 'Faça Seu Melhor no Ministério',
+        partes: [
+          { idParte: 4, titulo: 'Iniciando conversas', duracaoMin: 3, tipo: 'testemunho informal' },
+          { idParte: 5, titulo: 'Cultivando o interesse', duracaoMin: 4, tipo: 'de casa em casa' },
+          { idParte: 6, titulo: 'Fazendo discípulos', duracaoMin: 5, tipo: 'estudo biblico' }
+        ]
+      },
+      {
+        secao: 'Nossa Vida Cristã',
+        partes: [
+          { idParte: 7, titulo: 'Necessidades locais', duracaoMin: 15, tipo: 'necessidades' },
+          { idParte: 8, titulo: 'Estudo bíblico de congregação', duracaoMin: 30, tipo: 'estudo' }
+        ]
+      }
+    ]
+  },
+  {
+    idSemana: '2026-01-26',
+    semanaLabel: '26 de janeiro – 1º de fevereiro 2026',
+    tema: 'Sabedoria em decisões diárias',
+    programacao: [
+      {
+        secao: 'Tesouros da Palavra de Deus',
+        partes: [
+          { idParte: 1, titulo: 'Decisões guiadas por Jeová', duracaoMin: 10, tipo: 'consideracao' },
+          { idParte: 2, titulo: 'Joias espirituais', duracaoMin: 10, tipo: 'joias' },
+          { idParte: 3, titulo: 'Leitura da Bíblia', duracaoMin: 4, tipo: 'leitura', restricoes: { genero: 'M' } }
+        ]
+      },
+      {
+        secao: 'Faça Seu Melhor no Ministério',
+        partes: [
+          { idParte: 4, titulo: 'Iniciando conversas', duracaoMin: 2, tipo: 'de casa em casa' },
+          { idParte: 5, titulo: 'Cultivando o interesse', duracaoMin: 3, tipo: 'testemunho publico' },
+          { idParte: 6, titulo: 'Discurso (tema local)', duracaoMin: 5, tipo: 'discurso', restricoes: { genero: 'M' } }
+        ]
+      },
+      {
+        secao: 'Nossa Vida Cristã',
+        partes: [
+          { idParte: 7, titulo: 'Vídeo com consideração', duracaoMin: 15, tipo: 'video+consideracao' },
+          { idParte: 8, titulo: 'Estudo bíblico de congregação', duracaoMin: 30, tipo: 'estudo' }
+        ]
+      }
+    ]
+  }
+];
+
 // 🎯 COMPONENTES ADMIN REMOVIDOS - SISTEMA SIMPLIFICADO
 
 // 🚀 DASHBOARD UNIFICADO QUE ADAPTA AO ROLE DO USUÁRIO
@@ -431,6 +555,43 @@ export default function UnifiedDashboard() {
                     <BookOpen className="mr-2 h-4 w-4" />
                     Ver Programas
                   </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="mt-6">
+                <CardHeader>
+                  <CardTitle>Programação Especial — Janeiro 2026</CardTitle>
+                  <CardDescription>Pré-visualização de 4 semanas adicionadas ao dashboard</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {programacaoEspecialJaneiro2026.map((semana) => (
+                      <div key={semana.idSemana} className="p-4 border rounded-lg">
+                        <div className="flex items-center justify-between mb-2">
+                          <div>
+                            <p className="font-medium">{semana.semanaLabel}</p>
+                            <p className="text-sm text-muted-foreground">{semana.tema}</p>
+                          </div>
+                          <Badge variant="secondary">{semana.idSemana}</Badge>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                          {semana.programacao.map((secao: any, idx: number) => (
+                            <div key={idx} className="bg-muted p-3 rounded">
+                              <p className="font-medium mb-2">{secao.secao}</p>
+                              <ul className="space-y-1 text-sm">
+                                {secao.partes.map((parte: any) => (
+                                  <li key={parte.idParte} className="flex justify-between">
+                                    <span>{parte.titulo}</span>
+                                    <span className="text-muted-foreground">{parte.duracaoMin} min</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             </TabsContent>

@@ -890,6 +890,134 @@
           ]
         }
       ]
+    },
+    {
+      "periodo": "5-11 de janeiro 2026",
+      "tema": "Recomeçando com sabedoria",
+      "cantico_abertura": "",
+      "cantico_meio": "",
+      "cantico_encerramento": "",
+      "programacao": [
+        {
+          "secao": "Tesouros da Palavra de Deus",
+          "partes": [
+            { "id": "tpd_1_sem10", "titulo": "Tesouros da Palavra de Deus", "duracao": 10, "tipo": "consideracao", "designado": null },
+            { "id": "tpd_2_sem10", "titulo": "Joias espirituais", "duracao": 10, "tipo": "participacao", "designado": null },
+            { "id": "tpd_3_sem10", "titulo": "Leitura da Bíblia", "duracao": 4, "tipo": "leitura", "designado": null }
+          ]
+        },
+        {
+          "secao": "Faça Seu Melhor no Ministério",
+          "partes": [
+            { "id": "fsm_1_sem10", "titulo": "Iniciando conversas", "duracao": 2, "tipo": "testemunho_informal", "designado": null },
+            { "id": "fsm_2_sem10", "titulo": "Cultivando o interesse", "duracao": 3, "tipo": "de_casa_em_casa", "designado": null },
+            { "id": "fsm_3_sem10", "titulo": "Fazendo discípulos", "duracao": 5, "tipo": "testemunho_publico", "designado": null }
+          ]
+        },
+        {
+          "secao": "Nossa Vida Cristã",
+          "partes": [
+            { "id": "nvc_1_sem10", "titulo": "Tema local (ancião)", "duracao": 15, "tipo": "consideracao_local", "designado": null },
+            { "id": "nvc_2_sem10", "titulo": "Estudo bíblico de congregação", "duracao": 30, "tipo": "estudo_congregacao", "designado": null }
+          ]
+        }
+      ]
+    },
+    {
+      "periodo": "12-18 de janeiro 2026",
+      "tema": "Confiança em Jeová no novo ano",
+      "cantico_abertura": "",
+      "cantico_meio": "",
+      "cantico_encerramento": "",
+      "programacao": [
+        {
+          "secao": "Tesouros da Palavra de Deus",
+          "partes": [
+            { "id": "tpd_1_sem11", "titulo": "Confiando em Jeová", "duracao": 10, "tipo": "consideracao", "designado": null },
+            { "id": "tpd_2_sem11", "titulo": "Joias espirituais", "duracao": 10, "tipo": "participacao", "designado": null },
+            { "id": "tpd_3_sem11", "titulo": "Leitura da Bíblia", "duracao": 4, "tipo": "leitura", "designado": null }
+          ]
+        },
+        {
+          "secao": "Faça Seu Melhor no Ministério",
+          "partes": [
+            { "id": "fsm_1_sem11", "titulo": "Iniciando conversas", "duracao": 3, "tipo": "de_casa_em_casa", "designado": null },
+            { "id": "fsm_2_sem11", "titulo": "Cultivando o interesse", "duracao": 4, "tipo": "testemunho_publico", "designado": null },
+            { "id": "fsm_3_sem11", "titulo": "Demonstração", "duracao": 5, "tipo": "demonstracao", "designado": null }
+          ]
+        },
+        {
+          "secao": "Nossa Vida Cristã",
+          "partes": [
+            { "id": "nvc_1_sem11", "titulo": "Vídeo com consideração", "duracao": 15, "tipo": "video_consideracao", "designado": null },
+            { "id": "nvc_2_sem11", "titulo": "Estudo bíblico de congregação", "duracao": 30, "tipo": "estudo_congregacao", "designado": null }
+          ]
+        }
+      ]
+    },
+    {
+      "periodo": "19-25 de janeiro 2026",
+      "tema": "Ande por fé e não por vista",
+      "cantico_abertura": "",
+      "cantico_meio": "",
+      "cantico_encerramento": "",
+      "programacao": [
+        {
+          "secao": "Tesouros da Palavra de Deus",
+          "partes": [
+            { "id": "tpd_1_sem12", "titulo": "Fé ativa em ação", "duracao": 10, "tipo": "consideracao", "designado": null },
+            { "id": "tpd_2_sem12", "titulo": "Joias espirituais", "duracao": 10, "tipo": "participacao", "designado": null },
+            { "id": "tpd_3_sem12", "titulo": "Leitura da Bíblia", "duracao": 4, "tipo": "leitura", "designado": null }
+          ]
+        },
+        {
+          "secao": "Faça Seu Melhor no Ministério",
+          "partes": [
+            { "id": "fsm_1_sem12", "titulo": "Iniciando conversas", "duracao": 3, "tipo": "testemunho_informal", "designado": null },
+            { "id": "fsm_2_sem12", "titulo": "Cultivando o interesse", "duracao": 4, "tipo": "de_casa_em_casa", "designado": null },
+            { "id": "fsm_3_sem12", "titulo": "Fazendo discípulos", "duracao": 5, "tipo": "testemunho_publico", "designado": null }
+          ]
+        },
+        {
+          "secao": "Nossa Vida Cristã",
+          "partes": [
+            { "id": "nvc_1_sem12", "titulo": "Necessidades locais", "duracao": 15, "tipo": "consideracao_local", "designado": null },
+            { "id": "nvc_2_sem12", "titulo": "Estudo bíblico de congregação", "duracao": 30, "tipo": "estudo_congregacao", "designado": null }
+          ]
+        }
+      ]
+    },
+    {
+      "periodo": "26 de janeiro – 1º de fevereiro 2026",
+      "tema": "Sabedoria em decisões diárias",
+      "cantico_abertura": "",
+      "cantico_meio": "",
+      "cantico_encerramento": "",
+      "programacao": [
+        {
+          "secao": "Tesouros da Palavra de Deus",
+          "partes": [
+            { "id": "tpd_1_sem13", "titulo": "Decisões guiadas por Jeová", "duracao": 10, "tipo": "consideracao", "designado": null },
+            { "id": "tpd_2_sem13", "titulo": "Joias espirituais", "duracao": 10, "tipo": "participacao", "designado": null },
+            { "id": "tpd_3_sem13", "titulo": "Leitura da Bíblia", "duracao": 4, "tipo": "leitura", "designado": null }
+          ]
+        },
+        {
+          "secao": "Faça Seu Melhor no Ministério",
+          "partes": [
+            { "id": "fsm_1_sem13", "titulo": "Iniciando conversas", "duracao": 2, "tipo": "de_casa_em_casa", "designado": null },
+            { "id": "fsm_2_sem13", "titulo": "Cultivando o interesse", "duracao": 3, "tipo": "testemunho_publico", "designado": null },
+            { "id": "fsm_3_sem13", "titulo": "Discurso (tema local)", "duracao": 5, "tipo": "discurso", "designado": null }
+          ]
+        },
+        {
+          "secao": "Nossa Vida Cristã",
+          "partes": [
+            { "id": "nvc_1_sem13", "titulo": "Vídeo com consideração", "duracao": 15, "tipo": "video_consideracao", "designado": null },
+            { "id": "nvc_2_sem13", "titulo": "Estudo bíblico de congregação", "duracao": 30, "tipo": "estudo_congregacao", "designado": null }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -5,17 +5,13 @@ import FAQSection from "@/components/FAQSection";
 import Benefits from "@/components/Benefits";
 import Footer from "@/components/Footer";
 import { useTranslation } from "@/hooks/useTranslation";
-import TestEnvVars from "@/components/TestEnvVars";
-import SupabaseTest from "@/components/SupabaseTest";
 
 const Index = () => {
   const { t } = useTranslation();
   
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
-      <TestEnvVars />
-      <SupabaseTest />
-      <Header />
+                  <Header />
       <LandingHero />
       <Features />
       <FAQSection />

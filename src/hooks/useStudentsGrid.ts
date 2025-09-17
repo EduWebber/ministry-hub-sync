@@ -41,7 +41,7 @@ export interface StudentGridRow {
   // S-38-T qualifications
   chairman: boolean;
   pray: boolean;
-  tresures: boolean;
+  treasures: boolean;
   gems: boolean;
   reading: boolean;
   starting: boolean;

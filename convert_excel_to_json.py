@@ -59,7 +59,7 @@ def convert_excel_to_json(excel_file_path, output_file_path):
                     # Campos booleanos de aptidão
                     "chairman": bool(row.get('chairman', False)) if pd.notna(row.get('chairman')) else False,
                     "pray": bool(row.get('pray', False)) if pd.notna(row.get('pray')) else False,
-                    "tresures": bool(row.get('tresures', False)) if pd.notna(row.get('tresures')) else False,
+                    "treasures": bool(row.get('treasures', False)) if pd.notna(row.get('treasures')) else False,
                     "gems": bool(row.get('gems', False)) if pd.notna(row.get('gems')) else False,
                     "reading": bool(row.get('reading', False)) if pd.notna(row.get('reading')) else False,
                     "starting": bool(row.get('starting', False)) if pd.notna(row.get('starting')) else False,
@@ -86,19 +86,19 @@ def convert_excel_to_json(excel_file_path, output_file_path):
         with open(output_file_path, 'w', encoding='utf-8') as f:
             json.dump(records, f, ensure_ascii=False, indent=2)
         
-        print(f"\n✅ Conversão concluída com sucesso!")
-        print(f"📁 Arquivo JSON salvo em: {output_file_path}")
-        print(f"📊 Total de registros processados: {len(records)}")
+        print(f"\nConversão concluída com sucesso!")
+        print(f"Arquivo JSON salvo em: {output_file_path}")
+        print(f"Total de registros processados: {len(records)}")
         
         # Mostrar alguns exemplos
         if records:
-            print(f"\n📋 Exemplo do primeiro registro:")
+            print(f"\nExemplo do primeiro registro:")
             print(json.dumps(records[0], ensure_ascii=False, indent=2))
         
         return records
         
     except Exception as e:
-        print(f"❌ Erro ao processar arquivo: {e}")
+        print(f"Erro ao processar arquivo: {e}")
         return None
 
 def gen_uuid():
@@ -187,30 +187,30 @@ def normalize_date(date_value):
 
 def main():
     """Função principal"""
-    print("🔄 Conversor de Excel para JSON - Sistema Ministerial")
+    print("Conversor de Excel para JSON - Sistema Ministerial")
     print("=" * 60)
     
     # Caminhos dos arquivos
-    excel_file = "docs/Oficial/estudantes_ficticios_refinado.xlsx"
+    excel_file = "docs/Oficial/estudantes_ficticios_corrigido_modelo.xlsx"
     output_file = "estudantes_refinados_converted.json"
     
     # Verificar se o arquivo Excel existe
     if not os.path.exists(excel_file):
-        print(f"❌ Arquivo Excel não encontrado: {excel_file}")
-        print("📁 Verifique se o arquivo está no caminho correto")
+        print(f"Arquivo Excel não encontrado: {excel_file}")
+        print("Verifique se o arquivo está no caminho correto")
         return
     
     # Converter Excel para JSON
     records = convert_excel_to_json(excel_file, output_file)
     
     if records:
-        print(f"\n🎯 Próximos passos:")
+        print(f"\nPróximos passos:")
         print(f"1. Verifique o arquivo JSON gerado: {output_file}")
         print(f"2. Use a função process_estudantes_batch no Supabase")
         print(f"3. Execute: SELECT process_estudantes_batch('SEU_JSON_AQUI'::JSONB);")
         
         # Gerar comando SQL de exemplo
-        print(f"\n💡 Comando SQL de exemplo:")
+        print(f"\nComando SQL de exemplo:")
         print(f"SELECT process_estudantes_batch('{json.dumps(records[:2], ensure_ascii=False)}'::JSONB);")
 
 if __name__ == "__main__":
