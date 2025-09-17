@@ -217,3 +217,17 @@ O **Ministry Hub Sync** está agora completamente funcional com todos os requisi
 Atualização: Setembro 2025
 Responsável: Roberto Araujo da Silva
 Status: 🎉 SISTEMA FUNCIONAL COM LIMITAÇÕES - Requisitos da task list implementados com fallback para dados JSON
+
+
+
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\estudantes_rows_corrigido.sql"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\FORMATO_PLANILHA.md"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\README_CORRECOES.md"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\README_CORRECOES_FINAL.md"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\README_FORMATO_ATUALIZADO.md"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\S-38_E.rtf"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\WhatsApp Image 2025-08-14 at 19.44.07 (1).jpeg"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\WhatsApp Image 2025-08-14 at 19.44.07.jpeg"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\programacoes-json"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\programs"
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\estudantes_ficticios_corrigido_modelo.xlsx"
