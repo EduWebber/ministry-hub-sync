@@ -51,7 +51,7 @@ const AssignmentSystem: React.FC<AssignmentSystemProps> = ({ programId, onAssign
       const { error } = await supabase
         .from('designacoes')
         .insert({
-          id_estudante: selectedStudent,
+          estudante_id: selectedStudent,
           programa_id: programId,
           tipo_parte: selectedPart,
           user_id: user?.id,

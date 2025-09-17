@@ -12,6 +12,7 @@ const estudantesRoutes = require('./routes/estudantes');
 const reportsRoutes = require('./routes/reports');
 const authRoutes = require('./routes/auth');
 const familyMembersRoutes = require('./routes/familyMembers');
+const jsonFilesRoutes = require('./routes/json-files');
 
 const app = express();
 // Porta do servidor: usa variável de ambiente quando definida (>0); caso contrário, 3000
@@ -29,6 +30,7 @@ app.use('/materials', express.static(path.join(__dirname, '../docs/Oficial')));
 
 // Rotas essenciais
 app.use('/api/programacoes', programacoesRoutes);
+app.use('/api/programacoes/json-files', jsonFilesRoutes);
 app.use('/api/designacoes', designacoesRoutes);
 app.use('/api/estudantes', estudantesRoutes);
 app.use('/api/reports', reportsRoutes);
