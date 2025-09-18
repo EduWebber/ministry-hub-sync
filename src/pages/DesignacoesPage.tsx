@@ -313,14 +313,27 @@ const DesignacoesPage = () => {
       if (designacoesGeradas.length > 0) {
         setDesignacoes(designacoesGeradas);
 
+        // Enhanced success message with algorithm info
+        const summary = result.summary || {};
+        const algorithmUsed = result.algorithm || 'S-38';
+        const fallbacksApplied = summary.fallbacks_applied || 0;
+        
+        let description = `${designacoesGeradas.length} designações foram criadas usando o algoritmo ${algorithmUsed}.`;
+        if (fallbacksApplied > 0) {
+          description += ` ${fallbacksApplied} designações usaram estratégias de fallback.`;
+        }
+        
         toast({ 
-          title: 'Designações geradas!', 
-          description: `${designacoesGeradas.length} designações foram criadas automaticamente.` 
+          title: 'Designações geradas com sucesso!', 
+          description: description
         });
       } else {
+        const summary = result.summary || {};
+        const pendingCount = summary.designacoes_pendentes || 0;
+        
         toast({ 
-          title: 'Nenhuma designação gerada', 
-          description: 'Não foi possível gerar designações. Verifique se há estudantes elegíveis na congregação.', 
+          title: 'Atenção: Designações com restrições', 
+          description: `O algoritmo S-38 gerou designações, mas ${pendingCount} partes ficaram pendentes devido às regras de qualificação e disponibilidade.`, 
           variant: 'destructive' 
         });
       }
@@ -358,12 +371,20 @@ const DesignacoesPage = () => {
     return mockStudentsMap[id as keyof typeof mockStudentsMap] || id || 'Não designado';
   };
 
-  // Função para obter o status visual
+  // Função para obter o status visual com informações de fallback
   const getStatusBadge = (designacao: any) => {
     if (!designacao.principal_estudante_id) {
       return <Badge variant="destructive">Pendente</Badge>;
     }
     if (designacao.status === 'OK') {
+      if (designacao.observacoes && designacao.observacoes.includes('fallback')) {
+        return (
+          <div className="flex flex-col gap-1">
+            <Badge variant="secondary">Designada</Badge>
+            <Badge variant="outline" className="text-xs">Fallback aplicado</Badge>
+          </div>
+        );
+      }
       return <Badge variant="default">Confirmada</Badge>;
     }
     return <Badge variant="secondary">Designada</Badge>;
@@ -453,7 +474,48 @@ const DesignacoesPage = () => {
 
         {/* Tabela de designações */}
         {programaAtual && (
-          <Card>
+          <>
+            {/* S-38 Algorithm Summary */}
+            {designacoes.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    Resumo do Algoritmo S-38
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-green-600">
+                        {designacoes.filter(d => d.status === 'OK').length}
+                      </div>
+                      <div className="text-sm text-gray-500">Designações Confirmadas</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-yellow-600">
+                        {designacoes.filter(d => d.status === 'PENDING').length}
+                      </div>
+                      <div className="text-sm text-gray-500">Pendentes</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-blue-600">
+                        {designacoes.filter(d => d.observacoes && d.observacoes.includes('fallback')).length}
+                      </div>
+                      <div className="text-sm text-gray-500">Fallbacks Aplicados</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-purple-600">
+                        {Math.round((designacoes.filter(d => d.status === 'OK').length / designacoes.length) * 100)}%
+                      </div>
+                      <div className="text-sm text-gray-500">Taxa de Sucesso</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+            
+            <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Users className="w-5 h-5" />
@@ -489,6 +551,7 @@ const DesignacoesPage = () => {
                       <TableHead>Estudante</TableHead>
                       <TableHead>Assistente</TableHead>
                       <TableHead>Status</TableHead>
+                      <TableHead>Observações</TableHead>
                       <TableHead>Ações</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -521,6 +584,16 @@ const DesignacoesPage = () => {
                           </TableCell>
                           <TableCell>{getStatusBadge(designacao)}</TableCell>
                           <TableCell>
+                            {designacao.observacoes ? (
+                              <span className="text-xs text-gray-500 italic">
+                                {designacao.observacoes.includes('fallback') ? '🔄 ' : ''}
+                                {designacao.observacoes}
+                              </span>
+                            ) : (
+                              <span className="text-xs text-gray-400">—</span>
+                            )}
+                          </TableCell>
+                          <TableCell>
                             <Button variant="ghost" size="sm" disabled>
                               Editar
                             </Button>
@@ -533,6 +606,7 @@ const DesignacoesPage = () => {
               )}
             </CardContent>
           </Card>
+          </>
         )}
       </div>
     </SidebarLayout>

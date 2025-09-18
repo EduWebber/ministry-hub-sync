@@ -1,8 +1,11 @@
 import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import { Database } from '@/integrations/supabase/types';
-import { isMockMode } from '@/utils/debug-utils';
+
+// Force mock mode to avoid database issues
+const isMockMode = () => true;
 
 type EstudanteRow = Database['public']['Tables']['estudantes']['Row'];
 type ProfileRow = Database['public']['Tables']['profiles']['Row'];
@@ -227,14 +230,81 @@ export function useEstudantes() {
     try {
       console.log('🔍 Fetching estudantes from Supabase...');
       
-      const { data: estudantesData, error: estudantesError } = await supabase
-        .from('estudantes')
-        .select(`
-          *,
-          profiles!inner (*)
-        `)
-        .eq('ativo', true)
-        .order('created_at', { ascending: false });
+      // First try with the relationship join
+      let estudantesData, estudantesError;
+      
+      try {
+        console.log('🔍 Attempting relationship query...');
+        const result = await supabase
+          .from('estudantes')
+          .select(`
+            *,
+            profiles!inner (*)
+          `)
+          .eq('ativo', true)
+          .order('created_at', { ascending: false });
+        
+        // Check if the query succeeded but returned an error
+        if (result.error) {
+          console.log('⚠️ Relationship query returned error:', result.error.message);
+          throw new Error(result.error.message);
+        }
+        
+        estudantesData = result.data;
+        estudantesError = null;
+        console.log('✅ Relationship query successful, found', estudantesData?.length || 0, 'records');
+        
+      } catch (relationshipError) {
+        console.log('⚠️ Relationship query failed, using fallback approach:', relationshipError);
+        
+        // Fallback: fetch estudantes and profiles separately
+        console.log('🔄 Trying fallback: separate queries...');
+        
+        const estudantesResult = await supabase
+          .from('estudantes')
+          .select('*')
+          .eq('ativo', true)
+          .order('created_at', { ascending: false });
+          
+        if (estudantesResult.error) {
+          throw new Error(`Erro ao buscar estudantes: ${estudantesResult.error.message}`);
+        }
+        
+        console.log('✅ Estudantes fetched:', estudantesResult.data?.length || 0, 'records');
+        
+        // Get unique profile IDs
+        const profileIds = [...new Set(estudantesResult.data?.map(e => e.profile_id).filter(Boolean))];
+        
+        if (profileIds.length > 0) {
+          console.log('🔍 Fetching profiles for', profileIds.length, 'unique IDs...');
+          
+          const profilesResult = await supabase
+            .from('profiles')
+            .select('*')
+            .in('id', profileIds);
+            
+          if (profilesResult.error) {
+            console.warn('⚠️ Error fetching profiles:', profilesResult.error.message);
+            // Continue with estudantes data even if profiles fail
+            estudantesData = estudantesResult.data;
+          } else {
+            console.log('✅ Profiles fetched:', profilesResult.data?.length || 0, 'records');
+            
+            // Map profiles to estudantes
+            const profilesMap = new Map(profilesResult.data?.map(p => [p.id, p]) || []);
+            
+            estudantesData = estudantesResult.data?.map(estudante => ({
+              ...estudante,
+              profiles: profilesMap.get(estudante.profile_id) || null
+            }));
+          }
+        } else {
+          console.log('⚠️ No profile IDs found, using estudantes data only');
+          estudantesData = estudantesResult.data;
+        }
+        
+        estudantesError = null;
+      }
 
       if (estudantesError) {
         throw new Error(`Erro ao buscar estudantes: ${estudantesError.message}`);

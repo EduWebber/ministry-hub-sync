@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { supabase } = require('../config/supabase');
 const NotificationService = require('../services/notificationService');
+const S38Algorithm = require('../services/s38Algorithm');
 
 // Instanciar serviço de notificações
 const notificationService = new NotificationService();
@@ -153,11 +154,11 @@ router.post('/generate', async (req, res) => {
       console.warn('⚠️ Nenhum estudante no banco; usando fallback mock.');
       mockMode = true;
       estudantes = [
-        { id: 'est1', nome: 'João Silva', genero: 'masculino', ativo: true, qualificacoes: { reading: true, starting: true, following: true, making: true, explaining: true }, privileges: ['elder'] },
-        { id: 'est2', nome: 'Pedro Santos', genero: 'masculino', ativo: true, qualificacoes: { starting: true, following: true, making: true }, privileges: [] },
+        { id: 'est1', nome: 'João Silva', genero: 'masculino', ativo: true, qualificacoes: { reading: true, starting: true, following: true, making: true, explaining: true, talk: true, gems: true, treasures: true, congregation_study: true }, privileges: ['elder'] },
+        { id: 'est2', nome: 'Pedro Santos', genero: 'masculino', ativo: true, qualificacoes: { starting: true, following: true, making: true, talk: true, gems: true, treasures: true }, privileges: ['ministerial_servant'] },
         { id: 'est3', nome: 'Maria Oliveira', genero: 'feminino', ativo: true, qualificacoes: { starting: true, following: true, making: true, explaining: true }, privileges: [] },
         { id: 'est4', nome: 'Ana Costa', genero: 'feminino', ativo: true, qualificacoes: { starting: true, following: true }, privileges: [] },
-        { id: 'est5', nome: 'Carlos Ferreira', genero: 'masculino', ativo: true, qualificacoes: { reading: true, explaining: true }, privileges: ['elder'] },
+        { id: 'est5', nome: 'Carlos Ferreira', genero: 'masculino', ativo: true, qualificacoes: { reading: true, explaining: true }, privileges: [] },
       ];
     }
     
@@ -166,132 +167,51 @@ router.post('/generate', async (req, res) => {
       console.log('Exemplo de estudante:', JSON.stringify(estudantes[0], null, 2));
     }
 
-    // 3. Aplicar regras S-38 completas
-    const designacoesGeradas = [];
-    
-    for (const item of itens) {
-      let estudanteElegivel = null;
-      let assistenteElegivel = null;
-
-      // Normalizar campos de item (schema antigo/novo)
-      const itemType = item.type || item.tipo;
-      const itemRulesRaw = item.rules || item.regras_s38 || item.regras_papel || {};
-      const genderRule = itemRulesRaw.genero || itemRulesRaw.gender || itemRulesRaw.sexo;
-      const assistantRequired = itemRulesRaw.assistente_necessario || itemRulesRaw.assistant_required || itemRulesRaw.assistente === true;
-
-      // Filtrar estudantes por tipo de parte (regras S-38)
-      console.log(`Filtrando estudantes para item tipo: ${item.tipo}`);
-      const estudantesFiltrados = estudantes.filter(est => {
-        // Verificar gênero - regras_papel pode não existir em todos os itens
-        const generoRequerido = item.regras_papel?.genero || 'qualquer';
-        const generoCorreto = generoRequerido === 'masculino' ? est.genero === 'masculino' : true;
-        
-        if (!generoCorreto) return false;
-
-        // Verificar qualificações específicas
-        switch (item.tipo) {
-          case 'bible_reading':
-          case 'leitura':
-          case 'leitura_biblica':
-            return est.genero === 'masculino' && (est.qualificacoes?.reading === true || est.reading === true);
-            
-          case 'starting':
-          case 'de casa em casa':
-          case 'iniciando conversas':
-            return est.qualificacoes?.starting === true || est.starting === true;
-            
-          case 'following':
-          case 'cultivando o interesse':
-          case 'testemunho informal':
-          case 'testemunho público':
-            return est.qualificacoes?.following === true || est.following === true;
-            
-          case 'making_disciples':
-          case 'fazendo discípulos':
-          case 'estudo biblico':
-            return est.qualificacoes?.making === true || est.making === true;
-            
-          case 'initial_call':
-          case 'return_visit':
-          case 'bible_study':
-            // Verificar se tem as qualificações necessárias
-            const hasQualification = 
-              (est.qualificacoes?.starting === true || est.starting === true) || 
-              (est.qualificacoes?.following === true || est.following === true) || 
-              (est.qualificacoes?.making === true || est.making === true) ||
-              (est.qualificacoes?.explaining === true || est.explaining === true);
-            return hasQualification;
-            
-          case 'talk':
-          case 'discurso':
-            // Apenas homens qualificados
-            return est.genero === 'masculino' && ((est.talk === true || est.treasures === true) || 
-              (est.qualificacoes?.talk === true || est.qualificacoes?.treasures === true));
-            
-          case 'spiritual_gems':
-          case 'joias':
-            return est.genero === 'masculino' && (est.gems === true || est.qualificacoes?.gems === true);
-            
-          case 'treasures':
-          case 'consideracao':
-            return est.genero === 'masculino' && (est.treasures === true || est.qualificacoes?.treasures === true);
-            
-          case 'congregation_study':
-          case 'estudo':
-            // Apenas anciãos qualificados
-            {
-              const privs = Array.isArray(est.privileges) ? est.privileges : (Array.isArray(est.privilegios) ? est.privilegios : []);
-              return est.genero === 'masculino' && (privs.includes('anciao') || privs.includes('elder'));
-            }
-            
-          default:
-            return est.ativo === true;
-        }
-      });
-
-      // Selecionar primeiro elegível (algoritmo simples)
-      if (estudantesFiltrados.length > 0) {
-        estudanteElegivel = estudantesFiltrados[0];
-        
-        // Para partes que requerem assistente, tentar encontrar assistente
-        if (assistantRequired) {
-          const assistentesFiltrados = estudantesFiltrados.filter(est => 
-            est.id !== estudanteElegivel.id && 
-            (est.genero === estudanteElegivel.genero || 
-             est.id_pai === estudanteElegivel.id || 
-             est.id_mae === estudanteElegivel.id ||
-             estudanteElegivel.id_pai === est.id ||
-             estudanteElegivel.id_mae === est.id)
-          );
-          if (assistentesFiltrados.length > 0) {
-            assistenteElegivel = assistentesFiltrados[0];
-          }
-        }
+    // 3. Buscar histórico de designações para fairness
+    let assignmentHistory = [];
+    try {
+      const { data: historyData, error: historyError } = await supabase
+        .from('designacao_itens')
+        .select(`
+          principal_estudante_id,
+          assistente_estudante_id,
+          created_at,
+          programacao_itens!inner(tipo)
+        `)
+        .gte('created_at', new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString()); // Last 90 days
+      
+      if (!historyError && historyData) {
+        assignmentHistory = historyData.map(h => ({
+          ...h,
+          tipo: h.programacao_itens?.tipo || 'unknown'
+        }));
       }
-
-      // Criar entrada de designação
-      const designacao = {
-        programacao_item_id: item.id,
-        principal_estudante_id: estudanteElegivel?.id || null,
-        assistente_estudante_id: assistenteElegivel?.id || null,
-        status: estudanteElegivel ? 'OK' : 'PENDING',
-        observacoes: estudanteElegivel ? null : 'Nenhum estudante elegível encontrado'
-      };
-
-      designacoesGeradas.push(designacao);
+    } catch (historyError) {
+      console.warn('⚠️ Could not load assignment history:', historyError.message);
     }
+
+    // 4. Aplicar algoritmo S-38 completo
+    console.log('🎯 Applying comprehensive S-38 algorithm...');
+    const designacoesGeradas = S38Algorithm.generateAssignments(
+      itens,
+      estudantes,
+      assignmentHistory,
+      congregacao_id
+    );
 
     // Se estamos em modo mock, retornar sem persistir em banco
     if (mockMode) {
-      console.log(`✅ Geradas ${designacoesGeradas.length} designações (mock, sem persistência)`);
+      console.log(`✅ Generated ${designacoesGeradas.length} assignments (mock mode, no persistence)`);
       return res.json({
         success: true,
-        message: 'Designações geradas com sucesso (modo mock)',
+        message: 'Designações geradas com sucesso usando algoritmo S-38 (modo mock)',
         designacoes: designacoesGeradas,
+        algorithm: 'S-38 Comprehensive',
         summary: {
           total_itens: itens.length,
           designacoes_ok: designacoesGeradas.filter(d => d.status === 'OK').length,
-          designacoes_pendentes: designacoesGeradas.filter(d => d.status === 'PENDING').length
+          designacoes_pendentes: designacoesGeradas.filter(d => d.status === 'PENDING').length,
+          fallbacks_applied: designacoesGeradas.filter(d => d.observacoes && d.observacoes !== null).length
         }
       });
     }
@@ -328,12 +248,14 @@ router.post('/generate', async (req, res) => {
             console.warn('⚠️ Schema cache issue detected, falling back to mock mode');
             return res.json({
               success: true,
-              message: 'Designações geradas com sucesso (modo mock - schema cache issue)',
+              message: 'Designações geradas com sucesso usando algoritmo S-38 (modo mock - schema cache issue)',
               designacoes: designacoesGeradas,
+              algorithm: 'S-38 Comprehensive',
               summary: {
                 total_itens: itens.length,
                 designacoes_ok: designacoesGeradas.filter(d => d.status === 'OK').length,
-                designacoes_pendentes: designacoesGeradas.filter(d => d.status === 'PENDING').length
+                designacoes_pendentes: designacoesGeradas.filter(d => d.status === 'PENDING').length,
+                fallbacks_applied: designacoesGeradas.filter(d => d.observacoes && d.observacoes !== null).length
               }
             });
           }
@@ -372,12 +294,14 @@ router.post('/generate', async (req, res) => {
             console.warn('⚠️ Schema cache issue in designacao_itens, falling back to mock mode');
             return res.json({
               success: true,
-              message: 'Designações geradas com sucesso (modo mock - schema cache issue)',
+              message: 'Designações geradas com sucesso usando algoritmo S-38 (modo mock - schema cache issue)',
               designacoes: designacoesGeradas,
+              algorithm: 'S-38 Comprehensive',
               summary: {
                 total_itens: itens.length,
                 designacoes_ok: designacoesGeradas.filter(d => d.status === 'OK').length,
-                designacoes_pendentes: designacoesGeradas.filter(d => d.status === 'PENDING').length
+                designacoes_pendentes: designacoesGeradas.filter(d => d.status === 'PENDING').length,
+                fallbacks_applied: designacoesGeradas.filter(d => d.observacoes && d.observacoes !== null).length
               }
             });
           }
@@ -385,7 +309,8 @@ router.post('/generate', async (req, res) => {
         }
       }
 
-      console.log(`✅ Geradas ${designacoesGeradas.length} designações`);
+      console.log(`✅ Generated ${designacoesGeradas.length} assignments using S-38 algorithm`);
+      console.log(`📊 Summary: ${designacoesGeradas.filter(d => d.status === 'OK').length} OK, ${designacoesGeradas.filter(d => d.status === 'PENDING').length} PENDING`);
 
       // Enviar notificações de confirmação
       const designacoesComNomes = await Promise.all(designacoesGeradas.map(async (d) => {
@@ -443,12 +368,14 @@ router.post('/generate', async (req, res) => {
 
       res.json({
         success: true,
-        message: 'Designações geradas com sucesso',
+        message: 'Designações geradas com sucesso usando algoritmo S-38',
         designacoes: itensDesignacao || designacoesGeradas,
+        algorithm: 'S-38 Comprehensive',
         summary: {
           total_itens: itens.length,
           designacoes_ok: designacoesGeradas.filter(d => d.status === 'OK').length,
-          designacoes_pendentes: designacoesGeradas.filter(d => d.status === 'PENDING').length
+          designacoes_pendentes: designacoesGeradas.filter(d => d.status === 'PENDING').length,
+          fallbacks_applied: designacoesGeradas.filter(d => d.observacoes && d.observacoes !== null).length
         }
       });
     } catch (dbError) {
@@ -464,12 +391,14 @@ router.post('/generate', async (req, res) => {
         console.warn('⚠️ Schema cache issue detected, falling back to mock mode');
         return res.json({
           success: true,
-          message: 'Designações geradas com sucesso (modo mock - schema cache issue)',
+          message: 'Designações geradas com sucesso usando algoritmo S-38 (modo mock - schema cache issue)',
           designacoes: designacoesGeradas,
+          algorithm: 'S-38 Comprehensive',
           summary: {
             total_itens: itens.length,
             designacoes_ok: designacoesGeradas.filter(d => d.status === 'OK').length,
-            designacoes_pendentes: designacoesGeradas.filter(d => d.status === 'PENDING').length
+            designacoes_pendentes: designacoesGeradas.filter(d => d.status === 'PENDING').length,
+            fallbacks_applied: designacoesGeradas.filter(d => d.observacoes && d.observacoes !== null).length
           }
         });
       }
