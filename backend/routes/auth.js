@@ -2,14 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { supabase } = require('../config/supabase');
 
-// Mock user data for testing
-const mockUsers = [
-  { id: '1', email: 'admin@example.com', role: 'admin' },
-  { id: '2', email: 'instructor@example.com', role: 'instructor' },
-  { id: '3', email: 'student@example.com', role: 'student' }
-];
-
-// POST /auth/login - User login
+// POST /auth/login - User login with real Supabase authentication
 router.post('/login', async (req, res) => {
   try {
     // Log the request body for debugging
@@ -25,29 +18,55 @@ router.post('/login', async (req, res) => {
       });
     }
 
-    // Mock authentication for testing purposes
-    const mockUser = mockUsers.find(user => user.email === email);
-    if (!mockUser) {
+    // Sign in with Supabase Auth
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) {
+      console.error('Supabase auth error:', error);
       return res.status(401).json({
         success: false,
         error: 'Invalid credentials'
       });
     }
 
-    // Mock session data
-    const mockSession = {
-      access_token: 'mock-access-token-' + Date.now(),
-      refresh_token: 'mock-refresh-token-' + Date.now(),
-      expires_in: 3600,
-      token_type: 'bearer',
-      user: mockUser
-    };
+    // Get user profile data
+    const { data: profile, error: profileError } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', data.user.id)
+      .single();
+
+    if (profileError) {
+      console.error('Profile fetch error:', profileError);
+      // Create profile if it doesn't exist
+      const { data: newProfile, error: createError } = await supabase
+        .from('profiles')
+        .insert({
+          id: data.user.id,
+          user_id: data.user.id,
+          nome_completo: data.user.email.split('@')[0],
+          role: 'instrutor' // Default role
+        })
+        .select()
+        .single();
+
+      if (createError) {
+        console.error('Profile creation error:', createError);
+      }
+    }
 
     res.json({
       success: true,
       message: 'Login successful',
-      user: mockUser,
-      session: mockSession
+      user: {
+        id: data.user.id,
+        email: data.user.email,
+        role: profile?.role || 'instrutor'
+      },
+      session: data.session
     });
 
   } catch (error) {
@@ -75,18 +94,23 @@ router.post('/token', async (req, res) => {
       });
     }
 
-    // Mock token refresh
-    const mockSession = {
-      access_token: 'new-mock-access-token-' + Date.now(),
-      refresh_token: 'new-mock-refresh-token-' + Date.now(),
-      expires_in: 3600,
-      token_type: 'bearer'
-    };
+    // Refresh session with Supabase Auth
+    const { data, error } = await supabase.auth.refreshSession({
+      refresh_token
+    });
+
+    if (error) {
+      console.error('Token refresh error:', error);
+      return res.status(401).json({
+        success: false,
+        error: 'Invalid refresh token'
+      });
+    }
 
     res.json({
       success: true,
       message: 'Token refreshed successfully',
-      session: mockSession
+      session: data.session
     });
 
   } catch (error) {
@@ -114,18 +138,23 @@ router.post('/v1/token', async (req, res) => {
       });
     }
 
-    // Mock token refresh
-    const mockSession = {
-      access_token: 'new-mock-access-token-v1-' + Date.now(),
-      refresh_token: 'new-mock-refresh-token-v1-' + Date.now(),
-      expires_in: 3600,
-      token_type: 'bearer'
-    };
+    // Refresh session with Supabase Auth
+    const { data, error } = await supabase.auth.refreshSession({
+      refresh_token
+    });
+
+    if (error) {
+      console.error('V1 token refresh error:', error);
+      return res.status(401).json({
+        success: false,
+        error: 'Invalid refresh token'
+      });
+    }
 
     res.json({
       success: true,
       message: 'Token refreshed successfully',
-      session: mockSession
+      session: data.session
     });
 
   } catch (error) {
@@ -148,7 +177,10 @@ router.post('/logout', async (req, res) => {
 
     if (access_token) {
       // Sign out with Supabase Auth
-      await supabase.auth.signOut();
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error('Logout error:', error);
+      }
     }
 
     res.json({

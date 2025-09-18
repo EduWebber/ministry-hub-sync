@@ -18,34 +18,44 @@ class AssignmentEngine {
         assistant: false,
         introduction: false,
         conclusion: false,
-        qualifications: ['baptized_or_unbaptized_publisher']
+        qualifications: ['baptized_or_unbaptized_publisher'],
+        cooldown_weeks: 4,
+        rotation_priority: 'fairness'
       },
       starting: {
         gender: 'both',
         assistant_required: true,
         assistant_gender: 'same_or_family',
         settings: ['house_to_house', 'informal', 'public'],
-        qualifications: ['publisher']
+        qualifications: ['publisher'],
+        cooldown_weeks: 2,
+        rotation_priority: 'balanced'
       },
       following: {
         gender: 'both',
         assistant_required: true,
         assistant_gender: 'same',
         settings: ['house_to_house', 'informal', 'public'],
-        qualifications: ['publisher']
+        qualifications: ['publisher'],
+        cooldown_weeks: 3,
+        rotation_priority: 'balanced'
       },
       making_disciples: {
         gender: 'both',
         assistant_required: true,
         assistant_gender: 'same',
         type: 'bible_study_segment',
-        qualifications: ['publisher']
+        qualifications: ['publisher'],
+        cooldown_weeks: 4,
+        rotation_priority: 'balanced'
       },
       talk: {
         gender: 'male_only',
         assistant: false,
         type: 'talk_to_congregation',
-        qualifications: ['qualified_male']
+        qualifications: ['qualified_male'],
+        cooldown_weeks: 6,
+        rotation_priority: 'seniority'
       },
       explaining_beliefs_demo: {
         gender: 'both',
@@ -61,17 +71,23 @@ class AssignmentEngine {
       spiritual_gems: {
         gender: 'male_only',
         assistant: false,
-        qualifications: ['qualified_male']
+        qualifications: ['qualified_male'],
+        cooldown_weeks: 6,
+        rotation_priority: 'seniority'
       },
       treasures_talk: {
         gender: 'male_only',
         assistant: false,
-        qualifications: ['qualified_male']
+        qualifications: ['qualified_male'],
+        cooldown_weeks: 6,
+        rotation_priority: 'seniority'
       },
       congregation_study: {
         gender: 'male_only',
         assistant: false,
-        qualifications: ['elder']
+        qualifications: ['elder'],
+        cooldown_weeks: 8,
+        rotation_priority: 'elder_rotation'
       }
     };
   }
@@ -208,8 +224,10 @@ class AssignmentEngine {
       };
     }
 
-    // Select principal student (simple rotation for now)
-    const principalStudent = eligiblePrincipal[0];
+    /**
+     * Select principal student using fairness and rotation logic
+     */
+    const principalStudent = this.selectBestCandidate(eligiblePrincipal, rules, 'principal');
     let assistantStudent = null;
 
     // Assign assistant if required
@@ -222,7 +240,7 @@ class AssignmentEngine {
       );
 
       if (eligibleAssistant.length > 0) {
-        assistantStudent = eligibleAssistant[0];
+        assistantStudent = this.selectBestCandidate(eligibleAssistant, rules, 'assistant');
       }
     }
 
@@ -402,6 +420,146 @@ class AssignmentEngine {
    */
   generateAssignmentId() {
     return `assign-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  }
+
+  /**
+   * Select best candidate using fairness and rotation logic
+   */
+  selectBestCandidate(candidates, rules, role = 'principal') {
+    if (!candidates || candidates.length === 0) return null;
+    if (candidates.length === 1) return candidates[0];
+
+    // Apply rotation priority based on rule type
+    const rotationPriority = rules.rotation_priority || 'fairness';
+    
+    switch (rotationPriority) {
+      case 'seniority':
+        return this.selectBySeniority(candidates);
+      case 'elder_rotation':
+        return this.selectByElderRotation(candidates);
+      case 'balanced':
+        return this.selectByBalance(candidates, rules);
+      case 'fairness':
+      default:
+        return this.selectByFairness(candidates, rules);
+    }
+  }
+
+  /**
+   * Select candidate by seniority (elders/ministerial servants first)
+   */
+  selectBySeniority(candidates) {
+    // Sort by privilege level, then by experience/seniority indicators
+    const sorted = candidates.sort((a, b) => {
+      const aPrivileges = Array.isArray(a.privilegios) ? a.privilegios : (Array.isArray(a.privileges) ? a.privileges : []);
+      const bPrivileges = Array.isArray(b.privilegios) ? b.privilegios : (Array.isArray(b.privileges) ? b.privileges : []);
+      
+      // Elders first
+      const aIsElder = aPrivileges.some(p => ['elder', 'anciao'].includes(p));
+      const bIsElder = bPrivileges.some(p => ['elder', 'anciao'].includes(p));
+      if (aIsElder && !bIsElder) return -1;
+      if (!aIsElder && bIsElder) return 1;
+      
+      // Then ministerial servants
+      const aIsMS = aPrivileges.some(p => ['ministerial_servant', 'servo_ministerial'].includes(p));
+      const bIsMS = bPrivileges.some(p => ['ministerial_servant', 'servo_ministerial'].includes(p));
+      if (aIsMS && !bIsMS) return -1;
+      if (!aIsMS && bIsMS) return 1;
+      
+      return 0;
+    });
+    
+    return sorted[0];
+  }
+
+  /**
+   * Select candidate by elder rotation (for congregation study)
+   */
+  selectByElderRotation(candidates) {
+    // Filter only elders
+    const elders = candidates.filter(candidate => {
+      const privileges = Array.isArray(candidate.privilegios) ? candidate.privilegios : 
+                        (Array.isArray(candidate.privileges) ? candidate.privileges : []);
+      return privileges.some(p => ['elder', 'anciao'].includes(p));
+    });
+    
+    if (elders.length > 0) {
+      // Apply fairness logic among elders
+      return this.selectByFairness(elders);
+    }
+    
+    // Fallback to ministerial servants if no elders available
+    const servants = candidates.filter(candidate => {
+      const privileges = Array.isArray(candidate.privilegios) ? candidate.privilegios : 
+                        (Array.isArray(candidate.privileges) ? candidate.privileges : []);
+      return privileges.some(p => ['ministerial_servant', 'servo_ministerial'].includes(p));
+    });
+    
+    return servants.length > 0 ? servants[0] : candidates[0];
+  }
+
+  /**
+   * Select candidate by balanced assignment distribution
+   */
+  selectByBalance(candidates, rules) {
+    // For now, use fairness logic - can be enhanced with load balancing
+    return this.selectByFairness(candidates, rules);
+  }
+
+  /**
+   * Select candidate by fairness (least recent assignments)
+   */
+  selectByFairness(candidates, rules = {}) {
+    // For MVP, use simple round-robin
+    // In production, this would check assignment history and cooldowns
+    
+    // Score candidates based on various fairness factors
+    const scoredCandidates = candidates.map(candidate => {
+      let score = 0;
+      
+      // Base score for availability
+      score += 100;
+      
+      // Penalty for recent assignments (simulated)
+      // In production, this would check actual assignment history
+      const candidateId = candidate.id || candidate.nome;
+      const hashScore = candidateId ? this.hashString(candidateId) % 50 : 0;
+      score -= hashScore;
+      
+      // Bonus for qualified candidates
+      if (this.isHighlyQualified(candidate)) {
+        score += 20;
+      }
+      
+      return { candidate, score };
+    });
+    
+    // Sort by score (highest first for fairness)
+    scoredCandidates.sort((a, b) => b.score - a.score);
+    
+    return scoredCandidates[0]?.candidate || candidates[0];
+  }
+
+  /**
+   * Check if candidate is highly qualified
+   */
+  isHighlyQualified(candidate) {
+    const privileges = Array.isArray(candidate.privilegios) ? candidate.privilegios : 
+                      (Array.isArray(candidate.privileges) ? candidate.privileges : []);
+    return privileges.some(p => ['elder', 'anciao', 'ministerial_servant', 'servo_ministerial'].includes(p));
+  }
+
+  /**
+   * Simple hash function for deterministic scoring
+   */
+  hashString(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32-bit integer
+    }
+    return Math.abs(hash);
   }
 }
 

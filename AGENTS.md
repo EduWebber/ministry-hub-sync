@@ -1,3 +1,45 @@
+make everything Works really as everything is not actually doing their funcionality.
+
+
+https://ministry-hub-sync.lovable.app/  
+
+
+
+https://ministry-hub-sync.lovable.app/auth  
+
+
+
+https://ministry-hub-sync.lovable.app/bem-vindo 
+
+
+
+https://ministry-hub-sync.lovable.app/estudantes  
+
+
+
+https://ministry-hub-sync.lovable.app/programas
+
+
+https://ministry-hub-sync.lovable.app/designacoes
+
+
+
+https://ministry-hub-sync.lovable.app/relatorios
+
+
+
+
+localhost:3000/api/programacoes/pdfs:1   Failed to load resource: net::ERR_CONNECTION_REFUSED
+[NOVO] Explique os erros do Console usando o Copilot no Edge: clique em
+         
+         para explicar um erro.
+        Saiba mais
+        Não mostrar novamente
+
+
+
+
+
 # 🤖 SISTEMA DE AGENTES - ORQUESTRAÇÃO
 
 ## 🎯 Modos de Operação
@@ -2299,3 +2341,113 @@ Para resolver completamente a limitação do endpoint de designações:
 "C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\programacoes-json"
 "C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\programs"
 "C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\estudantes_ficticios_corrigido_modelo.xlsx"
+
+
+
+family_id	user_id	nome	familia	idade	genero	estado_civil	papel_familiar	id_pai	id_mae	id_conjuge	coabitacao	menor	responsavel_primario	responsavel_secundario	chairman	pray	tresures	gems	reading	starting	following	making	explaining	talk	data_nascimento
+3795a9be-0f3c-4302-9add-913ad62b7747	3520842b-eaa8-4931-979d-d5598c2ca9b1	Ana Almeida Prado	Prado	26	feminino	solteiro	mãe		c7045aec-a32f-45a4-9b28-258f9c3c1d27		true	false			false	false	false	false	false	true	true	true	true	false	1999-08-24 00:00:00
+3795a9be-0f3c-4302-9add-913ad62b7747	3c156913-e582-4923-85cb-5d4533520dfe	Ana Almeida Prado	Prado	18	feminino	solteiro	filha		c7045aec-a32f-45a4-9b28-258f9c3c1d27		true	false			false	false	false	false	false	true	true	true	true	false	2007-08-20 00:00:00
+11c5bc9d-5476-483f-b4f0-537ed70ade51	31cb4d8a-3b73-4b4b-997a-69c63790a553	Ana Costa	Costa	27	feminino	solteiro	filha	0a0d2daa-002f-40a2-9fb9-edfa98f480c6	f994e0fe-850f-42a0-bba2-2aa822d69ef5		true	false			false	false	false	false	false	true	true	true	true	false	1998-08-22 00:00:00
+ea9e6ab4-2c6a-4cd7-9af1-2d672513a3f3	45fd1f19-b138-46f4-bf38-f866425b3a89	Ana Souza	Souza	70	feminino	solteiro	mae			bca08a2c-6843-4f0d-8bc0-cc6b4eef3bf3	true	false			false	false	false	false	false	true	true	true	true	false	1955-09-02 00:00:00
+014e0c2e-7e15-484c-bea8-fc6e72e8bc5d	8c3813d7-4191-4b2d-81d0-618d9ff2c4be	André Gomes	Gomes	57	masculino	casado	pai			9e4ab2e3-98ca-4e69-ace1-f9278aa12e01	true	false			true	true	true	true	true	true	true	true	true	true	1968-08-29 00:00:00
+44c3a263-8026-441f-88de-f48d9553e12c	c7bc4790-1de1-4962-be6a-dcf5b53a5fd2	André Martins	Martins	49	masculino	solteiro	filho	32710836-c1f9-4209-9ff8-fc453dc63764			true	false			true	true	true	true	true	true	true	true	true	true	1976-08-05 00:00:00
+44c3a263-8026-441f-88de-f48d9553e12c	65057177-d4dd-4a32-903c-0b61ac9fcd2f	André Martins	Martins	48	masculino	solteiro	filho	32710836-c1f9-4209-9ff8-fc453dc63764			true	false			false	false	false	false	true	false	false	true	false	false	1977-08-27 00:00:00
+92264ad4-db73-4c50-ac65-a78017037f08	1941ee70-abed-4ea5-a485-03e2f97da415	André Pereira	Pereira	28	masculino	casado	filho	e0e86eb9-4aea-4a35-8168-329153aca88b			false	false			false	false	false	false	true	true	true	true	true	false	1997-08-22 00:00:00
+a65801ed-7fdc-47f0-8872-d61a2eb2cb91	486a4d87-383e-4100-8eb5-c971e482625e	André Rodrigues	Rodrigues	15	masculino	solteiro	filho		502ebc34-6dbd-41c3-9d73-47c7040a6278		true	true	0b3ee67e-aff2-4f84-bfdf-4f64e45007e5		false	false	false	false	true	true	true	true	true	true	2010-08-19 00:00:00
+571bfd05-c6e3-433b-8037-b23bf365a5ef	b1dfd972-4091-41b3-a956-d1efc6c48caf	André Silva	Silva	21	masculino	solteiro	filho	96b06d48-3364-462e-9366-ba84e478dceb			true	false			false	false	false	false	true	true	true	true	true	false	2004-08-20 00:00:00
+3795a9be-0f3c-4302-9add-913ad62b7747	031f2683-b442-40ac-aa22-44400ce8c64d	Beatriz Almeida Prado	Prado	30	feminino	solteiro	mae		c7045aec-a32f-45a4-9b28-258f9c3c1d27		true	false			false	false	false	false	false	true	true	true	true	false	1995-08-23 00:00:00
+11c5bc9d-5476-483f-b4f0-537ed70ade51	f994e0fe-850f-42a0-bba2-2aa822d69ef5	Beatriz Costa	Costa	52	feminino	casado	mae			0a0d2daa-002f-40a2-9fb9-edfa98f480c6	true	false			false	false	false	false	false	true	true	true	true	false	1973-08-28 00:00:00
+11c5bc9d-5476-483f-b4f0-537ed70ade51	8b91e35d-072d-4159-910b-c625a1b18733	Beatriz Costa	Costa	30	feminino	solteiro	filha	0a0d2daa-002f-40a2-9fb9-edfa98f480c6	f994e0fe-850f-42a0-bba2-2aa822d69ef5		true	false			false	false	false	false	false	true	true	true	true	false	1995-08-23 00:00:00
+e2ccf869-263a-45af-99c9-3d1b05b3c83a	761605af-c246-4aa3-8dc3-59187a8a4c34	Beatriz Oliveira	Oliveira	34	feminino	casado	filha	26152193-db2a-463e-a74c-e6a9751676e6	80c63110-049b-470c-a599-abc77d55d505		true	false			false	false	false	false	false	true	true	true	true	false	1991-08-24 00:00:00
+b88f6190-0194-414f-b85e-68823d68a317	e9ea98e4-5833-46fd-9aba-dfe22e8a4b12	Beatriz Oliveira Goes	Goes	19	feminino	solteiro	filha		e0536814-7c3e-4675-87a3-d6cff1f6adc3		true	false			false	false	false	false	false	true	true	true	true	false	2006-08-20 00:00:00
+92264ad4-db73-4c50-ac65-a78017037f08	57980e78-7e9a-4ea2-af91-7c669637ccd5	Beatriz Pereira	Pereira	32	feminino	casado	filha	e0e86eb9-4aea-4a35-8168-329153aca88b			true	false			false	false	false	false	false	true	true	true	true	false	1993-08-23 00:00:00
+ea9e6ab4-2c6a-4cd7-9af1-2d672513a3f3	e1e641c3-e939-4b76-9f25-ae82c855a6e9	Beatriz Souza	Souza	38	feminino	viúvo	filha	bca08a2c-6843-4f0d-8bc0-cc6b4eef3bf3	45fd1f19-b138-46f4-bf38-f866425b3a89		true	false			false	false	false	false	false	true	true	true	true	false	1987-08-25 00:00:00
+44c3a263-8026-441f-88de-f48d9553e12c	06e081bf-bd74-4e40-96e9-bd5f9c28647b	Bruno Martins	Martins	24	masculino	solteiro	filho	32710836-c1f9-4209-9ff8-fc453dc63764			false	false			false	false	false	false	true	true	true	true	true	false	2001-08-21 00:00:00
+92264ad4-db73-4c50-ac65-a78017037f08	e0e86eb9-4aea-4a35-8168-329153aca88b	Bruno Pereira	Pereira	54	masculino	casado	pai				true	false			false	true	false	false	true	true	true	true	true	true	1971-08-29 00:00:00
+014e0c2e-7e15-484c-bea8-fc6e72e8bc5d	9e4ab2e3-98ca-4e69-ace1-f9278aa12e01	Camila Gomes	Gomes	61	feminino	casado	mae			8c3813d7-4191-4b2d-81d0-618d9ff2c4be	true	false			false	false	false	false	false	true	true	true	true	false	1964-08-30 00:00:00
+e2ccf869-263a-45af-99c9-3d1b05b3c83a	80c63110-049b-470c-a599-abc77d55d505	Camila Oliveira	Oliveira	60	feminino	casado	mae			26152193-db2a-463e-a74c-e6a9751676e6	true	false			false	false	false	false	false	true	true	true	true	false	1965-09-01 00:00:00
+365c7ae5-0526-4ee3-95fd-a8832d46b765	e519c52c-56f1-495c-9f62-74bc5847317e	Camila Santos	Santos	70	feminino	casado	mae			ead18821-ecff-47ea-b698-187f52acf227	true	false			false	false	false	false	false	true	true	true	true	false	1955-09-02 00:00:00
+676f2d67-2c0b-4cdd-b620-380232dbbd3f	2a707233-9f33-474a-b19f-3fff8c5f23e0	Camila Silva Lira	Lira	60	feminino	casado	mae				true	false			false	false	false	false	false	true	true	true	true	false	1965-08-30 00:00:00
+ea9e6ab4-2c6a-4cd7-9af1-2d672513a3f3	34cff024-4291-48e9-b4b7-f9cdd8bddcfa	Camila Souza	Souza	38	feminino	casado	filha	bca08a2c-6843-4f0d-8bc0-cc6b4eef3bf3	45fd1f19-b138-46f4-bf38-f866425b3a89		false	false			false	false	false	false	false	true	true	true	true	false	1987-08-25 00:00:00
+78814c76-75b0-42ae-bb7c-9a8f0a3e5919	16875735-1068-4125-a9e2-951538aeaceb	Carla Almeida	Almeida	26	feminino	solteiro	filha	3f9fb7cc-4efe-43b6-82b6-063f5c59ce74	6c705a63-00b8-4cfb-867d-588dfc1aa850		true	false			false	false	false	false	false	true	true	true	true	false	1999-08-22 00:00:00
+3795a9be-0f3c-4302-9add-913ad62b7747	88ccca11-8caf-4cb8-bf7a-974369f2a3c5	Carla Almeida Prado	Prado	19	feminino	solteiro	filha		c7045aec-a32f-45a4-9b28-258f9c3c1d27		true	false			false	false	false	false	false	true	true	true	true	false	2006-08-20 00:00:00
+11c5bc9d-5476-483f-b4f0-537ed70ade51	1b09eddc-8d9d-48b4-bcf1-4e4bc24d69e6	Carla Costa	Costa	74	feminino	viúvo	avo				true	false			false	false	false	false	false	true	true	true	true	false	1951-09-03 00:00:00
+e2ccf869-263a-45af-99c9-3d1b05b3c83a	bfc11818-89e7-425a-994a-39fc36a32234	Carla Oliveira	Oliveira	80	feminino	viúvo	avo				true	false			false	false	false	false	false	true	true	true	true	false	1945-09-02 00:00:00
+b88f6190-0194-414f-b85e-68823d68a317	c86c94d4-e119-4919-9f6b-7c7629e6d69f	Carla Oliveira Goes	Goes	52	feminino	solteiro	filha		e0536814-7c3e-4675-87a3-d6cff1f6adc3		true	false			false	false	false	false	false	true	true	true	true	false	1973-08-28 00:00:00
+b88f6190-0194-414f-b85e-68823d68a317	211b76d9-8a2b-4bdd-b0c4-93311c351265	Carla Oliveira Goes	Goes	44	feminino	solteiro	filha		e0536814-7c3e-4675-87a3-d6cff1f6adc3		true	false			false	false	false	false	false	true	true	true	true	false	1981-08-26 00:00:00
+b88f6190-0194-414f-b85e-68823d68a317	fa855c96-0124-4752-875e-7c2933cf407d	Carla Oliveira Goes	Goes	18	feminino	solteiro	filha		e0536814-7c3e-4675-87a3-d6cff1f6adc3		true	false			false	false	false	false	false	true	true	true	true	false	2007-08-20 00:00:00
+a65801ed-7fdc-47f0-8872-d61a2eb2cb91	765f00d4-7885-4b96-b2d5-205499c37056	Carla Rodrigues	Rodrigues	55	feminino	solteiro	filha		502ebc34-6dbd-41c3-9d73-47c7040a6278		true	false			false	false	false	false	false	true	true	true	true	false	1970-08-31 00:00:00
+78814c76-75b0-42ae-bb7c-9a8f0a3e5919	da834686-e4d1-405e-9f72-e65b3ba094cd	Eduardo Almeida	Almeida	73	masculino	viúvo	avo				true	false			false	false	false	false	true	true	true	true	true	false	1952-09-02 00:00:00
+79671f9d-077c-4579-a6ce-6b09804a2040	6be35bff-92ee-4ca3-9215-33a22fc72287	Eduardo Almeida Santana	Santana	25	masculino	casado	filho	b0bea082-800b-4793-97e1-20d891d013aa		79671f9d-077c-4579-a6ce-6b09804a2040	true	false			true	false	false	false	false	false	false	false	false	false	2000-08-21 00:00:00
+014e0c2e-7e15-484c-bea8-fc6e72e8bc5d	ae709551-ba64-44ed-8dd1-4bf1c4d2cc06	Eduardo Gomes	Gomes	46	masculino	viúvo	filho	8c3813d7-4191-4b2d-81d0-618d9ff2c4be	9e4ab2e3-98ca-4e69-ace1-f9278aa12e01		true	false			true	true	true	true	true	true	true	true	true	true	1979-08-27 00:00:00
+ea9e6ab4-2c6a-4cd7-9af1-2d672513a3f3	4e538729-9e51-4bd9-bf77-bfd27443d7c0	Eduardo Souza	Souza	28	masculino	casado	filho	bca08a2c-6843-4f0d-8bc0-cc6b4eef3bf3	45fd1f19-b138-46f4-bf38-f866425b3a89		true	false			false	false	false	false	true	true	true	true	true	false	1997-08-22 00:00:00
+78814c76-75b0-42ae-bb7c-9a8f0a3e5919	1d78db2c-089c-41eb-af78-a064c4c73dcb	Felipe Almeida	Almeida	23	masculino	solteiro	filho	3f9fb7cc-4efe-43b6-82b6-063f5c59ce74	6c705a63-00b8-4cfb-867d-588dfc1aa850		true	false			false	false	false	false	false	false	true	true	false	false	2002-08-21 00:00:00
+014e0c2e-7e15-484c-bea8-fc6e72e8bc5d	f3efe0bd-36c2-4b6f-a767-20c42504b347	Felipe Gomes	Gomes	44	masculino	solteiro	filho	8c3813d7-4191-4b2d-81d0-618d9ff2c4be	9e4ab2e3-98ca-4e69-ace1-f9278aa12e01		true	false			false	false	false	false	true	true	true	true	true	true	1981-08-26 00:00:00
+e2ccf869-263a-45af-99c9-3d1b05b3c83a	26152193-db2a-463e-a74c-e6a9751676e6	Felipe Oliveira	Oliveira	62	masculino	casado	pai			80c63110-049b-470c-a599-abc77d55d505	true	false			false	false	false	false	false	false	false	true	false	false	1963-08-28 00:00:00
+365c7ae5-0526-4ee3-95fd-a8832d46b765	c722c3fe-18a2-49be-acbd-6409121d56f1	Felipe Santos	Santos	57	masculino	solteiro	filho	ead18821-ecff-47ea-b698-187f52acf227	e519c52c-56f1-495c-9f62-74bc5847317e		true	false			false	true	false	false	true	true	true	true	true	true	1968-09-01 00:00:00
+676f2d67-2c0b-4cdd-b620-380232dbbd3f	647418cd-8c0d-4ca8-88dc-f5611243d33a	Felipe Silva Lira	Lira	43	masculino	viúvo	filho		2a707233-9f33-474a-b19f-3fff8c5f23e0		true	false			false	false	false	false	true	true	true	true	true	false	1982-08-26 00:00:00
+676f2d67-2c0b-4cdd-b620-380232dbbd3f	4a735871-f577-4c38-8be1-21a69c76cd29	Felipe Silva Lira	Lira	36	masculino	casado	filho		2a707233-9f33-474a-b19f-3fff8c5f23e0		false	false			false	false	false	false	true	false	true	false	false	false	1989-08-24 00:00:00
+78814c76-75b0-42ae-bb7c-9a8f0a3e5919	6c705a63-00b8-4cfb-867d-588dfc1aa850	Fernanda Almeida	Almeida	55	feminino	casado	mae			3f9fb7cc-4efe-43b6-82b6-063f5c59ce74	true	false			false	false	false	false	false	true	true	true	true	false	1970-08-29 00:00:00
+78814c76-75b0-42ae-bb7c-9a8f0a3e5919	384e1bd0-1a82-46cf-b301-18cae9889984	Fernanda Almeida	Almeida	38	feminino	solteiro	filha	3f9fb7cc-4efe-43b6-82b6-063f5c59ce74	6c705a63-00b8-4cfb-867d-588dfc1aa850		true	false			false	false	false	false	false	true	true	true	true	false	1987-08-25 00:00:00
+a65801ed-7fdc-47f0-8872-d61a2eb2cb91	662049b4-af50-4ae0-9f23-89d56839d167	Fernanda Rodrigues	Rodrigues	32	feminino	solteiro	filha		502ebc34-6dbd-41c3-9d73-47c7040a6278		true	false			false	false	false	false	false	true	true	true	true	false	1993-08-23 00:00:00
+a65801ed-7fdc-47f0-8872-d61a2eb2cb91	943ec450-bb9c-4ca0-9816-89de0e843b1d	Fernanda Rodrigues	Rodrigues	10	feminino	solteiro	filha		502ebc34-6dbd-41c3-9d73-47c7040a6278		true	true			false	false	false	false	false	true	true	true	true	false	2015-08-18 00:00:00
+365c7ae5-0526-4ee3-95fd-a8832d46b765	ead18821-ecff-47ea-b698-187f52acf227	Fernando Santos	Santos	72	masculino	casado	pai			e519c52c-56f1-495c-9f62-74bc5847317e	true	false			false	false	false	false	true	true	true	true	true	false	1953-09-02 00:00:00
+11c5bc9d-5476-483f-b4f0-537ed70ade51	0a0d2daa-002f-40a2-9fb9-edfa98f480c6	Gabriel Costa	Costa	52	masculino	casado	pai			f994e0fe-850f-42a0-bba2-2aa822d69ef5	true	false			false	false	false	false	true	true	true	true	true	true	1973-08-28 00:00:00
+e2ccf869-263a-45af-99c9-3d1b05b3c83a	417b407f-f313-4887-8bb5-00f8753461fe	Gabriel Oliveira	Oliveira	38	masculino	casado	filho	26152193-db2a-463e-a74c-e6a9751676e6	80c63110-049b-470c-a599-abc77d55d505		true	false			false	true	false	false	true	true	true	true	true	true	1987-08-25 00:00:00
+e2ccf869-263a-45af-99c9-3d1b05b3c83a	8a003e2d-4f34-40d2-a438-e98331ac73fd	Gabriel Oliveira	Oliveira	29	masculino	viúvo	filho	26152193-db2a-463e-a74c-e6a9751676e6	80c63110-049b-470c-a599-abc77d55d505		true	false			false	true	false	false	true	true	true	true	true	true	1996-08-22 00:00:00
+a65801ed-7fdc-47f0-8872-d61a2eb2cb91	31d3ec7a-324d-49df-bc03-62f6dcbc695e	Gabriel Rodrigues	Rodrigues	18	masculino	solteiro	filho		502ebc34-6dbd-41c3-9d73-47c7040a6278		false	false			false	false	false	false	true	true	true	true	true	false	2007-08-20 00:00:00
+365c7ae5-0526-4ee3-95fd-a8832d46b765	5e4ec514-d5c5-40e6-aa49-6266925f171e	Gabriel Santos	Santos	47	masculino	solteiro	filho	ead18821-ecff-47ea-b698-187f52acf227	e519c52c-56f1-495c-9f62-74bc5847317e		true	false			false	false	false	false	true	true	true	true	true	false	1978-08-27 00:00:00
+ea9e6ab4-2c6a-4cd7-9af1-2d672513a3f3	bca08a2c-6843-4f0d-8bc0-cc6b4eef3bf3	Gabriel Souza	Souza	74	masculino	solteiro	pai			45fd1f19-b138-46f4-bf38-f866425b3a89	true	false			false	false	false	false	true	true	true	true	true	true	1951-09-03 00:00:00
+11c5bc9d-5476-483f-b4f0-537ed70ade51	9f0be970-27d8-40d1-898f-cceb62d7b530	Juliana Costa	Costa	34	feminino	solteiro	filha	0a0d2daa-002f-40a2-9fb9-edfa98f480c6	f994e0fe-850f-42a0-bba2-2aa822d69ef5		true	false			false	false	false	false	false	true	true	true	true	false	1991-08-24 00:00:00
+e2ccf869-263a-45af-99c9-3d1b05b3c83a	8686fce9-1d1f-473e-8a2c-97ea127608b0	Juliana Oliveira	Oliveira	10	feminino	viúvo	filha	26152193-db2a-463e-a74c-e6a9751676e6	80c63110-049b-470c-a599-abc77d55d505		true	true			false	false	false	false	false	true	true	true	true	false	2015-08-18 00:00:00
+b88f6190-0194-414f-b85e-68823d68a317	e0536814-7c3e-4675-87a3-d6cff1f6adc3	Juliana Oliveira Goes	Goes	72	feminino	viúvo	mae				true	false			false	false	false	false	false	true	true	true	true	false	1953-09-02 00:00:00
+b88f6190-0194-414f-b85e-68823d68a317	1ff3b546-c5a1-47f1-b907-60b0961ee8a9	Juliana Oliveira Goes	Goes	41	feminino	solteiro	filha		e0536814-7c3e-4675-87a3-d6cff1f6adc3		true	false			false	false	false	false	false	true	true	true	true	false	1984-08-25 00:00:00
+a65801ed-7fdc-47f0-8872-d61a2eb2cb91	5ccdb029-1c1a-4704-bbb7-398da4c1ef09	Juliana Rodrigues	Rodrigues	15	feminino	solteiro	filha		502ebc34-6dbd-41c3-9d73-47c7040a6278		true	true			false	false	false	false	false	true	true	true	true	false	2010-08-19 00:00:00
+a65801ed-7fdc-47f0-8872-d61a2eb2cb91	28a15836-f075-4096-964c-6c5d4d2cf6db	Juliana Rodrigues	Rodrigues	10	feminino	solteiro	filho		502ebc34-6dbd-41c3-9d73-47c7040a6278		true	true	b2e5aceb-a260-4a60-9958-450ae182e007		false	false	false	false	false	true	true	true	true	false	2015-08-18 00:00:00
+365c7ae5-0526-4ee3-95fd-a8832d46b765	317a0c0e-9c6e-431a-b5f8-eef019ced688	Juliana Santos	Santos	33	feminino	solteiro	filha	ead18821-ecff-47ea-b698-187f52acf227	e519c52c-56f1-495c-9f62-74bc5847317e		true	false			false	false	false	false	false	true	true	true	true	false	1992-08-23 00:00:00
+78814c76-75b0-42ae-bb7c-9a8f0a3e5919	3344831c-51aa-44b5-becd-cd5cf31a4a9d	Larissa Almeida	Almeida	54	feminino	solteiro	filha	3f9fb7cc-4efe-43b6-82b6-063f5c59ce74	6c705a63-00b8-4cfb-867d-588dfc1aa850		true	false			false	false	false	false	false	true	true	true	true	false	1971-08-29 00:00:00
+014e0c2e-7e15-484c-bea8-fc6e72e8bc5d	c27b65f7-f7d9-49fe-aa24-2c50e699581a	Larissa Gomes	Gomes	46	feminino	viúvo	filha	8c3813d7-4191-4b2d-81d0-618d9ff2c4be	9e4ab2e3-98ca-4e69-ace1-f9278aa12e01		true	false			false	false	false	false	false	true	true	true	true	false	1979-08-27 00:00:00
+014e0c2e-7e15-484c-bea8-fc6e72e8bc5d	bb9823f1-8872-4a3f-996c-ffb8966f60ae	Larissa Gomes	Gomes	17	feminino	solteiro	filha	8c3813d7-4191-4b2d-81d0-618d9ff2c4be	9e4ab2e3-98ca-4e69-ace1-f9278aa12e01		true	true			false	false	false	false	false	true	true	true	true	false	2008-08-19 00:00:00
+44c3a263-8026-441f-88de-f48d9553e12c	26c89a3d-c6df-4eff-a8f8-3a0cde5c54a2	Larissa Martins	Martins	42	feminino	solteiro	filho	32710836-c1f9-4209-9ff8-fc453dc63764			true	false			false	false	false	false	false	true	true	true	true	false	1983-08-26 00:00:00
+44c3a263-8026-441f-88de-f48d9553e12c	138daee1-6e34-46f2-a677-1618cee06ffc	Larissa Martins	Martins	18	feminino	solteiro	filho	32710836-c1f9-4209-9ff8-fc453dc63764			true	false			false	false	false	false	false	true	true	true	true	false	2007-08-20 00:00:00
+a65801ed-7fdc-47f0-8872-d61a2eb2cb91	67855f2d-1ef9-41b4-b4f2-7f0fef33ade6	Larissa Rodrigues	Rodrigues	36	feminino	solteiro	filha		502ebc34-6dbd-41c3-9d73-47c7040a6278		true	false			false	false	false	false	false	true	true	true	true	false	1989-08-24 00:00:00
+676f2d67-2c0b-4cdd-b620-380232dbbd3f	a5919f84-3b28-4d7a-9078-68647ba6539f	Larissa Silva Lira	Lira	37	feminino	casado	filha		2a707233-9f33-474a-b19f-3fff8c5f23e0		true	false			false	false	false	false	false	true	true	true	true	false	1988-08-24 00:00:00
+44c3a263-8026-441f-88de-f48d9553e12c	7e94c71a-fda8-4b4b-a07c-da29e1a6a723	Luana Martins	Martins	22	feminino	solteiro	filho	32710836-c1f9-4209-9ff8-fc453dc63764			true	false			false	false	false	false	false	true	true	true	true	false	2003-08-21 00:00:00
+676f2d67-2c0b-4cdd-b620-380232dbbd3f	e06bacc9-0689-462d-9f8a-fb7ab0223387	Luana Silva Lira	Lira	10	feminino	solteiro	filha		2a707233-9f33-474a-b19f-3fff8c5f23e0		true	true			false	false	false	false	false	true	true	true	true	false	2015-08-18 00:00:00
+ea9e6ab4-2c6a-4cd7-9af1-2d672513a3f3	3909d13c-7a8a-4d92-b0b1-85cdc4f82a1a	Luana Souza	Souza	24	feminino	viúvo	filha	bca08a2c-6843-4f0d-8bc0-cc6b4eef3bf3	45fd1f19-b138-46f4-bf38-f866425b3a89		true	false			false	false	false	false	false	true	true	true	true	false	2001-08-21 00:00:00
+78814c76-75b0-42ae-bb7c-9a8f0a3e5919	3f9fb7cc-4efe-43b6-82b6-063f5c59ce74	Lucas Almeida	Almeida	26	masculino	casado	pai			6c705a63-00b8-4cfb-867d-588dfc1aa850	true	false			false	false	false	false	true	true	true	true	true	true	1999-08-22 00:00:00
+014e0c2e-7e15-484c-bea8-fc6e72e8bc5d	3be61655-c297-4a96-b18e-b5a03a8feb5d	Lucas Gomes	Gomes	29	masculino	solteiro	filho	8c3813d7-4191-4b2d-81d0-618d9ff2c4be	9e4ab2e3-98ca-4e69-ace1-f9278aa12e01		true	false			false	true	false	false	true	true	true	true	true	true	1996-08-22 00:00:00
+571bfd05-c6e3-433b-8037-b23bf365a5ef	93f0cc83-8347-410a-ada8-c9f38cd1aec9	Lucas Silva	Silva	58	masculino	solteiro	filho	96b06d48-3364-462e-9366-ba84e478dceb			true	false			false	false	false	false	true	true	true	true	true	false	1967-08-30 00:00:00
+676f2d67-2c0b-4cdd-b620-380232dbbd3f	92c9c53b-a6df-4953-8ee9-e8d5c341eff5	Lucas Silva Lira	Lira	27	masculino	viúvo	filho		2a707233-9f33-474a-b19f-3fff8c5f23e0		true	false			false	true	false	false	false	false	false	false	true	false	1998-08-22 00:00:00
+676f2d67-2c0b-4cdd-b620-380232dbbd3f	7b35ea82-8805-4704-ba41-bc2e6d40eca4	Lucas Souza  Lira	Lira	32	masculino	casado	filho		2a707233-9f33-474a-b19f-3fff8c5f23e0		true	false			true	true	true	true	true	true	true	true	true	true	1993-08-23 00:00:00
+44c3a263-8026-441f-88de-f48d9553e12c	32710836-c1f9-4209-9ff8-fc453dc63764	Mateus Martins	Martins	73	masculino	viúvo	pai				true	false			false	false	false	false	true	true	true	true	true	false	1952-09-02 00:00:00
+44c3a263-8026-441f-88de-f48d9553e12c	b80264c9-a988-481c-820f-3fb1ad951192	Mateus Martins	Martins	25	masculino	solteiro	filho	32710836-c1f9-4209-9ff8-fc453dc63764			true	false			true	true	true	true	true	true	true	true	true	true	2000-08-21 00:00:00
+e2ccf869-263a-45af-99c9-3d1b05b3c83a	dcb2f988-a4c9-4695-ba10-0f3807f4bf13	Mateus Oliveira	Oliveira	36	masculino	solteiro	filho	26152193-db2a-463e-a74c-e6a9751676e6	80c63110-049b-470c-a599-abc77d55d505		true	false			true	true	true	true	true	true	true	true	true	true	1989-08-24 00:00:00
+92264ad4-db73-4c50-ac65-a78017037f08	4cfc00ac-7331-4998-8297-231d6ad7430c	Mateus Pereira	Pereira	37	masculino	solteiro	filho	e0e86eb9-4aea-4a35-8168-329153aca88b			true	false			false	false	false	false	false	false	false	true	true	false	1988-08-24 00:00:00
+92264ad4-db73-4c50-ac65-a78017037f08	a60edf9e-ac67-4603-acbb-5291aecabae8	Mateus Pereira	Pereira	35	masculino	solteiro	filho	e0e86eb9-4aea-4a35-8168-329153aca88b			true	false			false	false	false	false	true	true	true	true	true	false	1990-08-26 00:00:00
+92264ad4-db73-4c50-ac65-a78017037f08	23dcf490-8b24-46b8-9cb8-aa1223c1f220	Mateus Pereira	Pereira	30	masculino	solteiro	filho	e0e86eb9-4aea-4a35-8168-329153aca88b			true	false			false	false	false	false	true	true	true	true	true	false	1995-08-25 00:00:00
+571bfd05-c6e3-433b-8037-b23bf365a5ef	96b06d48-3364-462e-9366-ba84e478dceb	Orlando Silva	Silva	70	masculino	viúvo	pai				true	false			false	false	false	false	true	true	true	true	true	true	1955-09-02 00:00:00
+3795a9be-0f3c-4302-9add-913ad62b7747	c7045aec-a32f-45a4-9b28-258f9c3c1d27	Patrícia Almeida Prado	Prado	47	feminino	solteiro	mae				true	false			false	false	false	false	false	true	true	true	true	false	1978-08-27 00:00:00
+11c5bc9d-5476-483f-b4f0-537ed70ade51	f9b641c8-84ff-44b5-91e6-13dd94083084	Patrícia Costa	Costa	32	feminino	solteiro	filha	0a0d2daa-002f-40a2-9fb9-edfa98f480c6	f994e0fe-850f-42a0-bba2-2aa822d69ef5		true	false			false	false	false	false	false	true	true	true	true	false	1993-08-26 00:00:00
+11c5bc9d-5476-483f-b4f0-537ed70ade51	e8182ff8-6777-4497-a354-8f8df68c2b19	Patrícia Costa	Costa	34	feminino	solteiro	filha	0a0d2daa-002f-40a2-9fb9-edfa98f480c6	f994e0fe-850f-42a0-bba2-2aa822d69ef5		true	false			false	false	false	false	false	true	true	true	true	false	1991-08-24 00:00:00
+a65801ed-7fdc-47f0-8872-d61a2eb2cb91	502ebc34-6dbd-41c3-9d73-47c7040a6278	Patrícia Rodrigues	Rodrigues	75	feminino	solteiro	mae				true	false			false	false	false	false	false	true	true	true	true	false	1950-09-03 00:00:00
+a65801ed-7fdc-47f0-8872-d61a2eb2cb91	69968a5c-825e-433d-a5c2-ca44a752d430	Patrícia Rodrigues	Rodrigues	57	feminino	solteiro	filha		502ebc34-6dbd-41c3-9d73-47c7040a6278		true	false			false	false	false	false	false	true	true	true	true	false	1968-08-29 00:00:00
+ea9e6ab4-2c6a-4cd7-9af1-2d672513a3f3	07359e26-8215-4b87-8f86-b2af939daff3	Patrícia Souza	Souza	58	feminino	casado	filha	bca08a2c-6843-4f0d-8bc0-cc6b4eef3bf3	45fd1f19-b138-46f4-bf38-f866425b3a89		false	false			false	false	false	false	false	true	true	true	true	false	1967-08-30 00:00:00
+365c7ae5-0526-4ee3-95fd-a8832d46b765	385890c0-5bc6-4a74-bfae-307f7cf81625	Pedro Santos	Santos	59	masculino	solteiro	filho	ead18821-ecff-47ea-b698-187f52acf227	e519c52c-56f1-495c-9f62-74bc5847317e		false	false			false	false	false	false	true	true	true	true	true	false	1966-09-01 00:00:00
+571bfd05-c6e3-433b-8037-b23bf365a5ef	3cd3bb11-11b0-4ec0-9394-d6837d889b57	Pedro Silva	Silva	32	masculino	solteiro	filho	96b06d48-3364-462e-9366-ba84e478dceb			false	false			false	true	false	false	true	true	true	true	true	true	1993-08-23 00:00:00
+11c5bc9d-5476-483f-b4f0-537ed70ade51	c6f96322-452c-4d41-be43-4fe0ac24a571	Rafael Costa	Costa	14	masculino	solteiro	filho	0a0d2daa-002f-40a2-9fb9-edfa98f480c6	f994e0fe-850f-42a0-bba2-2aa822d69ef5		true	true	f994e0fe-850f-42a0-bba2-2aa822d69ef5	0a0d2daa-002f-40a2-9fb9-edfa98f480c6	false	false	false	false	true	true	true	true	true	false	2011-08-19 00:00:00
+e2ccf869-263a-45af-99c9-3d1b05b3c83a	fdac0c37-59b6-4c9c-b22e-09e2f562b262	Rafael Oliveira	Oliveira	48	masculino	viúvo	filho	26152193-db2a-463e-a74c-e6a9751676e6	80c63110-049b-470c-a599-abc77d55d505		true	false			false	false	false	false	true	true	true	true	true	false	1977-08-27 00:00:00
+ea9e6ab4-2c6a-4cd7-9af1-2d672513a3f3	ad2f5f03-0ecb-4b5e-a3be-5c57ec04df81	Rafael Souza	Souza	67	masculino	casado	filho	bca08a2c-6843-4f0d-8bc0-cc6b4eef3bf3	45fd1f19-b138-46f4-bf38-f866425b3a89		true	false			false	false	false	false	true	true	true	true	true	false	1958-09-01 00:00:00
+ea9e6ab4-2c6a-4cd7-9af1-2d672513a3f3	f907f760-6e44-4ec4-a983-59f18269ece9	Rafael Souza	Souza	14	masculino	casado	filho	bca08a2c-6843-4f0d-8bc0-cc6b4eef3bf3	45fd1f19-b138-46f4-bf38-f866425b3a89		true	true	77941d63-82d1-4fba-aca7-bcd791102dcd		false	true	false	false	true	true	true	true	true	true	2011-08-19 00:00:00
+78814c76-75b0-42ae-bb7c-9a8f0a3e5919	30187638-c022-495f-a962-dd8feb520bf8	Thiago Almeida	Almeida	13	masculino	solteiro	filho	3f9fb7cc-4efe-43b6-82b6-063f5c59ce74	6c705a63-00b8-4cfb-867d-588dfc1aa850		true	true	3f9fb7cc-4efe-43b6-82b6-063f5c59ce74	6c705a63-00b8-4cfb-867d-588dfc1aa850	false	false	false	false	true	true	true	true	true	false	2012-08-18 00:00:00
+79671f9d-077c-4579-a6ce-6b09804a2040	b0bea082-800b-4793-97e1-20d891d013aa	Thiago Almeida Santana	Santana	68	masculino	casado	pai			8bbde609-ac0e-4ccf-8061-f570456426bb	false	false			false	false	false	true	false	false	false	false	false	false	1957-09-01 00:00:00
+014e0c2e-7e15-484c-bea8-fc6e72e8bc5d	2bfcd7f2-d12e-47b5-ba2e-62a3250dba23	Thiago Gomes	Gomes	41	masculino	solteiro	filho	8c3813d7-4191-4b2d-81d0-618d9ff2c4be	9e4ab2e3-98ca-4e69-ace1-f9278aa12e01		true	false			false	false	false	false	true	true	true	true	true	false	1984-08-25 00:00:00
+44c3a263-8026-441f-88de-f48d9553e12c	4bae171f-67e7-4424-a1b0-14010f2090ed	Thiago Martins	Martins	60	masculino	solteiro	filho	32710836-c1f9-4209-9ff8-fc453dc63764			true	false			false	true	true	false	false	false	false	true	false	false	1965-08-30 00:00:00
+92264ad4-db73-4c50-ac65-a78017037f08	065a29d2-68bd-4490-a00c-dc85e18ff2a7	Thiago Pereira	Pereira	30	masculino	casado	filho	e0e86eb9-4aea-4a35-8168-329153aca88b			false	false			false	false	false	false	true	true	true	true	true	false	1995-08-23 00:00:00
+571bfd05-c6e3-433b-8037-b23bf365a5ef	158c1467-66e1-4f04-bdb5-d859a94039b5	Thiago Silva	Silva	10	masculino	solteiro	filho	96b06d48-3364-462e-9366-ba84e478dceb			false	true	f90cffbd-aa83-4422-a4ee-8d4cbb7a47d9		false	true	false	false	true	true	true	true	true	true	2015-08-18 00:00:00
+																1									
+"C:\Users\webbe\OneDrive\Documents\GitHub\ministry-hub-sync\docs\Oficial\estudantes_ficticios_corrigido_modelo.xlsx"
+
+
+
+

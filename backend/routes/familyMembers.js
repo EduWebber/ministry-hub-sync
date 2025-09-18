@@ -2,21 +2,22 @@ const express = require('express');
 const router = express.Router();
 const { supabase } = require('../config/supabase');
 
-// Mock family members data for testing
-const mockFamilyMembers = [
-  { id: '1', name: 'John Doe', relationship: 'father', created_at: new Date().toISOString() },
-  { id: '2', name: 'Jane Doe', relationship: 'mother', created_at: new Date().toISOString() },
-  { id: '3', name: 'Junior Doe', relationship: 'child', created_at: new Date().toISOString() }
-];
-
 // GET /family-members - List all family members
 router.get('/', async (req, res) => {
   try {
-    // Mock response for testing
+    const { data: familyMembers, error } = await supabase
+      .from('family_members')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      throw new Error(`Error fetching family members: ${error.message}`);
+    }
+
     res.json({
       success: true,
-      familyMembers: mockFamilyMembers,
-      total: mockFamilyMembers.length
+      familyMembers: familyMembers || [],
+      total: (familyMembers || []).length
     });
 
   } catch (error) {
@@ -34,10 +35,13 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     
-    // Mock response for testing
-    const familyMember = mockFamilyMembers.find(member => member.id === id);
-    
-    if (!familyMember) {
+    const { data: familyMember, error } = await supabase
+      .from('family_members')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (error) {
       return res.status(404).json({
         success: false,
         error: 'Family member not found'
@@ -72,19 +76,20 @@ router.post('/', async (req, res) => {
       });
     }
 
-    // Mock response for testing
-    const newFamilyMember = {
-      id: String(mockFamilyMembers.length + 1),
-      ...familyMemberData,
-      created_at: new Date().toISOString()
-    };
-    
-    mockFamilyMembers.push(newFamilyMember);
+    const { data: familyMember, error } = await supabase
+      .from('family_members')
+      .insert(familyMemberData)
+      .select()
+      .single();
+
+    if (error) {
+      throw new Error(`Error creating family member: ${error.message}`);
+    }
 
     res.status(201).json({
       success: true,
       message: 'Family member created successfully',
-      familyMember: newFamilyMember
+      familyMember: familyMember
     });
 
   } catch (error) {
@@ -103,26 +108,24 @@ router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const familyMemberData = req.body;
     
-    // Mock response for testing
-    const familyMemberIndex = mockFamilyMembers.findIndex(member => member.id === id);
-    
-    if (familyMemberIndex === -1) {
+    const { data: familyMember, error } = await supabase
+      .from('family_members')
+      .update(familyMemberData)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
       return res.status(404).json({
         success: false,
         error: 'Family member not found'
       });
     }
-    
-    mockFamilyMembers[familyMemberIndex] = {
-      ...mockFamilyMembers[familyMemberIndex],
-      ...familyMemberData,
-      updated_at: new Date().toISOString()
-    };
 
     res.json({
       success: true,
       message: 'Family member updated successfully',
-      familyMember: mockFamilyMembers[familyMemberIndex]
+      familyMember: familyMember
     });
 
   } catch (error) {
@@ -140,17 +143,17 @@ router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     
-    // Mock response for testing
-    const familyMemberIndex = mockFamilyMembers.findIndex(member => member.id === id);
-    
-    if (familyMemberIndex === -1) {
+    const { data, error } = await supabase
+      .from('family_members')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
       return res.status(404).json({
         success: false,
         error: 'Family member not found'
       });
     }
-    
-    mockFamilyMembers.splice(familyMemberIndex, 1);
 
     res.json({
       success: true,

@@ -127,7 +127,6 @@ const StudentsSpreadsheet = ({ estudantes, onRefresh }: StudentsSpreadsheetProps
       <CardContent>
         <div className="ag-theme-alpine" style={{ height: '600px', width: '100%' }}>
           <AgGridReact
-            theme="legacy"
             rowData={rowData}
             columnDefs={columnDefs}
             defaultColDef={gridOptions}
@@ -135,6 +134,7 @@ const StudentsSpreadsheet = ({ estudantes, onRefresh }: StudentsSpreadsheetProps
             onCellValueChanged={onCellValueChanged}
             pagination={true}
             paginationPageSize={25}
+            paginationPageSizeSelector={[20, 25, 50, 100]}
             getRowId={(params) => params.data.id}
           />
         </div>

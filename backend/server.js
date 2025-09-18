@@ -12,6 +12,7 @@ const estudantesRoutes = require('./routes/estudantes');
 const reportsRoutes = require('./routes/reports');
 const authRoutes = require('./routes/auth');
 const familyMembersRoutes = require('./routes/familyMembers');
+const congregacoesRoutes = require('./routes/congregacoes');
 
 const app = express();
 // Porta do servidor: usa variável de ambiente quando definida (>0); caso contrário, 3000
@@ -24,6 +25,19 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
+// Handle malformed JSON globally to avoid noisy stack traces
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+    console.warn('⚠️ Invalid JSON received', {
+      method: req.method,
+      url: req.originalUrl,
+      contentType: req.headers['content-type']
+    });
+    return res.status(400).json({ error: 'Invalid JSON payload' });
+  }
+  next(err);
+});
+
 // Servir arquivos estáticos da pasta docs/Oficial (para PDFs mockados)
 app.use('/materials', express.static(path.join(__dirname, '../docs/Oficial')));
 
@@ -32,6 +46,7 @@ app.use('/api/programacoes', programacoesRoutes);
 app.use('/api/designacoes', designacoesRoutes);
 app.use('/api/estudantes', estudantesRoutes);
 app.use('/api/reports', reportsRoutes);
+app.use('/api/congregacoes', congregacoesRoutes);
 app.use('/auth', authRoutes);
 app.use('/family-members', familyMembersRoutes);
 

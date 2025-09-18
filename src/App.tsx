@@ -23,6 +23,7 @@ const InstrutorDashboard = lazy(() => import("./pages/InstrutorDashboard"));
 const EstudantesPage = lazy(() => import("./pages/EstudantesPage"));
 const ProgramasPage = lazy(() => import("./pages/ProgramasPage"));
 const DesignacoesPage = lazy(() => import("./pages/DesignacoesPage"));
+const AssignmentsPage = lazy(() => import("./pages/AssignmentsPage"));
 const RelatoriosPage = lazy(() => import("./pages/RelatoriosPage"));
 const UnifiedDashboard = lazy(() => import("./components/UnifiedDashboard"));
 const PortalFamiliar = lazy(() => import("./pages/PortalFamiliar"));
@@ -205,6 +206,14 @@ const App = () => (
                       element={
                         <ProtectedRoute allowedRoles={['instrutor']}>
                           <DesignacoesPage />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/assignments"
+                      element={
+                        <ProtectedRoute allowedRoles={['instrutor']}>
+                          <AssignmentsPage />
                         </ProtectedRoute>
                       }
                     />
