@@ -10,8 +10,8 @@ export const useConnectionStatus = () => {
       setIsLoading(true);
       try {
         // Test Supabase connection with a simple query
-        const { data, error } = await supabase
-          .from('estudantes')
+        const { error } = await supabase
+          .from('profiles')
           .select('id')
           .limit(1);
         

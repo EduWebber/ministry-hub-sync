@@ -15,7 +15,7 @@ const AuthErrorHandler: React.FC<AuthErrorHandlerProps> = ({
   onRetry, 
   onLogin 
 }) => {
-  const { authError, clearAuthError, refreshAuth, forceClearInvalidTokens } = useAuth();
+  const { authError, clearAuthError, refreshAuth } = useAuth();
   
   const currentError = error || authError;
   
@@ -40,11 +40,12 @@ const AuthErrorHandler: React.FC<AuthErrorHandlerProps> = ({
   };
 
   const handleLogin = async () => {
-    // Limpar tokens inválidos antes de redirecionar para login
-    await forceClearInvalidTokens();
     clearAuthError();
     if (onLogin) {
       onLogin();
+    } else {
+      // Navigate to login page
+      window.location.href = '/auth';
     }
   };
 
@@ -84,41 +85,25 @@ const AuthErrorHandler: React.FC<AuthErrorHandlerProps> = ({
 
       <div className="flex gap-2 mt-3">
         {isRefreshTokenError ? (
-          <>
-            <Button 
-              size="sm" 
-              variant="outline" 
-              onClick={handleLogin}
-              className="border-orange-300 text-orange-700 hover:bg-orange-100"
-            >
-              <LogIn className="h-3 w-3 mr-2" />
-              Fazer Login
-            </Button>
-          </>
-        ) : isNetworkError ? (
-          <>
-            <Button 
-              size="sm" 
-              variant="outline" 
-              onClick={handleRetry}
-              className="border-yellow-300 text-yellow-700 hover:bg-yellow-100"
-            >
-              <RefreshCw className="h-3 w-3 mr-2" />
-              Tentar Novamente
-            </Button>
-          </>
+          <Button 
+            size="sm" 
+            variant="outline" 
+            onClick={handleLogin}
+            className="border-orange-300 text-orange-700 hover:bg-orange-100"
+          >
+            <LogIn className="h-3 w-3 mr-2" />
+            Fazer Login
+          </Button>
         ) : (
-          <>
-            <Button 
-              size="sm" 
-              variant="outline" 
-              onClick={handleRetry}
-              className="border-red-300 text-red-700 hover:bg-red-100"
-            >
-              <RefreshCw className="h-3 w-3 mr-2" />
-              Tentar Novamente
-            </Button>
-          </>
+          <Button 
+            size="sm" 
+            variant="outline" 
+            onClick={handleRetry}
+            className="border-yellow-300 text-yellow-700 hover:bg-yellow-100"
+          >
+            <RefreshCw className="h-3 w-3 mr-2" />
+            Tentar Novamente
+          </Button>
         )}
         
         <Button 
