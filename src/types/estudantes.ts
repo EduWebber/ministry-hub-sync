@@ -25,6 +25,12 @@ export interface EstudanteWithParent extends EstudanteRow {
   making?: boolean;
   explaining?: boolean;
   talk?: boolean;
+  // Profile data
+  nome?: string;
+  email?: string;
+  telefone?: string;
+  cargo?: string;
+  data_nascimento?: string;
 }
 
 // S-38-T Speech Types and Qualifications

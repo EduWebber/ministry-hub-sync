@@ -41,6 +41,14 @@ export interface FamilyMemberFormData {
 export interface FamilyMemberWithInvitations extends FamilyMember {
   latest_invitation?: InvitationLog;
   can_invite: boolean;
+  // Required properties for components
+  id?: string;
+  name?: string;
+  email?: string;
+  phone?: string;
+  gender?: Gender;
+  relation?: Relation;
+  invitation_status?: InvitationStatus;
 }
 
 // Validation schemas

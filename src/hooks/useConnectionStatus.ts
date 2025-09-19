@@ -38,5 +38,15 @@ export const useConnectionStatus = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return { isConnected, isLoading };
+  return {
+    isConnected,
+    isLoading,
+    isOnline: isConnected,
+    pendingOperations: 0,
+    failedOperations: 0,
+    isSyncing: false,
+    autoSyncEnabled: true,
+    setAutoSyncEnabled: () => {},
+    syncNow: async () => ({ success: true, syncedCount: 0 })
+  };
 };

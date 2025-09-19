@@ -93,7 +93,7 @@ const EstudanteCard = ({ estudante, onEdit, onDelete, loading = false }: Estudan
     return qualificacoes;
   };
   
-  const qualificacoes = getQualificacoes(estudante.cargo, estudante.genero, idade || 18);
+  const qualificacoes = getQualificacoes(estudante.cargo as Cargo, estudante.genero as Genero, idade || 18);
 
   const handleDelete = async () => {
     setDeleteLoading(true);
@@ -116,9 +116,9 @@ const EstudanteCard = ({ estudante, onEdit, onDelete, loading = false }: Estudan
               {estudante.nome}
             </CardTitle>
             <CardDescription className="flex items-center gap-4 mt-1">
-              <span>{getCargoLabel(estudante.cargo)}</span>
+              <span>{getCargoLabel(estudante.cargo as Cargo)}</span>
               <span>•</span>
-              <span>{getGeneroLabel(estudante.genero)}</span>
+              <span>{getGeneroLabel(estudante.genero as Genero)}</span>
               {idade && (
                 <>
                   <span>•</span>

@@ -204,7 +204,7 @@ const Header = () => {
                   <Button variant="ghost" className="flex items-center gap-1 sm:gap-2 text-white hover:text-jw-gold p-2 sm:px-3">
                     <User className="w-4 h-4" />
                     <span className="hidden md:inline max-w-32 truncate">
-                      {profile?.nome_completo || user.user_metadata?.nome_completo || user.email}
+                      {profile?.nome || user.user_metadata?.nome || user.email}
                     </span>
                     <Badge variant="outline" className="text-xs border-jw-gold text-jw-gold hidden sm:inline-flex">
                                           {(profile?.role === 'instrutor' || user.user_metadata?.role === 'instrutor') ? t('navigation.instructor') : t('navigation.student')}
@@ -215,10 +215,10 @@ const Header = () => {
                   <DropdownMenuLabel>
                     <div>
                       <p className="font-medium">
-                        {profile?.nome_completo || user.user_metadata?.nome_completo || user.email}
+                        {profile?.nome || user.user_metadata?.nome || user.email}
                       </p>
                       <p className="text-sm text-gray-500">
-                        {profile?.congregacao || user.user_metadata?.congregacao || t('terms.congregation')}
+                        {profile?.congregacao_id || user.user_metadata?.congregacao || t('terms.congregation')}
                       </p>
                     </div>
                   </DropdownMenuLabel>

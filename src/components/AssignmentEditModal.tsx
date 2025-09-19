@@ -63,12 +63,26 @@ export const AssignmentEditModal: React.FC<AssignmentEditModalProps> = ({
       
       const { data, error } = await supabase
         .from('estudantes')
-        .select('id, nome_completo, cargo, genero')
-        .eq('ativo', true)
-        .order('nome_completo');
+        .select(`
+          id,
+          genero,
+          profiles!inner (
+            nome,
+            cargo
+          )
+        `)
+        .eq('ativo', true);
 
       if (error) throw error;
-      setAvailableStudents(data || []);
+      
+      const transformedStudents = data?.map((estudante: any) => ({
+        id: estudante.id,
+        nome_completo: estudante.profiles?.nome || 'Nome não informado',
+        cargo: estudante.profiles?.cargo || 'estudante_novo',
+        genero: estudante.genero
+      })) || [];
+      
+      setAvailableStudents(transformedStudents);
 
     } catch (error) {
       console.error('Error loading students:', error);

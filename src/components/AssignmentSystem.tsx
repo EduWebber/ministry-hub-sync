@@ -52,11 +52,9 @@ const AssignmentSystem: React.FC<AssignmentSystemProps> = ({ programId, onAssign
         .from('designacoes')
         .insert({
           estudante_id: selectedStudent,
-          programa_id: programId,
-          tipo_parte: selectedPart,
+          parte_id: selectedPart,
           user_id: user?.id,
-          confirmado: false,
-          status: 'pendente'
+          status: 'designado'
         });
 
       if (!error) {

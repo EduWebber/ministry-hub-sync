@@ -7,7 +7,7 @@ interface Profile {
   user_id?: string;
   nome: string;
   email: string;
-  role: string;
+  role: 'admin' | 'instrutor' | 'estudante';
   congregacao_id?: string | null;
   created_at: string | null;
   updated_at: string | null;
@@ -75,7 +75,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             user_id: userId,
             nome: userData.user.email?.split('@')[0] || 'Usuário',
             email: userData.user.email || '',
-            role: 'instrutor',
+            role: 'instrutor' as const,
           };
 
           const { data: createdProfile, error: createError } = await supabase
