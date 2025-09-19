@@ -35,7 +35,7 @@ const ConfiguracaoInicial = () => {
   const [formData, setFormData] = useState({
     nome: profile?.nome || '',
     congregacao_id: profile?.congregacao_id || '',
-    cargo: profile?.cargo || 'instrutor',
+    cargo: 'instrutor',
     email: profile?.email || '',
     preferences: {
       autoGenerateAssignments: true,
@@ -94,8 +94,7 @@ const ConfiguracaoInicial = () => {
       // Update profile
       const { error } = await updateProfile({
         nome: formData.nome,
-        congregacao: formData.congregacao,
-        cargo: formData.cargo
+        congregacao_id: formData.congregacao_id
       });
 
       if (error) throw error;

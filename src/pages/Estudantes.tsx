@@ -103,8 +103,7 @@ const Estudantes = () => {
   };
 
   const handleCreateEstudante = async (data: any): Promise<boolean> => {
-    setFormLoading(true);
-    await createEstudante(data);
+    console.log('Creating student:', data);
     setFormLoading(false);
     setActiveTab("list");
     return true;

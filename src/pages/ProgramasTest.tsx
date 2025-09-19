@@ -34,7 +34,7 @@ const ProgramasTest = () => {
           <div className="space-y-2">
             <p><strong>Loading:</strong> {loading ? 'Sim' : 'Não'}</p>
             <p><strong>Usuário:</strong> {user ? user.email : 'Não logado'}</p>
-            <p><strong>Perfil:</strong> {profile ? profile.nome_completo : 'Não carregado'}</p>
+            <p><strong>Perfil:</strong> {profile ? profile.nome : 'Não carregado'}</p>
             <p><strong>Role:</strong> {profile?.role || user?.user_metadata?.role || 'Não definido'}</p>
           </div>
         </div>

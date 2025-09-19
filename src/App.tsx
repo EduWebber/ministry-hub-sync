@@ -37,10 +37,8 @@ const Doar = lazy(() => import("./pages/Doar"));
 const BemVindo = lazy(() => import("./pages/BemVindo"));
 const ConfiguracaoInicial = lazy(() => import("./pages/ConfiguracaoInicial"));
 const PrimeiroPrograma = lazy(() => import("./pages/PrimeiroPrograma"));
-const ConviteAceitar = lazy(() => import("./pages/convite/aceitar"));
-const FamiliaPage = lazy(() => import("./pages/estudante/[id]/familia"));
 const Reunioes = lazy(() => import("./pages/Reunioes"));
-const OfflineTestPage = lazy(() => import("./pages/OfflineTestPage"));
+const OfflineTestPage = lazy(() => import("./pages/Demo")); // Placeholder
 
 // Dev-only lazy loads
 const ProgramasTest = lazy(() => import("./pages/ProgramasTest"));

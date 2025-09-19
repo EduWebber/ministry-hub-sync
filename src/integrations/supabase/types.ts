@@ -209,6 +209,206 @@ export type Database = {
           },
         ]
       }
+      estudantes_import: {
+        Row: {
+          ativo: boolean | null
+          cargo: string | null
+          chairman: boolean | null
+          coabitacao: boolean | null
+          created_at: string | null
+          created_at_sys: string | null
+          data_batismo: string | null
+          data_de_matricula: string | null
+          data_nascimento: string | null
+          email: string | null
+          estado_civil: string | null
+          explaining: boolean | null
+          familia: string | null
+          family_id: string | null
+          following: boolean | null
+          gems: boolean | null
+          genero: string | null
+          id: string
+          id_conjuge: string | null
+          id_mae: string | null
+          id_pai: string | null
+          idade: number | null
+          making: boolean | null
+          menor: boolean | null
+          nome: string | null
+          observacoes: string | null
+          papel_familiar: string | null
+          pray: boolean | null
+          reading: boolean | null
+          responsavel_primario: boolean | null
+          responsavel_secundario: boolean | null
+          starting: boolean | null
+          talk: boolean | null
+          telefone: string | null
+          tempo: number | null
+          tresures: boolean | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          ativo?: boolean | null
+          cargo?: string | null
+          chairman?: boolean | null
+          coabitacao?: boolean | null
+          created_at?: string | null
+          created_at_sys?: string | null
+          data_batismo?: string | null
+          data_de_matricula?: string | null
+          data_nascimento?: string | null
+          email?: string | null
+          estado_civil?: string | null
+          explaining?: boolean | null
+          familia?: string | null
+          family_id?: string | null
+          following?: boolean | null
+          gems?: boolean | null
+          genero?: string | null
+          id?: string
+          id_conjuge?: string | null
+          id_mae?: string | null
+          id_pai?: string | null
+          idade?: number | null
+          making?: boolean | null
+          menor?: boolean | null
+          nome?: string | null
+          observacoes?: string | null
+          papel_familiar?: string | null
+          pray?: boolean | null
+          reading?: boolean | null
+          responsavel_primario?: boolean | null
+          responsavel_secundario?: boolean | null
+          starting?: boolean | null
+          talk?: boolean | null
+          telefone?: string | null
+          tempo?: number | null
+          tresures?: boolean | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          ativo?: boolean | null
+          cargo?: string | null
+          chairman?: boolean | null
+          coabitacao?: boolean | null
+          created_at?: string | null
+          created_at_sys?: string | null
+          data_batismo?: string | null
+          data_de_matricula?: string | null
+          data_nascimento?: string | null
+          email?: string | null
+          estado_civil?: string | null
+          explaining?: boolean | null
+          familia?: string | null
+          family_id?: string | null
+          following?: boolean | null
+          gems?: boolean | null
+          genero?: string | null
+          id?: string
+          id_conjuge?: string | null
+          id_mae?: string | null
+          id_pai?: string | null
+          idade?: number | null
+          making?: boolean | null
+          menor?: boolean | null
+          nome?: string | null
+          observacoes?: string | null
+          papel_familiar?: string | null
+          pray?: boolean | null
+          reading?: boolean | null
+          responsavel_primario?: boolean | null
+          responsavel_secundario?: boolean | null
+          starting?: boolean | null
+          talk?: boolean | null
+          telefone?: string | null
+          tempo?: number | null
+          tresures?: boolean | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      family_members: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          email: string | null
+          gender: string | null
+          id: string
+          name: string
+          phone: string | null
+          relation: string | null
+          student_id: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          email?: string | null
+          gender?: string | null
+          id?: string
+          name: string
+          phone?: string | null
+          relation?: string | null
+          student_id: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          email?: string | null
+          gender?: string | null
+          id?: string
+          name?: string
+          phone?: string | null
+          relation?: string | null
+          student_id?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      invitations_log: {
+        Row: {
+          created_at: string | null
+          family_member_id: string
+          id: string
+          method: string | null
+          sent_at: string | null
+          sent_by: string | null
+          status: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          family_member_id: string
+          id?: string
+          method?: string | null
+          sent_at?: string | null
+          sent_by?: string | null
+          status?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          family_member_id?: string
+          id?: string
+          method?: string | null
+          sent_at?: string | null
+          sent_by?: string | null
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "invitations_log_family_member_id_fkey"
+            columns: ["family_member_id"]
+            isOneToOne: false
+            referencedRelation: "family_members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       partes_programa: {
         Row: {
           created_at: string | null
@@ -473,6 +673,123 @@ export type Database = {
           },
         ]
       }
+      staging_estudantes: {
+        Row: {
+          ativo: string | null
+          cargo: string | null
+          chairman: string | null
+          coabitacao: string | null
+          created_at: string | null
+          data_batismo: string | null
+          data_de_matricula: string | null
+          data_nascimento: string | null
+          email: string | null
+          estado_civil: string | null
+          explaining: string | null
+          familia: string | null
+          family_id: string | null
+          following: string | null
+          gems: string | null
+          genero: string | null
+          id_conjuge: string | null
+          id_mae: string | null
+          id_pai: string | null
+          idade: string | null
+          making: string | null
+          menor: string | null
+          nome: string | null
+          observacoes: string | null
+          papel_familiar: string | null
+          pray: string | null
+          reading: string | null
+          responsavel_primario: string | null
+          responsavel_secundario: string | null
+          starting: string | null
+          talk: string | null
+          telefone: string | null
+          tempo: string | null
+          tresures: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          ativo?: string | null
+          cargo?: string | null
+          chairman?: string | null
+          coabitacao?: string | null
+          created_at?: string | null
+          data_batismo?: string | null
+          data_de_matricula?: string | null
+          data_nascimento?: string | null
+          email?: string | null
+          estado_civil?: string | null
+          explaining?: string | null
+          familia?: string | null
+          family_id?: string | null
+          following?: string | null
+          gems?: string | null
+          genero?: string | null
+          id_conjuge?: string | null
+          id_mae?: string | null
+          id_pai?: string | null
+          idade?: string | null
+          making?: string | null
+          menor?: string | null
+          nome?: string | null
+          observacoes?: string | null
+          papel_familiar?: string | null
+          pray?: string | null
+          reading?: string | null
+          responsavel_primario?: string | null
+          responsavel_secundario?: string | null
+          starting?: string | null
+          talk?: string | null
+          telefone?: string | null
+          tempo?: string | null
+          tresures?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          ativo?: string | null
+          cargo?: string | null
+          chairman?: string | null
+          coabitacao?: string | null
+          created_at?: string | null
+          data_batismo?: string | null
+          data_de_matricula?: string | null
+          data_nascimento?: string | null
+          email?: string | null
+          estado_civil?: string | null
+          explaining?: string | null
+          familia?: string | null
+          family_id?: string | null
+          following?: string | null
+          gems?: string | null
+          genero?: string | null
+          id_conjuge?: string | null
+          id_mae?: string | null
+          id_pai?: string | null
+          idade?: string | null
+          making?: string | null
+          menor?: string | null
+          nome?: string | null
+          observacoes?: string | null
+          papel_familiar?: string | null
+          pray?: string | null
+          reading?: string | null
+          responsavel_primario?: string | null
+          responsavel_secundario?: string | null
+          starting?: string | null
+          talk?: string | null
+          telefone?: string | null
+          tempo?: string | null
+          tresures?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -541,6 +858,10 @@ export type Database = {
           estudante_id: string
           profile_id: string
         }[]
+      }
+      load_estudantes_from_staging: {
+        Args: Record<PropertyKey, never>
+        Returns: number
       }
     }
     Enums: {
