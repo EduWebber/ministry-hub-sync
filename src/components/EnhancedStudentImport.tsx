@@ -4,17 +4,22 @@ import { Button } from '@/components/ui/button';
 import { Upload } from 'lucide-react';
 
 interface EnhancedStudentImportProps {
-  onImport: (data: any) => void;
+  onImportComplete: () => void;
+  onViewList: () => void;
 }
 
-export default function EnhancedStudentImport({ onImport }: EnhancedStudentImportProps) {
+export default function EnhancedStudentImport({ onImportComplete, onViewList }: EnhancedStudentImportProps) {
   return (
     <Card>
       <CardHeader>
         <CardTitle>Importar Estudantes</CardTitle>
       </CardHeader>
       <CardContent>
-        <Button onClick={() => onImport({})}>
+        <Button onClick={() => {
+          // Simulate import completion
+          onImportComplete();
+          onViewList();
+        }}>
           <Upload className="h-4 w-4 mr-2" />
           Importar Planilha
         </Button>

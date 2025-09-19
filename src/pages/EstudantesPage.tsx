@@ -12,7 +12,7 @@ import { useEstudantes } from "@/hooks/useEstudantes";
 import EstudanteForm from "@/components/EstudanteForm";
 import EstudanteCard from "@/components/EstudanteCard";
 import SpreadsheetUpload from "@/components/SpreadsheetUpload";
-import { EnhancedStudentImport } from "@/components/EnhancedStudentImport";
+import EnhancedStudentImport from "@/components/EnhancedStudentImport";
 import StudentsSpreadsheet from "@/components/StudentsSpreadsheet";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/ui/empty-state";
