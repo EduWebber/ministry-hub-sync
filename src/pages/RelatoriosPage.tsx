@@ -23,6 +23,7 @@ import {
 import SidebarLayout from "@/components/layout/SidebarLayout";
 import QualificacoesAvancadas from "@/components/QualificacoesAvancadas";
 import { useProgramContext } from "@/contexts/ProgramContext";
+import { supabase } from "@/integrations/supabase/client";
 
 const RelatoriosPage = () => {
   const { selectedCongregacaoId, setSelectedCongregacaoId } = useProgramContext();
@@ -38,26 +39,16 @@ const RelatoriosPage = () => {
   const carregarRelatorio = async (tipo: string) => {
     setIsLoading(true);
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
-      let url = `${apiBaseUrl}/api/reports/${tipo}`;
-      
-      // Adicionar parâmetros de consulta
-      const params = new URLSearchParams();
-      if (congregacaoId) params.append('congregacao_id', congregacaoId);
-      if (dateRange.start) params.append('start_date', dateRange.start);
-      if (dateRange.end) params.append('end_date', dateRange.end);
-      
-      if (params.toString()) {
-        url += `?${params.toString()}`;
-      }
+      const { data, error } = await supabase.functions.invoke('reports', {
+        body: {
+          type: tipo,
+          congregacao_id: congregacaoId || undefined,
+          start_date: dateRange.start || undefined,
+          end_date: dateRange.end || undefined
+        }
+      });
 
-      const response = await fetch(url);
-      
-      if (!response.ok) {
-        throw new Error('Falha ao carregar relatório');
-      }
-      
-      const data = await response.json();
+      if (error) throw error;
       setReportData(data);
       
       toast({
@@ -79,26 +70,23 @@ const RelatoriosPage = () => {
   // Exportar dados
   const exportarDados = async (format: 'csv' | 'json') => {
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
-      let url = `${apiBaseUrl}/api/reports/export?type=${format}`;
-      
-      // Adicionar parâmetros de consulta
-      const params = new URLSearchParams();
-      if (congregacaoId) params.append('congregacao_id', congregacaoId);
-      if (dateRange.start) params.append('start_date', dateRange.start);
-      if (dateRange.end) params.append('end_date', dateRange.end);
-      
-      if (params.toString()) {
-        url += `&${params.toString()}`;
+      const { data, error } = await supabase.functions.invoke('reports-export', {
+        body: {
+          type: format,
+          congregacao_id: congregacaoId || undefined,
+          start_date: dateRange.start || undefined,
+          end_date: dateRange.end || undefined
+        }
+      });
+      if (error) throw error;
+      if (data?.downloadUrl) {
+        const link = document.createElement('a');
+        link.href = data.downloadUrl;
+        link.download = `relatorio-designacoes.${format}`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }
-
-      // Criar link para download
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `relatorio-designacoes.${format}`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
       
       toast({
         title: "Exportação iniciada",

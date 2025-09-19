@@ -20,6 +20,7 @@ import {
 import SidebarLayout from "@/components/layout/SidebarLayout";
 import { useNavigate } from "react-router-dom";
 import { useProgramContext } from "@/contexts/ProgramContext";
+import { supabase } from "@/integrations/supabase/client";
 
 // Tipos para o sistema de programas
 interface ProgramaSemanal {
@@ -249,22 +250,17 @@ const ProgramasPage = () => {
 
   // Carregar PDFs disponíveis ao montar o componente
   useEffect(() => {
-    carregarPDFsDisponiveis();
+    // Temporariamente desativado para evitar erros de CORS enquanto as Edge Functions não estão publicadas
+    // carregarPDFsDisponiveis();
   }, []);
 
   // Carregar programas reais dos arquivos JSON
   const carregarProgramasReais = async () => {
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
-      const response = await fetch(`${apiBaseUrl}/api/programacoes/json-files`);
+      const { data, error } = await supabase.functions.invoke('list-programs-json', { body: { limit: 24 } });
+      if (error) throw error;
       
-      if (!response.ok) {
-        throw new Error('Falha ao carregar programas');
-      }
-      
-      const data = await response.json();
-      
-      if (data.success && data.programas) {
+      if (data?.programas) {
         // Converter dados JSON para formato do sistema
         const programasConvertidos: ProgramaSemanal[] = data.programas.map((prog: any) => ({
           id: prog.idSemana || prog.id,
@@ -308,12 +304,9 @@ const ProgramasPage = () => {
   // Carregar PDFs disponíveis
   const carregarPDFsDisponiveis = async () => {
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
-      const response = await fetch(`${apiBaseUrl}/api/programacoes/pdfs`);
-      if (response.ok) {
-        const data = await response.json();
-        setPdfsDisponiveis(data.pdfs);
-      }
+      const { data, error } = await supabase.functions.invoke('list-pdfs');
+      if (error) throw error;
+      if (data?.pdfs) setPdfsDisponiveis(data.pdfs);
     } catch (error) {
       console.error('Erro ao carregar PDFs:', error);
     }
@@ -430,6 +423,10 @@ const ProgramasPage = () => {
                           // For now, we'll use a default congregacao ID
                           // In a real app, this would be selected by the user
                           setSelectedCongregacaoId('congregacao-1');
+                          // Persist full program so DesignacoesPage can load it immediately
+                          try {
+                            localStorage.setItem('selectedProgram', JSON.stringify(programa));
+                          } catch (_) {}
                           navigate('/designacoes');
                         }}
                       >

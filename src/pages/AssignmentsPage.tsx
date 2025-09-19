@@ -27,6 +27,7 @@ import SidebarLayout from "@/components/layout/SidebarLayout";
 import { useEstudantes } from "@/hooks/useEstudantes";
 import { useAuth } from "@/contexts/AuthContext";
 import { AssignmentPreviewModal } from "@/components/AssignmentPreviewModal";
+import { supabase } from "@/integrations/supabase/client";
 
 // Types for the assignment system
 interface Assignment {
@@ -81,40 +82,34 @@ const AssignmentsPage = () => {
   const loadPrograms = async () => {
     setIsLoadingPrograms(true);
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
-      
-      // Try to load from JSON files first (fallback)
-      try {
-        const response = await fetch(`${apiBaseUrl}/api/programacoes/json-files`);
-        if (response.ok) {
-          const data = await response.json();
-          if (data.programas && data.programas.length > 0) {
-            const programs: Program[] = data.programas.map((p: any, index: number) => ({
-              id: p.idSemana || `program-${index}`,
-              titulo: p.semanaLabel || p.titulo || `Programa ${index + 1}`,
-              semana: p.semanaLabel || `Semana ${index + 1}`,
-              data_inicio: p.idSemana || new Date().toISOString().split('T')[0],
-              itens: p.programacao ? p.programacao.flatMap((secao: any) => 
-                secao.partes.map((parte: any, parteIndex: number) => ({
-                  id: `${p.idSemana || index}-${secao.secao}-${parteIndex}`,
-                  titulo: parte.titulo,
-                  tipo: parte.tipo,
-                  tempo: parte.duracaoMin || 0,
-                  ordem: parte.idParte || parteIndex + 1,
-                  secao: secao.secao,
-                  regras_papel: parte.restricoes || {}
-                }))
-              ) : []
-            }));
-            setAvailablePrograms(programs);
-            if (programs.length > 0 && !selectedProgram) {
-              setSelectedProgram(programs[0]);
-            }
-            return;
-          }
+      // Prefer Supabase Edge Function to list JSON programs
+      const { data, error } = await supabase.functions.invoke('list-programs-json', {
+        body: { limit: 10 }
+      });
+
+      if (!error && data?.programas && data.programas.length > 0) {
+        const programs: Program[] = data.programas.map((p: any, index: number) => ({
+          id: p.idSemana || `program-${index}`,
+          titulo: p.semanaLabel || p.titulo || `Programa ${index + 1}`,
+          semana: p.semanaLabel || `Semana ${index + 1}`,
+          data_inicio: p.idSemana || new Date().toISOString().split('T')[0],
+          itens: p.programacao ? p.programacao.flatMap((secao: any) => 
+            secao.partes.map((parte: any, parteIndex: number) => ({
+              id: `${p.idSemana || index}-${secao.secao}-${parteIndex}`,
+              titulo: parte.titulo,
+              tipo: parte.tipo,
+              tempo: parte.duracaoMin || 0,
+              ordem: parte.idParte || parteIndex + 1,
+              secao: secao.secao,
+              regras_papel: parte.restricoes || {}
+            }))
+          ) : []
+        }));
+        setAvailablePrograms(programs);
+        if (programs.length > 0 && !selectedProgram) {
+          setSelectedProgram(programs[0]);
         }
-      } catch (jsonError) {
-        console.warn('JSON programs not available, using mock data');
+        return;
       }
 
       // Fallback to mock program
@@ -205,24 +200,16 @@ const AssignmentsPage = () => {
 
     setIsGenerating(true);
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
-      const response = await fetch(`${apiBaseUrl}/api/designacoes/generate`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      const { data: result, error } = await supabase.functions.invoke('generate-assignments', {
+        body: {
           programacao_id: selectedProgram.id,
           congregacao_id: congregacaoId
-        })
+        }
       });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || 'Falha ao gerar designações');
+      if (error) {
+        throw new Error(error.message || 'Falha ao gerar designações');
       }
-
-      const result = await response.json();
       console.log('Assignment generation result:', result);
 
       const generatedAssignments = result.designacoes || [];
@@ -280,27 +267,23 @@ const AssignmentsPage = () => {
 
     setIsSaving(true);
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
-      const response = await fetch(`${apiBaseUrl}/api/designacoes`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          programacao_id: selectedProgram.id,
-          congregacao_id: congregacaoId,
-          itens: assignments.map(assignment => ({
-            programacao_item_id: assignment.programacao_item_id,
-            principal_estudante_id: assignment.principal_estudante_id,
-            assistente_estudante_id: assignment.assistente_estudante_id,
-            observacoes: assignment.observacoes
-          }))
-        })
+      const payload = {
+        programacao_id: selectedProgram.id,
+        congregacao_id: congregacaoId,
+        itens: assignments.map(assignment => ({
+          programacao_item_id: assignment.programacao_item_id,
+          principal_estudante_id: assignment.principal_estudante_id,
+          assistente_estudante_id: assignment.assistente_estudante_id,
+          observacoes: assignment.observacoes
+        }))
+      };
+
+      const { error } = await supabase.functions.invoke('save-assignments', {
+        body: payload
       });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || 'Falha ao salvar designações');
+      if (error) {
+        throw new Error(error.message || 'Falha ao salvar designações');
       }
 
       toast({

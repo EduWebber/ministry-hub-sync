@@ -25,6 +25,7 @@ import { useEstudantes } from "@/hooks/useEstudantes";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useProgramContext } from "@/contexts/ProgramContext";
+import { supabase } from "@/integrations/supabase/client";
 
 // Tipos para o sistema de designações
 interface DesignacaoMinisterial {
@@ -163,29 +164,28 @@ const DesignacoesPage = () => {
     };
 
     try {
-      // Use the correct API base URL from environment variables
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
-      const response = await fetch(`${apiBaseUrl}/api/programacoes/json-files`);
+      // Prefer Supabase Edge Function
+      const { data, error } = await supabase.functions.invoke('list-programs-json', {
+        body: { limit: 1 }
+      });
 
-      if (!response.ok) {
-        throw new Error('Falha ao carregar programas');
+      if (error) {
+        throw error;
       }
 
-      const data = await response.json();
-
-      if (data.programas && data.programas.length > 0) {
+      if (data?.programas && data.programas.length > 0) {
         const programa = toProgramaSemanal(data.programas[0]);
         setProgramaAtual(programa);
         toast({ title: 'Programa carregado', description: `Programa "${programa.semana}" carregado com sucesso.` });
         return;
       }
 
-      // Sem dados do backend — usar fallback
+      // Sem dados — usar fallback
       const fallback = toProgramaSemanal(fallbackProgramas[0]);
       setProgramaAtual(fallback);
       toast({ title: 'Programa (local) carregado', description: `Usando dados locais: ${fallback.semana}` });
     } catch (error) {
-      console.warn('Backend indisponível, usando fallback local.', error);
+      console.warn('Edge Function indisponível, usando fallback local.', error);
       const fallback = toProgramaSemanal(fallbackProgramas[0]);
       setProgramaAtual(fallback);
       toast({ title: 'Programa (local) carregado', description: `Usando dados locais: ${fallback.semana}` });
@@ -215,47 +215,118 @@ const DesignacoesPage = () => {
     }
     
     try {
-      // Use the correct API base URL from environment variables
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
-      const response = await fetch(`${apiBaseUrl}/api/designacoes`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          programacao_id: programaAtual.id,
-          congregacao_id: congregacaoId,
-          itens: designacoes.map(d => ({
-            programacao_item_id: d.programacao_item_id || d.id,
-            principal_estudante_id: d.principal_estudante_id || d.estudante_principal_id,
-            assistente_estudante_id: d.assistente_estudante_id || d.estudante_ajudante_id,
-            observacoes: d.observacoes
-          }))
-        })
+      const payload = {
+        programacao_id: programaAtual.id,
+        congregacao_id: congregacaoId,
+        itens: designacoes.map(d => ({
+          programacao_item_id: d.programacao_item_id || d.id,
+          principal_estudante_id: d.principal_estudante_id || d.estudante_principal_id,
+          assistente_estudante_id: d.assistente_estudante_id || d.estudante_ajudante_id,
+          observacoes: d.observacoes
+        }))
+      };
+
+      const { data, error } = await supabase.functions.invoke('save-assignments', {
+        body: payload
       });
-      
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        if (response.status === 503 && errorData.details && errorData.details.includes('atualização de esquema')) {
+
+      if (error) {
+        if (typeof error?.message === 'string' && error.message.includes('atualização de esquema')) {
           throw new Error('O sistema está passando por uma atualização de esquema. Por favor, tente novamente em alguns minutos.');
         }
-        throw new Error('Falha ao salvar designações');
+        throw error;
       }
-      
-      const result = await response.json();
-      
+
       toast({
         title: 'Designações salvas!',
         description: `${designacoes.length} designações foram salvas com sucesso.`
       });
     } catch (error: any) {
       console.error('Erro ao salvar designações:', error);
-      toast({
-        title: 'Erro ao salvar designações',
-        description: error?.message || 'Não foi possível salvar as designações.',
-        variant: 'destructive'
-      });
+      // Fallback: salvar rascunho local
+      try {
+        localStorage.setItem('designacoes_draft', JSON.stringify({
+          programacao_id: programaAtual?.id,
+          congregacao_id: congregacaoId,
+          itens: designacoes
+        }));
+        toast({
+          title: 'Rascunho salvo localmente',
+          description: 'As designações foram salvas como rascunho no navegador.'
+        });
+      } catch (_) {
+        toast({
+          title: 'Erro ao salvar designações',
+          description: error?.message || 'Não foi possível salvar as designações.',
+          variant: 'destructive'
+        });
+      }
     }
+  };
+
+  // Gerador local (fallback) quando a Function não estiver disponível
+  const gerarDesignacoesLocal = () => {
+    if (!programaAtual) return [] as any[];
+    const parts = programaAtual.partes || [];
+    const alunos = Array.isArray(estudantes) ? (estudantes as any[]) : [];
+
+    const pick = (list: any[]) => list[Math.floor(Math.random() * list.length)];
+
+    const elegiveisPorTipo = (parte: any) => {
+      const titulo = String(parte.titulo || '').toLowerCase();
+      const tipo = String(parte.tipo || '').toLowerCase();
+      // Heurísticas simples
+      if (titulo.includes('leitura') || tipo.includes('leitura')) {
+        return alunos.filter(a => a.genero === 'masculino' && (a.reading === true || a.tresures === true || a.gems === true || a.talk === true));
+      }
+      if (titulo.includes('iniciando')) {
+        return alunos.filter(a => a.starting === true || a.following === true || a.making === true || a.explaining === true);
+      }
+      if (titulo.includes('cultivando')) {
+        return alunos.filter(a => a.following === true || a.starting === true || a.making === true || a.explaining === true);
+      }
+      if (titulo.includes('fazendo')) {
+        return alunos.filter(a => a.making === true || a.following === true || a.starting === true);
+      }
+      if (titulo.includes('explicando') || tipo.includes('discurso')) {
+        return alunos.filter(a => a.talk === true || a.explaining === true);
+      }
+      return alunos;
+    };
+
+    const precisaAssistente = (parte: any) => {
+      const titulo = String(parte.titulo || '').toLowerCase();
+      return (
+        titulo.includes('iniciando') ||
+        titulo.includes('cultivando') ||
+        titulo.includes('fazendo') ||
+        titulo.includes('explicando')
+      );
+    };
+
+    const geradas: any[] = parts.map((parte: any, idx: number) => {
+      const candidatos = elegiveisPorTipo(parte);
+      const principal = candidatos.length > 0 ? pick(candidatos) : pick(alunos);
+      let assistenteId: string | undefined = undefined;
+      if (precisaAssistente(parte)) {
+        const mesmos = alunos.filter(a => a.id !== principal?.id && a.genero === principal?.genero);
+        const aux = mesmos.length > 0 ? pick(mesmos) : pick(alunos.filter(a => a.id !== principal?.id));
+        assistenteId = aux?.id;
+      }
+      return {
+        id: `${programaAtual.id}-${parte.numero}`,
+        programacao_item_id: parte.numero,
+        parte_numero: parte.numero,
+        parte_titulo: parte.titulo,
+        parte_tempo: parte.tempo,
+        parte_tipo: parte.tipo,
+        principal_estudante_id: principal?.id || null,
+        assistente_estudante_id: assistenteId,
+        status: principal ? 'OK' : 'PENDING',
+        observacoes: 'fallback: local-generator'
+      };
+    });
+    return geradas;
   };
 
   // Gerar designações automaticamente (conectado ao backend)
@@ -280,29 +351,16 @@ const DesignacoesPage = () => {
 
     setIsGenerating(true);
     try {
-      // Generate designations directly
-      // Use the correct API base URL from environment variables
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
-      const response = await fetch(`${apiBaseUrl}/api/designacoes/generate`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      const { data: result, error } = await supabase.functions.invoke('generate-assignments', {
+        body: {
           programacao_id: programaAtual.id,
           congregacao_id: congregacaoId
-        })
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        if (response.status === 503 && errorData.details && errorData.details.includes('atualização de esquema')) {
-          throw new Error('O sistema está passando por uma atualização de esquema. Por favor, tente novamente em alguns minutos.');
         }
-        throw new Error('Falha ao gerar designações');
+      });
+
+      if (error) {
+        throw error;
       }
-      
-      const result = await response.json();
       console.log('Resposta da API de geração:', result);
       
       // Atualizar estado com as designações geradas
@@ -338,11 +396,21 @@ const DesignacoesPage = () => {
         });
       }
     } catch (error: any) {
-      toast({ 
-        title: 'Erro ao gerar designações', 
-        description: error?.message || 'Falha na geração', 
-        variant: 'destructive' 
-      });
+      // Fallback local
+      const locais = gerarDesignacoesLocal();
+      if (locais.length > 0) {
+        setDesignacoes(locais);
+        toast({
+          title: 'Designações geradas (local)',
+          description: `${locais.length} designações criadas com gerador local.`
+        });
+      } else {
+        toast({ 
+          title: 'Erro ao gerar designações', 
+          description: error?.message || 'Falha na geração', 
+          variant: 'destructive' 
+        });
+      }
     } finally {
       setIsGenerating(false);
     }

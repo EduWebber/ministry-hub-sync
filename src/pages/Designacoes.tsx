@@ -34,6 +34,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useEstudantes } from "@/hooks/useEstudantes";
 import { JWContentParser } from "@/components/JWContentParser";
 import DesignacoesReais from "@/components/DesignacoesReais";
+import { supabase } from "@/integrations/supabase/client";
 
 // Check if we're in mock mode
 const isMockMode = import.meta.env.VITE_MOCK_MODE === 'true';
@@ -346,17 +347,8 @@ const GeradorDesignacoes: React.FC<{
       items
     };
 
-    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
-    const resp = await fetch(`${apiBaseUrl}/api/programacoes`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    if (!resp.ok) {
-      const err = await resp.json().catch(() => ({}));
-      throw new Error(err.error || 'Falha ao salvar programação');
-    }
-    const data = await resp.json();
+    const { data, error } = await supabase.functions.invoke('manage-programs', { body: { action: 'upsert', payload } });
+    if (error) throw error;
     setProgramacaoId(data.programacao.id);
     setProgramacaoItens(data.itens || []);
     return data.programacao.id as string;
@@ -374,26 +366,17 @@ const GeradorDesignacoes: React.FC<{
       // 1) Persistir programa no backend
       const progId = programacaoId || (await persistProgram(programa));
 
-      // 2) Chamar o gerador no backend
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
-      const genResp = await fetch(`${apiBaseUrl}/api/designacoes/generate`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ programacao_id: progId, congregacao_id: congregacaoId })
+      // 2) Gerar designações via Supabase Function
+      const { data: genData, error: genError } = await supabase.functions.invoke('generate-assignments', {
+        body: { programacao_id: progId, congregacao_id: congregacaoId }
       });
-      if (!genResp.ok) {
-        const err = await genResp.json().catch(() => ({}));
-        throw new Error(err.error || 'Falha ao gerar designações');
-      }
-      const genData = await genResp.json();
+      if (genError) throw genError;
 
-      // 3) Buscar as designações geradas (com os itens)
-      const listResp = await fetch(`${apiBaseUrl}/api/designacoes?programacao_id=${encodeURIComponent(progId)}&congregacao_id=${encodeURIComponent(congregacaoId)}`);
-      if (!listResp.ok) {
-        const err = await listResp.json().catch(() => ({}));
-        throw new Error(err.error || 'Falha ao listar designações');
-      }
-      const listData = await listResp.json();
+      // 3) Buscar as designações geradas (com os itens) via function
+      const { data: listData, error: listError } = await supabase.functions.invoke('list-assignments', {
+        body: { programacao_id: progId, congregacao_id: congregacaoId }
+      });
+      if (listError) throw listError;
 
       const itens: any[] = listData.itens || [];
       const itensByProgItem: Record<string, any> = {};

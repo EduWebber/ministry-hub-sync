@@ -17,6 +17,7 @@ import {
   Zap
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 interface QualificacoesAvancadasProps {
   congregacaoId?: string;
@@ -59,26 +60,15 @@ const QualificacoesAvancadas = ({ congregacaoId }: QualificacoesAvancadasProps) 
   const fetchAdvancedQualifications = async () => {
     setIsLoading(true);
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
-      let url = `${apiBaseUrl}/api/reports/advanced-qualifications`;
-      
-      // Add query parameters
-      const params = new URLSearchParams();
-      if (congregacaoId) params.append('congregacao_id', congregacaoId);
-      
-      if (params.toString()) {
-        url += `?${params.toString()}`;
-      }
-
-      const response = await fetch(url);
-      
-      if (!response.ok) {
-        throw new Error('Falha ao carregar relatório');
-      }
-      
-      const data = await response.json();
-      setReportData(data.report || []);
-      setSummary(data.summary || null);
+      const { data, error } = await supabase.functions.invoke('reports', {
+        body: {
+          type: 'advanced-qualifications',
+          congregacao_id: congregacaoId || undefined
+        }
+      });
+      if (error) throw error;
+      setReportData(data?.report || []);
+      setSummary(data?.summary || null);
       
       toast({
         title: "Relatório carregado",
