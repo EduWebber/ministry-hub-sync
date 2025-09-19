@@ -74,7 +74,8 @@ const AssignmentsPage = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [isLoadingPrograms, setIsLoadingPrograms] = useState(false);
-  const [congregacaoId, setCongregacaoId] = useState("7e90ac8e-d2f4-403a-b78f-55ff20ab7edf");
+  const firstCong = Array.isArray(estudantes) && estudantes.length > 0 ? (estudantes as any[]).find((e: any) => e?.congregacao_id)?.congregacao_id : '';
+  const [congregacaoId, setCongregacaoId] = useState(firstCong || '');
   const [showPreview, setShowPreview] = useState(false);
   const [availablePrograms, setAvailablePrograms] = useState<Program[]>([]);
 
@@ -437,9 +438,13 @@ const AssignmentsPage = () => {
                     <SelectValue placeholder="Selecione uma congregação" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="7e90ac8e-d2f4-403a-b78f-55ff20ab7edf">Congregação Central</SelectItem>
-                    <SelectItem value="congregacao-norte">Congregação Norte</SelectItem>
-                    <SelectItem value="congregacao-sul">Congregação Sul</SelectItem>
+                    {Array.from(new Set(((estudantes || []) as any[]).map(e => e?.congregacao_id).filter(Boolean))).length > 0 ? (
+                      Array.from(new Set(((estudantes || []) as any[]).map(e => e?.congregacao_id).filter(Boolean))).map((id: any) => (
+                        <SelectItem key={String(id)} value={String(id)}>{String(id)}</SelectItem>
+                      ))
+                    ) : (
+                      <SelectItem value="__all__">Todas</SelectItem>
+                    )}
                   </SelectContent>
                 </Select>
               </div>

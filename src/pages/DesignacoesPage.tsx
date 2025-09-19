@@ -94,8 +94,9 @@ const DesignacoesPage = () => {
     }
   }, []);
   
-  // Update congregacaoId to use context
-  const congregacaoId = selectedCongregacaoId || '7e90ac8e-d2f4-403a-b78f-55ff20ab7edf'; // Default to a valid congregation ID
+  // Update congregacaoId to use context, fallback to first estudante's congregacao
+  const firstCongId = Array.isArray(estudantes) && estudantes.length > 0 ? (estudantes as any[]).find((e: any) => e?.congregacao_id)?.congregacao_id : '';
+  const congregacaoId = selectedCongregacaoId || firstCongId || '';
   const setCongregacaoId = setSelectedCongregacaoId;
 
   // Carregar semana real dos dados JSON com fallback local quando o backend estiver offline
@@ -512,9 +513,13 @@ const DesignacoesPage = () => {
                     <SelectValue placeholder="Selecione uma congregação" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="550e8400-e29b-41d4-a716-446655440001">Congregação Central</SelectItem>
-                    <SelectItem value="congregacao-2">Congregação Norte</SelectItem>
-                    <SelectItem value="congregacao-3">Congregação Sul</SelectItem>
+                    {Array.from(new Set(((estudantes || []) as any[]).map(e => e?.congregacao_id).filter(Boolean))).length > 0 ? (
+                      Array.from(new Set(((estudantes || []) as any[]).map(e => e?.congregacao_id).filter(Boolean))).map((id: any) => (
+                        <SelectItem key={String(id)} value={String(id)}>{String(id)}</SelectItem>
+                      ))
+                    ) : (
+                      <SelectItem value="__all__">Todas</SelectItem>
+                    )}
                   </SelectContent>
                 </Select>
               </div>

@@ -26,21 +26,21 @@ export default function UnifiedNavigation() {
   // 🚨 SEM PERFIL = SEM NAVEGAÇÃO
   if (!profile) return null;
 
-  // 🏠 NAVEGAÇÃO ADMIN - CONTROLE GLOBAL
+  // 🏠 ADMIN passa a usar navegação do INSTRUTOR (admin dashboard removido)
   if (profile.role === 'admin') {
-    const adminNavItems = [
-      { href: '/admin', label: 'Dashboard', icon: Shield, exact: true },
-      { href: '/admin/users', label: 'Usuários', icon: Users },
-      { href: '/admin/congregations', label: 'Congregações', icon: Globe },
-      { href: '/admin/system', label: 'Sistema', icon: Cog },
-      { href: '/admin/monitoring', label: 'Monitoramento', icon: Activity },
-      { href: '/admin/developer', label: 'Developer', icon: Settings }
+    const instructorNavItems = [
+      { href: '/dashboard', label: 'Dashboard', icon: Home, exact: true },
+      { href: '/estudantes', label: 'Estudantes', icon: Users },
+      { href: '/programas', label: 'Programas', icon: BookOpen },
+      { href: '/designacoes', label: 'Designações', icon: Calendar },
+      { href: '/relatorios', label: 'Relatórios', icon: BarChart3 },
+      { href: '/reunioes', label: 'Reuniões', icon: Calendar }
     ];
 
     return (
       <nav className="flex items-center justify-between p-4 bg-background border-b">
         <div className="flex space-x-2">
-          {adminNavItems.map((item) => {
+          {instructorNavItems.map((item) => {
             const isActive = item.exact 
               ? location.pathname === item.href
               : location.pathname.startsWith(item.href);

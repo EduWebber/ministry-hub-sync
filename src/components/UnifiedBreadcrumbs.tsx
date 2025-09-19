@@ -11,21 +11,20 @@ export default function UnifiedBreadcrumbs() {
   // 🚨 SEM PERFIL = SEM BREADCRUMBS
   if (!profile) return null;
 
-  // 🏠 BREADCRUMBS ADMIN
+  // 🏠 ADMIN usa breadcrumbs do instrutor (admin dashboard removido)
   if (profile.role === 'admin') {
     const pathSegments = location.pathname.split('/').filter(Boolean);
     
     if (pathSegments.length === 0) return null;
 
     const breadcrumbItems = [
-      { href: '/admin', label: 'Admin', icon: Shield }
+      { href: '/dashboard', label: 'Dashboard', icon: Home }
     ];
 
-    // Adicionar segmentos específicos do admin
     if (pathSegments[1]) {
       const segment = pathSegments[1];
       const label = segment.charAt(0).toUpperCase() + segment.slice(1);
-      breadcrumbItems.push({ href: `/admin/${segment}`, label, icon: null });
+      breadcrumbItems.push({ href: `/${segment}`, label, icon: null });
     }
 
     return (

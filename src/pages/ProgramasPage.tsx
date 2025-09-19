@@ -22,6 +22,13 @@ import { useNavigate } from "react-router-dom";
 import { useProgramContext } from "@/contexts/ProgramContext";
 import { supabase } from "@/integrations/supabase/client";
 
+async function fetchMockMonth(month: string) {
+  const resp = await fetch(`/api/programacoes/mock?mes=${encodeURIComponent(month)}`);
+  if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+  const data = await resp.json();
+  return data;
+}
+
 // Tipos para o sistema de programas
 interface ProgramaSemanal {
   id: string;
@@ -254,43 +261,41 @@ const ProgramasPage = () => {
     // carregarPDFsDisponiveis();
   }, []);
 
-  // Carregar programas reais dos arquivos JSON
+  // Carregar programas reais dos arquivos JSON (via backend simplificado)
   const carregarProgramasReais = async () => {
     try {
-      const { data, error } = await supabase.functions.invoke('list-programs-json', { body: { limit: 24 } });
-      if (error) throw error;
-      
-      if (data?.programas) {
-        // Converter dados JSON para formato do sistema
-        const programasConvertidos: ProgramaSemanal[] = data.programas.map((prog: any) => ({
-          id: prog.idSemana || prog.id,
-          semana: prog.semanaLabel || prog.semana,
-          data_inicio: prog.idSemana || prog.dataInicio || prog.data_inicio,
-          mes_ano: prog.mesAno || prog.mes_ano || new Date(prog.idSemana || Date.now()).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' }),
-          tema: prog.tema,
-          partes: prog.programacao ? prog.programacao.flatMap((secao: any) => 
-            secao.partes.map((parte: any, index: number) => ({
-              numero: parte.idParte || index + 1,
-              titulo: parte.titulo,
-              tempo: parte.duracaoMin || parte.tempo,
-              tipo: parte.tipo,
-              secao: secao.secao,
-              referencia: parte.referencia,
-              instrucoes: parte.instrucoes
-            }))
-          ) : prog.partes || [],
-          criado_em: new Date().toISOString(),
-          atualizado_em: new Date().toISOString()
-        }));
-        
-        setProgramas(programasConvertidos);
-        toast({
-          title: "Programas carregados",
-          description: `${programasConvertidos.length} programa(s) carregado(s) dos arquivos JSON.`
-        });
-      } else {
-        throw new Error('Nenhum programa encontrado');
-      }
+      const months = ["2025-09", "2025-11"];
+      const results = await Promise.all(months.map(fetchMockMonth));
+      const flatWeeks = results.flatMap((data) => Array.isArray(data) ? data : []);
+      if (!flatWeeks.length) throw new Error('Nenhum programa encontrado');
+
+      const programasConvertidos: ProgramaSemanal[] = flatWeeks.map((prog: any) => ({
+        id: prog.idSemana || prog.id,
+        semana: prog.semanaLabel || prog.semana,
+        data_inicio: prog.idSemana || prog.dataInicio || prog.data_inicio,
+        mes_ao: undefined as any,
+        mes_ano: new Date((prog.idSemana || `${months[0]}-01`)).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' }),
+        tema: prog.tema,
+        partes: prog.programacao ? prog.programacao.flatMap((secao: any) => 
+          secao.partes.map((parte: any, index: number) => ({
+            numero: parte.idParte || index + 1,
+            titulo: parte.titulo,
+            tempo: parte.duracaoMin || parte.tempo,
+            tipo: parte.tipo,
+            secao: secao.secao,
+            referencia: Array.isArray(parte.referencias) ? parte.referencias.join('; ') : parte.referencia,
+            instrucoes: parte.instrucoes
+          }))
+        ) : prog.partes || [],
+        criado_em: new Date().toISOString(),
+        atualizado_em: new Date().toISOString()
+      }));
+
+      setProgramas(programasConvertidos);
+      toast({
+        title: "Programas carregados",
+        description: `${programasConvertidos.length} programa(s) carregado(s) dos arquivos JSON.`
+      });
     } catch (error) {
       console.error('Erro ao carregar programas:', error);
       toast({
