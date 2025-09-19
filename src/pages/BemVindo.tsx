@@ -188,7 +188,7 @@ const BemVindo = () => {
         <div className="text-center mb-12">
           <div className="mb-6">
             <Badge variant="secondary" className="mb-4">
-              {t('welcome.welcomeUser', { name: profile?.nome_completo || t('terms.instructor') })}
+              {t('welcome.welcomeUser', { name: profile?.nome || t('terms.instructor') })}
             </Badge>
             <h1 className="text-4xl font-bold text-jw-navy mb-4">
               {welcomeSteps[currentStep].title}

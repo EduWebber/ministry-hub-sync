@@ -5,7 +5,7 @@ import { Database } from '@/integrations/supabase/types';
 import { authLogger, createAuthMetrics } from '@/utils/authLogger';
 import { withRefreshTokenErrorHandling } from '@/utils/refreshTokenHandler';
 
-type UserRole = Database['public']['Enums']['user_role'];
+type UserRole = Database['public']['Enums']['app_role'];
 
 interface UserProfile {
   id: string;
@@ -13,7 +13,7 @@ interface UserProfile {
   congregacao: string | null;
   cargo: string | null;
   role: UserRole;
-  date_of_birth: string | null;
+  data_nascimento: string | null;
   email: string;
   created_at: string | null;
   updated_at: string | null;
@@ -43,8 +43,9 @@ export const useProfileLoader = () => {
       const { data, error } = await supabase
         .from('profiles')
         .insert({
-          id: user.id,
+          user_id: user.id,
           nome: metadata.nome_completo || '',
+          email: email,
           congregacao: metadata.congregacao || '',
           cargo: metadata.cargo || '',
           role: (metadata.role as UserRole) || 'instrutor'
@@ -61,7 +62,7 @@ export const useProfileLoader = () => {
           congregacao: metadata.congregacao || '',
           cargo: metadata.cargo || '',
           role: (metadata.role as UserRole) || 'instrutor',
-          date_of_birth: metadata.date_of_birth || null,
+          data_nascimento: metadata.data_nascimento || null,
           email,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
@@ -70,7 +71,7 @@ export const useProfileLoader = () => {
 
       const profileWithEmail = { 
         ...data, 
-        nome: data.nome_completo || data.nome, // Map nome_completo to nome if needed
+        data_nascimento: data.data_nascimento || null,
         email 
       };
       authLogger.success('Profile created from metadata', profileWithEmail);
@@ -140,7 +141,7 @@ export const useProfileLoader = () => {
         const email = session.user.email || '';
         const profileWithEmail = { 
           ...profileData, 
-          nome: profileData.nome_completo || profileData.nome, // Map nome_completo to nome if needed
+          data_nascimento: profileData.data_nascimento || null,
           email 
         } as UserProfile;
         

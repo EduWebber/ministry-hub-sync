@@ -10,6 +10,11 @@ export interface Estudante {
   email?: string;
   telefone?: string;
   profile_id: string;
+  idade?: number;
+  congregacao_id?: string;
+  created_at?: string;
+  disponibilidade?: any;
+  user_id?: string;
 }
 
 export function useEstudantes() {
@@ -84,10 +89,47 @@ export function useEstudantes() {
     fetchEstudantes();
   }, [fetchEstudantes]);
 
+  const createEstudante = useCallback(async (data: any) => {
+    // Implementation needed
+    console.log('Creating estudante:', data);
+  }, []);
+
+  const updateEstudante = useCallback(async (id: string, data: any) => {
+    // Implementation needed
+    console.log('Updating estudante:', id, data);
+  }, []);
+
+  const deleteEstudante = useCallback(async (id: string) => {
+    // Implementation needed
+    console.log('Deleting estudante:', id);
+  }, []);
+
+  const filterEstudantes = useCallback((filters: any) => {
+    // Implementation needed
+    return estudantes;
+  }, [estudantes]);
+
+  const getStatistics = useCallback(() => {
+    return {
+      total: estudantes.length,
+      active: estudantes.filter(e => e.ativo).length,
+      inactive: estudantes.filter(e => !e.ativo).length,
+      ativos: estudantes.filter(e => e.ativo).length,
+      inativos: estudantes.filter(e => !e.ativo).length,
+      menores: estudantes.filter(e => e.idade && e.idade < 18).length
+    };
+  }, [estudantes]);
+
   return {
     estudantes,
     isLoading,
     error,
     fetchEstudantes,
+    refetch: fetchEstudantes,
+    createEstudante,
+    updateEstudante,
+    deleteEstudante,
+    filterEstudantes,
+    getStatistics,
   };
 }

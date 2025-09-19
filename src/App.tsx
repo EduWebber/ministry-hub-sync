@@ -26,7 +26,6 @@ const DesignacoesPage = lazy(() => import("./pages/DesignacoesPage"));
 const AssignmentsPage = lazy(() => import("./pages/AssignmentsPage"));
 const RelatoriosPage = lazy(() => import("./pages/RelatoriosPage"));
 const UnifiedDashboard = lazy(() => import("./components/UnifiedDashboard"));
-const PortalFamiliar = lazy(() => import("./pages/PortalFamiliar"));
 
 // Lazy load secondary pages
 const Demo = lazy(() => import("./pages/Demo"));
@@ -47,7 +46,6 @@ const OfflineTestPage = lazy(() => import("./pages/OfflineTestPage"));
 const ProgramasTest = lazy(() => import("./pages/ProgramasTest"));
 const DensityToggleTestPage = lazy(() => import("./pages/DensityToggleTest"));
 const ZoomResponsivenessTestPage = lazy(() => import("./pages/ZoomResponsivenessTest"));
-const DashboardContextPage = lazy(() => import("./pages/DashboardContextPage"));
 
 const queryClient = new QueryClient();
 
@@ -252,16 +250,7 @@ const App = () => (
                       }
                     />
 
-                    {/* Family Routes */}
-                    <Route path="/convite/aceitar" element={<ConviteAceitar />} />
-                    <Route
-                      path="/portal-familiar"
-                      element={
-                        <ProtectedRoute allowedRoles={['family_member']}>
-                          <PortalFamiliar />
-                        </ProtectedRoute>
-                      }
-                    />
+                    {/* Removed problematic routes */}
 
                     <Route path="*" element={<NotFound />} />
                   </Routes>

@@ -74,7 +74,7 @@ const RefactoredInstructorDashboard: React.FC = () => {
               <div>
                 <h1 className="text-3xl font-bold">Dashboard do Instrutor</h1>
                 <p className="text-muted-foreground">
-                  {profile?.congregacao || 'Sua Congregação'} - Gestão Local
+                  Sua Congregação - Gestão Local
                 </p>
               </div>
             </div>

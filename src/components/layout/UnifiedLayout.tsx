@@ -59,7 +59,7 @@ const UnifiedLayout: React.FC<UnifiedLayoutProps> = ({ title, actions, children 
             </div>
             <div>
               <h2 className="font-semibold text-sm">Sistema Ministerial</h2>
-              <p className="text-xs text-gray-500">{profile?.nome_completo}</p>
+              <p className="text-xs text-gray-500">{profile?.nome}</p>
             </div>
           </div>
         </SidebarHeader>

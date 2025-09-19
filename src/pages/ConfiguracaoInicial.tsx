@@ -33,8 +33,8 @@ const ConfiguracaoInicial = () => {
 
   // Form data
   const [formData, setFormData] = useState({
-    nome_completo: profile?.nome_completo || '',
-    congregacao: profile?.congregacao || '',
+    nome: profile?.nome || '',
+    congregacao_id: profile?.congregacao_id || '',
     cargo: profile?.cargo || 'instrutor',
     email: profile?.email || '',
     preferences: {
@@ -93,7 +93,7 @@ const ConfiguracaoInicial = () => {
 
       // Update profile
       const { error } = await updateProfile({
-        nome_completo: formData.nome_completo,
+        nome: formData.nome,
         congregacao: formData.congregacao,
         cargo: formData.cargo
       });

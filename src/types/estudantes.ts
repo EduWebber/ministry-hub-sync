@@ -10,7 +10,16 @@ export type Genero = "masculino" | "feminino";
 export type Cargo = "anciao" | "servo_ministerial" | "pioneiro_regular" | "publicador_batizado" | "publicador_nao_batizado" | "estudante_novo";
 
 // Extended types for UI
-export interface EstudanteWithParent extends EstudanteRow {
+export interface EstudanteWithParent {
+  id: string;
+  genero: string;
+  qualificacoes?: string[];
+  ativo: boolean;
+  profile_id: string;
+  congregacao_id?: string;
+  created_at?: string;
+  disponibilidade?: any;
+  user_id?: string;
   pai_mae?: EstudanteRow | null;
   filhos?: EstudanteRow[];
   familia?: string;
@@ -31,6 +40,7 @@ export interface EstudanteWithParent extends EstudanteRow {
   telefone?: string;
   cargo?: string;
   data_nascimento?: string;
+  idade?: number;
 }
 
 // S-38-T Speech Types and Qualifications
@@ -74,6 +84,7 @@ export interface StudentProgress {
 export interface EstudanteWithProgress extends EstudanteWithParent {
   progress?: StudentProgress;
   qualifications?: StudentQualifications;
+  idade?: number;
 }
 
 // Instructor Dashboard Types
