@@ -74,7 +74,7 @@ const EstudantesPage = () => {
   const handleUpdateEstudante = async (data: any): Promise<boolean> => {
     if (!editingEstudante) return false;
     setFormLoading(true);
-    await updateEstudante({ id: editingEstudante.id, data });
+    await updateEstudante(editingEstudante.id, data);
     setFormLoading(false);
     setEditingEstudante(null);
     setActiveTab("list");
