@@ -20,7 +20,7 @@ const AuthPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
-  const { signIn, signUp, user } = useAuth();
+  const { signIn, signUp, user, authError, clearAuthError } = useAuth();
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,6 +36,11 @@ const AuthPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showSignUpPassword, setShowSignUpPassword] = useState(false);
   const [activeTab, setActiveTab] = useState("login");
+
+  // Clear auth errors when switching tabs
+  useEffect(() => {
+    clearAuthError();
+  }, [activeTab, clearAuthError]);
 
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -80,7 +85,7 @@ const AuthPage: React.FC = () => {
       if (error) {
         toast({
           title: t('auth.error'),
-          description: error.message,
+          description: error.message || 'Erro ao fazer login',
           variant: "destructive"
         });
       } else {
@@ -90,10 +95,11 @@ const AuthPage: React.FC = () => {
         });
         navigate('/dashboard');
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Login error:', error);
       toast({
         title: t('forms.error'),
-        description: 'Erro ao fazer login',
+        description: error.message || 'Erro ao fazer login',
         variant: "destructive"
       });
     } finally {
@@ -164,7 +170,7 @@ const AuthPage: React.FC = () => {
       if (error) {
         toast({
           title: t('forms.error'),
-          description: error.message,
+          description: error.message || 'Erro ao criar conta',
           variant: "destructive"
         });
       } else {
@@ -174,10 +180,11 @@ const AuthPage: React.FC = () => {
         });
         setActiveTab("login");
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Signup error:', error);
       toast({
         title: t('forms.error'),
-        description: 'Erro ao criar conta',
+        description: error.message || 'Erro ao criar conta',
         variant: "destructive"
       });
     } finally {
@@ -193,6 +200,17 @@ const AuthPage: React.FC = () => {
       navigate('/dashboard', { replace: true });
     }
   }, [user?.id, location.pathname, navigate]);
+
+  // Display auth error if exists
+  useEffect(() => {
+    if (authError) {
+      toast({
+        title: t('auth.error'),
+        description: authError,
+        variant: "destructive"
+      });
+    }
+  }, [authError, t, toast]);
 
   if (user) {
     return (

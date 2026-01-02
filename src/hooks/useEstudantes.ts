@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
 export interface Estudante {
@@ -9,11 +9,16 @@ export interface Estudante {
   ativo: boolean;
   email?: string;
   telefone?: string;
-  profile_id: string;
+  profile_id?: string; // This field doesn't exist in the estudantes table
   idade?: number;
   congregacao_id?: string;
   created_at?: string;
   disponibilidade?: any;
+  instrutor_id?: string;
+  data_batismo?: string | null;
+  data_nascimento?: string | null;
+  observacoes?: string | null;
+  parent_id?: string | null;
   user_id?: string;
 }
 
@@ -21,8 +26,16 @@ export function useEstudantes() {
   const [estudantes, setEstudantes] = useState<Estudante[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const fetchingRef = useRef(false); // Prevent duplicate fetches
 
   const fetchEstudantes = useCallback(async () => {
+    // Prevent concurrent fetches
+    if (fetchingRef.current) {
+      console.log('⏭️ Fetch already in progress, skipping duplicate request');
+      return;
+    }
+    
+    fetchingRef.current = true;
     try {
       setIsLoading(true);
       setError(null);
@@ -33,16 +46,20 @@ export function useEstudantes() {
         .from('estudantes')
         .select(`
           id,
+          nome,
           genero,
           qualificacoes,
           ativo,
-          profile_id,
-          profiles!inner (
-            id,
-            nome,
-            email,
-            telefone
-          )
+          email,
+          telefone,
+          idade,
+          congregacao_id,
+          created_at,
+          instrutor_id,
+          data_batismo,
+          data_nascimento,
+          observacoes,
+          parent_id
         `)
         .eq('ativo', true);
 
@@ -58,18 +75,24 @@ export function useEstudantes() {
         return;
       }
 
-      // Transform the data
+      // Transform the data to match the interface
       const transformedEstudantes = estudantesData.map((estudante: any) => {
-        const profile = estudante.profiles;
         return {
           id: estudante.id,
-          nome: profile?.nome || 'Nome não informado',
-          genero: estudante.genero,
+          nome: estudante.nome || 'Nome não informado',
+          genero: estudante.genero as 'masculino' | 'feminino',
           qualificacoes: estudante.qualificacoes || [],
           ativo: estudante.ativo,
-          email: profile?.email,
-          telefone: profile?.telefone,
-          profile_id: estudante.profile_id,
+          email: estudante.email,
+          telefone: estudante.telefone,
+          idade: estudante.idade,
+          congregacao_id: estudante.congregacao_id,
+          created_at: estudante.created_at,
+          instrutor_id: estudante.instrutor_id,
+          data_batismo: estudante.data_batismo,
+          data_nascimento: estudante.data_nascimento,
+          observacoes: estudante.observacoes,
+          parent_id: estudante.parent_id,
         };
       });
 
@@ -81,13 +104,15 @@ export function useEstudantes() {
       setError('Erro inesperado ao carregar estudantes');
     } finally {
       setIsLoading(false);
+      fetchingRef.current = false;
     }
   }, []);
 
-  // Load estudantes on mount
+  // Load estudantes on mount (only once)
   useEffect(() => {
     fetchEstudantes();
-  }, [fetchEstudantes]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty deps - only run on mount
 
   const createEstudante = useCallback(async (data: any) => {
     // Implementation needed

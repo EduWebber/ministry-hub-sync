@@ -75,6 +75,8 @@ if (import.meta.env.DEV && import.meta.env.VITE_LOG_LEVEL !== 'error') {
 const FlowNav: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [canProceed, setCanProceed] = React.useState(true);
+  
   const steps = ["/dashboard", "/estudantes", "/programas", "/designacoes"] as const;
   const labels: Record<string, string> = {
     "/dashboard": "Estudantes",
@@ -83,14 +85,58 @@ const FlowNav: React.FC = () => {
   };
 
   const idx = steps.indexOf(location.pathname as typeof steps[number]);
-  if (idx === -1 || idx === steps.length - 1) return null;
+  
+  React.useEffect(() => {
+    // Only check when navigating from estudantes to programas
+    if (location.pathname === "/estudantes" && idx >= 0 && idx < steps.length - 1) {
+      const nextPath = steps[idx + 1];
+      if (nextPath === "/programas") {
+        import("@/integrations/supabase/client").then(async module => {
+          const { supabase } = module;
+          try {
+            const { count } = await supabase
+              .from('estudantes')
+              .select('id', { count: 'exact', head: true })
+              .eq('ativo', true);
+            setCanProceed((count || 0) > 0);
+          } catch {
+            setCanProceed(false);
+          }
+        }).catch(() => setCanProceed(false));
+      } else {
+        setCanProceed(true);
+      }
+    } else {
+      setCanProceed(true);
+    }
+  }, [location.pathname, idx, steps]);
+
+  // If the current path is not in the steps or is the last step, don't render anything
+  if (idx === -1 || idx === steps.length - 1) {
+    return null;
+  }
 
   const nextPath = steps[idx + 1];
   const nextLabel = labels[location.pathname] || "Próximo";
 
+  const handleNavigate = () => {
+    if (!canProceed && location.pathname === "/estudantes") {
+      // Show alert with clear message
+      alert("Cadastre pelo menos um estudante antes de criar Programas.\n\nProgramas dependem de estudantes conforme as regras S-38.");
+      return;
+    }
+    navigate(nextPath);
+  };
+
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      <Button size="lg" className="shadow-lg" onClick={() => navigate(nextPath)}>
+      <Button 
+        size="lg" 
+        className="shadow-lg" 
+        onClick={handleNavigate}
+        disabled={!canProceed && location.pathname === "/estudantes"}
+        title={!canProceed && location.pathname === "/estudantes" ? "Cadastre pelo menos um estudante primeiro" : undefined}
+      >
         Continuar para {nextLabel}
       </Button>
     </div>

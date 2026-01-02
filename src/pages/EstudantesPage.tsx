@@ -6,12 +6,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Plus, Search, Filter, Users, FileSpreadsheet, BarChart3, Upload, Table, Info } from "lucide-react";
+import { Plus, Search, Filter, Users, FileSpreadsheet, BarChart3, Upload, Table, Info, AlertCircle } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import SidebarLayout from "@/components/layout/SidebarLayout";
 import { useEstudantes } from "@/hooks/useEstudantes";
 import EstudanteForm from "@/components/EstudanteForm";
 import EstudanteCard from "@/components/EstudanteCard";
 import StudentsSpreadsheet from "@/components/StudentsSpreadsheet";
+import SpreadsheetUpload from "@/components/SpreadsheetUpload";
+import TemplateDownload from "@/components/TemplateDownload";
+import ImportHelp from "@/components/ImportHelp";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/ui/empty-state";
 import {
@@ -145,28 +149,45 @@ const EstudantesPage = () => {
       }
     >
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="list" className="flex items-center gap-2">
-            <Users className="w-4 h-4" />
-            Lista
-          </TabsTrigger>
-          <TabsTrigger value="form" className="flex items-center gap-2">
-            <Plus className="w-4 h-4" />
-            {editingEstudante ? 'Editar' : 'Novo'}
-          </TabsTrigger>
-          <TabsTrigger value="import" className="flex items-center gap-2">
-            <FileSpreadsheet className="w-4 h-4" />
-            Importar
-          </TabsTrigger>
-          <TabsTrigger value="spreadsheet" className="flex items-center gap-2">
-            <Table className="w-4 h-4" />
-            Planilha
-          </TabsTrigger>
-          <TabsTrigger value="stats" className="flex items-center gap-2">
-            <BarChart3 className="w-4 h-4" />
-            Estatísticas
-          </TabsTrigger>
-        </TabsList>
+        <TooltipProvider>
+          <TabsList className="grid w-full grid-cols-5">
+            <TabsTrigger value="list" className="flex items-center gap-2">
+              <Users className="w-4 h-4" />
+              Lista
+            </TabsTrigger>
+            <TabsTrigger value="form" className="flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              {editingEstudante ? 'Editar' : 'Novo'}
+            </TabsTrigger>
+            <TabsTrigger value="import" className="flex items-center gap-2">
+              <FileSpreadsheet className="w-4 h-4" />
+              Importar
+            </TabsTrigger>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div>
+                  <TabsTrigger 
+                    value="spreadsheet" 
+                    className="flex items-center gap-2"
+                    disabled={estudantes.length === 0}
+                  >
+                    <Table className="w-4 h-4" />
+                    Planilha
+                  </TabsTrigger>
+                </div>
+              </TooltipTrigger>
+              {estudantes.length === 0 && (
+                <TooltipContent>
+                  <p className="max-w-xs">Cadastre pelo menos um estudante para visualizar a planilha.</p>
+                </TooltipContent>
+              )}
+            </Tooltip>
+            <TabsTrigger value="stats" className="flex items-center gap-2">
+              <BarChart3 className="w-4 h-4" />
+              Estatísticas
+            </TabsTrigger>
+          </TabsList>
+        </TooltipProvider>
 
         <TabsContent value="list" className="space-y-6">
           <Card>
@@ -213,14 +234,29 @@ const EstudantesPage = () => {
             ))}
           </div>
 
-          {filteredEstudantes.length === 0 && (
+          {filteredEstudantes.length === 0 && estudantes.length === 0 && (
+            <EmptyState
+              title="Nenhum estudante cadastrado"
+              description="Cadastre pelo menos um estudante para habilitar Programas e Designações conforme as regras S-38."
+              action={
+                <Button onClick={() => setActiveTab("form")}>
+                  <Plus className="w-4 h-4 mr-2" />
+                  Cadastrar primeiro estudante
+                </Button>
+              }
+              icon={<Users className="w-16 h-16 text-gray-300" />}
+            />
+          )}
+          
+          {filteredEstudantes.length === 0 && estudantes.length > 0 && (
             <div className="text-center py-12">
               <Users className="w-16 h-16 text-gray-300 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-600 mb-2">Nenhum estudante encontrado</h3>
-              <p className="text-gray-500 mb-4">Ajuste os filtros ou cadastre um novo estudante</p>
-              <Button onClick={() => setActiveTab("form")}>
-                <Plus className="w-4 h-4 mr-2" />
-                Cadastrar Estudante
+              <p className="text-gray-500 mb-4">Ajuste os filtros para encontrar estudantes</p>
+              <Button variant="outline" onClick={() => {
+                setFilters({ searchTerm: "", cargo: "todos", genero: "todos", ativo: "todos" });
+              }}>
+                Limpar filtros
               </Button>
             </div>
           )}
@@ -266,19 +302,26 @@ const EstudantesPage = () => {
         </TabsContent>
 
         <TabsContent value="import" className="space-y-6">
-          <div className="space-y-4">
+          {estudantes.length === 0 ? (
             <Alert>
-              <Info className="h-4 w-4" />
+              <AlertCircle className="h-4 w-4" />
               <AlertDescription>
-                <strong>Importação de Estudantes:</strong> Funcionalidade em desenvolvimento.
-                Por favor, adicione estudantes manualmente por enquanto.
+                <strong>Pré-requisito necessário:</strong> Cadastre pelo menos um estudante manualmente antes de usar a importação em lote.
+                <div className="mt-3">
+                  <Button onClick={() => setActiveTab("form")} size="sm">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Cadastrar primeiro estudante
+                  </Button>
+                </div>
               </AlertDescription>
             </Alert>
-            <div className="text-center py-8">
-              <FileSpreadsheet className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-500">Sistema de importação será disponibilizado em breve.</p>
+          ) : (
+            <div className="space-y-6">
+              <TemplateDownload />
+              <SpreadsheetUpload onImportComplete={handleImportComplete} />
+              <ImportHelp />
             </div>
-          </div>
+          )}
         </TabsContent>
 
         <TabsContent value="spreadsheet" className="w-full overflow-x-auto">

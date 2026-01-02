@@ -8,6 +8,9 @@ import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 import programacoesData from '@/data/programacoes-completas-2025.json';
 
+// Add console log to check if the data is loaded correctly
+console.log('Programacoes data:', programacoesData);
+
 interface Estudante {
   id: string;
   nome: string;
@@ -37,9 +40,28 @@ interface Semana {
 }
 
 export function InstructorDashboardSimplified() {
+  console.log('🔵 InstructorDashboardSimplified: Component rendered');
+  
   const { toast } = useToast();
   const navigate = useNavigate();
-  const [semanaAtual, setSemanaAtual] = useState<number>(0);
+  const semanas: Semana[] = programacoesData?.semanas || [];
+  
+  console.log('🔵 InstructorDashboardSimplified: semanas loaded', { count: semanas.length });
+  
+  // Initialize semanaAtual to 0 only if there are semanas available, otherwise -1
+  const [semanaAtual, setSemanaAtual] = useState<number>(semanas.length > 0 ? 0 : -1);
+  
+  // Loading state to ensure proper rendering
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    // Simulate a brief loading time to ensure data is properly loaded
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
   const [estudantes, setEstudantes] = useState<Estudante[]>([
     { id: '1', nome: 'João Silva', genero: 'M', privilegios: ['leitura', 'consideracao'] },
     { id: '2', nome: 'Maria Santos', genero: 'F', privilegios: ['leitura', 'participacao'] },
@@ -49,8 +71,28 @@ export function InstructorDashboardSimplified() {
   const [designacoes, setDesignacoes] = useState<Record<string, string>>({});
   const [salvando, setSalvando] = useState(false);
 
-  const semanas: Semana[] = programacoesData.semanas;
   const semanaEscolhida = semanas[semanaAtual];
+
+  // Add error handling for the programacoes data
+  useEffect(() => {
+    if (!programacoesData || !programacoesData.semanas || programacoesData.semanas.length === 0) {
+      console.error('No programacoes data available');
+      toast({
+        title: "Erro de carregamento",
+        description: "Não foi possível carregar a programação. Contate o suporte.",
+        variant: "destructive"
+      });
+    }
+  }, [toast]);
+
+  // Update semanaAtual when semanas change to ensure it's within valid range
+  useEffect(() => {
+    if (semanas.length > 0 && semanaAtual < 0) {
+      setSemanaAtual(0); // Set to first week if we have weeks and current is invalid
+    } else if (semanas.length === 0) {
+      setSemanaAtual(-1); // Set to invalid if no weeks
+    }
+  }, [semanas, semanaAtual]);
 
   const handleDesignacao = (parteId: string, estudanteId: string) => {
     setDesignacoes(prev => ({
@@ -107,6 +149,17 @@ export function InstructorDashboardSimplified() {
       default: return 'bg-gray-100 text-gray-800';
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <p className="text-lg text-gray-600">Carregando dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -172,7 +225,10 @@ export function InstructorDashboardSimplified() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <Select value={semanaAtual.toString()} onValueChange={(value) => setSemanaAtual(parseInt(value))}>
+            <Select 
+              value={semanas.length > 0 && semanaAtual >= 0 ? semanaAtual.toString() : ""} 
+              onValueChange={(value) => setSemanaAtual(parseInt(value))}
+            >
               <SelectTrigger className="w-full">
                 <SelectValue />
               </SelectTrigger>
@@ -193,70 +249,82 @@ export function InstructorDashboardSimplified() {
           <div className="lg:col-span-2">
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  <span>{semanaEscolhida.periodo}</span>
-                  <Badge variant="outline">{semanaEscolhida.tema}</Badge>
-                </CardTitle>
-                <div className="flex gap-4 text-sm text-gray-600">
-                  <span>🎵 Abertura: {semanaEscolhida.cantico_abertura}</span>
-                  <span>🎵 Meio: {semanaEscolhida.cantico_meio}</span>
-                  <span>🎵 Encerramento: {semanaEscolhida.cantico_encerramento}</span>
-                </div>
+                {semanaEscolhida ? (
+                  <>
+                    <CardTitle className="flex items-center justify-between">
+                      <span>{semanaEscolhida.periodo}</span>
+                      <Badge variant="outline">{semanaEscolhida.tema}</Badge>
+                    </CardTitle>
+                    <div className="flex gap-4 text-sm text-gray-600">
+                      <span>🎵 Abertura: {semanaEscolhida.cantico_abertura}</span>
+                      <span>🎵 Meio: {semanaEscolhida.cantico_meio}</span>
+                      <span>🎵 Encerramento: {semanaEscolhida.cantico_encerramento}</span>
+                    </div>
+                  </>
+                ) : (
+                  <CardTitle>Selecione uma semana</CardTitle>
+                )}
               </CardHeader>
               <CardContent className="space-y-6">
-                {semanaEscolhida.programacao.map((secao, secaoIndex) => (
-                  <div key={secaoIndex} className="border rounded-lg p-4">
-                    <h3 className="font-semibold text-lg mb-4 text-blue-700">
-                      {secao.secao}
-                    </h3>
-                    <div className="space-y-3">
-                      {secao.partes.map((parte) => (
-                        <div key={parte.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
-                              <span className="text-lg">{getTipoIcon(parte.tipo)}</span>
-                              <h4 className="font-medium">{parte.titulo}</h4>
-                              <Badge className={getTipoBadgeColor(parte.tipo)}>
-                                {parte.tipo.replace('_', ' ')}
-                              </Badge>
+                {semanaEscolhida ? (
+                  <>
+                    {semanaEscolhida.programacao.map((secao, secaoIndex) => (
+                      <div key={secaoIndex} className="border rounded-lg p-4">
+                        <h3 className="font-semibold text-lg mb-4 text-blue-700">
+                          {secao.secao}
+                        </h3>
+                        <div className="space-y-3">
+                          {secao.partes.map((parte) => (
+                            <div key={parte.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <span className="text-lg">{getTipoIcon(parte.tipo)}</span>
+                                  <h4 className="font-medium">{parte.titulo}</h4>
+                                  <Badge className={getTipoBadgeColor(parte.tipo)}>
+                                    {parte.tipo.replace('_', ' ')}
+                                  </Badge>
+                                </div>
+                                <div className="flex items-center gap-4 text-sm text-gray-600">
+                                  <span className="flex items-center gap-1">
+                                    <Clock className="h-4 w-4" />
+                                    {parte.duracao} min
+                                  </span>
+                                  {parte.referencias && (
+                                    <span className="text-xs">
+                                      {Array.isArray(parte.referencias) 
+                                        ? parte.referencias[0] 
+                                        : parte.referencias}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <Select 
+                                  value={designacoes[parte.id] || 'nao-designado'} 
+                                  onValueChange={(value) => handleDesignacao(parte.id, value)}
+                                >
+                                  <SelectTrigger className="w-48">
+                                    <SelectValue placeholder="Designar estudante" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="nao-designado">Não designado</SelectItem>
+                                    {estudantes.map((estudante) => (
+                                      <SelectItem key={estudante.id} value={estudante.id}>
+                                        {estudante.nome} ({estudante.genero})
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
                             </div>
-                            <div className="flex items-center gap-4 text-sm text-gray-600">
-                              <span className="flex items-center gap-1">
-                                <Clock className="h-4 w-4" />
-                                {parte.duracao} min
-                              </span>
-                              {parte.referencias && (
-                                <span className="text-xs">
-                                  {Array.isArray(parte.referencias) 
-                                    ? parte.referencias[0] 
-                                    : parte.referencias}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Select 
-                              value={designacoes[parte.id] || 'nao-designado'} 
-                              onValueChange={(value) => handleDesignacao(parte.id, value)}
-                            >
-                              <SelectTrigger className="w-48">
-                                <SelectValue placeholder="Designar estudante" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="nao-designado">Não designado</SelectItem>
-                                {estudantes.map((estudante) => (
-                                  <SelectItem key={estudante.id} value={estudante.id}>
-                                    {estudante.nome} ({estudante.genero})
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <p className="text-center text-gray-500 py-4">Selecione uma semana para visualizar a programação</p>
+                )}
               </CardContent>
             </Card>
           </div>
@@ -302,7 +370,7 @@ export function InstructorDashboardSimplified() {
                   <div className="flex justify-between">
                     <span>Total de partes:</span>
                     <span className="font-medium">
-                      {semanaEscolhida.programacao.reduce((acc, secao) => acc + secao.partes.length, 0)}
+                      {semanaEscolhida ? semanaEscolhida.programacao.reduce((acc, secao) => acc + secao.partes.length, 0) : 0}
                     </span>
                   </div>
                   <div className="flex justify-between">
@@ -314,7 +382,9 @@ export function InstructorDashboardSimplified() {
                   <div className="flex justify-between">
                     <span>Pendentes:</span>
                     <span className="font-medium text-orange-600">
-                      {semanaEscolhida.programacao.reduce((acc, secao) => acc + secao.partes.length, 0) - Object.values(designacoes).filter(id => id !== 'nao-designado').length}
+                      {semanaEscolhida ? 
+                        semanaEscolhida.programacao.reduce((acc, secao) => acc + secao.partes.length, 0) - Object.values(designacoes).filter(id => id !== 'nao-designado').length
+                        : 0}
                     </span>
                   </div>
                 </div>

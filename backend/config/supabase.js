@@ -11,8 +11,15 @@ console.log('  SUPABASE_SERVICE_ROLE_KEY exists:', !!process.env.SUPABASE_SERVIC
 console.log('  VITE_SUPABASE_URL:', process.env.VITE_SUPABASE_URL);
 console.log('  VITE_SUPABASE_ANON_KEY exists:', !!process.env.VITE_SUPABASE_ANON_KEY);
 
-if (!supabaseUrl || !supabaseKey) {
-  throw new Error('SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY (ou VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY) são obrigatórios');
+// If we don't have a service role key, warn but continue with anon key (limited functionality)
+if (!supabaseUrl) {
+  console.error('❌ SUPABASE_URL is required');
+  process.exit(1);
+}
+
+// Use anon key if service role key is not available (with limited functionality)
+if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  console.warn('⚠️  SUPABASE_SERVICE_ROLE_KEY not found, using anon key (limited functionality)');
 }
 
 console.log('Supabase config:', { supabaseUrl, supabaseKey: supabaseKey.substring(0, 10) + '...' });

@@ -20,6 +20,8 @@ interface AuthContextType {
   isInstrutor: boolean;
   isEstudante: boolean;
   loading: boolean;
+  authResolved: boolean;
+  initialLoadComplete: boolean;
   signIn: (email: string, password: string) => Promise<{ error: AuthError | null }>;
   signUp: (email: string, password: string, profileData: Partial<Profile>) => Promise<{ error: AuthError | null }>;
   signOut: () => Promise<{ error: AuthError | null }>;
@@ -44,6 +46,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const [authError, setAuthError] = useState<string | null>(null);
+  const [authResolved, setAuthResolved] = useState(false);
+  const [initialLoadComplete, setInitialLoadComplete] = useState(false);
 
   // Load user profile
   const loadProfile = useCallback(async (userId: string) => {
@@ -81,6 +85,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             nome: userData.user.email?.split('@')[0] || 'Usuário',
             email: userData.user.email || '',
             role: 'instrutor' as const,
+            congregacao_id: null,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
           };
 
           const { data: createdProfile, error: createError } = await supabase
@@ -110,12 +117,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Handle auth state changes
   const handleAuthStateChange = useCallback(async (event: string, session: Session | null) => {
-    console.log('Auth state change:', event, session?.user?.id);
+    console.log('🔄 Auth state change:', event, session?.user?.id);
+    
+    // Skip INITIAL_SESSION - we handle it in refreshAuth
+    if (event === 'INITIAL_SESSION') {
+      console.log('⏭️ Skipping INITIAL_SESSION event');
+      return;
+    }
     
     try {
       if (event === 'SIGNED_IN' && session) {
-        console.log('User signed in:', session.user.id);
+        console.log('👤 User signed in:', session.user.id);
         setUser(session.user);
+        setLoading(true);
         await loadProfile(session.user.id);
         setAuthError(null);
       } else if (event === 'SIGNED_UP' && session) {
@@ -138,7 +152,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           const { data: createdProfile, error: createError } = await supabase
             .from('profiles')
             .insert({
-              id: session.user.id,
+              id: crypto.randomUUID ? crypto.randomUUID() : 'temp-id-' + Date.now(),
               user_id: session.user.id,
               nome: userMetadata.nome || session.user.email?.split('@')[0] || 'Usuário',
               email: session.user.email || '',
@@ -171,20 +185,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           setAuthError(null);
         }
       } else if (event === 'SIGNED_OUT') {
-        console.log('User signed out');
+        console.log('👋 User signed out');
         setUser(null);
         setProfile(null);
         setAuthError(null);
       } else if (event === 'TOKEN_REFRESHED' && session) {
-        console.log('Token refreshed for user:', session.user.id);
+        console.log('🔄 Token refreshed for user:', session.user.id);
         setUser(session.user);
+        setLoading(true);
         await loadProfile(session.user.id);
         setAuthError(null);
       }
     } catch (error) {
-      console.error('Error handling auth state change:', error);
+      console.error('❌ Error handling auth state change:', error);
       setAuthError('Erro ao processar mudança de autenticação');
     } finally {
+      console.log('✅ Auth state change handler complete');
       setLoading(false);
     }
   }, [loadProfile]);
@@ -192,31 +208,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Initialize auth
   const refreshAuth = useCallback(async () => {
     try {
-      console.log('Refreshing authentication...');
+      console.log('🔄 Refreshing authentication...');
+      setLoading(true);
       
       const { data: { session }, error: sessionError } = await supabase.auth.getSession();
       
       if (sessionError) {
-        console.error('Session error:', sessionError);
+        console.error('❌ Session error:', sessionError);
         setAuthError(`Erro de sessão: ${sessionError.message}`);
+        setInitialLoadComplete(true);
+        setAuthResolved(true);
+        setLoading(false);
         return;
       }
 
       if (session) {
-        console.log('Valid session found');
+        console.log('✅ Valid session found for user:', session.user.id);
         setUser(session.user);
         await loadProfile(session.user.id);
       } else {
-        console.log('No valid session found');
+        console.log('ℹ️ No valid session found');
         setUser(null);
         setProfile(null);
       }
     } catch (error) {
-      console.error('Error refreshing auth:', error);
+      console.error('❌ Error refreshing auth:', error);
       setAuthError('Erro ao atualizar autenticação');
       setUser(null);
       setProfile(null);
     } finally {
+      console.log('✅ Refresh auth complete, setting loading to false');
+      setAuthResolved(true);
+      setInitialLoadComplete(true);
       setLoading(false);
     }
   }, [loadProfile]);
@@ -235,7 +258,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (error) {
         console.error('Sign in error:', error);
-        setAuthError(error.message);
+        // Provide more user-friendly error messages
+        let errorMessage = error.message;
+        if (error.message.includes('Invalid login credentials')) {
+          errorMessage = 'Credenciais inválidas. Por favor, verifique seu email e senha.';
+        } else if (error.message.includes('Email not confirmed')) {
+          errorMessage = 'Email não confirmado. Por favor, verifique seu email para confirmar sua conta.';
+        }
+        setAuthError(errorMessage);
         return { error };
       }
 
@@ -257,7 +287,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setLoading(true);
       setAuthError(null);
 
-      const redirectUrl = `${window.location.origin}/`;
+      const redirectUrl = `${window.location.origin}/auth`;
       
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -374,14 +404,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     
     const { data: { subscription } } = supabase.auth.onAuthStateChange(handleAuthStateChange);
     
-    // Get initial session
+    // Get initial session once
     refreshAuth();
 
     return () => {
       console.log('Cleaning up auth listener...');
       subscription.unsubscribe();
     };
-  }, [handleAuthStateChange, refreshAuth]);
+  }, []);
 
   // Computed values
   const isAdmin = profile?.role === 'admin';
@@ -395,6 +425,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     isInstrutor,
     isEstudante,
     loading,
+    authResolved,
+    initialLoadComplete,
     signIn,
     signUp,
     signOut,
