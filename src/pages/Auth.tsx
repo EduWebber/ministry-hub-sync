@@ -37,14 +37,6 @@ const AuthPage: React.FC = () => {
   const [showSignUpPassword, setShowSignUpPassword] = useState(false);
   const [activeTab, setActiveTab] = useState("login");
 
-  useEffect(() => {
-    if (!user) return;
-    // Evita loop de navegação: só redireciona se ainda estiver em /auth
-    if (location.pathname === '/auth') {
-      navigate('/dashboard', { replace: true });
-    }
-  }, [user?.id, location.pathname, navigate]);
-
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -160,22 +152,14 @@ const AuthPage: React.FC = () => {
     setLoading(true);
 
     try {
-      const redirectUrl = `${window.location.origin}/auth`;
-      
-      const { error } = await supabase.auth.signUp({
+      const profileData = {
+        nome: nomeCompleto,
         email: signUpEmail,
-        password: signUpPassword,
-        options: {
-          emailRedirectTo: redirectUrl,
-          data: {
-            nome_completo: nomeCompleto,
-            congregacao: congregacao,
-            cargo: cargo,
-            role: role,
-            date_of_birth: dateOfBirth,
-          }
-        }
-      });
+        role: role,
+        congregacao_id: congregacao || null,
+      };
+      
+      const { error } = await signUp(signUpEmail, signUpPassword, profileData);
 
       if (error) {
         toast({
@@ -200,6 +184,15 @@ const AuthPage: React.FC = () => {
       setLoading(false);
     }
   };
+
+  // Add useEffect to handle auth state changes
+  useEffect(() => {
+    if (!user) return;
+    // Evita loop de navegação: só redireciona se ainda estiver em /auth
+    if (location.pathname === '/auth') {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [user?.id, location.pathname, navigate]);
 
   if (user) {
     return (

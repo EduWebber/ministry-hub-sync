@@ -118,6 +118,58 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(session.user);
         await loadProfile(session.user.id);
         setAuthError(null);
+      } else if (event === 'SIGNED_UP' && session) {
+        // Handle new user signup - the user is created but may need profile setup
+        console.log('New user signed up:', session.user.id);
+        setUser(session.user);
+        
+        // Create profile for new user if it doesn't exist
+        const { data: existingProfile, error: profileError } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('user_id', session.user.id)
+          .single();
+
+        if (profileError) {
+          // Profile doesn't exist, create it using user metadata
+          console.log('No profile found for new user, creating one');
+          const userMetadata = session.user.user_metadata || {};
+          
+          const { data: createdProfile, error: createError } = await supabase
+            .from('profiles')
+            .insert({
+              id: session.user.id,
+              user_id: session.user.id,
+              nome: userMetadata.nome || session.user.email?.split('@')[0] || 'Usuário',
+              email: session.user.email || '',
+              role: userMetadata.role || 'instrutor',
+              congregacao_id: userMetadata.congregacao_id || null,
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString(),
+            })
+            .select()
+            .single();
+
+          if (createError) {
+            console.error('Error creating profile for new user:', createError);
+            setAuthError('Erro ao criar perfil');
+          } else if (createdProfile) {
+            const typedProfile: Profile = {
+              ...createdProfile,
+              role: (createdProfile.role as 'admin' | 'instrutor' | 'estudante') || 'instrutor'
+            };
+            setProfile(typedProfile);
+            setAuthError(null);
+          }
+        } else if (existingProfile) {
+          // Profile exists, load it
+          const typedProfile: Profile = {
+            ...existingProfile,
+            role: (existingProfile.role as 'admin' | 'instrutor' | 'estudante') || 'instrutor'
+          };
+          setProfile(typedProfile);
+          setAuthError(null);
+        }
       } else if (event === 'SIGNED_OUT') {
         console.log('User signed out');
         setUser(null);
@@ -213,8 +265,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         options: {
           emailRedirectTo: redirectUrl,
           data: {
-            nome: profileData.nome,
-            role: profileData.role || 'instrutor'
+            nome: profileData.nome || email.split('@')[0],
+            email: email,
+            role: profileData.role || 'instrutor',
+            congregacao_id: profileData.congregacao_id || null,
+            ...profileData
           }
         }
       });
@@ -223,6 +278,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         console.error('Sign up error:', error);
         setAuthError(error.message);
         return { error };
+      }
+
+      // If the user was created successfully
+      if (data.user) {
+        console.log('Sign up successful, user created:', data.user.id);
+        // The auth state change handler should take care of profile creation
+      } else if (data.session) {
+        // If user was automatically signed in
+        console.log('Sign up successful with automatic sign in');
       }
 
       console.log('Sign up successful');
