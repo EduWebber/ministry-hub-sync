@@ -160,10 +160,13 @@ const AuthPage: React.FC = () => {
     setLoading(true);
 
     try {
+      const redirectUrl = `${window.location.origin}/auth`;
+      
       const { error } = await supabase.auth.signUp({
         email: signUpEmail,
         password: signUpPassword,
         options: {
+          emailRedirectTo: redirectUrl,
           data: {
             nome_completo: nomeCompleto,
             congregacao: congregacao,
