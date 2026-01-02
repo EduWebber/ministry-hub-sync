@@ -11,8 +11,6 @@ import SidebarLayout from "@/components/layout/SidebarLayout";
 import { useEstudantes } from "@/hooks/useEstudantes";
 import EstudanteForm from "@/components/EstudanteForm";
 import EstudanteCard from "@/components/EstudanteCard";
-import SpreadsheetUpload from "@/components/SpreadsheetUpload";
-import EnhancedStudentImport from "@/components/EnhancedStudentImport";
 import StudentsSpreadsheet from "@/components/StudentsSpreadsheet";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/ui/empty-state";
@@ -272,25 +270,14 @@ const EstudantesPage = () => {
             <Alert>
               <Info className="h-4 w-4" />
               <AlertDescription>
-                <strong>Sistema Aprimorado:</strong> Esta página agora integra completamente todos os recursos 
-                documentados em <code>docs/Oficial</code>, incluindo validação inteligente de 32+ colunas, 
-                análise familiar automática, e processamento completo de qualificações S-38.
+                <strong>Importação de Estudantes:</strong> Funcionalidade em desenvolvimento.
+                Por favor, adicione estudantes manualmente por enquanto.
               </AlertDescription>
             </Alert>
-            <EnhancedStudentImport 
-              onImportComplete={handleImportComplete} 
-              onViewList={() => setActiveTab("list")} 
-            />
-            
-            {/* Legacy import for compatibility */}
-            <details className="mt-6">
-              <summary className="cursor-pointer text-sm text-gray-600 hover:text-gray-800">
-                Mostrar sistema de importação legado (compatibilidade)
-              </summary>
-              <div className="mt-4 p-4 border rounded-lg bg-gray-50">
-                <SpreadsheetUpload onImportComplete={handleImportComplete} onViewList={() => setActiveTab("list")} />
-              </div>
-            </details>
+            <div className="text-center py-8">
+              <FileSpreadsheet className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-500">Sistema de importação será disponibilizado em breve.</p>
+            </div>
           </div>
         </TabsContent>
 

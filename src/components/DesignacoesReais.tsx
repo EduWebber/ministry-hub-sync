@@ -1,19 +1,53 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, Clock, BookOpen } from 'lucide-react';
-import { useDesignacoes } from '@/hooks/useDesignacoes';
+import { supabase } from '@/integrations/supabase/client';
+import { useQuery } from '@tanstack/react-query';
+
+interface Designacao {
+  id: string;
+  titulo_parte: string;
+  tempo_minutos: number | null;
+  cena: string | null;
+  status: string | null;
+  estudante_id: string | null;
+  ajudante_id: string | null;
+  estudante?: { id: string; nome: string } | null;
+  ajudante?: { id: string; nome: string } | null;
+}
 
 const DesignacoesReais: React.FC = () => {
-  const { designacoes, loading, error } = useDesignacoes();
+  const { data: designacoes = [], isLoading, error } = useQuery({
+    queryKey: ['designacoes-reais'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('designacoes')
+        .select(`
+          id,
+          titulo_parte,
+          tempo_minutos,
+          cena,
+          status,
+          estudante_id,
+          ajudante_id,
+          estudante:estudantes!designacoes_estudante_id_fkey(id, nome),
+          ajudante:estudantes!designacoes_ajudante_id_fkey(id, nome)
+        `)
+        .limit(20);
+      
+      if (error) throw error;
+      return (data || []) as Designacao[];
+    }
+  });
 
-  if (loading) {
+  if (isLoading) {
     return <div className="text-sm text-gray-600">Carregando designações reais...</div>;
   }
 
   if (error) {
     return (
       <div className="flex items-center gap-2 p-3 mb-4 text-sm text-red-700 bg-red-50 border border-red-200 rounded">
-        Erro ao carregar designações: {error}
+        Erro ao carregar designações: {String(error)}
       </div>
     );
   }
@@ -21,7 +55,7 @@ const DesignacoesReais: React.FC = () => {
   if (designacoes.length === 0) {
     return (
       <div className="p-3 mb-4 text-sm text-blue-700 bg-blue-50 border border-blue-200 rounded">
-        Nenhuma designação encontrada no banco de dados. O sistema está usando dados reais do Supabase.
+        Nenhuma designação encontrada no banco de dados.
       </div>
     );
   }
@@ -34,10 +68,10 @@ const DesignacoesReais: React.FC = () => {
             <CardHeader>
               <CardTitle className="text-base font-semibold flex items-center gap-2">
                 <BookOpen className="h-4 w-4 text-blue-600" /> 
-                {designacao.parte?.titulo || 'Parte Ministerial'}
+                {designacao.titulo_parte || 'Parte Ministerial'}
               </CardTitle>
               <div className="text-sm text-gray-600">
-                {designacao.parte?.duracao_minutos ? `${designacao.parte.duracao_minutos} min` : ''}
+                {designacao.tempo_minutos ? `${designacao.tempo_minutos} min` : ''}
               </div>
             </CardHeader>
             <CardContent>
@@ -48,7 +82,7 @@ const DesignacoesReais: React.FC = () => {
                     Estudante Principal
                   </div>
                   <div className="text-sm text-gray-700">
-                    {designacao.estudante?.profile_id || designacao.estudante_id || 'Não atribuído'}
+                    {designacao.estudante?.nome || 'Não atribuído'}
                   </div>
                 </div>
                 
@@ -59,7 +93,7 @@ const DesignacoesReais: React.FC = () => {
                       Ajudante
                     </div>
                     <div className="text-sm text-gray-700">
-                      {designacao.ajudante.profile_id || designacao.ajudante_id}
+                      {designacao.ajudante.nome}
                     </div>
                   </div>
                 )}
@@ -70,7 +104,7 @@ const DesignacoesReais: React.FC = () => {
                     Status
                   </div>
                   <div className="text-sm text-gray-700">
-                    {designacao.status || 'Designado'}
+                    {designacao.status || 'Pendente'}
                   </div>
                 </div>
               </div>

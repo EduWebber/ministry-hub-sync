@@ -14,7 +14,353 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      designacoes: {
+        Row: {
+          ajudante_id: string | null
+          assignment_status: string | null
+          cena: string | null
+          congregacao_id: string | null
+          created_at: string
+          data_designacao: string | null
+          estudante_id: string | null
+          id: string
+          observacoes: string | null
+          programa_id: string | null
+          status: string | null
+          tempo_minutos: number | null
+          tipo_parte: string | null
+          titulo_parte: string
+          updated_at: string
+        }
+        Insert: {
+          ajudante_id?: string | null
+          assignment_status?: string | null
+          cena?: string | null
+          congregacao_id?: string | null
+          created_at?: string
+          data_designacao?: string | null
+          estudante_id?: string | null
+          id?: string
+          observacoes?: string | null
+          programa_id?: string | null
+          status?: string | null
+          tempo_minutos?: number | null
+          tipo_parte?: string | null
+          titulo_parte: string
+          updated_at?: string
+        }
+        Update: {
+          ajudante_id?: string | null
+          assignment_status?: string | null
+          cena?: string | null
+          congregacao_id?: string | null
+          created_at?: string
+          data_designacao?: string | null
+          estudante_id?: string | null
+          id?: string
+          observacoes?: string | null
+          programa_id?: string | null
+          status?: string | null
+          tempo_minutos?: number | null
+          tipo_parte?: string | null
+          titulo_parte?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "designacoes_ajudante_id_fkey"
+            columns: ["ajudante_id"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "designacoes_estudante_id_fkey"
+            columns: ["estudante_id"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "designacoes_programa_id_fkey"
+            columns: ["programa_id"]
+            isOneToOne: false
+            referencedRelation: "programas_ministeriais"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      estudantes: {
+        Row: {
+          ativo: boolean | null
+          cargo: string | null
+          congregacao_id: string | null
+          created_at: string
+          data_batismo: string | null
+          data_nascimento: string | null
+          email: string | null
+          genero: string | null
+          id: string
+          idade: number | null
+          instrutor_id: string | null
+          nome: string
+          observacoes: string | null
+          parent_id: string | null
+          qualificacoes: Json | null
+          telefone: string | null
+          updated_at: string
+        }
+        Insert: {
+          ativo?: boolean | null
+          cargo?: string | null
+          congregacao_id?: string | null
+          created_at?: string
+          data_batismo?: string | null
+          data_nascimento?: string | null
+          email?: string | null
+          genero?: string | null
+          id?: string
+          idade?: number | null
+          instrutor_id?: string | null
+          nome: string
+          observacoes?: string | null
+          parent_id?: string | null
+          qualificacoes?: Json | null
+          telefone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          ativo?: boolean | null
+          cargo?: string | null
+          congregacao_id?: string | null
+          created_at?: string
+          data_batismo?: string | null
+          data_nascimento?: string | null
+          email?: string | null
+          genero?: string | null
+          id?: string
+          idade?: number | null
+          instrutor_id?: string | null
+          nome?: string
+          observacoes?: string | null
+          parent_id?: string | null
+          qualificacoes?: Json | null
+          telefone?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "estudantes_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      family_members: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          is_primary_contact: boolean | null
+          nome: string
+          parentesco: string
+          student_id: string
+          telefone: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          is_primary_contact?: boolean | null
+          nome: string
+          parentesco: string
+          student_id: string
+          telefone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          is_primary_contact?: boolean | null
+          nome?: string
+          parentesco?: string
+          student_id?: string
+          telefone?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "family_members_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      invitations_log: {
+        Row: {
+          created_at: string
+          family_member_id: string | null
+          id: string
+          invitation_type: string
+          sent_at: string | null
+          status: string | null
+          student_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          family_member_id?: string | null
+          id?: string
+          invitation_type: string
+          sent_at?: string | null
+          status?: string | null
+          student_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          family_member_id?: string | null
+          id?: string
+          invitation_type?: string
+          sent_at?: string | null
+          status?: string | null
+          student_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "invitations_log_family_member_id_fkey"
+            columns: ["family_member_id"]
+            isOneToOne: false
+            referencedRelation: "family_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "invitations_log_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          congregacao_id: string | null
+          created_at: string
+          email: string | null
+          id: string
+          nome: string
+          role: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          congregacao_id?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          nome?: string
+          role?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          congregacao_id?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          nome?: string
+          role?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      programas: {
+        Row: {
+          congregacao_id: string | null
+          created_at: string
+          descricao: string | null
+          id: string
+          mes_ano: string | null
+          status: string | null
+          titulo: string
+          updated_at: string
+        }
+        Insert: {
+          congregacao_id?: string | null
+          created_at?: string
+          descricao?: string | null
+          id?: string
+          mes_ano?: string | null
+          status?: string | null
+          titulo: string
+          updated_at?: string
+        }
+        Update: {
+          congregacao_id?: string | null
+          created_at?: string
+          descricao?: string | null
+          id?: string
+          mes_ano?: string | null
+          status?: string | null
+          titulo?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      programas_ministeriais: {
+        Row: {
+          arquivo_nome: string | null
+          arquivo_url: string | null
+          congregacao_id: string | null
+          created_at: string
+          criado_por: string | null
+          data_fim: string | null
+          data_inicio: string | null
+          descricao: string | null
+          id: string
+          mes_ano: string
+          status: string | null
+          titulo: string
+          updated_at: string
+        }
+        Insert: {
+          arquivo_nome?: string | null
+          arquivo_url?: string | null
+          congregacao_id?: string | null
+          created_at?: string
+          criado_por?: string | null
+          data_fim?: string | null
+          data_inicio?: string | null
+          descricao?: string | null
+          id?: string
+          mes_ano: string
+          status?: string | null
+          titulo: string
+          updated_at?: string
+        }
+        Update: {
+          arquivo_nome?: string | null
+          arquivo_url?: string | null
+          congregacao_id?: string | null
+          created_at?: string
+          criado_por?: string | null
+          data_fim?: string | null
+          data_inicio?: string | null
+          descricao?: string | null
+          id?: string
+          mes_ano?: string
+          status?: string | null
+          titulo?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

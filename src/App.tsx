@@ -25,7 +25,7 @@ const ProgramasPage = lazy(() => import("./pages/ProgramasPage"));
 const DesignacoesPage = lazy(() => import("./pages/DesignacoesPage"));
 const AssignmentsPage = lazy(() => import("./pages/AssignmentsPage"));
 const RelatoriosPage = lazy(() => import("./pages/RelatoriosPage"));
-const UnifiedDashboard = lazy(() => import("./components/UnifiedDashboard"));
+const UnifiedDashboard = lazy(() => import("./pages/Demo")); // Placeholder
 
 // Lazy load secondary pages
 const Demo = lazy(() => import("./pages/Demo"));

@@ -12,18 +12,25 @@ export type Cargo = "anciao" | "servo_ministerial" | "pioneiro_regular" | "publi
 // Extended types for UI
 export interface EstudanteWithParent {
   id: string;
-  genero: string;
-  qualificacoes?: string[];
-  ativo: boolean;
-  profile_id: string;
-  congregacao_id?: string;
+  nome: string;
+  genero?: string | null;
+  cargo?: string | null;
+  idade?: number | null;
+  telefone?: string | null;
+  email?: string | null;
+  ativo?: boolean;
+  data_batismo?: string | null;
+  data_nascimento?: string | null;
+  observacoes?: string | null;
+  parent_id?: string | null;
+  congregacao_id?: string | null;
+  instrutor_id?: string | null;
+  qualificacoes?: any;
   created_at?: string;
-  disponibilidade?: any;
-  user_id?: string;
+  updated_at?: string;
   pai_mae?: EstudanteRow | null;
   filhos?: EstudanteRow[];
   familia?: string;
-  congregacao?: string;
   chairman?: boolean;
   pray?: boolean;
   treasures?: boolean;
@@ -34,13 +41,6 @@ export interface EstudanteWithParent {
   making?: boolean;
   explaining?: boolean;
   talk?: boolean;
-  // Profile data
-  nome?: string;
-  email?: string;
-  telefone?: string;
-  cargo?: string;
-  data_nascimento?: string;
-  idade?: number;
 }
 
 // S-38-T Speech Types and Qualifications
