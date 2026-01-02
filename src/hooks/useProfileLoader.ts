@@ -1,20 +1,18 @@
 import { useState, useCallback, useRef } from 'react';
 import { User } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
-import { Database } from '@/integrations/supabase/types';
 import { authLogger, createAuthMetrics } from '@/utils/authLogger';
 import { withRefreshTokenErrorHandling } from '@/utils/refreshTokenHandler';
 
-type UserRole = Database['public']['Enums']['app_role'];
+type UserRole = 'admin' | 'instrutor' | 'estudante';
 
 interface UserProfile {
   id: string;
+  user_id: string;
   nome: string | null;
-  congregacao: string | null;
-  cargo: string | null;
+  email: string | null;
   role: UserRole;
-  data_nascimento: string | null;
-  email: string;
+  congregacao_id: string | null;
   created_at: string | null;
   updated_at: string | null;
 }
@@ -44,11 +42,9 @@ export const useProfileLoader = () => {
         .from('profiles')
         .insert({
           user_id: user.id,
-          nome: metadata.nome_completo || '',
+          nome: metadata.nome_completo || email.split('@')[0] || 'Usuário',
           email: email,
-          congregacao: metadata.congregacao || '',
-          cargo: metadata.cargo || '',
-          role: (metadata.role as UserRole) || 'instrutor'
+          role: 'instrutor'
         })
         .select()
         .single();
@@ -58,24 +54,22 @@ export const useProfileLoader = () => {
         // Return profile from metadata even if DB insert fails
         return {
           id: user.id,
-          nome: metadata.nome_completo || '',
-          congregacao: metadata.congregacao || '',
-          cargo: metadata.cargo || '',
-          role: (metadata.role as UserRole) || 'instrutor',
-          data_nascimento: metadata.data_nascimento || null,
+          user_id: user.id,
+          nome: metadata.nome_completo || email.split('@')[0] || 'Usuário',
           email,
+          role: 'instrutor' as UserRole,
+          congregacao_id: null,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         };
       }
 
-      const profileWithEmail = { 
-        ...data, 
-        data_nascimento: data.data_nascimento || null,
-        email 
+      const profileWithTypedRole: UserProfile = {
+        ...data,
+        role: (data.role as UserRole) || 'instrutor'
       };
-      authLogger.success('Profile created from metadata', profileWithEmail);
-      return profileWithEmail as UserProfile;
+      authLogger.success('Profile created from metadata', profileWithTypedRole);
+      return profileWithTypedRole;
     } catch (error) {
       authLogger.error('Error creating profile from metadata', error);
       return null;
@@ -112,48 +106,42 @@ export const useProfileLoader = () => {
         throw new Error(`Session error: ${sessionError?.message || 'No session'}`);
       }
 
-      // Fetch profile from database
+      // Fetch profile from database by user_id
       const { data: profileData, error: profileError } = await supabase
         .from('profiles')
         .select('*')
-        .eq('id', userId)
-        .single();
+        .eq('user_id', userId)
+        .maybeSingle();
 
       if (profileError) {
-        if (profileError.code === 'PGRST116') {
-          // Profile doesn't exist, create from metadata
-          authLogger.info('Profile not found, creating from metadata', { userId });
-          const newProfile = await createProfileFromMetadata(user);
-          
-          if (newProfile) {
-            cacheRef.current.set(userId, newProfile);
-            metrics.endProfileLoad(true);
-            return { profile: newProfile, fromCache: false, fromMetadata: true, error: null };
-          } else {
-            throw new Error('Failed to create profile from metadata');
-          }
+        throw new Error(`Profile fetch error: ${profileError.message}`);
+      }
+
+      if (!profileData) {
+        // Profile doesn't exist, create from metadata
+        authLogger.info('Profile not found, creating from metadata', { userId });
+        const newProfile = await createProfileFromMetadata(user);
+        
+        if (newProfile) {
+          cacheRef.current.set(userId, newProfile);
+          metrics.endProfileLoad(true);
+          return { profile: newProfile, fromCache: false, fromMetadata: true, error: null };
         } else {
-          throw new Error(`Profile fetch error: ${profileError.message}`);
+          throw new Error('Failed to create profile from metadata');
         }
       }
 
-      if (profileData) {
-        const email = session.user.email || '';
-        const profileWithEmail = { 
-          ...profileData, 
-          data_nascimento: profileData.data_nascimento || null,
-          email 
-        } as UserProfile;
-        
-        // Cache the profile
-        cacheRef.current.set(userId, profileWithEmail);
-        
-        authLogger.success('Profile loaded from database', { userId });
-        metrics.endProfileLoad(true);
-        return { profile: profileWithEmail, fromCache: false, fromMetadata: false, error: null };
-      }
-
-      throw new Error('No profile data returned');
+      const profileWithTypedRole: UserProfile = {
+        ...profileData,
+        role: (profileData.role as UserRole) || 'instrutor'
+      };
+      
+      // Cache the profile
+      cacheRef.current.set(userId, profileWithTypedRole);
+      
+      authLogger.success('Profile loaded from database', { userId });
+      metrics.endProfileLoad(true);
+      return { profile: profileWithTypedRole, fromCache: false, fromMetadata: false, error: null };
 
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';

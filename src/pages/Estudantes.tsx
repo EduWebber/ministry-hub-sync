@@ -3,7 +3,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EstudanteForm from "@/components/EstudanteForm";
 import EstudanteCard from "@/components/EstudanteCard";
-import SpreadsheetUpload from "@/components/SpreadsheetUpload";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -22,11 +21,13 @@ import QuickActions from "@/components/QuickActions";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/ui/empty-state";
 import {
-  ProgressBoard,
-  SpeechTypeCategories,
-  InstructorDashboardStats
-} from "@/components/instructor";
-import { useInstructorDashboard } from "@/hooks/useInstructorDashboard";
+  EstudanteWithParent,
+  EstudanteFilters,
+  Cargo,
+  Genero,
+  CARGO_LABELS,
+  GENERO_LABELS,
+} from "@/types/estudantes";
 import {
   EstudanteWithParent,
   EstudanteFilters,
@@ -257,7 +258,9 @@ const Estudantes = () => {
                 )}
               </TabsContent>
               <TabsContent value="import" className="space-y-6">
-                <SpreadsheetUpload onImportComplete={handleImportComplete} onViewList={handleViewList} />
+                <div className="p-4 text-center text-gray-500">
+                  Funcionalidade de importação em desenvolvimento.
+                </div>
               </TabsContent>
               <TabsContent value="spreadsheet" className="space-y-4 sm:space-y-6 w-full overflow-x-auto">
                 <StudentsSpreadsheet estudantes={estudantes || []} onRefresh={() => refetch()} />

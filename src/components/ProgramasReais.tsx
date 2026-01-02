@@ -1,19 +1,40 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, BookOpen } from 'lucide-react';
-import { useProgramas } from '@/hooks/useProgramas';
+import { supabase } from '@/integrations/supabase/client';
+import { useQuery } from '@tanstack/react-query';
+
+interface Programa {
+  id: string;
+  titulo: string;
+  mes_ano: string | null;
+  descricao: string | null;
+  status: string | null;
+  arquivo_nome: string | null;
+}
 
 const ProgramasReais: React.FC = () => {
-  const { programas, loading, error } = useProgramas();
+  const { data: programas = [], isLoading, error } = useQuery({
+    queryKey: ['programas-reais'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('programas_ministeriais')
+        .select('id, titulo, mes_ano, descricao, status, arquivo_nome')
+        .limit(20);
+      
+      if (error) throw error;
+      return (data || []) as Programa[];
+    }
+  });
 
-  if (loading) {
+  if (isLoading) {
     return <div className="text-sm text-gray-600">Carregando programações reais...</div>;
   }
 
   if (error) {
     return (
       <div className="flex items-center gap-2 p-3 mb-4 text-sm text-red-700 bg-red-50 border border-red-200 rounded">
-        Erro ao carregar programações: {error}
+        Erro ao carregar programações: {String(error)}
       </div>
     );
   }
@@ -21,7 +42,7 @@ const ProgramasReais: React.FC = () => {
   if (programas.length === 0) {
     return (
       <div className="p-3 mb-4 text-sm text-blue-700 bg-blue-50 border border-blue-200 rounded">
-        Nenhuma programação encontrada no banco de dados. O sistema está usando dados reais do Supabase.
+        Nenhuma programação encontrada no banco de dados.
       </div>
     );
   }
@@ -32,29 +53,27 @@ const ProgramasReais: React.FC = () => {
         <Card key={programa.id} className="border-blue-100">
           <CardHeader>
             <CardTitle className="text-base font-semibold flex items-center gap-2">
-              <BookOpen className="h-4 w-4 text-blue-600" /> {programa.mes_ano}
+              <BookOpen className="h-4 w-4 text-blue-600" /> 
+              {programa.titulo || programa.mes_ano || 'Programa'}
             </CardTitle>
-            <div className="text-sm text-gray-600">{programa.arquivo_nome}</div>
+            {programa.mes_ano && (
+              <div className="text-sm text-gray-600 flex items-center gap-1">
+                <Calendar className="h-3 w-3" />
+                {programa.mes_ano}
+              </div>
+            )}
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              {programa.semanas.map((semana, idx) => (
-                <div key={semana.id}>
-                  <div className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-gray-600" />
-                    Semana {semana.semana_numero} — {semana.data_inicio}
-                  </div>
-                  <div className="text-sm text-gray-600 mb-2">{semana.tema_semana}</div>
-                  <ul className="text-sm text-gray-700 space-y-1 list-disc pl-5">
-                    {semana.partes.map((parte) => (
-                      <li key={parte.id}>
-                        <span className="font-medium">{parte.titulo}</span>
-                        {parte.duracao_minutos ? ` — ${parte.duracao_minutos} min` : ''}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <div className="space-y-2">
+              {programa.descricao && (
+                <p className="text-sm text-gray-600">{programa.descricao}</p>
+              )}
+              {programa.arquivo_nome && (
+                <p className="text-xs text-gray-500">Arquivo: {programa.arquivo_nome}</p>
+              )}
+              <div className="text-xs text-gray-500">
+                Status: {programa.status || 'Rascunho'}
+              </div>
             </div>
           </CardContent>
         </Card>

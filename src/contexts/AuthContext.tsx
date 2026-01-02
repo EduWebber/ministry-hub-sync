@@ -64,7 +64,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (profileData) {
         console.log('Profile loaded successfully:', profileData);
-        setProfile(profileData);
+        // Cast role to the correct type
+        const typedProfile: Profile = {
+          ...profileData,
+          role: (profileData.role as 'admin' | 'instrutor' | 'estudante') || 'estudante'
+        };
+        setProfile(typedProfile);
         setAuthError(null);
       } else {
         console.log('No profile found, creating one');
@@ -87,8 +92,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           if (createError) {
             console.error('Error creating profile:', createError);
             setAuthError('Erro ao criar perfil');
-          } else {
-            setProfile(createdProfile);
+          } else if (createdProfile) {
+            const typedCreatedProfile: Profile = {
+              ...createdProfile,
+              role: (createdProfile.role as 'admin' | 'instrutor' | 'estudante') || 'instrutor'
+            };
+            setProfile(typedCreatedProfile);
             setAuthError(null);
           }
         }
@@ -276,7 +285,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
       
       if (data) {
-        setProfile(data);
+        const typedProfile: Profile = {
+          ...data,
+          role: (data.role as 'admin' | 'instrutor' | 'estudante') || 'instrutor'
+        };
+        setProfile(typedProfile);
       }
       
       return { data, error: null };
