@@ -23,20 +23,8 @@ import { EmptyState } from "@/components/ui/empty-state";
 import {
   EstudanteWithParent,
   EstudanteFilters,
-  Cargo,
-  Genero,
   CARGO_LABELS,
-  GENERO_LABELS,
 } from "@/types/estudantes";
-import {
-  EstudanteWithParent,
-  EstudanteFilters,
-  Cargo,
-  Genero,
-  CARGO_LABELS,
-  GENERO_LABELS,
-} from "@/types/estudantes";
-
 
 const Estudantes = () => {
   const { t } = useTranslation();
@@ -46,7 +34,7 @@ const Estudantes = () => {
 
   const [activeTab, setActiveTab] = useState(() => {
     const tabParam = searchParams.get('tab');
-    return ['list', 'form', 'import', 'stats', 'instructor', 'spreadsheet'].includes(tabParam || '') ? tabParam : 'list';
+    return ['list', 'form', 'import', 'stats', 'spreadsheet'].includes(tabParam || '') ? tabParam : 'list';
   });
 
   const {
@@ -60,13 +48,6 @@ const Estudantes = () => {
     filterEstudantes,
     getStatistics,
   } = useEstudantes();
-
-  const {
-    data: instructorData,
-    loading: instructorLoading,
-    error: instructorError,
-    refreshData: refreshInstructorData
-  } = useInstructorDashboard();
 
   useEffect(() => {
     if (activeTab !== 'list') {
@@ -193,10 +174,6 @@ const Estudantes = () => {
                       <BarChart3 className="w-4 h-4" />
                       {t('students.tabs.statistics')}
                     </TabsTrigger>
-                    <TabsTrigger value="instructor" className="flex items-center gap-2 shrink-0 snap-start">
-                      <Users className="w-4 h-4" />
-                      {t('students.tabs.instructorPanel')}
-                    </TabsTrigger>
                   </TabsList>
                 </ScrollTabs>
                 <div className="responsive-buttons w-full md:w-auto flex flex-col md:flex-row gap-2 md:gap-3">
@@ -251,11 +228,6 @@ const Estudantes = () => {
                   <Card><CardContent className="p-6 text-center"><div className="text-3xl font-bold text-red-600 mb-2">{statistics.inativos}</div><div className="text-sm text-gray-600">{t('students.inactiveStudents')}</div></CardContent></Card>
                   <Card><CardContent className="p-6 text-center"><div className="text-3xl font-bold text-orange-600 mb-2">{statistics.menores}</div><div className="text-sm text-gray-600">{t('students.minors')}</div></CardContent></Card>
                 </div>
-              </TabsContent>
-              <TabsContent value="instructor" className="space-y-6">
-                {instructorLoading ? <p>{t('common.loading')}</p> : instructorError ? <p>{t('errors.loadingFailed')}</p> : (
-                  <InstructorDashboardStats data={instructorData} />
-                )}
               </TabsContent>
               <TabsContent value="import" className="space-y-6">
                 <div className="p-4 text-center text-gray-500">
