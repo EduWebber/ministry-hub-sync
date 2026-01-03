@@ -22,7 +22,7 @@ export const MobileNavigation = ({ className = "" }: MobileNavigationProps) => {
   };
 
   return (
-    <div className={`lg:hidden ${className}`}>
+    <div className={className}>
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
           <Button

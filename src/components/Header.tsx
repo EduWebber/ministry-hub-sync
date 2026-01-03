@@ -100,7 +100,7 @@ const Header = () => {
               <h1 className="header-title text-lg sm:text-xl font-semibold">{t('common.appName')}</h1>
             </div>
             
-            <nav className="header-nav hidden md:flex items-center space-x-6">
+            <nav className="header-nav hidden lg:flex items-center space-x-3 xl:space-x-6">
                           {!user && (
                             <>
                               <Link to="/" className="hover:text-jw-gold transition-colors">
@@ -150,7 +150,7 @@ const Header = () => {
           </div>
           
           {/* Mobile Navigation */}
-          <MobileNavigation className="md:hidden" />
+          <MobileNavigation className="lg:hidden" />
           
  <div className="flex items-center space-x-2 sm:space-x-4">
             {/* Language Toggle Button */}
