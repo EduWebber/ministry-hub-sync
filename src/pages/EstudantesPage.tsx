@@ -302,26 +302,11 @@ const EstudantesPage = () => {
         </TabsContent>
 
         <TabsContent value="import" className="space-y-6">
-          {estudantes.length === 0 ? (
-            <Alert>
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>
-                <strong>Pré-requisito necessário:</strong> Cadastre pelo menos um estudante manualmente antes de usar a importação em lote.
-                <div className="mt-3">
-                  <Button onClick={() => setActiveTab("form")} size="sm">
-                    <Plus className="w-4 h-4 mr-2" />
-                    Cadastrar primeiro estudante
-                  </Button>
-                </div>
-              </AlertDescription>
-            </Alert>
-          ) : (
-            <div className="space-y-6">
-              <TemplateDownload />
-              <SpreadsheetUpload onImportComplete={handleImportComplete} />
-              <ImportHelp />
-            </div>
-          )}
+          <div className="space-y-6">
+            <TemplateDownload />
+            <SpreadsheetUpload onImportComplete={handleImportComplete} />
+            <ImportHelp />
+          </div>
         </TabsContent>
 
         <TabsContent value="spreadsheet" className="w-full overflow-x-auto">
