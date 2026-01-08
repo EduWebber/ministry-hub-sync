@@ -35,6 +35,8 @@ import { useEstudantes } from "@/hooks/useEstudantes";
 import { JWContentParser } from "@/components/JWContentParser";
 import DesignacoesReais from "@/components/DesignacoesReais";
 import { supabase } from "@/integrations/supabase/client";
+import { AISuggestionsPanel } from "@/components/AISuggestionsPanel";
+import { SugestaoDesignacao } from "@/hooks/useAISuggestions";
 
 // Check if we're in mock mode
 const isMockMode = import.meta.env.VITE_MOCK_MODE === 'true';
@@ -986,12 +988,27 @@ export default function Designacoes() {
             </TabsContent>
 
             <TabsContent value="gerar" className="space-y-6">
-              <GeradorDesignacoes 
-                programa={programaAtual}
-                estudantes={estudantes || []}
-                onDesignacoesGeradas={handleDesignacoesGeradas}
-                onBindGenerate={(fn) => { childGenerateRef.current = fn; }}
-              />
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2">
+                  <GeradorDesignacoes 
+                    programa={programaAtual}
+                    estudantes={estudantes || []}
+                    onDesignacoesGeradas={handleDesignacoesGeradas}
+                    onBindGenerate={(fn) => { childGenerateRef.current = fn; }}
+                  />
+                </div>
+                <div className="lg:col-span-1">
+                  <AISuggestionsPanel
+                    congregacaoId={(estudantes || []).find((e: any) => e?.congregacao_id)?.congregacao_id || ""}
+                    onAcceptSuggestion={(sugestao: SugestaoDesignacao) => {
+                      toast({
+                        title: "Sugestão aceita",
+                        description: `${sugestao.estudante_nome} designado para ${sugestao.tipo_parte}`,
+                      });
+                    }}
+                  />
+                </div>
+              </div>
             </TabsContent>
 
             <TabsContent value="notificar" className="space-y-6">

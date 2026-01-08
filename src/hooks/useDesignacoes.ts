@@ -59,7 +59,6 @@ export function useDesignacoes() {
         throw new Error(`Erro ao buscar designações: ${designacoesError.message}`);
       }
 
-      // Fetch students separately to avoid complex joins
       const estudanteIds = new Set<string>();
       (designacoesData || []).forEach(d => {
         if (d.estudante_id) estudanteIds.add(d.estudante_id);
