@@ -1000,11 +1000,13 @@ export default function Designacoes() {
                 <div className="lg:col-span-1">
                   <AISuggestionsPanel
                     congregacaoId={(estudantes || []).find((e: any) => e?.congregacao_id)?.congregacao_id || ""}
-                    onAcceptSuggestion={(sugestao: SugestaoDesignacao) => {
+                    onDesignacaoCriada={(designacao) => {
                       toast({
-                        title: "Sugestão aceita",
-                        description: `${sugestao.estudante_nome} designado para ${sugestao.tipo_parte}`,
+                        title: "Designação criada",
+                        description: `Designação salva com sucesso no banco de dados.`,
                       });
+                      // Add the new designation to the list
+                      setDesignacoes(prev => [designacao, ...prev]);
                     }}
                   />
                 </div>

@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Sparkles, UserCheck, Users, CheckCircle2, XCircle } from "lucide-react";
+import { Loader2, Sparkles, UserCheck, Users, CheckCircle2 } from "lucide-react";
 import { useAISuggestions, SugestaoDesignacao } from "@/hooks/useAISuggestions";
+import { useCreateDesignacao } from "@/hooks/useCreateDesignacao";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,7 +12,9 @@ import { cn } from "@/lib/utils";
 
 interface AISuggestionsPanelProps {
   congregacaoId: string;
-  onAcceptSuggestion?: (sugestao: SugestaoDesignacao) => void;
+  programaId?: string;
+  dataDesignacaoDefault?: string;
+  onDesignacaoCriada?: (designacao: any) => void;
   className?: string;
 }
 
@@ -27,17 +30,20 @@ const TIPOS_PARTE = [
 
 export function AISuggestionsPanel({ 
   congregacaoId, 
-  onAcceptSuggestion,
+  programaId,
+  dataDesignacaoDefault,
+  onDesignacaoCriada,
   className 
 }: AISuggestionsPanelProps) {
   const { isLoading, sugestoes, error, fetchSuggestions, clearSuggestions } = useAISuggestions();
+  const { isCreating, createFromSuggestion } = useCreateDesignacao();
   const [tipoParte, setTipoParte] = useState("");
-  const [dataDesignacao, setDataDesignacao] = useState("");
+  const [dataDesignacao, setDataDesignacao] = useState(dataDesignacaoDefault || "");
   const [quantidade, setQuantidade] = useState(3);
-  const [acceptedIds, setAcceptedIds] = useState<Set<string>>(new Set());
+  const [createdIds, setCreatedIds] = useState<Set<string>>(new Set());
 
   const handleGenerateSuggestions = async () => {
-    setAcceptedIds(new Set());
+    setCreatedIds(new Set());
     await fetchSuggestions({
       congregacao_id: congregacaoId,
       tipo_parte: tipoParte || undefined,
@@ -46,9 +52,24 @@ export function AISuggestionsPanel({
     });
   };
 
-  const handleAccept = (sugestao: SugestaoDesignacao) => {
-    setAcceptedIds(prev => new Set(prev).add(sugestao.estudante_id));
-    onAcceptSuggestion?.(sugestao);
+  const handleAcceptAndCreate = async (sugestao: SugestaoDesignacao) => {
+    try {
+      const designacao = await createFromSuggestion({
+        sugestao,
+        congregacaoId,
+        programaId,
+        dataDesignacao: dataDesignacao || undefined,
+        tituloParte: sugestao.tipo_parte,
+      });
+
+      setCreatedIds(prev => new Set(prev).add(sugestao.estudante_id));
+      
+      if (onDesignacaoCriada) {
+        onDesignacaoCriada(designacao);
+      }
+    } catch {
+      // Error is already handled by the hook
+    }
   };
 
   const getConfidenceColor = (confianca: number) => {
@@ -159,20 +180,20 @@ export function AISuggestionsPanel({
             </div>
             
             {sugestoes.map((sugestao, index) => {
-              const isAccepted = acceptedIds.has(sugestao.estudante_id);
+              const isCreated = createdIds.has(sugestao.estudante_id);
               
               return (
                 <Card 
                   key={`${sugestao.estudante_id}-${index}`} 
                   className={cn(
                     "transition-all",
-                    isAccepted && "border-green-500 bg-green-500/5"
+                    isCreated && "border-green-500 bg-green-500/5 opacity-75"
                   )}
                 >
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1 space-y-2">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-wrap">
                           <UserCheck className="h-4 w-4 text-muted-foreground" />
                           <span className="font-medium">{sugestao.estudante_nome}</span>
                           <Badge variant="outline">{sugestao.tipo_parte}</Badge>
@@ -192,18 +213,25 @@ export function AISuggestionsPanel({
                       </div>
                       
                       <div className="flex gap-2">
-                        {isAccepted ? (
+                        {isCreated ? (
                           <Badge className="bg-green-500 text-white">
                             <CheckCircle2 className="mr-1 h-3 w-3" />
-                            Aceito
+                            Designado
                           </Badge>
                         ) : (
                           <Button 
                             size="sm" 
-                            onClick={() => handleAccept(sugestao)}
+                            onClick={() => handleAcceptAndCreate(sugestao)}
+                            disabled={isCreating}
                           >
-                            <CheckCircle2 className="mr-1 h-4 w-4" />
-                            Aceitar
+                            {isCreating ? (
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                            ) : (
+                              <>
+                                <CheckCircle2 className="mr-1 h-4 w-4" />
+                                Designar
+                              </>
+                            )}
                           </Button>
                         )}
                       </div>
