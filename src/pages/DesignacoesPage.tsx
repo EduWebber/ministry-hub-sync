@@ -6,6 +6,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 import { 
   Users, 
@@ -18,14 +19,30 @@ import {
   Download,
   Upload,
   RefreshCw,
-  Save
+  Save,
+  List,
+  Sparkles,
+  Pencil,
+  XCircle,
+  Trash2,
+  MoreHorizontal
 } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import SidebarLayout from "@/components/layout/SidebarLayout";
 import { useEstudantes } from "@/hooks/useEstudantes";
+import { useDesignacoes } from "@/hooks/useDesignacoes";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useProgramContext } from "@/contexts/ProgramContext";
 import { supabase } from "@/integrations/supabase/client";
+import { DesignacoesTable, EditDesignacaoModal, ConfirmDialog } from "@/components/designacoes";
+import { AISuggestionsPanel } from "@/components/AISuggestionsPanel";
 
 // Tipos para o sistema de designações
 interface DesignacaoMinisterial {
@@ -67,10 +84,19 @@ const DesignacoesPage = () => {
   const navigate = useNavigate();
   const { selectedCongregacaoId, setSelectedCongregacaoId, selectedProgramId, setSelectedProgramId } = useProgramContext();
   const [programaAtual, setProgramaAtual] = useState<ProgramaSemanal | null>(null);
-  const [designacoes, setDesignacoes] = useState<any[]>([]);
+  const [designacoesGeradas, setDesignacoesGeradas] = useState<any[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("lista");
   const { estudantes, isLoading: estudantesLoading } = useEstudantes();
+  const { 
+    designacoes: designacoesSalvas, 
+    loading: designacoesLoading,
+    updateDesignacao,
+    cancelarDesignacao,
+    deleteDesignacao,
+    fetchDesignacoes
+  } = useDesignacoes();
   const { user } = useAuth();
 
   // Load selected program from context when component mounts
@@ -197,7 +223,7 @@ const DesignacoesPage = () => {
 
   // Salvar designações no backend
   const salvarDesignacoes = async () => {
-    if (!programaAtual || designacoes.length === 0) {
+    if (!programaAtual || designacoesGeradas.length === 0) {
       toast({
         title: 'Nenhuma designação para salvar',
         description: 'Gere as designações primeiro.',
@@ -219,7 +245,7 @@ const DesignacoesPage = () => {
       const payload = {
         programacao_id: programaAtual.id,
         congregacao_id: congregacaoId,
-        itens: designacoes.map(d => ({
+        itens: designacoesGeradas.map(d => ({
           programacao_item_id: d.programacao_item_id || d.id,
           principal_estudante_id: d.principal_estudante_id || d.estudante_principal_id,
           assistente_estudante_id: d.assistente_estudante_id || d.estudante_ajudante_id,
@@ -240,7 +266,7 @@ const DesignacoesPage = () => {
 
       toast({
         title: 'Designações salvas!',
-        description: `${designacoes.length} designações foram salvas com sucesso.`
+        description: `${designacoesGeradas.length} designações foram salvas com sucesso.`
       });
     } catch (error: any) {
       console.error('Erro ao salvar designações:', error);
@@ -249,7 +275,7 @@ const DesignacoesPage = () => {
         localStorage.setItem('designacoes_draft', JSON.stringify({
           programacao_id: programaAtual?.id,
           congregacao_id: congregacaoId,
-          itens: designacoes
+          itens: designacoesGeradas
         }));
         toast({
           title: 'Rascunho salvo localmente',
@@ -370,7 +396,7 @@ const DesignacoesPage = () => {
       console.log('Designações geradas:', designacoesGeradas);
       
       if (designacoesGeradas.length > 0) {
-        setDesignacoes(designacoesGeradas);
+        setDesignacoesGeradas(designacoesGeradas);
 
         // Enhanced success message with algorithm info
         const summary = result.summary || {};
@@ -400,7 +426,7 @@ const DesignacoesPage = () => {
       // Fallback local
       const locais = gerarDesignacoesLocal();
       if (locais.length > 0) {
-        setDesignacoes(locais);
+        setDesignacoesGeradas(locais);
         toast({
           title: 'Designações geradas (local)',
           description: `${locais.length} designações criadas com gerador local.`
@@ -468,7 +494,7 @@ const DesignacoesPage = () => {
             {isLoading ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Download className="w-4 h-4 mr-2" />}
             Carregar Programa
           </Button>
-          <Button variant="outline" size="sm" onClick={() => setDesignacoes([])}>
+          <Button variant="outline" size="sm" onClick={() => setDesignacoesGeradas([])}>
             <RefreshCw className="w-4 h-4 mr-2" />
             Limpar
           </Button>
@@ -476,7 +502,7 @@ const DesignacoesPage = () => {
             {isGenerating ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Users className="w-4 h-4 mr-2" />}
             Gerar Designações Automáticas
           </Button>
-          {designacoes.length > 0 && (
+          {designacoesGeradas.length > 0 && (
             <Button size="sm" variant="default" onClick={salvarDesignacoes}>
               <Save className="w-4 h-4 mr-2" />
               Salvar Designações
@@ -549,7 +575,7 @@ const DesignacoesPage = () => {
         {programaAtual && (
           <>
             {/* S-38 Algorithm Summary */}
-            {designacoes.length > 0 && (
+            {designacoesGeradas.length > 0 && (
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
@@ -561,25 +587,25 @@ const DesignacoesPage = () => {
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div className="text-center">
                       <div className="text-2xl font-bold text-green-600">
-                        {designacoes.filter(d => d.status === 'OK').length}
+                        {designacoesGeradas.filter(d => d.status === 'OK').length}
                       </div>
                       <div className="text-sm text-gray-500">Designações Confirmadas</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-yellow-600">
-                        {designacoes.filter(d => d.status === 'PENDING').length}
+                        {designacoesGeradas.filter(d => d.status === 'PENDING').length}
                       </div>
                       <div className="text-sm text-gray-500">Pendentes</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-blue-600">
-                        {designacoes.filter(d => d.observacoes && d.observacoes.includes('fallback')).length}
+                        {designacoesGeradas.filter(d => d.observacoes && d.observacoes.includes('fallback')).length}
                       </div>
                       <div className="text-sm text-gray-500">Fallbacks Aplicados</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-purple-600">
-                        {Math.round((designacoes.filter(d => d.status === 'OK').length / designacoes.length) * 100)}%
+                        {Math.round((designacoesGeradas.filter(d => d.status === 'OK').length / designacoesGeradas.length) * 100)}%
                       </div>
                       <div className="text-sm text-gray-500">Taxa de Sucesso</div>
                     </div>
@@ -595,14 +621,14 @@ const DesignacoesPage = () => {
                 Designações da Semana
               </CardTitle>
               <CardDescription>
-                {designacoes.length > 0 
-                  ? `${designacoes.length} partes com designações`
+                {designacoesGeradas.length > 0 
+                  ? `${designacoesGeradas.length} partes com designações`
                   : 'Clique em "Gerar Designações Automáticas" para começar'
                 }
               </CardDescription>
             </CardHeader>
             <CardContent>
-              {designacoes.length === 0 ? (
+              {designacoesGeradas.length === 0 ? (
                 <div className="text-center py-8">
                   <Users className="w-12 h-12 text-gray-300 mx-auto mb-4" />
                   <p className="text-gray-500">Nenhuma designação gerada ainda</p>
@@ -629,7 +655,7 @@ const DesignacoesPage = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {designacoes.map((designacao: any, index: number) => {
+                    {designacoesGeradas.map((designacao: any, index: number) => {
                       console.log('Renderizando designação:', designacao);
                       return (
                         <TableRow key={designacao.id || designacao.programacao_item_id || index}>

@@ -20,10 +20,23 @@ export interface DesignacaoCompleta {
   estudante_id: string | null;
   ajudante_id: string | null;
   programa_id: string | null;
+  congregacao_id: string | null;
   created_at: string;
   updated_at: string;
   estudante: Estudante | null;
   ajudante: Estudante | null;
+}
+
+export interface UpdateDesignacaoData {
+  titulo_parte?: string;
+  tipo_parte?: string | null;
+  tempo_minutos?: number | null;
+  cena?: string | null;
+  data_designacao?: string | null;
+  status?: string | null;
+  observacoes?: string | null;
+  estudante_id?: string | null;
+  ajudante_id?: string | null;
 }
 
 export function useDesignacoes() {
@@ -50,10 +63,11 @@ export function useDesignacoes() {
           estudante_id,
           ajudante_id,
           programa_id,
+          congregacao_id,
           created_at,
           updated_at
         `)
-        .order('created_at', { ascending: false });
+        .order('data_designacao', { ascending: false, nullsFirst: false });
 
       if (designacoesError) {
         throw new Error(`Erro ao buscar designações: ${designacoesError.message}`);
@@ -93,6 +107,50 @@ export function useDesignacoes() {
     }
   }, []);
 
+  const updateDesignacao = useCallback(async (id: string, dados: UpdateDesignacaoData) => {
+    try {
+      const { error: updateError } = await supabase
+        .from('designacoes')
+        .update(dados)
+        .eq('id', id);
+
+      if (updateError) {
+        throw new Error(`Erro ao atualizar designação: ${updateError.message}`);
+      }
+
+      await fetchDesignacoes();
+      return { success: true };
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Erro desconhecido';
+      console.error('Erro ao atualizar designação:', err);
+      return { success: false, error: errorMessage };
+    }
+  }, [fetchDesignacoes]);
+
+  const cancelarDesignacao = useCallback(async (id: string) => {
+    return updateDesignacao(id, { status: 'cancelado' });
+  }, [updateDesignacao]);
+
+  const deleteDesignacao = useCallback(async (id: string) => {
+    try {
+      const { error: deleteError } = await supabase
+        .from('designacoes')
+        .delete()
+        .eq('id', id);
+
+      if (deleteError) {
+        throw new Error(`Erro ao excluir designação: ${deleteError.message}`);
+      }
+
+      await fetchDesignacoes();
+      return { success: true };
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Erro desconhecido';
+      console.error('Erro ao excluir designação:', err);
+      return { success: false, error: errorMessage };
+    }
+  }, [fetchDesignacoes]);
+
   useEffect(() => {
     fetchDesignacoes();
   }, [fetchDesignacoes]);
@@ -101,6 +159,9 @@ export function useDesignacoes() {
     designacoes,
     loading,
     error,
-    fetchDesignacoes
+    fetchDesignacoes,
+    updateDesignacao,
+    cancelarDesignacao,
+    deleteDesignacao
   };
 }
