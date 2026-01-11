@@ -524,11 +524,11 @@ const DesignacoesPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label className="text-sm font-medium">Programa:</label>
-                <p className="text-sm text-gray-600">{programaAtual ? programaAtual.semana : 'Nenhum programa carregado'}</p>
+                <p className="text-sm text-muted-foreground">{programaAtual ? programaAtual.semana : 'Nenhum programa carregado'}</p>
               </div>
               <div>
                 <label className="text-sm font-medium">Estudantes ativos:</label>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-muted-foreground">
                   {estudantesLoading ? 'Carregando...' : `${estudantes?.length || 0} estudantes`}
                 </p>
               </div>
@@ -553,160 +553,242 @@ const DesignacoesPage = () => {
           </CardContent>
         </Card>
 
-        {/* Estado sem programa */}
-        {!programaAtual && (
-          <Card>
-            <CardContent className="p-12 text-center">
-              <Alert>
-                <AlertCircle className="h-4 w-4" />
-                <AlertDescription>
-                  Nenhuma semana carregada. Carregue a semana atual ou importe um PDF na aba Programas.
-                </AlertDescription>
-              </Alert>
-              <Button className="mt-4" onClick={carregarSemanaAtual} disabled={isLoading}>
-                {isLoading ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Download className="w-4 h-4 mr-2" />}
-                Carregar Programa
-              </Button>
-            </CardContent>
-          </Card>
-        )}
+        {/* Abas: Lista e Gerar */}
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="lista" className="flex items-center gap-2">
+              <List className="w-4 h-4" />
+              Lista de Designações
+            </TabsTrigger>
+            <TabsTrigger value="gerar" className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4" />
+              Gerar com IA
+            </TabsTrigger>
+          </TabsList>
 
-        {/* Tabela de designações */}
-        {programaAtual && (
-          <>
-            {/* S-38 Algorithm Summary */}
-            {designacoesGeradas.length > 0 && (
+          {/* Aba Lista */}
+          <TabsContent value="lista" className="space-y-4 mt-4">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Users className="w-5 h-5" />
+                  Designações Salvas
+                </CardTitle>
+                <CardDescription>
+                  {designacoesLoading 
+                    ? 'Carregando designações...'
+                    : `${designacoesSalvas?.length || 0} designações encontradas`
+                  }
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <DesignacoesTable
+                  designacoes={designacoesSalvas}
+                  loading={designacoesLoading}
+                  onUpdate={updateDesignacao}
+                  onCancel={cancelarDesignacao}
+                  onDelete={deleteDesignacao}
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Aba Gerar */}
+          <TabsContent value="gerar" className="space-y-4 mt-4">
+            {/* Estado sem programa */}
+            {!programaAtual && (
               <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
-                    Resumo do Algoritmo S-38
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-green-600">
-                        {designacoesGeradas.filter(d => d.status === 'OK').length}
-                      </div>
-                      <div className="text-sm text-gray-500">Designações Confirmadas</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-yellow-600">
-                        {designacoesGeradas.filter(d => d.status === 'PENDING').length}
-                      </div>
-                      <div className="text-sm text-gray-500">Pendentes</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-blue-600">
-                        {designacoesGeradas.filter(d => d.observacoes && d.observacoes.includes('fallback')).length}
-                      </div>
-                      <div className="text-sm text-gray-500">Fallbacks Aplicados</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-purple-600">
-                        {Math.round((designacoesGeradas.filter(d => d.status === 'OK').length / designacoesGeradas.length) * 100)}%
-                      </div>
-                      <div className="text-sm text-gray-500">Taxa de Sucesso</div>
-                    </div>
-                  </div>
+                <CardContent className="p-12 text-center">
+                  <Alert>
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertDescription>
+                      Nenhuma semana carregada. Carregue a semana atual ou importe um PDF na aba Programas.
+                    </AlertDescription>
+                  </Alert>
+                  <Button className="mt-4" onClick={carregarSemanaAtual} disabled={isLoading}>
+                    {isLoading ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Download className="w-4 h-4 mr-2" />}
+                    Carregar Programa
+                  </Button>
                 </CardContent>
               </Card>
             )}
-            
-            <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Users className="w-5 h-5" />
-                Designações da Semana
-              </CardTitle>
-              <CardDescription>
-                {designacoesGeradas.length > 0 
-                  ? `${designacoesGeradas.length} partes com designações`
-                  : 'Clique em "Gerar Designações Automáticas" para começar'
-                }
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              {designacoesGeradas.length === 0 ? (
-                <div className="text-center py-8">
-                  <Users className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-                  <p className="text-gray-500">Nenhuma designação gerada ainda</p>
-                  <Button 
-                    className="mt-4" 
-                    onClick={gerarDesignacoes} 
-                    disabled={isGenerating || !congregacaoId}
-                  >
-                    {isGenerating ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Users className="w-4 h-4 mr-2" />}
-                    Gerar Designações Automáticas
-                  </Button>
-                </div>
-              ) : (
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Parte</TableHead>
-                      <TableHead>Tempo</TableHead>
-                      <TableHead>Estudante</TableHead>
-                      <TableHead>Assistente</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead>Observações</TableHead>
-                      <TableHead>Ações</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {designacoesGeradas.map((designacao: any, index: number) => {
-                      console.log('Renderizando designação:', designacao);
-                      return (
-                        <TableRow key={designacao.id || designacao.programacao_item_id || index}>
-                          <TableCell className="font-medium">
-                            <div>
-                              <p>{designacao.parte_titulo || designacao.titulo || (designacao.programacao_itens && designacao.programacao_itens.titulo) || 'Parte não identificada'}</p>
-                              <p className="text-sm text-gray-500">#{designacao.parte_numero || designacao.numero || 'N/A'}</p>
-                            </div>
-                          </TableCell>
-                          <TableCell>
-                            <Badge variant="secondary">
-                              <Clock className="w-3 h-3 mr-1" />
-                              {designacao.parte_tempo || designacao.tempo || (designacao.programacao_itens && designacao.programacao_itens.tempo) || 0} min
-                            </Badge>
-                          </TableCell>
-                          <TableCell>
-                            {designacao.principal_estudante_id 
-                              ? getEstudanteNome(designacao.principal_estudante_id) 
-                              : 'Não designado'}
-                          </TableCell>
-                          <TableCell>
-                            {designacao.assistente_estudante_id 
-                              ? getEstudanteNome(designacao.assistente_estudante_id) 
-                              : '—'}
-                          </TableCell>
-                          <TableCell>{getStatusBadge(designacao)}</TableCell>
-                          <TableCell>
-                            {designacao.observacoes ? (
-                              <span className="text-xs text-gray-500 italic">
-                                {designacao.observacoes.includes('fallback') ? '🔄 ' : ''}
-                                {designacao.observacoes}
-                              </span>
-                            ) : (
-                              <span className="text-xs text-gray-400">—</span>
-                            )}
-                          </TableCell>
-                          <TableCell>
-                            <Button variant="ghost" size="sm" disabled>
-                              Editar
-                            </Button>
-                          </TableCell>
-                        </TableRow>
-                      );
-                    })}
-                  </TableBody>
-                </Table>
-              )}
-            </CardContent>
-          </Card>
-          </>
-        )}
+
+            {/* Painel de Sugestões IA */}
+            {congregacaoId && (
+              <AISuggestionsPanel
+                congregacaoId={congregacaoId}
+                programaId={selectedProgramId || programaAtual?.id}
+                dataDesignacaoDefault={programaAtual?.data_inicio}
+                onDesignacaoCriada={(designacao) => {
+                  // Atualizar lista de designações após criar uma nova
+                  fetchDesignacoes();
+                }}
+              />
+            )}
+
+            {!congregacaoId && (
+              <Card>
+                <CardContent className="p-12 text-center">
+                  <Alert>
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertDescription>
+                      Selecione uma congregação na configuração acima para gerar sugestões.
+                    </AlertDescription>
+                  </Alert>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Geração Automática Tradicional */}
+            {programaAtual && (
+              <>
+                {/* S-38 Algorithm Summary */}
+                {designacoesGeradas.length > 0 && (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                        Resumo do Algoritmo S-38
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-green-600">
+                            {designacoesGeradas.filter(d => d.status === 'OK').length}
+                          </div>
+                          <div className="text-sm text-muted-foreground">Designações Confirmadas</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-yellow-600">
+                            {designacoesGeradas.filter(d => d.status === 'PENDING').length}
+                          </div>
+                          <div className="text-sm text-muted-foreground">Pendentes</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-blue-600">
+                            {designacoesGeradas.filter(d => d.observacoes && d.observacoes.includes('fallback')).length}
+                          </div>
+                          <div className="text-sm text-muted-foreground">Fallbacks Aplicados</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-purple-600">
+                            {designacoesGeradas.length > 0 ? Math.round((designacoesGeradas.filter(d => d.status === 'OK').length / designacoesGeradas.length) * 100) : 0}%
+                          </div>
+                          <div className="text-sm text-muted-foreground">Taxa de Sucesso</div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+                
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Users className="w-5 h-5" />
+                      Designações Geradas Automaticamente
+                    </CardTitle>
+                    <CardDescription>
+                      {designacoesGeradas.length > 0 
+                        ? `${designacoesGeradas.length} partes com designações`
+                        : 'Clique em "Gerar Designações Automáticas" para começar'
+                      }
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    {designacoesGeradas.length === 0 ? (
+                      <div className="text-center py-8">
+                        <Users className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
+                        <p className="text-muted-foreground">Nenhuma designação gerada ainda</p>
+                        <Button 
+                          className="mt-4" 
+                          onClick={gerarDesignacoes} 
+                          disabled={isGenerating || !congregacaoId}
+                        >
+                          {isGenerating ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Users className="w-4 h-4 mr-2" />}
+                          Gerar Designações Automáticas
+                        </Button>
+                      </div>
+                    ) : (
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Parte</TableHead>
+                            <TableHead>Tempo</TableHead>
+                            <TableHead>Estudante</TableHead>
+                            <TableHead>Assistente</TableHead>
+                            <TableHead>Status</TableHead>
+                            <TableHead>Observações</TableHead>
+                            <TableHead>Ações</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {designacoesGeradas.map((designacao: any, index: number) => (
+                            <TableRow key={designacao.id || designacao.programacao_item_id || index}>
+                              <TableCell className="font-medium">
+                                <div>
+                                  <p>{designacao.parte_titulo || designacao.titulo || (designacao.programacao_itens && designacao.programacao_itens.titulo) || 'Parte não identificada'}</p>
+                                  <p className="text-sm text-muted-foreground">#{designacao.parte_numero || designacao.numero || 'N/A'}</p>
+                                </div>
+                              </TableCell>
+                              <TableCell>
+                                <Badge variant="secondary">
+                                  <Clock className="w-3 h-3 mr-1" />
+                                  {designacao.parte_tempo || designacao.tempo || (designacao.programacao_itens && designacao.programacao_itens.tempo) || 0} min
+                                </Badge>
+                              </TableCell>
+                              <TableCell>
+                                {designacao.principal_estudante_id 
+                                  ? getEstudanteNome(designacao.principal_estudante_id) 
+                                  : 'Não designado'}
+                              </TableCell>
+                              <TableCell>
+                                {designacao.assistente_estudante_id 
+                                  ? getEstudanteNome(designacao.assistente_estudante_id) 
+                                  : '—'}
+                              </TableCell>
+                              <TableCell>{getStatusBadge(designacao)}</TableCell>
+                              <TableCell>
+                                {designacao.observacoes ? (
+                                  <span className="text-xs text-muted-foreground italic">
+                                    {designacao.observacoes.includes('fallback') ? '🔄 ' : ''}
+                                    {designacao.observacoes}
+                                  </span>
+                                ) : (
+                                  <span className="text-xs text-muted-foreground">—</span>
+                                )}
+                              </TableCell>
+                              <TableCell>
+                                <DropdownMenu>
+                                  <DropdownMenuTrigger asChild>
+                                    <Button variant="ghost" size="icon">
+                                      <MoreHorizontal className="h-4 w-4" />
+                                    </Button>
+                                  </DropdownMenuTrigger>
+                                  <DropdownMenuContent align="end">
+                                    <DropdownMenuItem disabled>
+                                      <Pencil className="mr-2 h-4 w-4" />
+                                      Editar
+                                    </DropdownMenuItem>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem disabled className="text-destructive">
+                                      <Trash2 className="mr-2 h-4 w-4" />
+                                      Remover
+                                    </DropdownMenuItem>
+                                  </DropdownMenuContent>
+                                </DropdownMenu>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    )}
+                  </CardContent>
+                </Card>
+              </>
+            )}
+          </TabsContent>
+        </Tabs>
       </div>
     </SidebarLayout>
   );
