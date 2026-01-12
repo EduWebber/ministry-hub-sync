@@ -16,12 +16,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MoreHorizontal, Pencil, XCircle, Trash2, Clock, User, Users } from "lucide-react";
+import { MoreHorizontal, Pencil, XCircle, Trash2, Clock, User, Users, Mail } from "lucide-react";
 import { DesignacaoCompleta, UpdateDesignacaoData } from "@/hooks/useDesignacoes";
 import { EditDesignacaoModal } from "./EditDesignacaoModal";
 import { ConfirmDialog } from "./ConfirmDialog";
+import { useEmailNotification } from "@/hooks/useEmailNotification";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { toast } from "@/hooks/use-toast";
 
 interface DesignacoesTableProps {
   designacoes: DesignacaoCompleta[];
@@ -64,6 +66,44 @@ export function DesignacoesTable({
   const [cancelingDesignacao, setCancelingDesignacao] = useState<DesignacaoCompleta | null>(null);
   const [deletingDesignacao, setDeletingDesignacao] = useState<DesignacaoCompleta | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const { notifyNewDesignacao } = useEmailNotification();
+
+  const handleSendEmail = async (designacao: DesignacaoCompleta) => {
+    if (!designacao.estudante) {
+      toast({
+        title: "Sem estudante",
+        description: "Esta designação não tem um estudante atribuído.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!designacao.estudante.email) {
+      toast({
+        title: "Email não cadastrado",
+        description: `O estudante ${designacao.estudante.nome} não tem email cadastrado.`,
+        variant: "destructive",
+      });
+      return;
+    }
+
+    await notifyNewDesignacao(
+      {
+        id: designacao.estudante.id,
+        nome: designacao.estudante.nome,
+        email: designacao.estudante.email,
+      },
+      {
+        titulo_parte: designacao.titulo_parte,
+        tipo_parte: designacao.tipo_parte,
+        data_designacao: designacao.data_designacao,
+        tempo_minutos: designacao.tempo_minutos,
+        cena: designacao.cena,
+        observacoes: designacao.observacoes,
+      },
+      designacao.ajudante ? { id: designacao.ajudante.id, nome: designacao.ajudante.nome } : null
+    );
+  };
 
   const handleCancelConfirm = async () => {
     if (!cancelingDesignacao) return;
@@ -177,6 +217,12 @@ export function DesignacoesTable({
                         <Pencil className="mr-2 h-4 w-4" />
                         Editar
                       </DropdownMenuItem>
+                      {designacao.estudante && designacao.status !== "cancelado" && (
+                        <DropdownMenuItem onClick={() => handleSendEmail(designacao)}>
+                          <Mail className="mr-2 h-4 w-4" />
+                          Enviar Email
+                        </DropdownMenuItem>
+                      )}
                       {designacao.status !== "cancelado" && (
                         <DropdownMenuItem 
                           onClick={() => setCancelingDesignacao(designacao)}

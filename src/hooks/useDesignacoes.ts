@@ -6,6 +6,7 @@ interface Estudante {
   nome: string;
   genero: string | null;
   cargo: string | null;
+  email: string | null;
 }
 
 export interface DesignacaoCompleta {
@@ -83,7 +84,7 @@ export function useDesignacoes() {
       if (estudanteIds.size > 0) {
         const { data: estudantesData } = await supabase
           .from('estudantes')
-          .select('id, nome, genero, cargo')
+          .select('id, nome, genero, cargo, email')
           .in('id', Array.from(estudanteIds));
         
         (estudantesData || []).forEach(e => {
