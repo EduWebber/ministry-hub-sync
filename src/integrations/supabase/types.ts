@@ -92,66 +92,167 @@ export type Database = {
       }
       estudantes: {
         Row: {
+          assistant: boolean | null
           ativo: boolean | null
+          bible_study: boolean | null
           cargo: string | null
+          chairman: boolean | null
+          coabitacao: boolean | null
           congregacao_id: string | null
           created_at: string
           data_batismo: string | null
           data_nascimento: string | null
           email: string | null
+          estado_civil: string | null
+          familia: string | null
+          family_id: string | null
+          gems: boolean | null
           genero: string | null
           id: string
+          id_conjuge: string | null
+          id_mae: string | null
+          id_pai: string | null
           idade: number | null
+          initial_call: boolean | null
           instrutor_id: string | null
+          living: boolean | null
+          menor: boolean | null
           nome: string
           observacoes: string | null
+          papel_familiar: string | null
           parent_id: string | null
+          pray: boolean | null
           qualificacoes: Json | null
+          reading: boolean | null
+          responsavel_primario: string | null
+          responsavel_secundario: string | null
+          return_visit: boolean | null
+          talk: boolean | null
           telefone: string | null
+          treasures: boolean | null
           updated_at: string
         }
         Insert: {
+          assistant?: boolean | null
           ativo?: boolean | null
+          bible_study?: boolean | null
           cargo?: string | null
+          chairman?: boolean | null
+          coabitacao?: boolean | null
           congregacao_id?: string | null
           created_at?: string
           data_batismo?: string | null
           data_nascimento?: string | null
           email?: string | null
+          estado_civil?: string | null
+          familia?: string | null
+          family_id?: string | null
+          gems?: boolean | null
           genero?: string | null
           id?: string
+          id_conjuge?: string | null
+          id_mae?: string | null
+          id_pai?: string | null
           idade?: number | null
+          initial_call?: boolean | null
           instrutor_id?: string | null
+          living?: boolean | null
+          menor?: boolean | null
           nome: string
           observacoes?: string | null
+          papel_familiar?: string | null
           parent_id?: string | null
+          pray?: boolean | null
           qualificacoes?: Json | null
+          reading?: boolean | null
+          responsavel_primario?: string | null
+          responsavel_secundario?: string | null
+          return_visit?: boolean | null
+          talk?: boolean | null
           telefone?: string | null
+          treasures?: boolean | null
           updated_at?: string
         }
         Update: {
+          assistant?: boolean | null
           ativo?: boolean | null
+          bible_study?: boolean | null
           cargo?: string | null
+          chairman?: boolean | null
+          coabitacao?: boolean | null
           congregacao_id?: string | null
           created_at?: string
           data_batismo?: string | null
           data_nascimento?: string | null
           email?: string | null
+          estado_civil?: string | null
+          familia?: string | null
+          family_id?: string | null
+          gems?: boolean | null
           genero?: string | null
           id?: string
+          id_conjuge?: string | null
+          id_mae?: string | null
+          id_pai?: string | null
           idade?: number | null
+          initial_call?: boolean | null
           instrutor_id?: string | null
+          living?: boolean | null
+          menor?: boolean | null
           nome?: string
           observacoes?: string | null
+          papel_familiar?: string | null
           parent_id?: string | null
+          pray?: boolean | null
           qualificacoes?: Json | null
+          reading?: boolean | null
+          responsavel_primario?: string | null
+          responsavel_secundario?: string | null
+          return_visit?: boolean | null
+          talk?: boolean | null
           telefone?: string | null
+          treasures?: boolean | null
           updated_at?: string
         }
         Relationships: [
           {
+            foreignKeyName: "estudantes_id_conjuge_fkey"
+            columns: ["id_conjuge"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "estudantes_id_mae_fkey"
+            columns: ["id_mae"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "estudantes_id_pai_fkey"
+            columns: ["id_pai"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "estudantes_parent_id_fkey"
             columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "estudantes_responsavel_primario_fkey"
+            columns: ["responsavel_primario"]
+            isOneToOne: false
+            referencedRelation: "estudantes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "estudantes_responsavel_secundario_fkey"
+            columns: ["responsavel_secundario"]
             isOneToOne: false
             referencedRelation: "estudantes"
             referencedColumns: ["id"]
